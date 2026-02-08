@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Cartas</title>
+    <link rel="stylesheet" href="css/wildcards.css">
+   
+</head>
+<body>
+    <header class="cabecera-sitio">
+        <div class="contenedor-nav">
+            <a href="index.html"><div class="logo">WILDCARDS</div></a>
+
+            <nav class="nav-principal">
+                <ul>
+                    <li><a href="pokemon.html">Pokémon</a></li>
+                    <li><a href="onepiece.html">One Piece</a></li>
+                    <li><a href="yugioh.html">Yugioh</a></li>
+                    <li><a href="magic.html">Magic</a></li>
+                    <li><a href="lol.html">Riftbound:League of Legend</a></li>
+                    <li><a href="accesorios.html">Accesorios</a></li>
+                </ul>
+            </nav>
+
+            <form class="formulario-busqueda" action="#" role="search">
+                <input type="search" placeholder="Buscar" aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <div class="iconos">
+                <a href="login.html"><img src="icons/person.png" alt="usuario" class="icono"></a>
+                <a href="#"><img src="icons/carrito.png" alt="carrito" class="icono"></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenedor-tienda">
+            
+            <aside class="barra-lateral">
+                <div class="filtro-container">
+                    <h3>Filtrar por</h3>
+                    
+                    <div class="filtro-grupo">
+                        <h4>Precio</h4>
+                        <input type="range" min="0" max="500" value="250" class="slider-precio">
+                        <div class="rango-valores">
+                            <span>0€</span>
+                            <span>500€</span>
+                        </div>
+                    </div>
+
+                    <div class="filtro-grupo">
+                        <h4>Idioma</h4>
+                        <label class="opcion-filtro"><input type="checkbox" name="idioma" value="en"> Inglés</label>
+                        <label class="opcion-filtro"><input type="checkbox" name="idioma" value="es"> Español</label>
+                        <label class="opcion-filtro"><input type="checkbox" name="idioma" value="jp"> Japonés</label>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="listado-productos">
+                <h1>Pokémon TCG</h1>
+                <p>Explora nuestra colección de cartas y productos.</p>
+
+                <div class="productos-grid">
+                    <!-- Producto 1 -->
+                    <div class="producto-card">
+                        <div class="producto-imagen">
+                            <img src="img/V.jpg" alt="Carta 1">
+                        </div>
+                        <h3 class="producto-nombre">Victini ex</h3>
+                        <p class="producto-precio">555.00€</p>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="producto-card">
+                        <div class="producto-imagen">
+                            <img src="img/MCX.png" alt="Carta 2">
+                        </div>
+                        <h3 class="producto-nombre">Mega Charizard X ex</h3>
+                        <p class="producto-precio">02.90€</p>
+                    </div>
+                    <!-- Producto 3 -->
+                    <div class="producto-card">
+                        <div class="producto-imagen">
+                            <img src="img/MG.png" alt="Carta 3">
+                        </div>
+                        <h3 class="producto-nombre">Mega Gengar ex</h3>
+                        <p class="producto-precio">00.50€</p>
+                    </div>
+                    <!-- Producto 4 -->
+                    <div class="producto-card">
+                        <div class="producto-imagen">
+                            <img src="img/LL.png" alt="Carta 4">
+                        </div>
+                        <h3 class="producto-nombre">Clefairy ex de Lylia</h3>
+                        <p class="producto-precio">600.00€</p>
+                    </div>
+                    <!-- Producto 5 -->
+                    <div class="producto-card">
+                        <div class="producto-imagen">
+                            <img src="img/N.jpg" alt="Carta 5">
+                        </div>
+                        <h3 class="producto-nombre">N</h3>
+                        <p class="producto-precio">1.999,95€</p>
+                    </div>
+                    <!-- Producto 6 -->
+                    <div class="producto-card">
+                        <div class="producto-imagen">
+                            <img src="img/ML.png" alt="Carta 6">
+                        </div>
+                        <h3 class="producto-nombre">Mega Latias ex</h3>
+                        <p class="producto-precio">00.08€</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
