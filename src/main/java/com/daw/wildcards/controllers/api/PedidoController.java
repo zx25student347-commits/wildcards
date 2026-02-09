@@ -12,8 +12,8 @@ import com.daw.wildcards.models.Pedido;
 @RequestMapping("/api/pedido")
 public class PedidoController {
 
-    @GetMapping
-    public List<String> ListadoPedidos(){
-        return Pedido;
-    } 
+    // @GetMapping
+    // public List<String> ListadoPedidos(){
+    //     return Pedido;
+    // } 
 }

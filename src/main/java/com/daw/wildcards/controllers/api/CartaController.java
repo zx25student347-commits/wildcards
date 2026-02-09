@@ -13,10 +13,10 @@ import com.daw.wildcards.models.Carta;
 @RequestMapping("/api/carta")
 public class CartaController {
 
-    @GetMapping
-    public List<String> ListarCartas (){
-        return Carta;
-    }
+    // @GetMapping
+    // public List<String> ListarCartas (){
+    //     return Carta;
+    // }
 
     
 }
