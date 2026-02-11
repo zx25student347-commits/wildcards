@@ -25,10 +25,13 @@ public class PokemonCarta extends Carta {
     }
 
 
+    
+
+
     public PokemonCarta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            String descripcion, String imagenUrl, Integer hp, String pokemonTipo, String fase, String evolucionaDe,
-            String ataques, String debilidad, String resistencia, String costeRetirada) {
-        super(juego, set, nombre, numeroCarta, rareza, tipo, descripcion, imagenUrl);
+            Integer precio, String descripcion, String imagenUrl, Integer hp, String pokemonTipo, String fase,
+            String evolucionaDe, String ataques, String debilidad, String resistencia, String costeRetirada) {
+        super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl);
         this.hp = hp;
         this.pokemonTipo = pokemonTipo;
         this.fase = fase;
@@ -38,6 +41,9 @@ public class PokemonCarta extends Carta {
         this.resistencia = resistencia;
         this.costeRetirada = costeRetirada;
     }
+
+
+
 
 
     public Integer getHp() {
