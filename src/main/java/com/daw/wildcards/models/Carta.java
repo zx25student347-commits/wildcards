@@ -32,7 +32,7 @@ public abstract class Carta {
     private String numeroCarta;
     private String rareza;
     private String tipo;
-    private Integer precio;
+    private Double precio;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
@@ -46,7 +46,7 @@ public abstract class Carta {
 
 
     public Carta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            Integer precio, String descripcion, String imagenUrl) {
+            Double precio, String descripcion, String imagenUrl) {
         this.juego = juego;
         this.set = set;
         this.nombre = nombre;
@@ -70,9 +70,7 @@ public abstract class Carta {
         return cartaId;
     }
 
-    public void setCartaId(Integer cartaId) {
-        this.cartaId = cartaId;
-    }
+   
 
     public Juego getJuego() {
         return juego;
@@ -141,16 +139,20 @@ public abstract class Carta {
 
 
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
 
 
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
+
+
+
 
     
 }

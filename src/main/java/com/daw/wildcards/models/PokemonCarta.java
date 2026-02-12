@@ -29,7 +29,7 @@ public class PokemonCarta extends Carta {
 
 
     public PokemonCarta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            Integer precio, String descripcion, String imagenUrl, Integer hp, String pokemonTipo, String fase,
+            Double precio, String descripcion, String imagenUrl, Integer hp, String pokemonTipo, String fase,
             String evolucionaDe, String ataques, String debilidad, String resistencia, String costeRetirada) {
         super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl);
         this.hp = hp;

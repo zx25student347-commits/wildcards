@@ -24,7 +24,7 @@ public class MagicCarta extends Carta {
     
 
     public MagicCarta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            Integer precio, String descripcion, String imagenUrl, String manaCost, String cardType, String power,
+            Double precio, String descripcion, String imagenUrl, String manaCost, String cardType, String power,
             String toughness, String abilities, String colors) {
         super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl);
         this.manaCost = manaCost;
