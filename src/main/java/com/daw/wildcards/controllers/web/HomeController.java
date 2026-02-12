@@ -28,6 +28,19 @@ public class HomeController {
         return "magic";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login"; // Busca login.html
+    }
+
+    @GetMapping("/registro")
+    public String registro() {
+        return "registro"; // Busca registro.html (o el nombre que tenga tu vista de registro)
+    }
+
+   
+    
+
 
     
 
