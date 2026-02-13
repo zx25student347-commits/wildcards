@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - WildCards</title>
+    <link rel="stylesheet" href="estilo_dashboard.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>WildCards Admin</h2>
+            <nav>
+                <ul>
+                    <li class="active">Dashboard</li>
+                    <li>Magic: The Gathering</li>
+                    <li>Pokémon TCG</li>
+                    <li>Yu-Gi-Oh!</li>
+                    <li>One Piece Card Game</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Gestión de Cartas</h1>
+                <button class="btn-add" id="btnNuevaCarta"> Nueva Carta</button>
+            </header>
+
+            <section class="filters">
+                <input type="text" placeholder="Buscar por nombre o número..." id="buscarNombre">
+                <select id="filtroRareza">
+                    <option value="">Todas las Rarezas</option>
+                    <option value="Common">Common</option>
+                    <option value="Uncommon">Uncommon</option>
+                    <option value="Rare">Rare</option>
+                    <option value="Mythic Rare">Mythic Rare</option>
+                    <option value="Ultra Rare">Ultra Rare</option>
+                    <option value="Secret Rare">Secret Rare</option>
+                </select>
+                <select id="filtroSet">
+                    <option value="">Todos los Sets</option>
+                </select>
+            </section>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Juego</th>
+                            <th>Set</th>
+                            <th>Rareza</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-id="1" data-nombre="Doomsday Excruciator" data-juego="Magic: The Gathering" data-set="DSK" data-rareza="Rare" data-numero="1" data-imagen="placeholder.png" data-descripcion="" data-manaCost="2BB" data-cardType="Creature - Zombie" data-power="2" data-toughness="2" data-abilities="When Doomsday Excruciator enters the battlefield..." data-colors="Black">
+                            <td>1</td>
+                            <td><img src="placeholder.png" alt="Carta" class="thumb"></td>
+                            <td>Doomsday Excruciator</td>
+                            <td><span class="badge magic">Magic</span></td>
+                            <td>DSK</td>
+                            <td>Rare</td>
+                            <td>
+                                <button class="btn-edit">Editar</button>
+                                <button class="btn-delete" data-card-name="Doomsday Excruciator">Eliminar</button>
+                            </td>
+                        </tr>
+                        <tr data-id="2" data-nombre="Mega Charizard X EX" data-juego="Pokémon TCG" data-set="PFL" data-rareza="Ultra Rare" data-numero="2" data-imagen="placeholder.png" data-descripcion="" data-hp="220" data-pokemonTipo="Fire" data-fase="Stage 2" data-evolucionaDe="Charmeleon" data-ataques="Crimson Breach: 200 damage, Discard 2 Energy" data-debilidad="Water" data-resistencia="" data-costeRetirada="1">
+                            <td>2</td>
+                            <td><img src="placeholder.png" alt="Carta" class="thumb"></td>
+                            <td>Mega Charizard X EX</td>
+                            <td><span class="badge pokemon">Pokémon</span></td>
+                            <td>PFL</td>
+                            <td>Ultra Rare</td>
+                            <td>
+                                <button class="btn-edit">Editar</button>
+                                <button class="btn-delete" data-card-name="Mega Charizard X EX">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de confirmación de eliminación -->
+    <div id="modalConfirmacion" class="modal">
+        <div class="modal-content modal-confirmacion">
+            <div class="modal-header-confirmacion">
+                <h2>Confirmar Eliminación</h2>
+            </div>
+            <div class="modal-body-confirmacion">
+                <p>¿Quieres eliminar la carta <strong id="cardNameToDelete"></strong>?</p>
+            </div>
+            <div class="modal-footer-confirmacion">
+                <button class="btn-no" id="btnNo">No</button>
+                <button class="btn-si" id="btnSi">Sí</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear/editar carta -->
+    <div id="modalNuevaCarta" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tituloModal">Crear Nueva Carta</h2>
+                <button class="btn-cerrar" id="btnCerrarModal">&times;</button>
+            </div>
+            <form class="formulario-carta" id="formularioCarta">
+                <div class="form-group">
+                    <label for="nombre">Nombre de la Carta:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="juego">Juego:</label>
+                    <select id="juego" name="juego" required>
+                        <option value="">Selecciona un juego</option>
+                        <option value="Magic: The Gathering">Magic: The Gathering</option>
+                        <option value="Pokémon TCG">Pokémon TCG</option>
+                        <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
+                        <option value="One Piece Card Game">One Piece Card Game</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="set">Set/Expansión:</label>
+                    <input type="text" id="set" name="set" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rareza">Rareza:</label>
+                    <select id="rareza" name="rareza" required>
+                        <option value="">Selecciona la rareza</option>
+                        <option value="Common">Common</option>
+                        <option value="Uncommon">Uncommon</option>
+                        <option value="Rare">Rare</option>
+                        <option value="Mythic Rare">Mythic Rare</option>
+                        <option value="Ultra Rare">Ultra Rare</option>
+                        <option value="Secret Rare">Secret Rare</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">URL de la Imagen:</label>
+                    <input type="url" id="imagen" name="imagen" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                </div>
+
+                <!-- Campos específicos Magic: The Gathering -->
+                <div id="camposMagic" class="campos-juego" style="display:none;border-top:1px solid #444;padding-top:15px;margin-top:15px;">
+                    <h3 style="margin-top:0;color:var(--accent);">Atributos Magic: The Gathering</h3>
+                    <div class="form-group">
+                        <label for="manaCost">Costo de Maná:</label>
+                        <input type="text" id="manaCost" name="manaCost" placeholder="ej: 1WW">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardType">Tipo de Carta:</label>
+                        <input type="text" id="cardType" name="cardType" placeholder="ej: Creature - Human Soldier">
+                    </div>
+                    <div class="form-group">
+                        <label for="power">Poder:</label>
+                        <input type="text" id="power" name="power" placeholder="ej: 2">
+                    </div>
+                    <div class="form-group">
+                        <label for="toughness">Resistencia:</label>
+                        <input type="text" id="toughness" name="toughness" placeholder="ej: 2">
+                    </div>
+                    <div class="form-group">
+                        <label for="abilities">Habilidades:</label>
+                        <textarea id="abilities" name="abilities" rows="3" placeholder="Describe las habilidades..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="colors">Colores:</label>
+                        <input type="text" id="colors" name="colors" placeholder="ej: White, Blue">
+                    </div>
+                </div>
+
+                <!-- Campos específicos Pokémon TCG -->
+                <div id="camposPokemon" class="campos-juego" style="display:none;border-top:1px solid #444;padding-top:15px;margin-top:15px;">
+                    <h3 style="margin-top:0;color:var(--accent);">Atributos Pokémon TCG</h3>
+                    <div class="form-group">
+                        <label for="hp">HP:</label>
+                        <input type="number" id="hp" name="hp" placeholder="ej: 120">
+                    </div>
+                    <div class="form-group">
+                        <label for="pokemonTipo">Tipo de Pokémon:</label>
+                        <input type="text" id="pokemonTipo" name="pokemonTipo" placeholder="ej: Fire, Water">
+                    </div>
+                    <div class="form-group">
+                        <label for="fase">Fase:</label>
+                        <input type="text" id="fase" name="fase" placeholder="ej: Basic, Stage 1">
+                    </div>
+                    <div class="form-group">
+                        <label for="evolucionaDe">Evoluciona de:</label>
+                        <input type="text" id="evolucionaDe" name="evolucionaDe" placeholder="ej: Nombre del Pokémon anterior">
+                    </div>
+                    <div class="form-group">
+                        <label for="ataques">Ataques:</label>
+                        <textarea id="ataques" name="ataques" rows="3" placeholder="Describe los ataques..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="debilidad">Debilidad:</label>
+                        <input type="text" id="debilidad" name="debilidad" placeholder="ej: Electric">
+                    </div>
+                    <div class="form-group">
+                        <label for="resistencia">Resistencia:</label>
+                        <input type="text" id="resistencia" name="resistencia" placeholder="ej: Fighting">
+                    </div>
+                    <div class="form-group">
+                        <label for="costeRetirada">Costo de Retirada:</label>
+                        <input type="number" id="costeRetirada" name="costeRetirada" placeholder="ej: 2">
+                    </div>
+                </div>
+
+                <!-- Campos específicos Yu-Gi-Oh! -->
+                <div id="camposYugioh" class="campos-juego" style="display:none;border-top:1px solid #444;padding-top:15px;margin-top:15px;">
+                    <h3 style="margin-top:0;color:var(--accent);">Atributos Yu-Gi-Oh!</h3>
+                    <div class="form-group">
+                        <label for="nivel">Nivel:</label>
+                        <input type="number" id="nivel" name="nivel" placeholder="ej: 4">
+                    </div>
+                    <div class="form-group">
+                        <label for="atributo">Atributo:</label>
+                        <input type="text" id="atributo" name="atributo" placeholder="ej: LIGHT, DARK">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoDetalle">Tipo de Detalle:</label>
+                        <input type="text" id="tipoDetalle" name="tipoDetalle" placeholder="ej: Dragon, Spellcaster">
+                    </div>
+                    <div class="form-group">
+                        <label for="ataque">Ataque:</label>
+                        <input type="number" id="ataque" name="ataque" placeholder="ej: 2500">
+                    </div>
+                    <div class="form-group">
+                        <label for="defensa">Defensa:</label>
+                        <input type="number" id="defensa" name="defensa" placeholder="ej: 2100">
+                    </div>
+                    <div class="form-group">
+                        <label for="textoEfecto">Texto del Efecto:</label>
+                        <textarea id="textoEfecto" name="textoEfecto" rows="3" placeholder="Describe el efecto..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Campos específicos One Piece Card Game -->
+                <div id="camposOnePiece" class="campos-juego" style="display:none;border-top:1px solid #444;padding-top:15px;margin-top:15px;">
+                    <h3 style="margin-top:0;color:var(--accent);">Atributos One Piece Card Game</h3>
+                    <div class="form-group">
+                        <label for="coste">Costo:</label>
+                        <input type="number" id="coste" name="coste" placeholder="ej: 3">
+                    </div>
+                    <div class="form-group">
+                        <label for="powerOP">Poder:</label>
+                        <input type="number" id="powerOP" name="powerOP" placeholder="ej: 4000">
+                    </div>
+                    <div class="form-group">
+                        <label for="colorOP">Color:</label>
+                        <input type="text" id="colorOP" name="colorOP" placeholder="ej: Red, Green">
+                    </div>
+                    <div class="form-group">
+                        <label for="counter">Contador:</label>
+                        <input type="number" id="counter" name="counter" placeholder="ej: 2">
+                    </div>
+                    <div class="form-group">
+                        <label for="effect">Efecto:</label>
+                        <textarea id="effect" name="effect" rows="3" placeholder="Describe el efecto..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submitform" id="btnSubmit">Crear Carta</button>
+                    <button type="button" class="btn-cancelform" id="btnCancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modalNuevaCarta');
+        const btnNuevaCarta = document.getElementById('btnNuevaCarta');
+        const btnCerrarModal = document.getElementById('btnCerrarModal');
+        const btnCancelar = document.getElementById('btnCancelar');
+        const formularioCarta = document.getElementById('formularioCarta');
+        const tituloModal = document.getElementById('tituloModal');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const selectJuego = document.getElementById('juego');
+
+        // Filtros
+        const buscarNombre = document.getElementById('buscarNombre');
+        const filtroRareza = document.getElementById('filtroRareza');
+        const filtroSet = document.getElementById('filtroSet');
+
+        // Modal de confirmación
+        const modalConfirmacion = document.getElementById('modalConfirmacion');
+        const btnNo = document.getElementById('btnNo');
+        const btnSi = document.getElementById('btnSi');
+        const cardNameToDelete = document.getElementById('cardNameToDelete');
+        let cartaActualAEliminar = null;
+
+        let modoEdicion = false;
+        let filaEnEdicion = null;
+
+        // Mapeo de juegos a sus campos específicos
+        const camposEspecificos = {
+            'Magic: The Gathering': {
+                contenedor: 'camposMagic',
+                campos: ['manaCost', 'cardType', 'power', 'toughness', 'abilities', 'colors']
+            },
+            'Pokémon TCG': {
+                contenedor: 'camposPokemon',
+                campos: ['hp', 'pokemonTipo', 'fase', 'evolucionaDe', 'ataques', 'debilidad', 'resistencia', 'costeRetirada']
+            },
+            'Yu-Gi-Oh!': {
+                contenedor: 'camposYugioh',
+                campos: ['nivel', 'atributo', 'tipoDetalle', 'ataque', 'defensa', 'textoEfecto']
+            },
+            'One Piece Card Game': {
+                contenedor: 'camposOnePiece',
+                campos: ['coste', 'powerOP', 'colorOP', 'counter', 'effect']
+            }
+        };
+
+        // Mostrar/ocultar campos según el juego seleccionado
+        selectJuego.addEventListener('change', (e) => {
+            const juegoSeleccionado = e.target.value;
+
+            // Ocultar todos los campos específicos
+            Object.values(camposEspecificos).forEach(juego => {
+                const contenedor = document.getElementById(juego.contenedor);
+                if (contenedor) contenedor.style.display = 'none';
+            });
+
+            // Mostrar los campos del juego seleccionado
+            if (juegoSeleccionado && camposEspecificos[juegoSeleccionado]) {
+                const contenedor = document.getElementById(camposEspecificos[juegoSeleccionado].contenedor);
+                if (contenedor) contenedor.style.display = 'block';
+            }
+        });
+
+        // Inicializar sets disponibles en el filtro
+        function inicializarFiltroSets() {
+            const tablaBody = document.querySelector('table tbody');
+            const filas = tablaBody.querySelectorAll('tr');
+            const setsUnicos = new Set();
+
+            filas.forEach(fila => {
+                const set = fila.getAttribute('data-set');
+                if (set) setsUnicos.add(set);
+            });
+
+            const setsOrdenados = Array.from(setsUnicos).sort();
+            setsOrdenados.forEach(set => {
+                const option = document.createElement('option');
+                option.value = set;
+                option.textContent = set;
+                filtroSet.appendChild(option);
+            });
+        }
+
+        // Función para filtrar la tabla
+        function aplicarFiltros() {
+            const tablaBody = document.querySelector('table tbody');
+            const filas = tablaBody.querySelectorAll('tr');
+            const nombreBusqueda = buscarNombre.value.toLowerCase();
+            const rarezaSeleccionada = filtroRareza.value;
+            const setSeleccionado = filtroSet.value;
+
+            filas.forEach(fila => {
+                let mostrar = true;
+
+                // Filtro por nombre
+                if (nombreBusqueda) {
+                    const nombre = fila.getAttribute('data-nombre').toLowerCase();
+                    if (!nombre.includes(nombreBusqueda)) {
+                        mostrar = false;
+                    }
+                }
+
+                // Filtro por rareza
+                if (rarezaSeleccionada && mostrar) {
+                    const rareza = fila.getAttribute('data-rareza');
+                    if (rareza !== rarezaSeleccionada) {
+                        mostrar = false;
+                    }
+                }
+
+                // Filtro por set
+                if (setSeleccionado && mostrar) {
+                    const set = fila.getAttribute('data-set');
+                    if (set !== setSeleccionado) {
+                        mostrar = false;
+                    }
+                }
+
+                fila.style.display = mostrar ? '' : 'none';
+            });
+        }
+
+        // Event listeners para filtros
+        buscarNombre.addEventListener('input', aplicarFiltros);
+        filtroRareza.addEventListener('change', aplicarFiltros);
+        filtroSet.addEventListener('change', aplicarFiltros);
+
+        // Abrir modal de crear carta
+        btnNuevaCarta.addEventListener('click', () => {
+            modoEdicion = false;
+            tituloModal.textContent = 'Crear Nueva Carta';
+            btnSubmit.textContent = 'Crear Carta';
+            formularioCarta.reset();
+            selectJuego.value = '';
+            // Ocultar todos los campos específicos
+            Object.values(camposEspecificos).forEach(juego => {
+                const contenedor = document.getElementById(juego.contenedor);
+                if (contenedor) contenedor.style.display = 'none';
+            });
+            modal.style.display = 'flex';
+        });
+
+        // Cerrar modal con el botón X
+        btnCerrarModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            formularioCarta.reset();
+            modoEdicion = false;
+        });
+
+        // Cerrar modal con el botón Cancelar
+        btnCancelar.addEventListener('click', () => {
+            modal.style.display = 'none';
+            formularioCarta.reset();
+            modoEdicion = false;
+        });
+
+        // Cerrar modal si se hace clic fuera del contenido
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                formularioCarta.reset();
+                modoEdicion = false;
+            }
+            if (event.target === modalConfirmacion) {
+                modalConfirmacion.style.display = 'none';
+            }
+        });
+
+        // Manejar el envío del formulario
+        formularioCarta.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const juegoSeleccionado = selectJuego.value;
+            const datosBasicos = {
+                nombre: document.getElementById('nombre').value,
+                juego: juegoSeleccionado,
+                set: document.getElementById('set').value,
+                rareza: document.getElementById('rareza').value,
+                numero: document.getElementById('numero').value,
+                imagen: document.getElementById('imagen').value,
+                descripcion: document.getElementById('descripcion').value
+            };
+
+            // Recopilar campos específicos del juego
+            let camposJuego = {};
+            if (juegoSeleccionado && camposEspecificos[juegoSeleccionado]) {
+                camposEspecificos[juegoSeleccionado].campos.forEach(campo => {
+                    const elemento = document.getElementById(campo);
+                    if (elemento) {
+                        camposJuego[campo] = elemento.value;
+                    }
+                });
+            }
+
+            if (modoEdicion && filaEnEdicion) {
+                // Actualizar fila existente
+                Object.assign(datosBasicos, camposJuego);
+                
+                Object.keys(datosBasicos).forEach(key => {
+                    filaEnEdicion.setAttribute('data-' + key, datosBasicos[key]);
+                });
+
+                const celdas = filaEnEdicion.querySelectorAll('td');
+                celdas[1].querySelector('img').src = datosBasicos.imagen;
+                celdas[2].textContent = datosBasicos.nombre;
+                celdas[4].textContent = datosBasicos.set;
+                celdas[5].textContent = datosBasicos.rareza;
+
+                alert('Carta "' + datosBasicos.nombre + '" actualizada correctamente');
+            } else {
+                // Crear nueva carta
+                alert('Carta creada: ' + datosBasicos.nombre);
+            }
+            
+            modal.style.display = 'none';
+            formularioCarta.reset();
+            modoEdicion = false;
+            
+            // Reinicializar filtro de sets en caso de que se agregue un nuevo set
+            const opcionExistente = Array.from(filtroSet.options).find(
+                opt => opt.value === datosBasicos.set
+            );
+            if (!opcionExistente && datosBasicos.set) {
+                const option = document.createElement('option');
+                option.value = datosBasicos.set;
+                option.textContent = datosBasicos.set;
+                filtroSet.appendChild(option);
+            }
+        });
+
+        // Manejar clics en botones de editar
+        function agregarEventosEditar() {
+            const botonesEditar = document.querySelectorAll('.btn-edit');
+            botonesEditar.forEach(btn => {
+                btn.removeEventListener('click', handleEditClick);
+                btn.addEventListener('click', handleEditClick);
+            });
+        }
+
+        function handleEditClick(e) {
+            e.preventDefault();
+            const fila = this.closest('tr');
+            
+            // Obtener datos básicos
+            const nombre = fila.getAttribute('data-nombre');
+            const juego = fila.getAttribute('data-juego');
+            const set = fila.getAttribute('data-set');
+            const rareza = fila.getAttribute('data-rareza');
+            const numero = fila.getAttribute('data-numero');
+            const imagen = fila.getAttribute('data-imagen');
+            const descripcion = fila.getAttribute('data-descripcion') || '';
+
+            // Llenar formulario con datos básicos
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('juego').value = juego;
+            document.getElementById('set').value = set;
+            document.getElementById('rareza').value = rareza;
+            document.getElementById('numero').value = numero;
+            document.getElementById('imagen').value = imagen;
+            document.getElementById('descripcion').value = descripcion;
+
+            // Mostrar/ocultar campos específicos del juego
+            Object.values(camposEspecificos).forEach(juegoConfig => {
+                const contenedor = document.getElementById(juegoConfig.contenedor);
+                if (contenedor) contenedor.style.display = 'none';
+            });
+
+            if (juego && camposEspecificos[juego]) {
+                const contenedor = document.getElementById(camposEspecificos[juego].contenedor);
+                if (contenedor) contenedor.style.display = 'block';
+
+                // Llenar campos específicos del juego
+                camposEspecificos[juego].campos.forEach(campo => {
+                    const elemento = document.getElementById(campo);
+                    const valor = fila.getAttribute('data-' + campo) || '';
+                    if (elemento) elemento.value = valor;
+                });
+            }
+
+            // Cambiar modo a edición
+            modoEdicion = true;
+            filaEnEdicion = fila;
+            tituloModal.textContent = 'Editar Carta';
+            btnSubmit.textContent = 'Guardar Cambios';
+            modal.style.display = 'flex';
+        }
+
+        agregarEventosEditar();
+
+        // Manejar clics en botones de eliminar
+        function agregarEventosEliminar() {
+            const botonesEliminar = document.querySelectorAll('.btn-delete');
+            botonesEliminar.forEach(btn => {
+                btn.removeEventListener('click', handleDeleteClick);
+                btn.addEventListener('click', handleDeleteClick);
+            });
+        }
+
+        function handleDeleteClick(e) {
+            e.preventDefault();
+            const cardName = this.getAttribute('data-card-name');
+            cartaActualAEliminar = this.closest('tr');
+            cardNameToDelete.textContent = cardName;
+            modalConfirmacion.style.display = 'flex';
+        }
+
+        agregarEventosEliminar();
+
+        // Botón No - cerrar modal
+        btnNo.addEventListener('click', () => {
+            modalConfirmacion.style.display = 'none';
+            cartaActualAEliminar = null;
+        });
+
+        // Botón Sí - eliminar carta
+        btnSi.addEventListener('click', () => {
+            if (cartaActualAEliminar) {
+                const cardName = cardNameToDelete.textContent;
+                cartaActualAEliminar.remove();
+                modalConfirmacion.style.display = 'none';
+                alert('Carta "' + cardName + '" eliminada correctamente');
+                cartaActualAEliminar = null;
+            }
+        });
+
+        // Inicializar
+        inicializarFiltroSets();
+    </script>
+</body>
+</html>
