@@ -4,13 +4,12 @@ package com.daw.wildcards.controllers.api;
 import com.daw.wildcards.models.Carta;
 import com.daw.wildcards.services.CartaService;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cartas") // Ruta base para la API
@@ -47,4 +46,46 @@ public class CartaController {
         }
         return ResponseEntity.ok(cartas);
     }
+    
+    
+
+    @GetMapping
+    public ResponseEntity<List<Carta>> listarTodas() {
+        return ResponseEntity.ok(cartaService.listarTodas());
+    }
+
+    @GetMapping("/{id:\\d+}")
+    public ResponseEntity<Carta> obtenerPorId(@PathVariable Integer id) {
+        Optional<Carta> carta = cartaService.obtenerPorId(id);
+        return carta.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Carta> crearCarta(@RequestBody Carta carta) {
+        Carta nuevaCarta = cartaService.guardar(carta);
+        return new ResponseEntity<>(nuevaCarta, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Carta> actualizarCarta(@PathVariable Integer id, @RequestBody Carta carta) {
+        if (cartaService.obtenerPorId(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        carta.setCartaId(id);
+        Carta cartaActualizada = cartaService.guardar(carta);
+        return ResponseEntity.ok(cartaActualizada);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCarta(@PathVariable Integer id) {
+        if (cartaService.obtenerPorId(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        cartaService.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+   
+
 }

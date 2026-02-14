@@ -70,7 +70,9 @@ public abstract class Carta {
         return cartaId;
     }
 
-   
+    public void setCartaId(Integer cartaId) {
+        this.cartaId = cartaId;
+    }
 
     public Juego getJuego() {
         return juego;
@@ -156,4 +158,3 @@ public abstract class Carta {
 
     
 }
-

@@ -28,6 +28,17 @@ public class HomeController {
         return "magic";
     }
 
+    @GetMapping("/yugioh")
+    public String verPaginaYugioh() {
+        return "yugioh";
+    }
+
+
+    @GetMapping("/accesorios")
+    public String verPaginaAccesorios() {
+        return "accesorios";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login"; // Busca login.html
