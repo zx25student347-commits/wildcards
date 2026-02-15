@@ -25,3 +25,9 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4, 4, 'Legend of Blue Eyes', '2002-03-08', 'LOB', 126);
 
 
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id) 
+VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 150.00, 'Escupe fuego que derrite rocas.', '/img/MCX.png', 1, 1);
+
+-- 3. Insertamos en la tabla hija 'pokemon_cartas' usando el MISMO ID (100)
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (100, 120, 'Fuego', 'Stage 2', 'Charmeleon', 'Lanzallamas, Giro Fuego', 'Agua', 'Lucha', 3);

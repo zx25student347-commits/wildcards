@@ -27,8 +27,8 @@
 
         // Mapeo para el backend (Asumiendo IDs de juegos y nombres de clases para Jackson)
         const juegoMap = {
-            'Magic: The Gathering': { id: 1, classType: 'MagicCarta', badgeClass: 'magic' },
-            'Pokémon TCG': { id: 2, classType: 'PokemonCarta', badgeClass: 'pokemon' },
+            'Magic: The Gathering': { id: 2, classType: 'MagicCarta', badgeClass: 'magic' },
+            'Pokémon TCG': { id: 1, classType: 'PokemonCarta', badgeClass: 'pokemon' },
             'Yu-Gi-Oh!': { id: 3, classType: 'YugiohCarta', badgeClass: 'yugioh' }, // Ajustar clase CSS si existe
             'One Piece Card Game': { id: 4, classType: 'OnePieceCarta', badgeClass: 'onepiece' } // Ajustar clase CSS si existe
         };
@@ -95,12 +95,12 @@
             cartas.forEach(carta => {
                 const tr = document.createElement('tr');
                 const juegoNombre = carta.juego ? (carta.juego.nombre || 'Desconocido') : 'Desconocido';
-                const badgeClass = Object.values(juegoMap).find(j => j.id === (carta.juego?.id))?.badgeClass || 'default';
+                const badgeClass = Object.values(juegoMap).find(j => j.id === (carta.juego?.juegoId || carta.juego?.id))?.badgeClass || 'default';
                 const setNombre = carta.set ? (carta.set.nombre || carta.set) : 'N/A'; // Manejo flexible del Set
 
                 tr.innerHTML = `
                     <td>${carta.cartaId}</td>
-                    <td><img src="${carta.imagenUrl || 'placeholder.png'}" alt="${carta.nombre}" class="thumb" onerror="this.src='placeholder.png'"></td>
+                    <td><img src="${carta.imagenUrl}" alt="${carta.nombre}" class="thumb" onerror="this.onerror=null;this.src='https://placehold.co/50?text=No+Img'"></td>
                     <td>${carta.nombre}</td>
                     <td><span class="badge ${badgeClass}">${juegoNombre}</span></td>
                     <td>${setNombre}</td>
@@ -185,6 +185,8 @@
             btnSubmit.textContent = 'Crear Carta';
             formularioCarta.reset();
             selectJuego.value = '';
+            document.getElementById('imagenActualTexto').style.display = 'none';
+            document.getElementById('imagenFile').value = '';
             // Ocultar todos los campos específicos
             Object.values(camposEspecificos).forEach(juego => {
                 const contenedor = document.getElementById(juego.contenedor);
@@ -232,19 +234,18 @@
             // Construir objeto base
             const cartaData = {
                 nombre: document.getElementById('nombre').value,
-                // Enviamos el objeto juego con ID si el backend lo requiere así
-                juego: juegoInfo ? { id: juegoInfo.id } : null, 
-                // Nota: 'set' es una entidad. Si el backend no tiene un converter de String a CartaSet, 
-                // esto podría fallar o requerir enviar { id: ... } o null. 
-                // Por ahora enviamos null en la relación y el nombre en un campo transitorio si fuera necesario, 
-                // o asumimos que el backend lo maneja.
-                // set: { nombre: document.getElementById('set').value }, // Intento de estructura
+                // Usamos 'juegoId' para que coincida con la entidad Java Juego
+                juego: juegoInfo ? { juegoId: juegoInfo.id } : null,
+                // Enviamos el juego dentro del set también, por si se crea un Set nuevo
+                set: { nombre: document.getElementById('set').value, 
+                       juego: juegoInfo ? { juegoId: juegoInfo.id } : null },
                 rareza: document.getElementById('rareza').value,
-                numeroCarta: document.getElementById('numero').value, // Mapeo correcto al modelo Java
-                imagenUrl: document.getElementById('imagen').value,   // Mapeo correcto al modelo Java
+                numeroCarta: document.getElementById('numero').value,
+                // imagenUrl se gestiona en backend si hay fichero, o se mantiene
                 descripcion: document.getElementById('descripcion').value,
-                // Discriminador para Jackson (si usas @JsonTypeInfo en el backend)
-                // "@type": juegoInfo ? juegoInfo.classType : null 
+                precio: document.getElementById('precio') ? parseFloat(document.getElementById('precio').value) : null,
+                tipo: document.getElementById('tipo') ? document.getElementById('tipo').value : null,
+                "@type": juegoInfo ? juegoInfo.classType : null
             };
 
             // Recopilar campos específicos del juego
@@ -257,14 +258,25 @@
                 });
             }
 
+            // Crear FormData para enviar archivo + JSON
+            const formData = new FormData();
+            // 1. Añadir el JSON como Blob
+            formData.append('carta', new Blob([JSON.stringify(cartaData)], { type: 'application/json' }));
+            
+            // 2. Añadir el archivo si existe
+            const fileInput = document.getElementById('imagenFile');
+            if (fileInput.files[0]) {
+                formData.append('file', fileInput.files[0]);
+            }
+
             try {
                 const method = modoEdicion ? 'PUT' : 'POST';
                 const url = modoEdicion ? `${API_URL}/${idCartaEnEdicion}` : API_URL;
 
                 const response = await fetch(url, {
                     method: method,
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(cartaData)
+                    // No establecer Content-Type, el navegador lo pone como multipart/form-data automáticamente
+                    body: formData
                 });
 
                 if (!response.ok) throw new Error('Error al guardar la carta');
@@ -303,7 +315,7 @@
                 let juegoNombre = '';
                 if (carta.juego) {
                     // Buscar en nuestro mapa local qué nombre corresponde a este ID/Objeto
-                    const entry = Object.entries(juegoMap).find(([key, val]) => val.id === carta.juego.id || carta.juego.nombre === key);
+                    const entry = Object.entries(juegoMap).find(([key, val]) => val.id === (carta.juego.juegoId || carta.juego.id) || carta.juego.nombre === key);
                     if (entry) juegoNombre = entry[0];
                 }
 
@@ -313,8 +325,14 @@
                 document.getElementById('set').value = carta.set ? (carta.set.nombre || '') : '';
                 document.getElementById('rareza').value = carta.rareza;
                 document.getElementById('numero').value = carta.numeroCarta;
-                document.getElementById('imagen').value = carta.imagenUrl;
+                
+                document.getElementById('imagenFile').value = ''; // Limpiar input file
+                document.getElementById('imagenActualTexto').style.display = 'block';
+                document.getElementById('urlImagenActual').textContent = carta.imagenUrl || 'Sin imagen';
+
                 document.getElementById('descripcion').value = carta.descripcion || '';
+                if (document.getElementById('precio')) document.getElementById('precio').value = carta.precio || '';
+                if (document.getElementById('tipo')) document.getElementById('tipo').value = carta.tipo || '';
 
                 // Mostrar/ocultar campos específicos del juego
                 Object.values(camposEspecificos).forEach(juegoConfig => {

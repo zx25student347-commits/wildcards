@@ -1,5 +1,8 @@
 package com.daw.wildcards.models;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +17,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "cartas")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "@type"
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = MagicCarta.class, name = "MagicCarta"),
+    @JsonSubTypes.Type(value = PokemonCarta.class, name = "PokemonCarta"),
+    @JsonSubTypes.Type(value = YugiohCarta.class, name = "YugiohCarta"),
+    @JsonSubTypes.Type(value = OnePieceCarta.class, name = "OnePieceCarta")
+})
 public abstract class Carta {
 
     @Id
@@ -24,7 +38,7 @@ public abstract class Carta {
     @JoinColumn(name = "juego_id")
     private Juego juego;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "set_id")
     private CartaSet set;
 

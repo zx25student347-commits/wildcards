@@ -2,13 +2,14 @@ package com.daw.wildcards.services;
 
 import java.util.List;
 import java.util.Optional;
-
+import com.daw.wildcards.repositories.YugiohCartaRepository;
 import org.springframework.stereotype.Service;
 
 import com.daw.wildcards.models.Carta;
 import com.daw.wildcards.models.MagicCarta;
 import com.daw.wildcards.models.OnePieceCarta;
 import com.daw.wildcards.models.PokemonCarta;
+import com.daw.wildcards.models.YugiohCarta;
 import com.daw.wildcards.repositories.CartaRepository;
 import com.daw.wildcards.repositories.MagicCartaRepository;
 import com.daw.wildcards.repositories.OnePieceCartaRepository;
@@ -17,6 +18,8 @@ import com.daw.wildcards.repositories.PokemonCartaRepository;
 @Service
 public class CartaService {
 
+    private final YugiohCartaRepository yugiohCartaRepository;
+
     private OnePieceCartaRepository onePieceCartaRepository;
     private PokemonCartaRepository pokemonCartaRepository;
     private MagicCartaRepository magicCartaRepository;
@@ -24,11 +27,12 @@ public class CartaService {
 
     
 
-    public CartaService(OnePieceCartaRepository onePieceCartaRepository, PokemonCartaRepository pokemonCartaRepository, MagicCartaRepository magicCartaRepository, CartaRepository cartaRepository) {
+    public CartaService(OnePieceCartaRepository onePieceCartaRepository, PokemonCartaRepository pokemonCartaRepository, MagicCartaRepository magicCartaRepository, CartaRepository cartaRepository, YugiohCartaRepository yugiohCartaRepository) {
         this.onePieceCartaRepository = onePieceCartaRepository;
         this.pokemonCartaRepository = pokemonCartaRepository;
         this.magicCartaRepository = magicCartaRepository;
         this.cartaRepository = cartaRepository;
+        this.yugiohCartaRepository = yugiohCartaRepository;
     }
 
     public List<OnePieceCarta> obtenerTodasOne() {
@@ -44,6 +48,10 @@ public class CartaService {
     public List<MagicCarta> obtenerTodasMag() {
         
         return magicCartaRepository.findAll();
+    }
+
+    public List<YugiohCarta> obtenerTodasYu() {
+        return yugiohCartaRepository.findAll();
     }
 
     // Métodos CRUD generales
@@ -63,5 +71,7 @@ public class CartaService {
     public void eliminar(Integer id) {
         cartaRepository.deleteById(id);
     }
+
+    
 
 }
