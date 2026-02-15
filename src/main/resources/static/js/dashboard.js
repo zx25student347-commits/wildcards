@@ -9,6 +9,21 @@
         const btnSubmit = document.getElementById('btnSubmit');
         const selectJuego = document.getElementById('juego');
 
+        // Elementos Modal Set
+        const modalNuevoSet = document.getElementById('modalNuevoSet');
+        const btnNuevoSet = document.getElementById('btnNuevoSet');
+        const btnCerrarModalSet = document.getElementById('btnCerrarModalSet');
+        const btnCancelarSet = document.getElementById('btnCancelarSet');
+        const formularioSet = document.getElementById('formularioSet');
+
+        // Elementos Modal Borrar Set
+        const modalBorrarSet = document.getElementById('modalBorrarSet');
+        const btnBorrarSet = document.getElementById('btnBorrarSet');
+        const btnCerrarModalBorrarSet = document.getElementById('btnCerrarModalBorrarSet');
+        const btnCancelarBorrarSet = document.getElementById('btnCancelarBorrarSet');
+        const btnConfirmarBorrarSet = document.getElementById('btnConfirmarBorrarSet');
+        const selectSetBorrar = document.getElementById('selectSetBorrar');
+
         // Filtros
         const buscarNombre = document.getElementById('buscarNombre');
         const filtroRareza = document.getElementById('filtroRareza');
@@ -195,6 +210,114 @@
             modal.style.display = 'flex';
         });
 
+        // Abrir modal de crear Set
+        if (btnNuevoSet) {
+            btnNuevoSet.addEventListener('click', () => {
+                formularioSet.reset();
+                modalNuevoSet.style.display = 'flex';
+            });
+        }
+
+        // Cerrar modal Set
+        if (btnCerrarModalSet) btnCerrarModalSet.addEventListener('click', () => modalNuevoSet.style.display = 'none');
+        if (btnCancelarSet) btnCancelarSet.addEventListener('click', () => modalNuevoSet.style.display = 'none');
+
+        // Manejo de envío del formulario Set (Placeholder)
+        if (formularioSet) {
+            formularioSet.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const juegoSeleccionado = document.getElementById('juegoSet').value;
+                const juegoInfo = juegoMap[juegoSeleccionado];
+
+                const setData = {
+                    nombre: document.getElementById('nombreSet').value,
+                    fechaLanzamiento: document.getElementById('fechaSalida').value,
+                    codigo: document.getElementById('codigoSet').value,
+                    totalCartas: parseInt(document.getElementById('cartasTotal').value),
+                    juego: juegoInfo ? { juegoId: juegoInfo.id } : null
+                };
+
+                try {
+                    // TODO: Reemplazar '/api/sets' con tu endpoint real si es diferente
+                    const response = await fetch('/api/sets', { 
+                        method: 'POST', 
+                        headers: {'Content-Type': 'application/json'}, 
+                        body: JSON.stringify(setData) 
+                    });
+                    
+                    if (!response.ok) throw new Error('Error al crear el set');
+
+                    alert('Set creado correctamente');
+                    modalNuevoSet.style.display = 'none';
+                    formularioSet.reset();
+                } catch (error) {
+                    console.error(error);
+                    alert('Error al crear el set: ' + error.message);
+                }
+            });
+        }
+
+        // Abrir modal Borrar Set
+        if (btnBorrarSet) {
+            btnBorrarSet.addEventListener('click', async () => {
+                modalBorrarSet.style.display = 'flex';
+                // Cargar sets disponibles desde el backend
+                try {
+                    const response = await fetch('/api/sets');
+                    if (response.ok) {
+                        const sets = await response.json();
+                        selectSetBorrar.innerHTML = '<option value="">-- Seleccionar Set --</option>';
+                        sets.forEach(set => {
+                            // Asumimos que el objeto set tiene 'id' y 'nombre'
+                            const option = document.createElement('option');
+                            option.value = set.id || set.setId; 
+                            option.textContent = `${set.nombre} (${set.codigo || 'N/A'})`;
+                            selectSetBorrar.appendChild(option);
+                        });
+                    } else {
+                        console.error('Error al cargar sets');
+                        alert('No se pudieron cargar los sets.');
+                    }
+                } catch (e) {
+                    console.error('Error de conexión al cargar sets', e);
+                }
+            });
+        }
+
+        // Cerrar modal Borrar Set
+        if (btnCerrarModalBorrarSet) btnCerrarModalBorrarSet.addEventListener('click', () => modalBorrarSet.style.display = 'none');
+        if (btnCancelarBorrarSet) btnCancelarBorrarSet.addEventListener('click', () => modalBorrarSet.style.display = 'none');
+
+        // Confirmar borrado de Set
+        if (btnConfirmarBorrarSet) {
+            btnConfirmarBorrarSet.addEventListener('click', async () => {
+                const setId = selectSetBorrar.value;
+                if (!setId) {
+                    alert('Por favor selecciona un set.');
+                    return;
+                }
+
+                if (!confirm('¿Estás seguro de que quieres eliminar este set?')) {
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`/api/sets/${setId}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        alert('Set eliminado correctamente');
+                        modalBorrarSet.style.display = 'none';
+                        cargarCartas(); // Recargar para actualizar filtros si es necesario
+                    } else {
+                        alert('Error al eliminar el set. Verifica que no tenga cartas asociadas.');
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Error de conexión al eliminar el set');
+                }
+            });
+        }
+
         // Cerrar modal con el botón X
         btnCerrarModal.addEventListener('click', () => {
             modal.style.display = 'none';
@@ -221,6 +344,12 @@
             }
             if (event.target === modalConfirmacion) {
                 modalConfirmacion.style.display = 'none';
+            }
+            if (event.target === modalNuevoSet) {
+                modalNuevoSet.style.display = 'none';
+            }
+            if (event.target === modalBorrarSet) {
+                modalBorrarSet.style.display = 'none';
             }
         });
 

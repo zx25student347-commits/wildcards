@@ -32,12 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function crearTarjeta(carta) {
     const precio = carta.precio ? parseFloat(carta.precio).toFixed(2) + ' €' : 'Consultar';
-    const imagen = carta.imagenUrl || 'https://placehold.co/200x280?text=No+Image';
+    const imagen = carta.imagenUrl || 'https://placehold.co/200x280?text=No+Imagen';
 
     return `
         <div class="producto-card">
             <div class="producto-imagen">
-                <img src="${imagen}" alt="${carta.nombre}" onerror="this.onerror=null;this.src='https://placehold.co/200x280?text=No+Image'">
+                <img src="${imagen}" alt="${carta.nombre}" onerror="this.onerror=null;this.src='https://placehold.co/200x280?text=No+Imagen'">
             </div>
             <h3 class="producto-nombre">${carta.nombre}</h3>
             <p class="producto-precio">${precio}</p>

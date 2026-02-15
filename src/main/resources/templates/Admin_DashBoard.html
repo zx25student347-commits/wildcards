@@ -14,10 +14,6 @@
             <nav>
                 <ul>
                     <li class="active">Dashboard</li>
-                    <li>Magic: The Gathering</li>
-                    <li>Pokémon TCG</li>
-                    <li>Yu-Gi-Oh!</li>
-                    <li>One Piece Card Game</li>
                 </ul>
             </nav>
         </aside>
@@ -25,7 +21,11 @@
         <main class="main-content">
             <header>
                 <h1>Gestión de Cartas</h1>
-                <button class="btn-add" id="btnNuevaCarta"> Nueva Carta</button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-add" id="btnNuevaCarta"> Nueva Carta</button>
+                    <button class="btn-add" id="btnNuevoSet"> Nuevo Set</button>
+                    <button class="btn-add" id="btnBorrarSet" style="background-color: #DC2626;"> Borrar Set</button>
+                </div>
             </header>
 
             <section class="filters">
@@ -277,6 +277,72 @@
         </div>
     </div>
 
+    <!-- Modal para crear nuevo Set -->
+    <div id="modalNuevoSet" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Crear Nuevo Set</h2>
+                <button class="btn-cerrar" id="btnCerrarModalSet">&times;</button>
+            </div>
+            <form class="formulario-carta" id="formularioSet">
+                <div class="form-group">
+                    <label for="nombreSet">Nombre del Set:</label>
+                    <input type="text" id="nombreSet" name="nombreSet" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechaSalida">Fecha de Salida:</label>
+                    <input type="date" id="fechaSalida" name="fechaSalida" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigoSet">Código del Set:</label>
+                    <input type="text" id="codigoSet" name="codigoSet" placeholder="Ej: M21" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cartasTotal">Cartas Total:</label>
+                    <input type="number" id="cartasTotal" name="cartasTotal" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="juegoSet">Juego:</label>
+                    <select id="juegoSet" name="juegoSet" required>
+                        <option value="">Selecciona un juego</option>
+                        <option value="Magic: The Gathering">Magic: The Gathering</option>
+                        <option value="Pokémon TCG">Pokémon TCG</option>
+                        <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
+                        <option value="One Piece Card Game">One Piece Card Game</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submitform">Crear Set</button>
+                    <button type="button" class="btn-cancelform" id="btnCancelarSet">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
     
+    <!-- Modal para borrar Set -->
+    <div id="modalBorrarSet" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Eliminar Set</h2>
+                <button class="btn-cerrar" id="btnCerrarModalBorrarSet">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="selectSetBorrar">Selecciona el Set a eliminar:</label>
+                <select id="selectSetBorrar" name="selectSetBorrar" required>
+                    <option value="">-- Seleccionar Set --</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-submitform" id="btnConfirmarBorrarSet" style="background-color: #DC2626;">Eliminar Set</button>
+                <button type="button" class="btn-cancelform" id="btnCancelarBorrarSet">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
