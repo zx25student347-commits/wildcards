@@ -1,80 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito — Wildcards</title>
     <link rel="stylesheet" href="carrito.css">
 </head>
 
 <body>
-    <header class="cabecera-sitio">
-        <div class="contenedor-nav">
-            <a href="/">
-                <div class="logo">WILDCARDS</div>
-            </a>
-            <nav class="nav-principal">
-                <ul>
-                    <li><a href="/pokemon">Pokémon</a></li>
-                    <li><a href="/onepiece">One Piece</a></li>
-                    <li><a href="/yugioh">Yugioh</a></li>
-                    <li><a href="/magic">Magic</a></li>
-                    <li><a href="/accesorios">Accesorios</a></li>
-                </ul>
+
+    <header class="barra-navegacion">
+        <div class="contenedor">
+
+            <div class="logo">WILDCARDS</div>
+
+            <nav>
+                <a href="#">Pokémon</a>
+                <a href="#">One Piece</a>
+                <a href="#">Yu-Gi-Oh!</a>
+                <a href="#">Magic</a>
             </nav>
 
-            <form class="formulario-busqueda" action="#" role="search">
-                <input type="search" placeholder="Buscar">
-                <button type="submit">Buscar</button>
-            </form>
+            <div class="iconos-nav">
+                <a href="#" class="icono-enlace">👤</a>
 
-            <div class="iconos">
-                <a href="#"><img src="/icons/person.png" alt="usuario" class="icono"></a>
-                <a href="#" id="cartLink"><img src="/icons/carrito.png" alt="carrito" class="icono"></a>
-                <div id="cartCount" class="cart-count"></div>
+                <a href="#" class="icono-enlace icono-carrito">
+                    🛒
+                    <span id="contadorCarrito" class="contador-carrito"></span>
+                </a>
             </div>
+
         </div>
     </header>
 
-    <main class="page">
-        <div class="container">
-            <h1 class="page-title">Tu carrito</h1>
-            <p class="page-sub">Revisa los artículos y cambia cantidades antes de pagar</p>
+    <main class="contenedor-principal">
+        <div class="panel">
 
-            <section class="cart-wrapper">
-                <div id="cartList" class="cart-list">
-                    <!-- Los items se renderizan aqui -->
-                </div>
+            <h1 class="titulo">🛒 Tu carrito</h1>
+            <p class="subtitulo">Revisa los artículos antes de pagar</p>
 
-                <aside class="cart-summary">
-                    <div class="summary-box">
-                        <h3>Resumen</h3>
-                        <p>Artículos: <span id="summaryCount">0</span></p>
-                        <p>Total: <strong id="summaryTotal">0.00 €</strong></p>
-                        <button id="checkout" class="btn-checkout">PAGAR</button>
+            <section class="cuadricula">
+
+                <div id="listaCarrito" class="lista-carrito"></div>
+
+                <aside class="resumen">
+                    <h3>Resumen</h3>
+
+                    <div class="item-resumen">
+                        <div class="circulo violeta">📦</div>
+                        <div>
+                            <span id="cantidadTotal" class="numero-grande">0</span>
+                            <p>Artículos</p>
+                        </div>
                     </div>
+
+                    <div class="item-resumen">
+                        <div class="circulo verde">💰</div>
+                        <div>
+                            <span id="precioTotal" class="numero-grande">0.00 €</span>
+                            <p>Total</p>
+                        </div>
+                    </div>
+
+                    <button id="botonPagar" class="boton-pagar">PAGAR</button>
                 </aside>
+
             </section>
+
         </div>
     </main>
 
-    <template id="cartItemTpl">
-        <div class="cart-item">
-            <img class="item-img" src="" alt="">
-            <div class="item-body">
-                <div class="item-title"></div>
-                <div class="item-meta"></div>
+    <!-- PLANTILLA PRODUCTO -->
+    <template id="plantillaProducto">
+        <div class="tarjeta-carrito">
+            <div class="cuerpo-item">
+                <div class="titulo-item"></div>
+                <div class="meta-item"></div>
             </div>
-            <div class="item-controls">
-                <input type="number" class="item-qty" min="1" value="1">
-                <div class="item-price"></div>
-                <button class="item-remove">Eliminar</button>
+            <div class="controles-item">
+                <input type="number" class="cantidad-item" min="1" value="1">
+                <div class="precio-item"></div>
+                <button class="boton-eliminar">Eliminar</button>
             </div>
         </div>
     </template>
 
-    
 </body>
 
 </html>
