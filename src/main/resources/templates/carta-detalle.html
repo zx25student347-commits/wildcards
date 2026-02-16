@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Carta</title>
+    <link rel="stylesheet" href="/css/detalles-carta.css">
+    <script src="/js/carta-detalle.js"></script>
+</head>
+<body>
+    
+    <header class="cabecera-sitio">
+        <div class="contenedor-nav">
+            <a href="/">
+                <div class="logo">WILDCARDS</div>
+            </a>
+
+            <nav class="nav-principal">
+                <ul>
+                    <li><a href="/pokemon">Pokémon</a></li>
+                    <li><a href="/onepiece">One Piece</a></li>
+                    <li><a href="/yugioh">Yugioh</a></li>
+                    <li><a href="/magic">Magic</a></li>
+                    <li><a href="/accesorios">Accesorios</a></li>
+                </ul>
+            </nav>
+
+            <form class="formulario-busqueda" action="#" role="search">
+                <input type="search" placeholder="Buscar" aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <div class="iconos">
+                <a href="/login"><img src="/icons/person.png" alt="usuario" class="icono"></a>
+                <a href="#"><img src="/icons/carrito.png" alt="carrito" class="icono"></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="/" style="color: inherit; text-decoration: none;">Inicio</a> &gt; 
+                <span id="carta-juego">Juego</span> &gt; 
+                <span id="carta-set">Set</span>
+            </div>
+            
+            <div class="detail-grid">
+                <div class="detail-left">
+                    <img id="carta-imagen" class="card-large" src="https://placehold.co/400x560?text=Cargando..." alt="Imagen de la carta">
+                </div>
+                
+                <div class="detail-center">
+                    <h1 class="page-title" id="carta-nombre">Nombre de la Carta</h1>
+                    
+                    <div class="info-box">
+                        <div class="desc" id="carta-descripcion">Aquí va la descripción de la carta.</div>
+                        <div id="detalles-especificos" style="margin-top: 15px;">
+                            <!-- Contenido dinámico por JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-right">
+                    <div style="background: var(--panel); padding: 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
+                        <h3 style="margin-top:0; color: var(--white);">Comprar</h3>
+                        <div class="purchase-row">
+                            <span id="carta-precio" class="price" style="font-size: 1.5rem;">0.00 €</span>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <button class="btn-add" style="width: 100%;">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <footer id="pie_pagina">
+        <div class="enlaces_footers">
+            <ul>
+                <li><a href="#">Centro de Ayuda</a></li>
+                <li><a href="#">Políticas de Devolución</a></li>
+                <li><a href="#">Contacto Directo</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

@@ -42,7 +42,6 @@ public class CartaController {
             case "magic":
                 cartas = cartaService.obtenerTodasMag();
                 break;
-            case "yu-gi-oh!":
             case "yugioh":
                 cartas = cartaService.obtenerTodasYu();
                 break;

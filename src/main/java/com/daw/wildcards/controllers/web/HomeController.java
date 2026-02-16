@@ -2,6 +2,7 @@ package com.daw.wildcards.controllers.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -41,13 +42,22 @@ public class HomeController {
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // Busca login.html
+        return "login"; 
     }
 
     @GetMapping("/registro")
     public String registro() {
-        return "registro"; // Busca registro.html (o el nombre que tenga tu vista de registro)
+        return "registro"; 
     }
+
+    @GetMapping("/carta/{id}")
+    public String verCarta(@PathVariable Integer id) {
+        return "carta-detalle";
+    }
+
+   
+
+
 
    
     

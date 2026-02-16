@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,7 +20,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pedidoId;
 
-    private Integer clienteId;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Usuario cliente;
     private LocalDateTime fechaPedido;
 
     @Enumerated(EnumType.STRING)
@@ -27,8 +31,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Integer clienteId, LocalDateTime fechaPedido, EstadoPedido estado) {
-        this.clienteId = clienteId;
+    public Pedido(Usuario cliente, LocalDateTime fechaPedido, EstadoPedido estado) {
+        this.cliente = cliente;
         this.fechaPedido = fechaPedido;
         this.estado = estado;
     }
@@ -41,12 +45,12 @@ public class Pedido {
         this.pedidoId = pedidoId;
     }
 
-    public Integer getClienteId() {
-        return clienteId;
+    public Usuario getCliente() {
+        return cliente;
     }
 
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
     public LocalDateTime getFechaPedido() {
@@ -67,4 +71,3 @@ public class Pedido {
 
     
 }
-

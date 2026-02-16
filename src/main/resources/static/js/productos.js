@@ -35,12 +35,14 @@ function crearTarjeta(carta) {
     const imagen = carta.imagenUrl || 'https://placehold.co/200x280?text=No+Imagen';
 
     return `
-        <div class="producto-card">
-            <div class="producto-imagen">
-                <img src="${imagen}" alt="${carta.nombre}" onerror="this.onerror=null;this.src='https://placehold.co/200x280?text=No+Imagen'">
+        <a href="/carta/${carta.cartaId}" class="producto-card-link">
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <img src="${imagen}" alt="${carta.nombre}" onerror="this.onerror=null;this.src='https://placehold.co/200x280?text=No+Imagen'">
+                </div>
+                <h3 class="producto-nombre">${carta.nombre}</h3>
+                <p class="producto-precio">${precio}</p>
             </div>
-            <h3 class="producto-nombre">${carta.nombre}</h3>
-            <p class="producto-precio">${precio}</p>
-        </div>
+        </a>
     `;
 }

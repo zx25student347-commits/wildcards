@@ -314,6 +314,10 @@ body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;color:var(--white)
     margin: 5px 0 0;
 }
 
+.producto-card-link {
+    text-decoration: none;
+}
+
 .pie_pagina{
     background-color: var(--primary-2);
     color: var(--white);

@@ -239,7 +239,7 @@
                 };
 
                 try {
-                    // TODO: Reemplazar '/api/sets' con tu endpoint real si es diferente
+                    
                     const response = await fetch('/api/sets', { 
                         method: 'POST', 
                         headers: {'Content-Type': 'application/json'}, 

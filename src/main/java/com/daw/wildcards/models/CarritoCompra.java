@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -21,7 +23,9 @@ public class CarritoCompra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer carritoId;
 
-    private Integer clienteId;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Usuario cliente;
 
     @Column(name = "session_id", length = 100)
     private String sessionId;
@@ -46,9 +50,9 @@ public class CarritoCompra {
 
 
 
-    public CarritoCompra(Integer clienteId, String sessionId, LocalDateTime fechaCreacion, LocalDateTime updatedAt,
+    public CarritoCompra(Usuario cliente, String sessionId, LocalDateTime fechaCreacion, LocalDateTime updatedAt,
             Boolean carritoActivo, List<CarritoItem> items) {
-        this.clienteId = clienteId;
+        this.cliente = cliente;
         this.sessionId = sessionId;
         this.fechaCreacion = fechaCreacion;
         this.updatedAt = updatedAt;
@@ -70,14 +74,14 @@ public class CarritoCompra {
 
 
 
-    public Integer getClienteId() {
-        return clienteId;
+    public Usuario getCliente() {
+        return cliente;
     }
 
 
 
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
 
@@ -144,4 +148,3 @@ public class CarritoCompra {
 
     
 }
-

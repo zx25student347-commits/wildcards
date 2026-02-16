@@ -11,15 +11,16 @@
 <body>
     <header class="cabecera-sitio">
         <div class="contenedor-nav">
-            <a href="../carta comprobacion/Muestra_Carta.html">
+            <a href="/">
                 <div class="logo">WILDCARDS</div>
             </a>
             <nav class="nav-principal">
                 <ul>
-                    <li><a href="#">Pokémon</a></li>
-                    <li><a href="#">One Piece</a></li>
-                    <li><a href="#">Yugioh</a></li>
-                    <li><a href="#">Magic</a></li>
+                    <li><a href="/pokemon">Pokémon</a></li>
+                    <li><a href="/onepiece">One Piece</a></li>
+                    <li><a href="/yugioh">Yugioh</a></li>
+                    <li><a href="/magic">Magic</a></li>
+                    <li><a href="/accesorios">Accesorios</a></li>
                 </ul>
             </nav>
 
@@ -29,8 +30,8 @@
             </form>
 
             <div class="iconos">
-                <a href="#"><img src="../carta comprobacion/icons/person.png" alt="usuario" class="icono"></a>
-                <a href="../carrito/carrito.html" id="cartLink"><img src="../carta comprobacion/icons/carrito.png" alt="carrito" class="icono"></a>
+                <a href="#"><img src="/icons/person.png" alt="usuario" class="icono"></a>
+                <a href="#" id="cartLink"><img src="/icons/carrito.png" alt="carrito" class="icono"></a>
                 <div id="cartCount" class="cart-count"></div>
             </div>
         </div>
@@ -43,7 +44,7 @@
 
             <section class="cart-wrapper">
                 <div id="cartList" class="cart-list">
-                    <!-- Items rendered here -->
+                    <!-- Los items se renderizan aqui -->
                 </div>
 
                 <aside class="cart-summary">
@@ -73,78 +74,7 @@
         </div>
     </template>
 
-    <script>
-        // Utilities for cart stored in localStorage
-        function getCart() { try { return JSON.parse(localStorage.getItem('cart') || '[]'); } catch (e) { return []; } }
-        function setCart(c) { localStorage.setItem('cart', JSON.stringify(c)); }
-
-        // format price: accepts '2.49 €' or number
-        function parsePrice(p) {
-            if (typeof p === 'number') return p;
-            if (!p) return 0;
-            return Number(String(p).replace('€', '').trim().replace(',', '.'));
-        }
-
-        function formatPrice(n) { return n.toFixed(2) + ' €'; }
-
-        function renderCart() {
-            const list = document.getElementById('cartList'); list.innerHTML = '';
-            const tpl = document.getElementById('cartItemTpl');
-            const cart = getCart();
-            let total = 0; let count = 0;
-            cart.forEach(item => {
-                const node = tpl.content.cloneNode(true);
-                node.querySelector('.item-img').src = item.img || '../carta comprobacion/ghost_belle.png';
-                node.querySelector('.item-img').alt = item.title || '';
-                node.querySelector('.item-title').textContent = item.title || '';
-                node.querySelector('.item-meta').textContent = item.id || '';
-                const qtyEl = node.querySelector('.item-qty'); qtyEl.value = item.qty || 1;
-                const priceVal = parsePrice(item.price);
-                node.querySelector('.item-price').textContent = formatPrice(priceVal * (item.qty || 1));
-
-                // qty change
-                qtyEl.addEventListener('change', (e) => {
-                    const q = Math.max(1, Number(e.target.value || 1));
-                    item.qty = q; setCart(cart); renderCart();
-                });
-
-                // remove
-                node.querySelector('.item-remove').addEventListener('click', () => {
-                    const idx = cart.findIndex(c => c.id === item.id);
-                    if (idx >= 0) { cart.splice(idx, 1); setCart(cart); renderCart(); }
-                });
-
-                list.appendChild(node);
-                total += priceVal * (item.qty || 1);
-                count += Number(item.qty || 0);
-            });
-
-            document.getElementById('summaryTotal').textContent = formatPrice(total);
-            document.getElementById('summaryCount').textContent = count;
-            // show message if empty
-            if (cart.length === 0) { list.innerHTML = '<p class="empty">Tu carrito está vacío.</p>'; }
-        }
-
-        document.getElementById('checkout').addEventListener('click', () => {
-            alert('Funcion de pago no implementada en demo.');
-        });
-
-        // update header cart count (show/hide)
-        function updateHeaderCartCount(){
-          const cart = getCart();
-          const count = cart.reduce((s,i)=>s+Number(i.qty||0),0);
-          const el = document.getElementById('cartCount');
-          if(!el) return;
-          if(count===0) el.style.display='none'; else { el.style.display='inline-block'; el.textContent = count; }
-        }
-        updateHeaderCartCount();
-        // when cart changes (user on this page) renderCart calls setCart which doesn't trigger this; ensure update after render actions
-        // override setCart to also update header
-        const _setCart = setCart;
-        setCart = function(c){ _setCart(c); updateHeaderCartCount(); };
-        // initial render
-        renderCart();
-    </script>
+    
 </body>
 
 </html>
