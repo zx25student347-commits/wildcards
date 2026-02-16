@@ -7,7 +7,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         password: document.getElementById("password").value
     };
 
-    const response = await fetch("http://localhost:8080/auth/register", {
+    const response = await fetch("/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -18,7 +18,9 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const result = await response.text();
     alert(result);
 
-    window.location.href = "/login"; // URL limpia gestionada por WebController
+    if (response.ok) {
+        window.location.href = "/login"; // URL limpia gestionada por WebController
+    }
 });
 
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
@@ -29,7 +31,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         password: document.getElementById("password").value
     };
 
-    const response = await fetch("http://localhost:8080/auth/login", {
+    const response = await fetch("/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -37,10 +39,15 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         body: JSON.stringify(data)
     });
 
+    if (!response.ok) {
+        alert("Usuario o contraseña incorrectos");
+        return;
+    }
+
     const result = await response.json();
-
-    // Guardamos el token
-    localStorage.setItem("token", result.token);
-
-    window.location.href = "/"; // URL limpia a la raíz
+    
+    if (result.token) {
+        localStorage.setItem("token", result.token);
+        window.location.href = "/"; // URL limpia a la raíz
+    }
 });

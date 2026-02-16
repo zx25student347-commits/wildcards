@@ -14,28 +14,27 @@ import com.daw.wildcards.models.Carta;
 import com.daw.wildcards.models.Usuario;
 import com.daw.wildcards.repositories.CarritoCompraRepository;
 import com.daw.wildcards.repositories.CarritoItemRepository;
-import com.daw.wildcards.repositories.UsuarioRepository;
 
 @Service
 public class CarritoService {
 
     private final CarritoCompraRepository carritoRepository;
     private final CarritoItemRepository carritoItemRepository;
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
     private final CartaService cartaService;
 
     public CarritoService(CarritoCompraRepository carritoRepository, 
                           CarritoItemRepository carritoItemRepository,
-                          UsuarioRepository usuarioRepository,
+                          UsuarioService usuarioService,
                           CartaService cartaService) {
         this.carritoRepository = carritoRepository;
         this.carritoItemRepository = carritoItemRepository;
-        this.usuarioRepository = usuarioRepository;
+        this.usuarioService = usuarioService;
         this.cartaService = cartaService;
     }
 
     public CarritoCompra obtenerCarritoPorUsuario(String username) {
-        Usuario usuario = usuarioRepository.findByUsername(username)
+        Usuario usuario = usuarioService.buscarPorUsername(username)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         return carritoRepository.findByCliente_IdAndCarritoActivoTrue(usuario.getId())
