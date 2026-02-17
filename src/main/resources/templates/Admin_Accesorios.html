@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Accesorios</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="/js/dashboard_accesorios.js" defer></script>
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>WildCards Admin</h2>
+            <nav>
+                <ul>
+                    <li><a href="/admin/dashboard" style="color: inherit; text-decoration: none; display: block;">Gestión de cartas</a></li>
+                    <li class="active"><a href="/admin/accesorios" style="color: inherit; text-decoration: none; display: block;">Gestión de Accesorios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Gestión de Accesorios</h1>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-add" id="btnNuevoAccesorio"> Nuevo Accesorio</button>
+                </div>
+            </header>
+
+            <section class="filters">
+                <input type="text" placeholder="Buscar por nombre..." id="buscarNombre">
+            </section>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaAccesoriosBody">
+                        <!-- Se llena dinámicamente con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de confirmación de eliminación -->
+    <div id="modalConfirmacion" class="modal">
+        <div class="modal-content modal-confirmacion">
+            <div class="modal-header-confirmacion">
+                <h2>Confirmar Eliminación</h2>
+            </div>
+            <div class="modal-body-confirmacion">
+                <p>¿Quieres eliminar el accesorio <strong id="nombreAccesorioEliminar"></strong>?</p>
+            </div>
+            <div class="modal-footer-confirmacion">
+                <button class="btn-no" id="btnNo">No</button>
+                <button class="btn-si" id="btnSi">Sí</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear/editar accesorio -->
+    <div id="modalNuevoAccesorio" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tituloModal">Crear Nuevo Accesorio</h2>
+                <button class="btn-cerrar" id="btnCerrarModal">&times;</button>
+            </div>
+            <form class="formulario-carta" id="formularioAccesorio">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Accesorio:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagenFile">Imagen:</label>
+                    <input type="file" id="imagenFile" name="imagenFile" accept="image/*">
+                    <small id="imagenActualTexto" style="color: var(--muted); display:none;">Imagen actual: <span id="urlImagenActual"></span></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" step="0.01" min="0" placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock:</label>
+                    <input type="number" id="stock" name="stock" min="0" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submitform" id="btnSubmit">Crear Accesorio</button>
+                    <button type="button" class="btn-cancelform" id="btnCancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

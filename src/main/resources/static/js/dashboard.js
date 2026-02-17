@@ -120,6 +120,7 @@
                     <td><span class="badge ${badgeClass}">${juegoNombre}</span></td>
                     <td>${setNombre}</td>
                     <td>${carta.rareza}</td>
+                    <td>${carta.stock || 0}</td>
                     <td>
                         <button class="btn-edit" data-id="${carta.cartaId}">Editar</button>
                         <button class="btn-delete" data-id="${carta.cartaId}" data-nombre="${carta.nombre}">Eliminar</button>
@@ -373,6 +374,8 @@
                 // imagenUrl se gestiona en backend si hay fichero, o se mantiene
                 descripcion: document.getElementById('descripcion').value,
                 precio: document.getElementById('precio') ? parseFloat(document.getElementById('precio').value) : null,
+                stock: document.getElementById('stock') ? parseInt(document.getElementById('stock').value, 10) : 0,
+                idioma: document.getElementById('idioma') ? document.getElementById('idioma').value : null,
                 tipo: document.getElementById('tipo') ? document.getElementById('tipo').value : null,
                 "@type": juegoInfo ? juegoInfo.classType : null
             };
@@ -461,6 +464,8 @@
 
                 document.getElementById('descripcion').value = carta.descripcion || '';
                 if (document.getElementById('precio')) document.getElementById('precio').value = carta.precio || '';
+                if (document.getElementById('stock')) document.getElementById('stock').value = carta.stock || 0;
+                if (document.getElementById('idioma')) document.getElementById('idioma').value = carta.idioma || '';
                 if (document.getElementById('tipo')) document.getElementById('tipo').value = carta.tipo || '';
 
                 // Mostrar/ocultar campos específicos del juego

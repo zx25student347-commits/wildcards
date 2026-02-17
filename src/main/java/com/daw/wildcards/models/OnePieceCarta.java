@@ -23,9 +23,9 @@ public class OnePieceCarta extends Carta {
     
 
     public OnePieceCarta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            Double precio, String descripcion, String imagenUrl, Integer coste, Integer power, String color,
+            Double precio, String descripcion, String imagenUrl, Integer stock, String idioma, Integer coste, Integer power, String color,
             String tipo2, Integer counter, String effect) {
-        super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl);
+        super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl, stock, idioma);
         this.coste = coste;
         this.power = power;
         this.color = color;

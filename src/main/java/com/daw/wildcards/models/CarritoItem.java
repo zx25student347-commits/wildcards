@@ -32,7 +32,6 @@ public class CarritoItem {
     private Accesorios accesorio;
 
     private String condicion;
-    private String idioma;
     private Integer cantidad;
     private BigDecimal precioUnidad;
 
@@ -42,12 +41,11 @@ public class CarritoItem {
 
     
 
-    public CarritoItem(CarritoCompra carrito, Carta carta, String condicion, String idioma, Integer cantidad,
+    public CarritoItem(CarritoCompra carrito, Carta carta, String condicion, Integer cantidad,
             BigDecimal precioUnidad) {
         this.carrito = carrito;
         this.carta = carta;
         this.condicion = condicion;
-        this.idioma = idioma;
         this.cantidad = cantidad;
         this.precioUnidad = precioUnidad;
     }
@@ -80,12 +78,6 @@ public class CarritoItem {
     public void setCondicion(String condicion) {
         this.condicion = condicion;
     }
-    public String getIdioma() {
-        return idioma;
-    }
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
     public Integer getCantidad() {
         return cantidad;
     }
@@ -110,6 +102,8 @@ public class CarritoItem {
     public void setCarrito(CarritoCompra carrito) {
         this.carrito = carrito;
     }
+
+
 
     
 }

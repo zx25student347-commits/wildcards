@@ -47,6 +47,8 @@ public abstract class Carta {
     private String rareza;
     private String tipo;
     private Double precio;
+    private Integer stock;
+    private String idioma;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
@@ -60,7 +62,7 @@ public abstract class Carta {
 
 
     public Carta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            Double precio, String descripcion, String imagenUrl) {
+            Double precio, String descripcion, String imagenUrl, Integer stock, String idioma) {
         this.juego = juego;
         this.set = set;
         this.nombre = nombre;
@@ -70,6 +72,8 @@ public abstract class Carta {
         this.precio = precio;
         this.descripcion = descripcion;
         this.imagenUrl = imagenUrl;
+        this.stock = stock;
+        this.idioma = idioma;
     }
 
 
@@ -164,6 +168,22 @@ public abstract class Carta {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
 
 

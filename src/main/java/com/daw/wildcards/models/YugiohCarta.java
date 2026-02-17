@@ -25,9 +25,9 @@ public class YugiohCarta extends Carta {
     
 
     public YugiohCarta(Juego juego, CartaSet set, String nombre, String numeroCarta, String rareza, String tipo,
-            Double precio, String descripcion, String imagenUrl, Integer nivel, String atributo, String tipoDetalle,
+            Double precio, String descripcion, String imagenUrl, Integer stock, String idioma, Integer nivel, String atributo, String tipoDetalle,
             Integer ataque, Integer defensa, String textoEfecto) {
-        super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl);
+        super(juego, set, nombre, numeroCarta, rareza, tipo, precio, descripcion, imagenUrl, stock, idioma);
         this.nivel = nivel;
         this.atributo = atributo;
         this.tipoDetalle = tipoDetalle;
@@ -104,4 +104,3 @@ public class YugiohCarta extends Carta {
 
 
 }
-

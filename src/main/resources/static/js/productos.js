@@ -50,7 +50,7 @@ function crearTarjeta(item) {
     const esCarta = item.hasOwnProperty('cartaId');
     const precio = item.precio ? parseFloat(item.precio).toFixed(2) + ' €' : 'Consultar';
     const imagen = item.imagenUrl || 'https://placehold.co/200x280?text=No+Imagen';
-    const id = esCarta ? item.cartaId : item.id;
+    const id = esCarta ? item.cartaId : item.accesorioId;
     const link = esCarta ? `/carta/${id}` : `/accesorio/${id}`;
 
     return `

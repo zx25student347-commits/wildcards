@@ -55,6 +55,11 @@ public class HomeController {
         return "carta-detalle";
     }
 
+    @GetMapping("/accesorio/{id}")
+    public String verAccesorio(@PathVariable Integer id) {
+        return "accesorio-detalle";
+    }
+
    
 
 
