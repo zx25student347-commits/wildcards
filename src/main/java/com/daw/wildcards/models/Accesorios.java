@@ -11,8 +11,8 @@ import jakarta.persistence.Table;
 public class Accesorios {
     @Id    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer accesorioId;
+
     private String nombre;
     private String tipo;
     private String descripcion;

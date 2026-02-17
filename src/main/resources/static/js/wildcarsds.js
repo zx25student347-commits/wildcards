@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 indiceActual = (indiceActual - 1 + totalImagenes) % totalImagenes;
                 mostrarImagen(indiceActual);
             });
+
+            setInterval(() => {
+                indiceActual = (indiceActual + 1) % totalImagenes;
+                mostrarImagen(indiceActual);
+            }, 5000); // Cambia la imagen cada 5 segundos
         });
 
         
