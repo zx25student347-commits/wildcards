@@ -27,6 +27,10 @@ public class CarritoItem {
     @JoinColumn(name = "carta_id")
     private Carta carta;
 
+    @ManyToOne
+    @JoinColumn(name = "accesorio_id")
+    private Accesorios accesorio;
+
     private String condicion;
     private String idioma;
     private Integer cantidad;
@@ -63,6 +67,12 @@ public class CarritoItem {
     }
     public void setCarta(Carta carta) {
         this.carta = carta;
+    }
+    public Accesorios getAccesorio() {
+        return accesorio;
+    }
+    public void setAccesorio(Accesorios accesorio) {
+        this.accesorio = accesorio;
     }
     public String getCondicion() {
         return condicion;
@@ -103,4 +113,3 @@ public class CarritoItem {
 
     
 }
-

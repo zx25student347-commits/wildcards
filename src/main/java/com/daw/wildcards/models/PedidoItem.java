@@ -26,6 +26,10 @@ public class PedidoItem {
     @JoinColumn(name = "carta_id")
     private Carta carta;
 
+    @ManyToOne
+    @JoinColumn(name = "accesorio_id")
+    private Accesorios accesorio;
+
     private String calidadCompra;
     private BigDecimal precioCompra;
    
@@ -69,6 +73,14 @@ public class PedidoItem {
 
     public void setCarta(Carta carta) {
         this.carta = carta;
+    }
+
+    public Accesorios getAccesorio() {
+        return accesorio;
+    }
+
+    public void setAccesorio(Accesorios accesorio) {
+        this.accesorio = accesorio;
     }
 
 
