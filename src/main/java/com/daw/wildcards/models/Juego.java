@@ -15,11 +15,13 @@ public class Juego {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer juegoId;
 
+    @Column
     private String nombre;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
+    @Column(name = "web_oficial")
     private String webOficial;
 
     public Juego() {

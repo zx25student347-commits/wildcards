@@ -8,10 +8,19 @@ import jakarta.persistence.Table;
 @Table(name = "yugioh_cartas")
 public class YugiohCarta extends Carta {
 
+    @Column
     private Integer nivel;
+
+    @Column
     private String atributo;
+
+    @Column(name = "tipo_detalle")
     private String tipoDetalle;
+
+    @Column
     private Integer ataque;
+
+    @Column
     private Integer defensa;
 
     @Column(columnDefinition = "TEXT")

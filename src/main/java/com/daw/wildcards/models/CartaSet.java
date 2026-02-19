@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "cartas_sets")
@@ -22,9 +23,16 @@ public class CartaSet {
     @JoinColumn(name = "juego_id")
     private Juego juego;
 
+    @Column
     private String nombre;
+
+    @Column(name = "fecha_salida")
     private LocalDate fechaSalida;
+
+    @Column(name = "codigo_set")
     private String codigoSet;
+
+    @Column(name = "cartas_total")
     private Integer cartasTotal;
    
 

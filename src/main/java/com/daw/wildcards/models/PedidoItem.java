@@ -3,6 +3,7 @@ package com.daw.wildcards.models;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +31,10 @@ public class PedidoItem {
     @JoinColumn(name = "accesorio_id")
     private Accesorios accesorio;
 
+    @Column(name = "calidad_compra")
     private String calidadCompra;
+
+    @Column(name = "precio_compra")
     private BigDecimal precioCompra;
    
    

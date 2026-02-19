@@ -8,14 +8,22 @@ import jakarta.persistence.Table;
 @Table(name = "magic_cartas")
 public class MagicCarta extends Carta {
 
+    @Column
     private String manaCost;
+
+    @Column
     private String cardType;
+
+    @Column
     private String power;
+
+    @Column
     private String toughness;
 
     @Column(columnDefinition = "TEXT")
     private String abilities;
 
+    @Column
     private String colors;
 
     public MagicCarta() {

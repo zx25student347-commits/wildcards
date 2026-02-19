@@ -8,16 +8,28 @@ import jakarta.persistence.Table;
 @Table(name = "pokemon_cartas")
 public class PokemonCarta extends Carta {
 
+    @Column
     private Integer hp;
+
+    @Column(name = "pokemon_tipo")
     private String pokemonTipo;
+
+    @Column
     private String fase;
+
+    @Column(name = "evoluciona_de")
     private String evolucionaDe;
 
     @Column(columnDefinition = "TEXT")
     private String ataques;
 
+    @Column
     private String debilidad;
+
+    @Column
     private String resistencia;
+
+    @Column(name = "coste_retirada")
     private String costeRetirada;
 
     

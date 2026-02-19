@@ -8,10 +8,19 @@ import jakarta.persistence.Table;
 @Table(name = "onepiece_cartas")
 public class OnePieceCarta extends Carta {
 
+    @Column
     private Integer coste;
+
+    @Column
     private Integer power;
+
+    @Column
     private String color;
+
+    @Column
     private String tipo;
+
+    @Column
     private Integer counter;
 
     @Column(columnDefinition = "TEXT")

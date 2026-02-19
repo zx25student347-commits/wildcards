@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @Entity
 @Table (name = "accesorios")
@@ -13,11 +14,22 @@ public class Accesorios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer accesorioId;
 
+    @Column
     private String nombre;
+
+    @Column
     private String tipo;
+
+    @Column(columnDefinition = "TEXT")
     private String descripcion;
+
+    @Column
     private Double precio;
+
+    @Column
     private String imagenUrl;
+
+    @Column
     private Integer stock;
 
     public Accesorios() {

@@ -3,6 +3,7 @@ package com.daw.wildcards.models;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -23,9 +24,11 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
+    @Column(name = "fecha_pedido")
     private LocalDateTime fechaPedido;
 
     @Enumerated(EnumType.STRING)
+    @Column
     private EstadoPedido estado;
 
     public Pedido() {

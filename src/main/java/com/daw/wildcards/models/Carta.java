@@ -42,17 +42,31 @@ public abstract class Carta {
     @JoinColumn(name = "set_id")
     private CartaSet set;
 
+    @Column
     private String nombre;
+
+    @Column(name = "numero_carta")
     private String numeroCarta;
+
+    @Column
     private String rareza;
+
+    @Column
     private String tipo;
+
+    @Column
     private Double precio;
+
+    @Column
     private Integer stock;
+
+    @Column
     private String idioma;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
+    @Column(name = "imagen_url")
     private String imagenUrl;
 
     public Carta() {

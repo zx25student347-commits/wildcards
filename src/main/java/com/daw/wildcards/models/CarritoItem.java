@@ -3,6 +3,7 @@ package com.daw.wildcards.models;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,8 +32,13 @@ public class CarritoItem {
     @JoinColumn(name = "accesorio_id")
     private Accesorios accesorio;
 
+    @Column
     private String condicion;
+
+    @Column
     private Integer cantidad;
+
+    @Column(name = "precio_unidad")
     private BigDecimal precioUnidad;
 
 
