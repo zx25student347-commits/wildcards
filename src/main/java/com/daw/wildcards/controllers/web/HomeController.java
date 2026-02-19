@@ -60,6 +60,8 @@ public class HomeController {
         return "accesorio-detalle";
     }
 
+    
+
    
 
 

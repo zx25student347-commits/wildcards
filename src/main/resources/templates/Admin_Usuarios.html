@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Accesorios</title>
+    <title>Admin Panel - Usuarios</title>
     <link rel="stylesheet" href="/css/dashboard.css">
-    <script src="/js/dashboard_accesorios.js" defer></script>
+    <script src="/js/dashboard_usuarios.js" defer></script>
 </head>
 <body>
     <div class="admin-container">
@@ -14,22 +14,22 @@
             <nav>
                 <ul>
                     <li><a href="/admin/dashboard" style="color: inherit; text-decoration: none; display: block;">Gestión de cartas</a></li>
-                    <li class="active"><a href="/admin/accesorios" style="color: inherit; text-decoration: none; display: block;">Gestión de Accesorios</a></li>
-                    <li><a href="/admin/usuarios" style="color: inherit; text-decoration: none; display: block;">Gestión de Usuarios</a></li>
+                    <li><a href="/admin/accesorios" style="color: inherit; text-decoration: none; display: block;">Gestión de Accesorios</a></li>
+                    <li class="active"><a href="/admin/usuarios" style="color: inherit; text-decoration: none; display: block;">Gestión de Usuarios</a></li>
                 </ul>
             </nav>
         </aside>
 
         <main class="main-content">
             <header>
-                <h1>Gestión de Accesorios</h1>
+                <h1>Gestión de Usuarios</h1>
                 <div style="display: flex; gap: 10px;">
-                    <button class="btn-add" id="btnNuevoAccesorio"> Nuevo Accesorio</button>
+                    <button class="btn-add" id="btnNuevoUsuario"> Nuevo Usuario</button>
                 </div>
             </header>
 
             <section class="filters">
-                <input type="text" placeholder="Buscar por nombre..." id="buscarNombre">
+                <input type="text" placeholder="Buscar por username..." id="buscarUsername">
             </section>
 
             <div class="table-container">
@@ -37,14 +37,13 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
+                            <th>Username</th>
+                            <th>Roles</th>
+                            <th>Habilitado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tablaAccesoriosBody">
+                    <tbody id="tablaUsuariosBody">
                         <!-- Se llena dinámicamente con JS -->
                     </tbody>
                 </table>
@@ -59,7 +58,7 @@
                 <h2>Confirmar Eliminación</h2>
             </div>
             <div class="modal-body-confirmacion">
-                <p>¿Quieres eliminar el accesorio <strong id="nombreAccesorioEliminar"></strong>?</p>
+                <p>¿Quieres eliminar el usuario <strong id="nombreUsuarioEliminar"></strong>?</p>
             </div>
             <div class="modal-footer-confirmacion">
                 <button class="btn-no" id="btnNo">No</button>
@@ -68,42 +67,39 @@
         </div>
     </div>
 
-    <!-- Modal para crear/editar accesorio -->
-    <div id="modalNuevoAccesorio" class="modal">
+    <!-- Modal para crear/editar usuario -->
+    <div id="modalNuevoUsuario" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="tituloModal">Crear Nuevo Accesorio</h2>
+                <h2 id="tituloModal">Crear Nuevo Usuario</h2>
                 <button class="btn-cerrar" id="btnCerrarModal">&times;</button>
             </div>
-            <form class="formulario-carta" id="formularioAccesorio">
+            <form class="formulario-carta" id="formularioUsuario">
                 <div class="form-group">
-                    <label for="nombre">Nombre del Accesorio:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="username">Username (Email):</label>
+                    <input type="email" id="username" name="username" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="imagenFile">Imagen:</label>
-                    <input type="file" id="imagenFile" name="imagenFile" accept="image/*">
-                    <small id="imagenActualTexto" style="color: var(--muted); display:none;">Imagen actual: <span id="urlImagenActual"></span></small>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Dejar en blanco para no cambiar">
                 </div>
 
                 <div class="form-group">
-                    <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" step="0.01" min="0" placeholder="0.00" required>
+                    <label for="roles">Rol Principal:</label>
+                    <select id="roles" name="roles">
+                        <option value="USER">Usuario</option>
+                        <option value="ADMIN">Administrador</option>
+                    </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="stock">Stock:</label>
-                    <input type="number" id="stock" name="stock" min="0" placeholder="0" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                <div class="form-group" style="flex-direction: row; align-items: center; gap: 10px;">
+                    <label for="enabled" style="margin:0;">Habilitado:</label>
+                    <input type="checkbox" id="enabled" name="enabled" checked style="width: auto;">
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-submitform" id="btnSubmit">Crear Accesorio</button>
+                    <button type="submit" class="btn-submitform" id="btnSubmit">Crear Usuario</button>
                     <button type="button" class="btn-cancelform" id="btnCancelar">Cancelar</button>
                 </div>
             </form>

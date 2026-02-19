@@ -19,5 +19,10 @@ public class AdminController {
     public String Accesorios() {
         return "Admin_Accesorios";
     }
+
+    @GetMapping("/usuarios")
+    public String verPaginaUsuarios() {
+        return "Admin_Usuarios";
+    }
     
 }

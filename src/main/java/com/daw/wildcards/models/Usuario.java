@@ -77,6 +77,10 @@ public class Usuario {
         this.roles = roles;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     
 }
