@@ -24,6 +24,13 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     
     if (result.token) {
         localStorage.setItem("token", result.token);
-        window.location.href = "/"; // URL limpia a la raíz
+        // si la URL de login contenía ?redirect=/algo intentamos volver ahí
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect');
+        if (redirect) {
+            window.location.href = redirect;
+        } else {
+            window.location.href = "/"; // URL limpia a la raíz
+        }
     }
 });

@@ -6,6 +6,7 @@
     <title>Admin Panel - WildCards</title>
     <link rel="stylesheet" href="/css/dashboard.css">
     <script src="/js/dashboard.js" defer></script>
+    <script src="/js/logout.js" defer></script>
 </head>
 <body>
     <div class="admin-container">
@@ -23,10 +24,11 @@
         <main class="main-content">
             <header>
                 <h1>Gestión de Cartas</h1>
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; gap: 10px; align-items: center;">
                     <button class="btn-add" id="btnNuevaCarta"> Nueva Carta</button>
                     <button class="btn-add" id="btnNuevoSet"> Nuevo Set</button>
                     <button class="btn-add" id="btnBorrarSet" style="background-color: #DC2626;"> Borrar Set</button>
+                    <a href="#" onclick="logout()" class="btn-add" style="background-color: #555;">Cerrar sesión</a>
                 </div>
             </header>
 

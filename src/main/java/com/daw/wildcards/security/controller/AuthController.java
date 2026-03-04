@@ -7,6 +7,7 @@ import com.daw.wildcards.security.jwt.JwtService;
 import com.daw.wildcards.security.service.CustomUserDetailsService;
 import com.daw.wildcards.services.UsuarioService;
 
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -60,6 +61,32 @@ public class AuthController {
 
         String token = jwtService.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthResponseDTO(token));
+        // crear cookie HttpOnly para envío automático en futuras peticiones
+        org.springframework.http.ResponseCookie cookie = org.springframework.http.ResponseCookie.from("token", token)
+                .httpOnly(true)
+                .path("/")
+                .maxAge(60 * 60) // 1 hora
+                .sameSite("Strict")
+                .build();
+
+        return ResponseEntity.ok()
+                .header(org.springframework.http.HttpHeaders.SET_COOKIE, cookie.toString())
+                .body(new AuthResponseDTO(token));
+    }
+
+    // 🔹 LOGOUT (borra la cookie en el servidor y redirige al login)
+    @GetMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletResponse response) {
+        org.springframework.http.ResponseCookie cookie = org.springframework.http.ResponseCookie.from("token", "")
+                .httpOnly(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+        response.addHeader(org.springframework.http.HttpHeaders.SET_COOKIE, cookie.toString());
+        // redirige a la página de login
+        return ResponseEntity.status(302)
+                .header(org.springframework.http.HttpHeaders.LOCATION, "/login")
+                .build();
     }
 }

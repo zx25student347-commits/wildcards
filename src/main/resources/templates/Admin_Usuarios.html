@@ -6,6 +6,7 @@
     <title>Admin Panel - Usuarios</title>
     <link rel="stylesheet" href="/css/dashboard.css">
     <script src="/js/dashboard_usuarios.js" defer></script>
+    <script src="/js/logout.js" defer></script>
 </head>
 <body>
     <div class="admin-container">
@@ -23,8 +24,9 @@
         <main class="main-content">
             <header>
                 <h1>Gestión de Usuarios</h1>
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; gap: 10px; align-items: center;">
                     <button class="btn-add" id="btnNuevoUsuario"> Nuevo Usuario</button>
+                    <a href="#" onclick="logout()" class="btn-add" style="background-color: #555;">Cerrar sesión</a>
                 </div>
             </header>
 

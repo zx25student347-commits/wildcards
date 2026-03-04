@@ -1,6 +1,20 @@
 
         const API_URL = '/api/cartas';
         const modal = document.getElementById('modalNuevaCarta');
+
+        // wrapper que añade el token almacenado (si existe) a cada petición
+        function authFetch(url, options = {}) {
+            options = options || {};
+            options.headers = options.headers || {};
+            const token = localStorage.getItem('token');
+            if (token) {
+                options.headers['Authorization'] = 'Bearer ' + token;
+            }
+            // por defecto fetch no envía credenciales cross-site pero en nuestro
+            // caso no hace falta; si más tarde usamos cookies, habilitar:
+            // options.credentials = 'same-origin';
+            return fetch(url, options);
+        }
         const btnNuevaCarta = document.getElementById('btnNuevaCarta');
         const btnCerrarModal = document.getElementById('btnCerrarModal');
         const btnCancelar = document.getElementById('btnCancelar');
@@ -92,7 +106,7 @@
 
         async function cargarCartas() {
             try {
-                const response = await fetch(API_URL);
+                const response = await authFetch(API_URL);
                 if (!response.ok) throw new Error('Error al cargar cartas');
                 const cartas = await response.json();
                 renderizarTabla(cartas);
@@ -241,7 +255,7 @@
 
                 try {
                     
-                    const response = await fetch('/api/sets', { 
+                    const response = await authFetch('/api/sets', { 
                         method: 'POST', 
                         headers: {'Content-Type': 'application/json'}, 
                         body: JSON.stringify(setData) 
@@ -265,7 +279,7 @@
                 modalBorrarSet.style.display = 'flex';
                 // Cargar sets disponibles desde el backend
                 try {
-                    const response = await fetch('/api/sets');
+                    const response = await authFetch('/api/sets');
                     if (response.ok) {
                         const sets = await response.json();
                         selectSetBorrar.innerHTML = '<option value="">-- Seleccionar Set --</option>';
@@ -304,7 +318,7 @@
                 }
 
                 try {
-                    const response = await fetch(`/api/sets/${setId}`, { method: 'DELETE' });
+                    const response = await authFetch(`/api/sets/${setId}`, { method: 'DELETE' });
                     if (response.ok) {
                         alert('Set eliminado correctamente');
                         modalBorrarSet.style.display = 'none';
@@ -405,7 +419,7 @@
                 const method = modoEdicion ? 'PUT' : 'POST';
                 const url = modoEdicion ? `${API_URL}/${idCartaEnEdicion}` : API_URL;
 
-                const response = await fetch(url, {
+                const response = await authFetch(url, {
                     method: method,
                     // No establecer Content-Type, el navegador lo pone como multipart/form-data automáticamente
                     body: formData
@@ -439,7 +453,7 @@
             
             try {
                 // Obtener datos frescos de la API
-                const response = await fetch(`${API_URL}/${id}`);
+                const response = await authFetch(`${API_URL}/${id}`);
                 if (!response.ok) throw new Error('Error al obtener datos de la carta');
                 const carta = await response.json();
 
@@ -532,7 +546,7 @@
         btnSi.addEventListener('click', async () => {
             if (cartaActualAEliminar) {
                 try {
-                    const response = await fetch(`${API_URL}/${cartaActualAEliminar}`, {
+                    const response = await authFetch(`${API_URL}/${cartaActualAEliminar}`, {
                         method: 'DELETE'
                     });
                     

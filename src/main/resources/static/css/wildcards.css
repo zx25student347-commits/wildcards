@@ -11,7 +11,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: 
         linear-gradient(rgba(15,15,20,0.85), rgba(15,15,20,0.9)),
-        url("fondo_cartas.png");
+        url("img/fondo_cartas.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
