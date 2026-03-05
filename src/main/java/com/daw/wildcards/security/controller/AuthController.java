@@ -2,7 +2,6 @@ package com.daw.wildcards.security.controller;
 
 
 import com.daw.wildcards.dto.*;
-import com.daw.wildcards.models.Usuario;
 import com.daw.wildcards.security.jwt.JwtService;
 import com.daw.wildcards.security.service.CustomUserDetailsService;
 import com.daw.wildcards.services.UsuarioService;

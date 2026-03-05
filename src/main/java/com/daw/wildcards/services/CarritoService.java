@@ -72,7 +72,6 @@ public class CarritoService {
             newItem.setCarta(carta);
             newItem.setCantidad(cantidad);
             newItem.setPrecioUnidad(BigDecimal.valueOf(carta.getPrecio()));
-            newItem.setCondicion("NM"); // Default Near Mint
             // newItem.setIdioma("ES");    // Default Español
             
             carrito.getItems().add(newItem);

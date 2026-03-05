@@ -1,5 +1,7 @@
 package com.daw.wildcards.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
@@ -22,6 +24,7 @@ public class CarritoItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carrito_id")
+    @JsonBackReference
     private CarritoCompra carrito;
 
     @ManyToOne
@@ -32,8 +35,6 @@ public class CarritoItem {
     @JoinColumn(name = "accesorio_id")
     private Accesorios accesorio;
 
-    @Column
-    private String condicion;
 
     @Column
     private Integer cantidad;
@@ -47,11 +48,10 @@ public class CarritoItem {
 
     
 
-    public CarritoItem(CarritoCompra carrito, Carta carta, String condicion, Integer cantidad,
+    public CarritoItem(CarritoCompra carrito, Carta carta, Integer cantidad,
             BigDecimal precioUnidad) {
         this.carrito = carrito;
         this.carta = carta;
-        this.condicion = condicion;
         this.cantidad = cantidad;
         this.precioUnidad = precioUnidad;
     }
@@ -78,12 +78,7 @@ public class CarritoItem {
     public void setAccesorio(Accesorios accesorio) {
         this.accesorio = accesorio;
     }
-    public String getCondicion() {
-        return condicion;
-    }
-    public void setCondicion(String condicion) {
-        this.condicion = condicion;
-    }
+  
     public Integer getCantidad() {
         return cantidad;
     }

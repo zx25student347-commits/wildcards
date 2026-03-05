@@ -3,6 +3,8 @@ package com.daw.wildcards.controllers.api;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +26,9 @@ public class CarritoController {
         this.carritoService = carritoService;
     }
 
-    // TODO: Reemplazar "admin" por el usuario autenticado actual (Principal)
     private String getUsuarioActual() {
-        return "admin"; 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
     @GetMapping

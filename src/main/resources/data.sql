@@ -77,3 +77,11 @@ VALUES (400, 'Blue-Eyes White Dragon', 'LOB-001', 'Ultra Rare', 'Monstruo', 35.0
 -- 2. Tabla hija 'yugioh_cartas' (ID 400)
 INSERT INTO yugioh_cartas (carta_id, atributo, tipo_detalle, nivel, ataque, defensa, texto_efecto) 
 VALUES (400, 'Luz', 'Dragón', 8, 3000, 2500, 'Monstruo Normal');
+
+-- CARRITO DE COMPRA (Ejemplo para user@wildcards.com)
+INSERT INTO carrito_compra (carrito_id, cliente_id, session_id, fecha_creacion, updated_at, carrito_activo) 
+VALUES (1, 2, 'manual-insert-session', '2024-01-01 10:00:00', '2024-01-01 10:00:00', 1);
+
+-- ITEMS DEL CARRITO (Mega-Charizard x)
+INSERT INTO carrito_items (carrito_item_id, carrito_id, carta_id, cantidad, precio_unidad) 
+VALUES (1, 1, 100, 1, 150.00);

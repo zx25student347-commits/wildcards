@@ -31,8 +31,8 @@ public class PedidoItem {
     @JoinColumn(name = "accesorio_id")
     private Accesorios accesorio;
 
-    @Column(name = "calidad_compra")
-    private String calidadCompra;
+    @Column(name = "cantidad_compra")
+    private Integer cantidadCompra;
 
     @Column(name = "precio_compra")
     private BigDecimal precioCompra;
@@ -42,10 +42,10 @@ public class PedidoItem {
     }
 
 
-    public PedidoItem(Pedido pedido, Carta carta, String calidadCompra, BigDecimal precioCompra) {
+    public PedidoItem(Pedido pedido, Carta carta, Integer cantidadCompra, BigDecimal precioCompra) {
         this.pedido = pedido;
         this.carta = carta;
-        this.calidadCompra = calidadCompra;
+        this.cantidadCompra = cantidadCompra;
         this.precioCompra = precioCompra;
     }
 
@@ -88,15 +88,7 @@ public class PedidoItem {
     }
 
 
-    public String getCalidadCompra() {
-        return calidadCompra;
-    }
-
-
-    public void setCalidadCompra(String calidadCompra) {
-        this.calidadCompra = calidadCompra;
-    }
-
+   
 
     public BigDecimal getPrecioCompra() {
         return precioCompra;
@@ -105,6 +97,16 @@ public class PedidoItem {
 
     public void setPrecioCompra(BigDecimal precioCompra) {
         this.precioCompra = precioCompra;
+    }
+
+
+    public Integer getCantidadCompra() {
+        return cantidadCompra;
+    }
+
+
+    public void setCantidadCompra(Integer cantidadCompra) {
+        this.cantidadCompra = cantidadCompra;
     }
 
     
