@@ -47,7 +47,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         // cualquier otro endpoint de la API necesita un token válido
                         .requestMatchers("/api/**").permitAll()
-                        .requestMatchers("/api/pedido/**","/api/carrito/**").authenticated()
+                        .requestMatchers("/api/pedido/**","/api/carrito/**","/carrito","/pedido").authenticated()
                         // otras rutas estáticas o públicas se siguen permitiendo
                         .anyRequest().permitAll())
                 .authenticationProvider(authenticationProvider())

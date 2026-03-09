@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let productoTipo;
     let mensajeErrorCarga;
     let mensajeNoDisponible;
+    let allProducts = [];
 
     if (endpoint === 'accesorios') {
         apiUrl = '/api/accesorios';
@@ -29,21 +30,80 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(items => {
-            grid.innerHTML = ""; // Limpiamos el grid
-            
-            if (items.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">${mensajeNoDisponible}</p>`;
-                return;
-            }
-
-            items.forEach(item => {
-                grid.innerHTML += crearTarjeta(item);
-            });
+            allProducts = items;
+            actualizarRangoPrecio();
+            setupFilters();
+            aplicarFiltros(); // Render inicial con filtros aplicados
         })
         .catch(err => {
             console.error(`Error cargando ${productoTipo}:`, err);
             grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Error al cargar el catálogo.</p>';
         });
+
+    function actualizarRangoPrecio() {
+        if (!allProducts || allProducts.length === 0) return;
+
+        const maxPrecio = allProducts.reduce((max, item) => Math.max(max, parseFloat(item.precio) || 0), 0);
+        const maxRedondeado = Math.ceil(maxPrecio);
+
+        const sliderPrecio = document.querySelector('.slider-precio');
+        if (sliderPrecio) {
+            sliderPrecio.max = maxRedondeado;
+            sliderPrecio.value = maxRedondeado; // Inicializar con el rango completo
+        }
+
+        const rangoValores = document.querySelector('.rango-valores');
+        if (rangoValores) {
+            const spans = rangoValores.querySelectorAll('span');
+            if (spans.length > 1) spans[1].textContent = `${maxRedondeado}€`;
+        }
+    }
+
+    function setupFilters() {
+        const sliderPrecio = document.querySelector('.slider-precio');
+        const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]');
+
+        if (sliderPrecio) {
+            sliderPrecio.addEventListener('input', aplicarFiltros);
+        }
+        checkboxesIdioma.forEach(cb => cb.addEventListener('change', aplicarFiltros));
+    }
+
+    function aplicarFiltros() {
+        const sliderPrecio = document.querySelector('.slider-precio');
+        const maxPrecio = sliderPrecio ? parseFloat(sliderPrecio.value) : Infinity;
+
+        const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]:checked');
+        const idiomasSeleccionados = Array.from(checkboxesIdioma).map(cb => cb.value);
+
+        // Mapeo de valores del checkbox (HTML) a valores de la BD
+        const mapaIdiomas = { 'en': 'Inglés', 'es': 'Español', 'jp': 'Japonés' };
+
+        const filtrados = allProducts.filter(item => {
+            // Filtro Precio
+            if (item.precio && item.precio > maxPrecio) return false;
+
+            // Filtro Idioma
+            if (idiomasSeleccionados.length > 0) {
+                if (!item.idioma) return false; // Si no tiene idioma (ej. accesorio) y se filtra, se oculta
+                const idiomaItem = item.idioma;
+                if (!idiomasSeleccionados.some(code => mapaIdiomas[code] === idiomaItem)) return false;
+            }
+            return true;
+        });
+
+        renderizarGrid(filtrados);
+    }
+
+    function renderizarGrid(items) {
+        grid.innerHTML = "";
+        if (items.length === 0) {
+            const msg = allProducts.length === 0 ? mensajeNoDisponible : 'No hay productos que coincidan con los filtros.';
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">${msg}</p>`;
+            return;
+        }
+        grid.innerHTML = items.map(item => crearTarjeta(item)).join('');
+    }
 });
 
 function crearTarjeta(item) {
