@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- Fragmento del Header -->
+    <header class="cabecera-sitio" th:fragment="header">
+        <div class="contenedor-nav">
+            <button class="menu-hamburguesa" id="menuHamburguesa" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <a href="/">
+                <div class="logo">WILDCARDS</div>
+            </a>
+
+            <nav class="nav-principal">
+                <ul>
+                    <li><a href="/pokemon">Pokémon</a></li>
+                    <li><a href="/onepiece">One Piece</a></li>
+                    <li><a href="/yugioh">Yugioh</a></li>
+                    <li><a href="/magic">Magic</a></li>
+                    <li><a href="/accesorios">Accesorios</a></li>
+                </ul>
+            </nav>
+
+            <form class="formulario-busqueda" action="#" role="search">
+                <input type="search" placeholder="Buscar" aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <div class="iconos">
+                <a href="/login"><img src="icons/person.png" alt="usuario" class="icono"></a>
+                <a href="/carrito"><img src="icons/carrito.png" alt="carrito" class="icono"></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fragmento del Footer -->
+    <footer id="pie_pagina" th:fragment="footer">
+        <div class="footer-contenedor">
+            <div class="footer-columna">
+                <!-- Logo que redirige al principio (#) -->
+                <a href="#" class="footer-logo">WILDCARDS</a>
+            </div>
+            <div class="footer-columna">
+                <h4>Categorías</h4>
+                <ul>
+                    <li><a href="/pokemon">Pokémon</a></li>
+                    <li><a href="/onepiece">One Piece</a></li>
+                    <li><a href="/yugioh">Yugioh</a></li>
+                    <li><a href="/magic">Magic</a></li>
+                    <li><a href="/accesorios">Accesorios</a></li>
+                </ul>
+            </div>
+            <div class="footer-columna">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Centro de Ayuda</a></li>
+                    <li><a href="#">Políticas de Devolución</a></li>
+                    <li><a href="#">Contacto Directo</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

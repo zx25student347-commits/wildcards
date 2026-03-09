@@ -28,6 +28,14 @@ body {
     top: 0;
     z-index: 1000;
     margin-right: 0px;
+    transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cabecera-sitio.scrolled {
+    background-color: rgba(28, 28, 28, 0.9); /* Fondo semi-transparente */
+    padding: 8px 0; /* Reduce ligeramente la altura */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    backdrop-filter: blur(8px); /* Efecto de desenfoque detrás del header */
 }
 
 .contenedor-nav {
@@ -158,14 +166,76 @@ body {
     filter: brightness(0) invert(1)
 }
 
+/* Estilos Menú Hamburguesa */
+.menu-hamburguesa {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    order: 0;
+}
+
+.menu-hamburguesa span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Animación del botón al activarse */
+.menu-hamburguesa.activo span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-hamburguesa.activo span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguesa.activo span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
 /* Responsive adjustments */
 @media (max-width:900px) {
+    .menu-hamburguesa {
+        display: flex;
+    }
+
     .nav-principal {
-        display: none
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-1);
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        text-align: center;
+    }
+
+    .nav-principal.activo {
+        display: flex;
+    }
+
+    .nav-principal ul {
+        flex-direction: column;
+        gap: 20px;
     }
 
     .formulario-busqueda input[type=search] {
         width: 240px
+    }
+    
+    .iconos {
+        margin-left: auto;
     }
 }
 
@@ -583,10 +653,22 @@ body {
     background-color: #1a1a1a;
     /* Fondo oscuro */
     color: #fff;
-    padding: 40px 20px;
-    border-top: 4px solid;
-    border-image: linear-gradient(to right, #ff00ff, #32cd32) 1;
-    /* Borde degradado magenta/verde */
+    padding: 30px 20px;
+    position: relative;
+    border-top: none; /* Eliminado para corregir el hueco */
+    overflow: hidden;
+}
+
+#pie_pagina::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff00ff, #32cd32, #ff00ff);
+    background-size: 200% 100%;
+    animation: move-border 4s linear infinite;
 }
 
 .footer-contenedor {
@@ -599,12 +681,12 @@ body {
 }
 
 .footer-columna {
-    flex: 1;
+    /* flex: 1; */
     min-width: 200px;
 }
 
 .footer-logo {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-decoration: none;
     background: linear-gradient(to right, #ff00ff, #32cd32);
@@ -613,6 +695,15 @@ body {
     /* Texto transparente para mostrar el fondo degradado */
     display: inline-block;
     transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+@keyframes move-border {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: -200% 0%;
+    }
 }
 
 /* Definición de la animación de resplandor */
@@ -635,8 +726,8 @@ body {
 .footer-columna h4 {
     color: #32cd32;
     /* Verde lima */
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
     text-transform: uppercase;
 }
 
@@ -647,7 +738,7 @@ body {
 }
 
 .footer-columna ul li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .footer-columna ul li a {
@@ -656,6 +747,7 @@ body {
     transition: all 0.3s ease;
     /* Animación suave */
     display: inline-block;
+    font-size: 0.9rem;
 }
 
 .footer-columna ul li a:hover {
@@ -665,9 +757,40 @@ body {
     /* Desplazamiento a la derecha */
 }
 
+/* Estilos para iconos de redes sociales */
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.social-links img {
+    width: 32px;
+    height: 32px;
+    filter: grayscale(100%) brightness(1.5); /* Iconos en escala de grises y más brillantes */
+    transition: filter 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px) scale(1.1);
+}
+
+.social-links a:hover img {
+    filter: grayscale(0%) brightness(1); /* Color original al pasar el ratón */
+}
+
 @media (max-width: 768px) {
     .footer-contenedor {
         flex-direction: column;
         text-align: center;
+    }
+
+    .social-links {
+        justify-content: center; /* Centra los iconos en móvil */
     }
 }
