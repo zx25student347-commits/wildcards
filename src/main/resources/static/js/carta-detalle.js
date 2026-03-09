@@ -21,6 +21,48 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al cargar la carta:', error);
             document.querySelector('.container').innerHTML = `<p>${error.message}</p>`;
         });
+
+    // Lógica para el botón de Añadir al Carrito
+    const btnAgregar = document.getElementById('btnAgregarCarrito');
+    if (btnAgregar) {
+        btnAgregar.addEventListener('click', async () => {
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                // Si no hay token, redirigir al login guardando la página actual
+                window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+                return;
+            }
+
+            const cantidadInput = document.getElementById('cantidad');
+            const cantidad = cantidadInput ? parseInt(cantidadInput.value) : 1;
+
+            try {
+                const response = await fetch('/api/carrito/items', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({
+                        cartaId: parseInt(cartaId),
+                        cantidad: cantidad
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Producto añadido al carrito correctamente.');
+                } else if (response.status === 401 || response.status === 403) {
+                    window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+                } else {
+                    alert('Error al añadir el producto al carrito.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema de conexión.');
+            }
+        });
+    }
 });
 
 function renderizarDetalleCarta(carta) {
@@ -84,4 +126,6 @@ function renderizarDetalleCarta(carta) {
     if (listaDetalles.children.length > 0) {
         detallesEspecificos.appendChild(listaDetalles);
     }
+
+    
 }
