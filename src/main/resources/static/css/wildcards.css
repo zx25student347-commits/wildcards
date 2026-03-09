@@ -246,47 +246,99 @@ body {
 }
 
 
+/* --- Login Page Theming --- */
+/* Keyframes for animations */
+@keyframes animated-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes animated-border {
+    0%, 100% { border-color: #FFCB05; box-shadow: 0 0 15px #FFCB05, 0 10px 30px rgba(0,0,0,0.6); } /* Pokemon Yellow */
+    25% { border-color: #E60012; box-shadow: 0 0 15px #E60012, 0 10px 30px rgba(0,0,0,0.6); } /* One Piece Red */
+    50% { border-color: #410c86; box-shadow: 0 0 15px #410c86, 0 10px 30px rgba(0,0,0,0.6); } /* Magic Purple */
+    75% { border-color: #D4AF37; box-shadow: 0 0 15px #D4AF37, 0 10px 30px rgba(0,0,0,0.6); } /* Yugioh Gold */
+}
+
+@keyframes franchise-glow {
+    0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #FFCB05, 0 0 20px #FFCB05; } /* Pokemon */
+    25% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #E60012, 0 0 20px #E60012; } /* One Piece */
+    50% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #410c86, 0 0 20px #410c86; } /* Magic */
+    75% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #D4AF37, 0 0 20px #D4AF37; } /* Yugioh */
+}
+
+@keyframes focus-shadow {
+    0%, 100% { box-shadow: 0 0 8px #FFCB05; border-color: #FFCB05; }
+    25% { box-shadow: 0 0 8px #E60012; border-color: #E60012; }
+    50% { box-shadow: 0 0 8px #410c86; border-color: #410c86; }
+    75% { box-shadow: 0 0 8px #D4AF37; border-color: #D4AF37; }
+}
+
+/* Page Background */
 .pagina-login {
-    background-color: var(--primary-1);
+    /* Gradient with colors from the 4 franchises */
+    background: linear-gradient(-45deg, #3D7DCA, #FFCB05, #E60012, #40055c, #D4AF37);
+    background-size: 400% 400%;
+    animation: animated-gradient 15s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    overflow: hidden;
 }
 
+/* Contenedor */
 .contenedor-login {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
+    position: relative;
 }
 
+/* Logo */
 .logo-login {
     display: block;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--accent);
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--white); /* Changed to white to better show the animated shadow */
     text-decoration: none;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
+    animation: franchise-glow 8s ease-in-out infinite alternate;
 }
 
+/* Caja login estilo carta */
 .formulario-login {
-    background-color: var(--primary-2);
+    background: linear-gradient(
+        160deg,
+        rgba(15,15,20,0.95),
+        rgba(5,5,8,0.95)
+    );
+    backdrop-filter: blur(10px);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 18px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 2px solid;
+    animation: animated-border 8s linear infinite;
     color: var(--white);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.formulario-login:hover {
+    transform: translateY(-5px) scale(1.02);
 }
 
 .formulario-login h2 {
     margin-top: 0;
     text-align: center;
+    font-weight: 700;
 }
 
+/* Inputs */
 .grupo-input {
     display: flex;
     flex-direction: column;
@@ -296,39 +348,55 @@ body {
 
 .grupo-input label {
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .grupo-input input {
     padding: 12px;
     border-radius: 8px;
-    border: 1px solid #444;
+    border: 1px solid rgba(255,255,255,0.12);
     background: var(--primary-1);
     color: var(--white);
     font-size: 1rem;
+    transition: border .2s, box-shadow .2s;
 }
 
+.grupo-input input:focus {
+    outline: none;
+    animation: focus-shadow 8s linear infinite;
+}
+
+/* Botones */
 .acciones-login {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
     margin-top: 10px;
 }
 
 .btn-continuar {
-    background: var(--accent);
-    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        #FFCB05, /* Pokemon */
+        #E60012, /* One Piece */
+        #410c86, /* Magic */
+        #D4AF37  /* Yugioh */
+    );
+    background-size: 200% auto;
+    color: white;
     border: none;
     padding: 12px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     font-size: 1rem;
-    transition: opacity 0.2s;
+    transition: all .3s ease;
 }
 
 .btn-continuar:hover {
-    opacity: 0.9;
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
 .btn-registrar {
@@ -342,13 +410,14 @@ body {
     text-decoration: none;
     text-align: center;
     font-size: 1rem;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
 }
 
 .btn-registrar:hover {
-    background: rgba(65, 12, 134, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    color: #fff;
 }
-
 
 .carrusel {
     position: relative;
