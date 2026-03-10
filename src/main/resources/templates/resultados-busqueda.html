@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Resultados para ' + ${consulta}"></title>
+    <link rel="stylesheet" th:href="@{/css/wildcards.css}">
+</head>
+<body>
+
+    <!-- Header -->
+    <div th:replace="~{fragmentos/layout :: header}"></div>
+
+    <main class="contenedor-tienda">
+        <!-- Barra lateral de filtros -->
+        <aside class="barra-lateral">
+            <div class="filtro-container">
+                <h3>Filtrar Resultados</h3>
+                <form th:action="@{/tienda/buscar}" method="get" id="form-filtros">
+                    <!-- Campo oculto para mantener la consulta de búsqueda original -->
+                    <input type="hidden" name="q" th:value="${consulta}">
+    
+                    <!-- Filtro por Precio -->
+                    <div class="filtro-grupo">
+                        <h4>Precio Máximo</h4>
+                        <input type="range" class="slider-precio" name="maxPrecio" 
+                               th:value="${currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible}" 
+                               min="0" th:max="${maxPrecioPosible}" step="1">
+                        <div class="rango-valores">
+                            <span>0€</span>
+                            <span id="valor-precio-max" th:text="${(currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible)} + '€'">100€</span>
+                        </div>
+                    </div>
+    
+                    <!-- Filtro por Categoría -->
+                    <div class="filtro-grupo">
+                        <h4>Categoría</h4>
+                        <div class="opcion-filtro">
+                            <input type="checkbox" id="cat-carta" name="categorias" value="carta" 
+                                   th:checked="${#lists.isEmpty(currentCategorias) or #lists.contains(currentCategorias, 'carta')}">
+                            <label for="cat-carta">Cartas</label>
+                        </div>
+                        <div class="opcion-filtro">
+                            <input type="checkbox" id="cat-accesorio" name="categorias" value="accesorio"
+                                   th:checked="${#lists.isEmpty(currentCategorias) or #lists.contains(currentCategorias, 'accesorio')}">
+                            <label for="cat-accesorio">Accesorios</label>
+                        </div>
+                    </div>
+    
+                    <button type="submit" class="btn-continuar" style="width: 100%; margin-top: 10px;">Aplicar Filtros</button>
+                </form>
+            </div>
+        </aside>
+        
+        <!-- Listado de productos -->
+        <div class="listado-productos">
+            <h2 th:text="|Resultados de búsqueda para '${consulta}'|">Resultados de búsqueda</h2>
+            <p th:text="|${totalResultados} productos encontrados.|"></p>
+            <div th:if="${#lists.isEmpty(resultados)}" class="no-resultados" style="text-align: center; padding: 50px 20px;">
+                <h3>No se encontraron productos que coincidan con los filtros.</h3>
+                <p>Intenta con otros filtros o una nueva búsqueda.</p>
+            </div>
+            <div th:if="${not #lists.isEmpty(resultados)}" class="productos-grid">
+                <div th:each="producto : ${resultados}" class="producto-card">
+                    <a th:href="@{${producto.url}}" class="producto-card-link">
+                        <div class="producto-imagen"><img th:src="${producto.imagenUrl != null ? producto.imagenUrl : 'https://placehold.co/200x280?text=No+Imagen'}" th:alt="${producto.nombre}" onerror="this.src='https://placehold.co/200x280?text=No+Imagen'"></div>
+                        <h3 class="producto-nombre" th:text="${producto.nombre}">Nombre del Producto</h3>
+                        <p class="producto-precio" th:text="${producto.precio != null ? #numbers.formatDecimal(producto.precio, 1, 2, 'COMMA') + ' €' : 'Consultar'}">Precio</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="pie_pagina" th:replace="~{fragmentos/layout :: footer}"></footer>
+
+    <script th:src="@{/js/wildcards.js}"></script>
+</body>
+</html>
