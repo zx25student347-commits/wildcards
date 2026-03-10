@@ -331,10 +331,15 @@ body {
 
 /* Page Background */
 .pagina-login {
-    /* Gradient with colors from the 4 franchises */
-    background-image: url("fondo_login.png");
-    
-    background: linear-gradient(-45deg, #3D7DCA, #FFCB05, #E60012, #40055c, #D4AF37);
+    /* El fondo multicolor animado será la capa inferior. */
+    position: relative; /* Necesario para que el pseudo-elemento ::before se posicione respecto a este. */
+    background: linear-gradient(-45deg, 
+            #3D7DCA,
+            #FFCB05,
+            #E60012,
+            #40055c,
+            #D4AF37
+        );
     background-size: 400% 400%;
     animation: animated-gradient 15s ease infinite;
     display: flex;
@@ -343,14 +348,30 @@ body {
     min-height: 100vh;
     padding: 20px;
     overflow: hidden;
+    /* Aislamos el contexto de apilamiento para que z-index funcione de forma predecible */
+    isolation: isolate;
 }
 
+/* Usamos un pseudo-elemento para poner la imagen por encima del fondo multicolor.
+   Estará entre el fondo (del .pagina-login) y el contenido (el .contenedor-login). */
+.pagina-login::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    z-index: -1; /* Lo colocamos detrás del contenido del .pagina-login */
+
+    background-image: url("/img/fondo_cartas.png");
+    background-position: center;
+    background-size: cover;
+
+    /* Hacemos la imagen un poco transparente para que se vea el fondo de colores a través de ella. */
+    opacity: 0.85; 
+}
 /* Contenedor */
 .contenedor-login {
     width: 100%;
     max-width: 420px;
     text-align: center;
-    position: relative;
 }
 
 /* Logo */
@@ -474,7 +495,6 @@ body {
     border-color: #fff;
     color: #fff;
 }
-
 .carrusel {
     position: relative;
     width: 100%;
