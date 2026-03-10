@@ -278,6 +278,8 @@ body {
 /* Page Background */
 .pagina-login {
     /* Gradient with colors from the 4 franchises */
+    background-image: url("fondo_login.png");
+    
     background: linear-gradient(-45deg, #3D7DCA, #FFCB05, #E60012, #40055c, #D4AF37);
     background-size: 400% 400%;
     animation: animated-gradient 15s ease infinite;
