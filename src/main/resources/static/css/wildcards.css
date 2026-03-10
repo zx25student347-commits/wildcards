@@ -940,3 +940,142 @@ body {
         justify-content: center; /* Centra los iconos en móvil */
     }
 }
+
+/* --- Pedidos Page --- */
+.contenedor-pedidos {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: var(--white);
+}
+
+.contenedor-pedidos h1 {
+    font-size: 2.5rem;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 15px;
+}
+
+.seccion-pedidos {
+    margin-bottom: 50px;
+}
+
+.seccion-pedidos h2 {
+    font-size: 1.8rem;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.lista-pedidos p {
+    color: var(--muted);
+    background-color: var(--primary-1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.pedido-card {
+    background-color: var(--primary-1);
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pedido-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: var(--primary-2);
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--dark-muted);
+}
+
+.pedido-info span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.pedido-info strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.pedido-estado {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* Colores de estado */
+.estado-PENDIENTE_PAGO { background-color: #f39c12; color: var(--primary-1); }
+.estado-PAGADO { background-color: #2ecc71; color: var(--primary-1); }
+.estado-ENVIADO { background-color: #3498db; color: var(--white); }
+.estado-ENTREGADO { background-color: #95a5a6; color: var(--white); }
+.estado-CANCELADO { background-color: #e74c3c; color: var(--white); }
+
+
+.pedido-body {
+    padding: 25px;
+}
+
+.pedido-body h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--muted);
+}
+
+.pedido-items-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pedido-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--primary-2);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.pedido-item-img {
+    width: 60px;
+    height: 84px;
+    object-fit: contain;
+    border-radius: 5px;
+    background-color: var(--primary-1);
+}
+
+.pedido-item-details {
+    flex-grow: 1;
+}
+
+.pedido-item-nombre {
+    font-weight: 600;
+    color: var(--white);
+    margin: 0 0 5px 0;
+}
+
+.pedido-item-info {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+}

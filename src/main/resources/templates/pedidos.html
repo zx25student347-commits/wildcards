@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos - WildCards</title>
+    <link rel="stylesheet" href="/css/wildcards.css">
+</head>
+<body>
+
+    <!-- Cabecera del Sitio -->
+    <header class="cabecera-sitio">
+        <div class="contenedor-nav">
+            <button class="menu-hamburguesa" id="menu-hamburguesa">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="/" class="logo">WildCards</a>
+            <nav class="nav-principal" id="nav-principal">
+                <ul>
+                    <li><a href="/pokemon">Pokémon</a></li>
+                    <li><a href="/magic">Magic</a></li>
+                    <li><a href="/yugioh">Yu-Gi-Oh!</a></li>
+                    <li><a href="/onepiece">One Piece</a></li>
+                    <li><a href="/accesorios">Accesorios</a></li>
+                </ul>
+            </nav>
+            <form class="formulario-busqueda" action="/busqueda" method="get">
+                <input type="search" name="q" placeholder="Buscar cartas, accesorios..." autocomplete="off">
+                <button type="submit">Buscar</button>
+            </form>
+            <div class="iconos">
+                <a href="/login" class="icono-link"><img src="/img/iconos/user.svg" alt="Login" class="icono"></a>
+                <a href="/carrito" class="icono-link"><img src="/img/iconos/cart.svg" alt="Carrito" class="icono"></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="contenedor-pedidos">
+        <h1>Mis Pedidos</h1>
+
+        <div class="seccion-pedidos">
+            <h2>Pedidos Pendientes de Pago</h2>
+            <div id="pedidos-pendientes" class="lista-pedidos">
+                <p>No tienes pedidos pendientes de pago.</p>
+            </div>
+        </div>
+
+        <div class="seccion-pedidos">
+            <h2>Pedidos Pagados</h2>
+            <div id="pedidos-pagados" class="lista-pedidos">
+                <p>No tienes pedidos pagados.</p>
+            </div>
+        </div>
+        
+        <div class="seccion-pedidos">
+            <h2>Pedidos Enviados</h2>
+            <div id="pedidos-enviados" class="lista-pedidos">
+                <p>No tienes pedidos enviados.</p>
+            </div>
+        </div>
+
+        <div class="seccion-pedidos">
+            <h2>Pedidos Entregados</h2>
+            <div id="pedidos-entregados" class="lista-pedidos">
+                <p>No tienes pedidos entregados.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer id="pie_pagina">
+        <div class="footer-contenedor">
+            <!-- Aquí iría el contenido de tu footer, similar a otras páginas -->
+            <div class="footer-columna">
+                <a href="/" class="footer-logo">WildCards</a>
+            </div>
+            <div class="footer-columna">
+                <h4>Navegación</h4>
+            </div>
+            <div class="footer-columna">
+                <h4>Soporte</h4>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/pedidos.js"></script>
+</body>
+</html>
