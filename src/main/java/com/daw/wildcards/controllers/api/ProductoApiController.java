@@ -17,8 +17,8 @@ public class ProductoApiController {
         this.sugerenciaService = sugerenciaService;
     }
 
-    @GetMapping("/sugerencias")
-    public List<String> getSugerencias(@RequestParam("q") String consulta) {
-        return sugerenciaService.getSugerencias(consulta);
-    }
+    // @GetMapping("/sugerencias")
+    // public List<String> getSugerencias(@RequestParam("q") String consulta) {
+    //     return sugerenciaService.getSugerencias(consulta);
+    // }
 }
