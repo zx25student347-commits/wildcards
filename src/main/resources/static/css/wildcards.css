@@ -120,7 +120,8 @@ body {
     order: 3;
     display: flex;
     align-items: center;
-    gap: 10px
+    gap: 10px;
+    position: relative; /* Para posicionar el spinner */
 }
 
 .formulario-busqueda input[type=search] {
@@ -152,6 +153,27 @@ body {
     font-weight: 600;
     cursor: pointer
 }
+
+/* --- INICIO: SPINNER DE CARGA PARA BÚSQUEDA --- */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.search-spinner {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    right: 125px; /* Ajustado para estar dentro del input, antes del botón */
+    top: 50%;
+    margin-top: -10px; /* Mitad de la altura */
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--accent);
+    animation: spin 0.8s linear infinite;
+    z-index: 10;
+}
+/* --- FIN: SPINNER DE CARGA PARA BÚSQUEDA --- */
 
 /* --- INICIO: ESTILOS AUTOCOMPLETADO BÚSQUEDA --- */
 .sugerencias-busqueda {

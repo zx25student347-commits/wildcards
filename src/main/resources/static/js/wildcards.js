@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- INICIO: APARTADO DE AUTOCOMPLETADO DE LA BARRA DE NAVEGACIÓN ---
 
+        // +++ Crear y añadir el spinner de carga al formulario +++
+        const spinner = document.createElement('div');
+        spinner.classList.add('search-spinner');
+        formularioBusqueda.appendChild(spinner);
+
         // 1. Crear el contenedor para las sugerencias y añadirlo al body para evitar problemas de z-index.
         const sugerenciasContainer = document.createElement('div');
         sugerenciasContainer.classList.add('sugerencias-busqueda');
@@ -73,16 +78,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            spinner.style.display = 'block'; // Mostrar spinner
+
             try {
                 // Esta API (a crear en el backend) debería devolver un array de strings con nombres de productos
                 const response = await fetch(`/api/productos/sugerencias?q=${encodeURIComponent(consulta)}`);
                 if (!response.ok) throw new Error('Respuesta no válida de la API');
-                
+
                 const sugerencias = await response.json();
                 renderizarSugerencias(sugerencias);
             } catch (error) {
                 console.error('Error al obtener sugerencias:', error);
                 sugerenciasContainer.style.display = 'none';
+            } finally {
+                spinner.style.display = 'none'; // Ocultar spinner
             }
         });
 
@@ -103,6 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Redirigir a una página de resultados de búsqueda.
                 window.location.href = `/tienda/buscar?q=${encodeURIComponent(consulta)}`;
             }
+        });
+    }
+
+    // Lógica para el slider de precio en la página de búsqueda
+    const sliderPrecioBusqueda = document.querySelector('#form-filtros .slider-precio');
+    const valorPrecioMaxDisplay = document.getElementById('valor-precio-max');
+
+    if (sliderPrecioBusqueda && valorPrecioMaxDisplay) {
+        sliderPrecioBusqueda.addEventListener('input', (event) => {
+            // Actualiza el texto que muestra el valor máximo seleccionado
+            valorPrecioMaxDisplay.textContent = `${event.target.value}€`;
         });
     }
     // Lógica del Carrusel
