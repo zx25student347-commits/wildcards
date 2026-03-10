@@ -49,6 +49,13 @@ public class PedidoItem {
         this.precioCompra = precioCompra;
     }
 
+    public PedidoItem(Pedido pedido, Accesorios accesorio, Integer cantidadCompra, BigDecimal precioCompra) {
+        this.pedido = pedido;
+        this.accesorio = accesorio;
+        this.cantidadCompra = cantidadCompra;
+        this.precioCompra = precioCompra;
+    }
+
 
     public Integer getPedidoItemId() {
         return pedidoItemId;

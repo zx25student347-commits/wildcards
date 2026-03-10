@@ -98,4 +98,20 @@ public class CarritoService {
             carritoRepository.save(carrito);
         }
     }
+
+    @Transactional
+    public void limpiarCarrito(String username) {
+        CarritoCompra carrito = obtenerCarritoPorUsuario(username);
+        
+        // Eliminar todos los items del carrito
+        if (carrito.getItems() != null && !carrito.getItems().isEmpty()) {
+            carritoItemRepository.deleteAll(carrito.getItems());
+            carrito.getItems().clear();
+        }
+        
+        // Desactivar el carrito para que se cree uno nuevo la próxima vez
+        carrito.setCarritoActivo(false);
+        carrito.setUpdatedAt(LocalDateTime.now());
+        carritoRepository.save(carrito);
+    }
 }
