@@ -1,7 +1,11 @@
 package com.daw.wildcards.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
@@ -11,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +35,13 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     @Column
     private EstadoPedido estado;
+
+    @Column(name = "total")
+    private BigDecimal total;
+
+    // Relación con los items del pedido
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PedidoItem> items = new ArrayList<>();
 
     public Pedido() {
     }
@@ -72,5 +84,20 @@ public class Pedido {
         this.estado = estado;
     }
 
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public List<PedidoItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<PedidoItem> items) {
+        this.items = items;
+    }
     
 }

@@ -11,8 +11,7 @@ import com.daw.wildcards.models.Pedido;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
-    List<Pedido> findByClienteId(Integer clienteId);
+    List<Pedido> findByCliente_Id(Long clienteId);
 
     List<Pedido> findByEstado(EstadoPedido estado);
 }
-
