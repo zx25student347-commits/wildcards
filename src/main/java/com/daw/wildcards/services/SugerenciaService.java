@@ -1,4 +1,4 @@
-package com.daw.wildcards.controllers.api;
+package com.daw.wildcards.services;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,14 +22,14 @@ public class SugerenciaService {
         this.accesorioRepository = accesorioRepository;
     }
 
-//     public List<String> getSugerencias(String consulta) {
-//         Pageable pageRequest = PageRequest.of(0, 5);
+    public List<String> getSugerencias(String consulta) {
+        Pageable pageRequest = PageRequest.of(0, 5);
 
-//         List<String> sugerenciasCartas = cartaRepository.findNombresByNombreContaining(consulta, pageRequest);
-//         List<String> sugerenciasAccesorios = accesorioRepository.findNombresByNombreContaining(consulta, pageRequest);
+        List<String> sugerenciasCartas = cartaRepository.findNombresByNombreContainingIgnoreCase(consulta, pageRequest);
+        List<String> sugerenciasAccesorios = accesorioRepository.findNombresByNombreContainingIgnoreCase(consulta, pageRequest);
 
-//         return Stream.concat(sugerenciasCartas.stream(), sugerenciasAccesorios.stream())
-//                 .distinct()
-//                 .collect(Collectors.toList());
-//     }
+        return Stream.concat(sugerenciasCartas.stream(), sugerenciasAccesorios.stream())
+                .distinct()
+                .collect(Collectors.toList());
+    }
  }
