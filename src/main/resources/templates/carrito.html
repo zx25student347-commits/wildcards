@@ -1,41 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito — Wildcards</title>
+    <link rel="stylesheet" href="/css/fragmentos-estilo.css">
     <link rel="stylesheet" href="/css/carrito.css">
-    <script src="js/carrito.js"></script>
+    <script src="/js/wildcards.js" defer></script>
+    <script src="/js/carrito.js" defer></script>
 </head>
 
 <body>
-
-    <header class="barra-navegacion">
-        <div class="contenedor">
-            <a href="/">
-            <div class="logo">WILDCARDS</div>
-            </a>
-
-            <nav>
-                <a href="/pokemon">Pokémon</a>
-                <a href="/onepiece">One Piece</a>
-                <a href="/yugioh">Yu-Gi-Oh!</a>
-                <a href="/magic">Magic</a>
-                <a href="/accesorios">Accesorios</a>
-            </nav>
-
-            <div class="iconos-nav">
-                <a href="#" class="icono-enlace">👤</a>
-
-                <a href="#" class="icono-enlace icono-carrito">
-                    🛒
-                    <span id="contadorCarrito" class="contador-carrito"></span>
-                </a>
-            </div>
-
-        </div>
-    </header>
+    <header th:replace="~{fragmentos/layout :: header}"></header>
 
     <main class="contenedor-principal">
         <div class="panel">
@@ -88,6 +65,8 @@
             </div>
         </div>
     </template>
+
+    <footer th:replace="~{fragmentos/layout :: footer}"></footer>
 
 </body>
 
