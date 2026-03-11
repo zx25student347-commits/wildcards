@@ -83,6 +83,29 @@ public class CarritoService {
     }
 
     @Transactional
+    public CarritoCompra actualizarCantidad(String username, Integer cartaId, Integer cantidad) {
+        CarritoCompra carrito = obtenerCarritoPorUsuario(username);
+
+        Optional<CarritoItem> itemOptional = carrito.getItems().stream()
+                .filter(item -> item.getCarta() != null && item.getCarta().getCartaId().equals(cartaId))
+                .findFirst();
+
+        if (itemOptional.isPresent()) {
+            CarritoItem item = itemOptional.get();
+            if (cantidad <= 0) {
+                eliminarItem(username, item.getCarritoItemId());
+            } else {
+                item.setCantidad(cantidad);
+                carritoItemRepository.save(item);
+            }
+            // Refrescamos el carrito de la base de datos para devolver el estado actual
+            return carritoRepository.findById(carrito.getCarritoId()).orElse(carrito);
+        } else {
+            throw new RuntimeException("El producto no se encuentra en el carrito");
+        }
+    }
+
+    @Transactional
     public void eliminarItem(String username, Integer itemId) {
         CarritoCompra carrito = obtenerCarritoPorUsuario(username);
         

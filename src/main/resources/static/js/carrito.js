@@ -107,9 +107,8 @@ function renderizarCarrito(carrito) {
         // Añade el listener para actualizar la cantidad
         cantidadInput.addEventListener('change', (e) => {
             const nuevaCantidad = parseInt(e.target.value);
-            if (nuevaCantidad > 0) {
-                actualizarCantidadItem(item.carta.id, nuevaCantidad);
-            }
+            // Enviamos incluso si es 0 para que el backend lo borre
+            actualizarCantidadItem(item.carta.cartaId, nuevaCantidad);
         });
         
         clone.querySelector('.titulo-item').textContent = item.carta.nombre;
@@ -122,6 +121,11 @@ function renderizarCarrito(carrito) {
         cantidadInput.value = item.cantidad;
         const precioItemTotal = item.cantidad * item.precioUnidad;
         clone.querySelector('.precio-item').textContent = `${precioItemTotal.toFixed(2)} €`;
+
+        // Funcionalidad Botón Eliminar
+        const btnEliminar = clone.querySelector('.boton-eliminar');
+        btnEliminar.setAttribute('data-id', item.carritoItemId);
+        btnEliminar.addEventListener('click', () => eliminarItem(item.carritoItemId));
 
         listaCarrito.appendChild(clone);
 
@@ -175,7 +179,7 @@ function actualizarContadorNavbar(cantidad) {
  */
 async function actualizarCantidadItem(cartaId, cantidad) {
     try {
-        const response = await fetch(`/api/carrito/item`, {
+        const response = await fetch(`/api/carrito/items`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ cartaId: cartaId, cantidad: cantidad })
@@ -193,6 +197,25 @@ async function actualizarCantidadItem(cartaId, cantidad) {
         console.error("Error al actualizar el item:", error);
         // En caso de error, recargamos el carrito desde el servidor para asegurar consistencia.
         cargarCarrito();
+    }
+}
+
+/**
+ * Elimina un item del carrito.
+ * @param {number} itemId El ID del item del carrito (carritoItemId).
+ */
+async function eliminarItem(itemId) {
+    try {
+        const response = await fetch(`/api/carrito/items/${itemId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) throw new Error('Error al eliminar el producto.');
+        
+        // Recargar el carrito para actualizar la vista
+        cargarCarrito();
+    } catch (error) {
+        console.error("Error eliminando item:", error);
     }
 }
 
