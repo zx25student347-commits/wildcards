@@ -1,5 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     cargarCarrito();
+
+    // --- LÓGICA DEL MODAL DE PAGO ---
+    const modal = document.getElementById('modalPago');
+    const btnPagar = document.getElementById('botonPagar');
+    const spanCerrar = document.querySelector('.close-modal');
+    const radiosPago = document.querySelectorAll('input[name="metodoPago"]');
+
+    // Abrir modal
+    if (btnPagar) {
+        btnPagar.addEventListener('click', () => {
+            const precioTotalTexto = document.getElementById('precioTotal').textContent;
+            document.getElementById('totalModal').textContent = precioTotalTexto;
+            modal.style.display = 'block';
+        });
+    }
+
+    // Cerrar modal
+    if (spanCerrar) {
+        spanCerrar.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Cerrar al hacer clic fuera
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Cambiar formulario según método de pago
+    radiosPago.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            cambiarMetodoPago(e.target.value);
+        });
+    });
 });
 
 /**
@@ -158,4 +194,17 @@ async function actualizarCantidadItem(cartaId, cantidad) {
         // En caso de error, recargamos el carrito desde el servidor para asegurar consistencia.
         cargarCarrito();
     }
+}
+
+function cambiarMetodoPago(metodo) {
+    // Ocultar todos los detalles
+    document.querySelectorAll('.detalles-pago').forEach(el => el.classList.remove('activo'));
+    
+    // Mostrar el seleccionado
+    if (metodo === 'tarjeta') {
+        document.getElementById('formTarjeta').classList.add('activo');
+    } else if (metodo === 'paypal') {
+        document.getElementById('infoPaypal').classList.add('activo');
+    }
+    // Puedes añadir lógica para Bizum aquí si decides poner un formulario específico
 }

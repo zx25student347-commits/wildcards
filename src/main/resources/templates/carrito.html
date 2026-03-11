@@ -66,6 +66,68 @@
         </div>
     </template>
 
+    <!-- MODAL DE PAGO -->
+    <div id="modalPago" class="modal-overlay">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h2>Finalizar Compra</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <p class="modal-total">Total a pagar: <span id="totalModal" class="precio-destacado">0.00 €</span></p>
+                
+                <h3>Selecciona Método de Pago</h3>
+                <div class="opciones-pago">
+                    <label class="opcion-pago-label">
+                        <input type="radio" name="metodoPago" value="tarjeta" checked>
+                        <span class="texto-opcion">Tarjeta de Crédito / Débito</span>
+                        <span class="icono-pago">💳</span>
+                    </label>
+                    
+                    <!-- Formulario Tarjeta -->
+                    <div id="formTarjeta" class="detalles-pago activo">
+                        <div class="grupo-input-modal">
+                            <label>Titular de la tarjeta</label>
+                            <input type="text" placeholder="Como aparece en la tarjeta">
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Número de tarjeta</label>
+                            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        <div class="fila-doble">
+                            <div class="grupo-input-modal">
+                                <label>Caducidad</label>
+                                <input type="text" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="grupo-input-modal">
+                                <label>CVV</label>
+                                <input type="text" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label class="opcion-pago-label">
+                        <input type="radio" name="metodoPago" value="paypal">
+                        <span class="texto-opcion">PayPal</span>
+                        <span class="icono-pago">🅿️</span>
+                    </label>
+                    <div id="infoPaypal" class="detalles-pago">
+                        <p>Serás redirigido a PayPal para completar el pago de forma segura.</p>
+                    </div>
+
+                    <label class="opcion-pago-label">
+                        <input type="radio" name="metodoPago" value="bizum">
+                        <span class="texto-opcion">Bizum</span>
+                        <span class="icono-pago">📱</span>
+                    </label>
+                </div>
+
+                <button id="btnConfirmarPago" class="boton-pagar" style="margin-top: 20px;">CONFIRMAR Y PAGAR</button>
+            </div>
+        </div>
+    </div>
+
     <footer th:replace="~{fragmentos/layout :: footer}"></footer>
 
 </body>
