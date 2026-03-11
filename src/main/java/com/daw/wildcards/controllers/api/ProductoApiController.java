@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.daw.wildcards.services.SugerenciaService;
+
 import java.util.List;
 
 @RestController
@@ -17,8 +19,8 @@ public class ProductoApiController {
         this.sugerenciaService = sugerenciaService;
     }
 
-    // @GetMapping("/sugerencias")
-    // public List<String> getSugerencias(@RequestParam("q") String consulta) {
-    //     return sugerenciaService.getSugerencias(consulta);
-    // }
+    @GetMapping("/sugerencias")
+    public List<String> getSugerencias(@RequestParam("q") String consulta) {
+        return sugerenciaService.getSugerencias(consulta);
+    }
 }
