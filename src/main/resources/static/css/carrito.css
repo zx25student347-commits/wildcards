@@ -17,12 +17,45 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes pop-in {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes onda-sutil {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes slide-spark {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
 body {
     min-height: 100vh;
     position: relative;
     isolation: isolate;
-    background: linear-gradient(-45deg, #3D7DCA, #FFCB05, #E60012, #40055c, #D4AF37);
+    background-color: #222; /* Fondo base más oscuro */
+    background-image: linear-gradient(-45deg, #3D7DCA, #FFCB05, #E60012, #40055c, #D4AF37);
     background-size: 400% 400%;
+    background-blend-mode: color; /* Aplica el color del gradiente sobre la luminosidad del fondo oscuro */
     animation: animated-gradient 15s ease infinite;
 }
 
@@ -52,6 +85,9 @@ body::before {
     border: 2px solid;
     animation: animated-border 8s linear infinite;
     transition: transform .25s ease, box-shadow .25s ease;
+    position: relative; /* Necesario para los pseudo-elementos */
+    overflow: hidden; /* Para contener las ondas dentro del panel */
+    isolation: isolate; /* Crea un nuevo contexto de apilamiento */
 }
 
 .titulo {
@@ -71,6 +107,28 @@ body::before {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 40px;
+}
+
+.panel::before,
+.panel::after {
+    content: '';
+    position: absolute;
+    z-index: -1; /* Detrás del contenido del panel */
+    width: 60%;
+    height: 100%;
+    /* Un color muy sutil, un poco más claro que el fondo */
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.035) 0%, transparent 70%);
+    animation: onda-sutil 10s ease-in-out infinite alternate;
+}
+
+.panel::before {
+    top: 0;
+    left: -30%; /* Posiciona la mitad de la onda a la izquierda */
+}
+
+.panel::after {
+    top: 0;
+    right: -30%; /* Posiciona la mitad de la onda a la derecha */
 }
 
 .tarjeta-carrito {
@@ -182,25 +240,52 @@ body::before {
     font-weight: 800;
 }
 
+.numero-grande.resumen-actualizado {
+    /* Aplica la animación y la reinicia en cada actualización */
+    animation: pop-in 0.3s ease-out;
+}
+
 .boton-pagar {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #FFCB05, #E60012, #410c86, #D4AF37);
-    background-size: 200% auto;
-    color: white;
-    font-weight: 800;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.4s ease;
+	width: 100%;
+	padding: 15px;
+	margin-top: 20px;
+	border: 2px solid var(--dark-muted);
+	/* Borde claro (relativo al fondo) */
+	border-radius: 6px;
+	/* Más cuadrado */
+	background: var(--primary-1);
+	/* Interior oscuro */
+	color: var(--muted);
+	font-weight: 800;
+	font-size: 1.1rem;
+	cursor: pointer;
+	transition: background-color 0.4s, color 0.4s, border-color 0.4s;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	position: relative;
+	overflow: hidden;
+	/* Clave para la animación de la chispa */
+	z-index: 1;
+	/* Para que el pseudo-elemento esté detrás del texto */
 }
 
 .boton-pagar:hover {
-    background-position: right center;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+	background-color: #252525; /* Un tono oscuro que no se confunde con el fondo del resumen */
+	color: var(--white);
+	border-color: var(--accent); /* Borde de acento para que destaque */
+}
+
+/* La "chispa" que se desliza */
+.boton-pagar:hover::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+	z-index: -1;
+	animation: slide-spark 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @media (max-width: 900px) {
