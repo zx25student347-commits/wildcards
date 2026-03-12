@@ -1,5 +1,6 @@
 package com.daw.wildcards.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 import jakarta.persistence.Table;
 
 @Entity
@@ -147,7 +149,20 @@ public class CarritoCompra {
         this.items = items;
     }
 
-    
+    /**
+     * Calcula el precio total del carrito sumando el precio de todos sus items.
+     * Anotado con @Transient para que JPA no intente persistirlo en la base de datos.
+     * @return El precio total como BigDecimal.
+     */
+    @Transient
+    public BigDecimal getPrecioTotal() {
+        if (items == null) {
+            return BigDecimal.ZERO;
+        }
+        return items.stream()
+                .map(item -> item.getPrecioUnidad().multiply(new BigDecimal(item.getCantidad())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
     
 }

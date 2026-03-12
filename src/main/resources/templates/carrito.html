@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/carrito.css">
     <script src="/js/wildcards.js" defer></script>
     <script src="/js/carrito.js" defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -74,7 +75,7 @@
                 <span class="close-modal">&times;</span>
             </div>
             
-            <div class="modal-body">
+            <form id="formularioPago" class="modal-body">
                 <p class="modal-total">Total a pagar: <span id="totalModal" class="precio-destacado">0.00 €</span></p>
                 
                 <h3>Selecciona Método de Pago</h3>
@@ -88,22 +89,11 @@
                     <!-- Formulario Tarjeta -->
                     <div id="formTarjeta" class="detalles-pago activo">
                         <div class="grupo-input-modal">
-                            <label>Titular de la tarjeta</label>
-                            <input type="text" placeholder="Como aparece en la tarjeta">
-                        </div>
-                        <div class="grupo-input-modal">
-                            <label>Número de tarjeta</label>
-                            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
-                        </div>
-                        <div class="fila-doble">
-                            <div class="grupo-input-modal">
-                                <label>Caducidad</label>
-                                <input type="text" placeholder="MM/AA" maxlength="5">
-                            </div>
-                            <div class="grupo-input-modal">
-                                <label>CVV</label>
-                                <input type="text" placeholder="123" maxlength="3">
-                            </div>
+                            <label for="card-element">Datos de la tarjeta</label>
+                            <!-- Contenedor donde Stripe montará el formulario seguro -->
+                            <div id="card-element"></div>
+                            <!-- Mensajes de error de la tarjeta -->
+                            <div id="card-errors" role="alert"></div>
                         </div>
                     </div>
 
@@ -123,8 +113,11 @@
                     </label>
                 </div>
 
-                <button id="btnConfirmarPago" class="boton-pagar" style="margin-top: 20px;">CONFIRMAR Y PAGAR</button>
-            </div>
+                <button id="botonConfirmarPago" type="submit" class="boton-pagar" style="margin-top: 20px;">
+                    <span id="button-text">CONFIRMAR Y PAGAR</span>
+                    <div id="spinner" class="spinner" style="display: none;"></div>
+                </button>
+            </form>
         </div>
     </div>
 
