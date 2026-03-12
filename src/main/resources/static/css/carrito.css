@@ -47,6 +47,10 @@
         left: 100%;
     }
 }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 body {
     min-height: 100vh;
@@ -380,6 +384,7 @@ body::before {
 }
 
 .opcion-pago-label:hover { border-color: var(--accent); background: rgba(255, 255, 255, 0.1); }
+.opcion-pago-label:has(input:checked) { border-color: var(--accent); background: rgba(255, 255, 255, 0.1); }
 .opcion-pago-label input { margin-right: 15px; accent-color: var(--accent); transform: scale(1.2); }
 .texto-opcion { flex-grow: 1; font-weight: 600; }
 .icono-pago { font-size: 1.5rem; }
@@ -412,3 +417,34 @@ body::before {
 .grupo-input-modal input:focus { border-color: var(--accent); outline: none; }
 
 .fila-doble { display: flex; gap: 15px; }
+
+/* Estilos específicos para Stripe Elements */
+#card-element {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--dark-muted);
+    background: #111;
+    transition: border-color 0.2s;
+}
+
+#card-element.StripeElement--focus {
+    border-color: var(--accent);
+}
+
+#card-errors {
+    color: #fa755a;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid #ffffff;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}

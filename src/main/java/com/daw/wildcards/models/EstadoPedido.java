@@ -1,7 +1,9 @@
 package com.daw.wildcards.models;
 
 public enum EstadoPedido {
-    PENDIENTE,
+    PENDIENTE_PAGO,
+    PAGADO,
     ENVIADO,
+    ENTREGADO,
     CANCELADO
 }

@@ -1,15 +1,32 @@
+// Variables globales para Stripe
+let stripe;
+let cardElement;
+
+// Función auxiliar para incluir el Token JWT en las peticiones (Igual que en dashboard.js)
+function authFetch(url, options = {}) {
+    options.headers = options.headers || {};
+    const token = localStorage.getItem('token');
+    if (token) {
+        options.headers['Authorization'] = 'Bearer ' + token;
+    }
+    return fetch(url, options);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     cargarCarrito();
 
     // --- LÓGICA DEL MODAL DE PAGO ---
     const modal = document.getElementById('modalPago');
     const btnPagar = document.getElementById('botonPagar');
+    const formularioPago = document.getElementById('formularioPago');
     const spanCerrar = document.querySelector('.close-modal');
     const radiosPago = document.querySelectorAll('input[name="metodoPago"]');
 
     // Abrir modal
     if (btnPagar) {
         btnPagar.addEventListener('click', () => {
+            // Inicializa Stripe Elements solo si se abre el modal y se elige tarjeta
+            inicializarStripe();
             const precioTotalTexto = document.getElementById('precioTotal').textContent;
             document.getElementById('totalModal').textContent = precioTotalTexto;
             modal.style.display = 'block';
@@ -36,6 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cambiarMetodoPago(e.target.value);
         });
     });
+
+    // Manejar el envío del formulario de pago
+    if (formularioPago) {
+        formularioPago.addEventListener('submit', handlePagoSubmit);
+    }
+
 });
 
 /**
@@ -43,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function cargarCarrito() {
     try {
-        const response = await fetch('/api/carrito');
+        const response = await authFetch('/api/carrito');
 
         if (response.status === 401 || response.status === 403) {
             window.location.href = `/login?redirect=${window.location.pathname}`;
@@ -179,7 +202,7 @@ function actualizarContadorNavbar(cantidad) {
  */
 async function actualizarCantidadItem(cartaId, cantidad) {
     try {
-        const response = await fetch(`/api/carrito/items`, {
+        const response = await authFetch(`/api/carrito/items`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ cartaId: cartaId, cantidad: cantidad })
@@ -206,7 +229,7 @@ async function actualizarCantidadItem(cartaId, cantidad) {
  */
 async function eliminarItem(itemId) {
     try {
-        const response = await fetch(`/api/carrito/items/${itemId}`, {
+        const response = await authFetch(`/api/carrito/items/${itemId}`, {
             method: 'DELETE'
         });
 
@@ -230,4 +253,89 @@ function cambiarMetodoPago(metodo) {
         document.getElementById('infoPaypal').classList.add('activo');
     }
     // Puedes añadir lógica para Bizum aquí si decides poner un formulario específico
+}
+
+/**
+ * Inicializa Stripe y monta el Card Element en el DOM.
+ */
+async function inicializarStripe() {
+    // Usa tu clave publicable de Stripe
+    // Clave obtenida de tu application.properties
+    const publicKey = 'pk_test_51TA4pECCdDp5MHKnMNkptLX62A29ThhvbtpzUWkdcz2V8fdVBWt6D3Mcj0gXvPkJAUJzU6vrdQlsEwTQ5tdXNUSW00mGJK4KzK';
+    stripe = Stripe(publicKey);
+
+    const elements = stripe.elements();
+    const style = {
+        base: {
+            color: "#fff",
+            fontFamily: 'Arial, sans-serif',
+            fontSmoothing: "antialiased",
+            fontSize: "16px",
+            "::placeholder": {
+                color: "#aab7c4"
+            }
+        },
+        invalid: {
+            color: "#fa755a",
+            iconColor: "#fa755a"
+        }
+    };
+
+    cardElement = elements.create('card', { style: style, hidePostalCode: true });
+    cardElement.mount('#card-element');
+
+    // Escuchar cambios en el CardElement y mostrar errores
+    cardElement.on('change', function(event) {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+}
+
+/**
+ * Maneja el evento de submit del formulario de pago.
+ * @param {Event} event
+ */
+async function handlePagoSubmit(event) {
+    event.preventDefault();
+
+    // Mostrar spinner y deshabilitar botón
+    const botonConfirmar = document.getElementById('botonConfirmarPago');
+    const buttonText = document.getElementById('button-text');
+    const spinner = document.getElementById('spinner');
+    botonConfirmar.disabled = true;
+    buttonText.style.display = 'none';
+    spinner.style.display = 'inline';
+
+    // 1. Crear PaymentIntent en el backend
+    const response = await authFetch('/api/payment/create-payment-intent', { method: 'POST' });
+    const { clientSecret, error: backendError } = await response.json();
+
+    if (backendError) {
+        document.getElementById('card-errors').textContent = backendError;
+        // Reactivar botón
+        return;
+    }
+
+    // 2. Confirmar el pago en el frontend con el clientSecret
+    const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
+        clientSecret, {
+            payment_method: { card: cardElement }
+        }
+    );
+
+    if (stripeError) {
+        document.getElementById('card-errors').textContent = stripeError.message;
+        botonConfirmar.disabled = false;
+        buttonText.style.display = 'inline';
+        spinner.style.display = 'none';
+    } else {
+        // 3. Pago exitoso
+        console.log('Pago completado:', paymentIntent);
+        // Redirigir a una página de confirmación de pedido
+        window.location.href = '/pedidos?status=success';
+    }
 }
