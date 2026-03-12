@@ -12,6 +12,11 @@ public class CarritoWebController {
     public String verCarrito() {
         return "carrito";
     }
+
+    @GetMapping("/pedidos")
+    public String verPedidos() {
+        return "pedidos";
+    }
     
 
 }

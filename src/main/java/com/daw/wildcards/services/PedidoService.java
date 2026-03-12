@@ -9,11 +9,15 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.daw.wildcards.models.Accesorios;
 import com.daw.wildcards.models.CarritoCompra;
+import com.daw.wildcards.models.Carta;
 import com.daw.wildcards.models.EstadoPedido;
 import com.daw.wildcards.models.Pedido;
 import com.daw.wildcards.models.PedidoItem;
 import com.daw.wildcards.models.Usuario;
+import com.daw.wildcards.repositories.AccesorioRepository;
+import com.daw.wildcards.repositories.CartaRepository;
 import com.daw.wildcards.repositories.PedidoRepository;
 
 @Service
@@ -22,12 +26,17 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final CarritoService carritoService;
     private final UsuarioService usuarioService;
+    private final CartaRepository cartaRepository;
+    private final AccesorioRepository accesorioRepository;
 
     public PedidoService(PedidoRepository pedidoRepository, CarritoService carritoService,
-            UsuarioService usuarioService) {
+            UsuarioService usuarioService, CartaRepository cartaRepository, 
+            AccesorioRepository accesorioRepository) {
         this.pedidoRepository = pedidoRepository;
         this.carritoService = carritoService;
         this.usuarioService = usuarioService;
+        this.cartaRepository = cartaRepository;
+        this.accesorioRepository = accesorioRepository;
     }
 
     /**
@@ -47,17 +56,40 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setCliente(carrito.getCliente());
         pedido.setFechaPedido(LocalDateTime.now());
-        pedido.setEstado(EstadoPedido.PENDIENTE); // Estado inicial
+        pedido.setEstado(EstadoPedido.PAGADO); // Estado inicial tras un pago exitoso
 
         // 3. Convertir CarritoItems a PedidoItems
         List<PedidoItem> pedidoItems = carrito.getItems().stream().map(carritoItem -> {
             PedidoItem pedidoItem = new PedidoItem();
             pedidoItem.setPedido(pedido);
+
             if (carritoItem.getCarta() != null) {
                 pedidoItem.setCarta(carritoItem.getCarta());
+
+                // Actualizar stock de la carta
+                Carta carta = cartaRepository.findById(carritoItem.getCarta().getCartaId())
+                        .orElseThrow(() -> new RuntimeException("Error interno: La carta del carrito no existe."));
+                
+                if (carta.getStock() < carritoItem.getCantidad()) {
+                    // Esto causa un rollback de la transacción. En un escenario real, esto requeriría
+                    // un proceso de reembolso ya que el pago ya se procesó.
+                    throw new IllegalStateException("Stock insuficiente para la carta: " + carta.getNombre());
+                }
+                carta.setStock(carta.getStock() - carritoItem.getCantidad());
+
             } else if (carritoItem.getAccesorio() != null) {
                 pedidoItem.setAccesorio(carritoItem.getAccesorio());
+
+                // Actualizar stock del accesorio
+                Accesorios accesorio = accesorioRepository.findById(carritoItem.getAccesorio().getAccesorioId())
+                        .orElseThrow(() -> new RuntimeException("Error interno: El accesorio del carrito no existe."));
+                
+                if (accesorio.getStock() < carritoItem.getCantidad()) {
+                    throw new IllegalStateException("Stock insuficiente para el accesorio: " + accesorio.getNombre());
+                }
+                accesorio.setStock(accesorio.getStock() - carritoItem.getCantidad());
             }
+
             pedidoItem.setCantidadCompra(carritoItem.getCantidad());
             pedidoItem.setPrecioCompra(carritoItem.getPrecioUnidad());
             return pedidoItem;
