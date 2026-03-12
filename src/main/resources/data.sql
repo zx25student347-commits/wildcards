@@ -32,14 +32,14 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 
 --MAGIC
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2, 2, 'Alpha', '1993-08-05', 'LEA', 295);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (8, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (9, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (10, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (44, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (55, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (66, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
 
 --ONEPIECE
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (3, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (11, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (12, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (77, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (88, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (13, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
 
 --YUGIOH
@@ -65,7 +65,7 @@ INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ata
 VALUES (101, 350, 'Oscuridad', 'Stage 2', 'Haunter', 'Void Gale', 'Lucha', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, 'Pokémon Victoria.', '/img/Victini_ex.png', 1, 9, 5, 'Indonesio');
+VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, 'Pokémon Victoria.', '/img/Victiniex.png', 1, 9, 5, 'Indonesio');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Serangan Mundur, Victory Flame', 'Agua', 'Ninguna', 1);
