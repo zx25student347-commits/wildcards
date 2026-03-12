@@ -671,12 +671,13 @@
 }
 
 .sprite-login-container {
-    text-align: center;
-    margin-top: 15px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
 }
 
 .sprite-login-container img {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
     image-rendering: pixelated; /* Mantiene el estilo pixel art */
 }
