@@ -1,3 +1,15 @@
+/**
+ * Función Debounce: retrasa la ejecución de una función hasta que haya pasado
+ * un tiempo determinado sin que se haya vuelto a llamar.
+ */
+function debounce(func, delay = 400) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Lógica del Menú Hamburguesa
     const menuBtn = document.getElementById('menuHamburguesa');
@@ -115,15 +127,130 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lógica para el slider de precio en la página de búsqueda
-    const sliderPrecioBusqueda = document.querySelector('#form-filtros .slider-precio');
-    const valorPrecioMaxDisplay = document.getElementById('valor-precio-max');
+    // --- INICIO: LÓGICA DE FILTROS AUTOMÁTICOS EN PÁGINA DE BÚSQUEDA ---
+    const formFiltros = document.getElementById('form-filtros');
+    if (formFiltros) {
+        const mainContent = document.querySelector('.listado-productos');
+        const sidebar = document.querySelector('.barra-lateral');
 
-    if (sliderPrecioBusqueda && valorPrecioMaxDisplay) {
-        sliderPrecioBusqueda.addEventListener('input', (event) => {
-            // Actualiza el texto que muestra el valor máximo seleccionado
-            valorPrecioMaxDisplay.textContent = `${event.target.value}€`;
+        const submitForm = async () => {
+            if (!mainContent || !sidebar) return;
+
+            // 1. Añadir estado de carga
+            mainContent.classList.add('cargando');
+
+            // Prepara los datos del formulario para la petición
+            const currentForm = document.getElementById('form-filtros');
+            if (!currentForm) return;
+
+            // Helper para gestionar los inputs ocultos de los filtros de checkbox.
+            const manageHiddenInput = (form, name) => {
+                const anyChecked = form.querySelector(`input[name="${name}"]:checked`);
+                let hiddenInput = form.querySelector(`input[name="${name}"][type="hidden"]`);
+                if (!anyChecked && !hiddenInput) {
+                    hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = name;
+                    form.appendChild(hiddenInput);
+                } else if (anyChecked && hiddenInput) {
+                    hiddenInput.remove();
+                }
+            };
+
+            manageHiddenInput(currentForm, 'categorias');
+            manageHiddenInput(currentForm, 'juegos');
+
+            const params = new URLSearchParams(new FormData(currentForm)).toString();
+            const url = `${currentForm.action}?${params}`;
+
+            try {
+                // 2. Realizar la petición fetch
+                const response = await fetch(url);
+                const html = await response.text();
+                const parser = new DOMParser();
+                const newDoc = parser.parseFromString(html, 'text/html');
+
+                // 3. Reemplazar el contenido
+                const newMainContent = newDoc.querySelector('.listado-productos');
+                const newSidebar = newDoc.querySelector('.barra-lateral');
+
+                if (newMainContent && newSidebar) {
+                    mainContent.innerHTML = newMainContent.innerHTML;
+                    sidebar.innerHTML = newSidebar.innerHTML;
+                }
+
+                // 4. Actualizar la URL del navegador
+                history.pushState({}, '', url);
+
+                // 5. Re-asociar los listeners a los nuevos elementos dinámicos
+                attachDynamicListeners();
+
+            } catch (error) {
+                console.error('Error al actualizar los resultados con AJAX:', error);
+                window.location.href = url; // Como fallback, recarga la página
+            } finally {
+                // 6. Quitar estado de carga
+                mainContent.classList.remove('cargando');
+                // Scroll suave hacia la parte superior de los resultados
+                window.scrollTo({ top: mainContent.offsetTop - 100, behavior: 'smooth' });
+            }
+        };
+
+        // Crear una versión "debounced" de la función de envío para el slider
+        const debouncedSubmit = debounce(submitForm, 500);
+
+        // Función para añadir listeners a elementos que se recargan (paginación y ordenación)
+        function attachDynamicListeners() {
+            const sortSelect = document.getElementById('sort-select');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', () => {
+                    const currentForm = document.getElementById('form-filtros');
+                    const pageInput = currentForm.querySelector('input[name="page"]');
+                    if (pageInput) pageInput.value = 0; // Reset a pág 1 al reordenar
+                    submitForm();
+                });
+            }
+
+            document.querySelectorAll('.btn-paginacion').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = btn.dataset.page;
+                    const currentForm = document.getElementById('form-filtros');
+                    const pageInput = currentForm.querySelector('input[name="page"]');
+                    if (pageInput) {
+                        pageInput.value = page;
+                    }
+                    submitForm(); // Llamada AJAX
+                });
+            });
+        }
+
+        // Listener principal delegado al body para los cambios en los filtros
+        document.body.addEventListener('input', (event) => {
+            const currentForm = document.getElementById('form-filtros');
+            if (!currentForm || !currentForm.contains(event.target)) {
+                return; // El evento no ocurrió dentro del formulario de filtros
+            }
+
+            const target = event.target;
+
+            // Resetear a página 0 si se cambia cualquier filtro
+            if (target.name !== 'page') {
+                const pageInput = currentForm.querySelector('input[name="page"]');
+                if (pageInput) pageInput.value = 0;
+            }
+
+            if (target.type === 'range') {
+                const valorPrecioMaxDisplay = document.getElementById('valor-precio-max');
+                if (valorPrecioMaxDisplay) valorPrecioMaxDisplay.textContent = `${target.value}€`;
+                debouncedSubmit(); // Envío con retardo
+            } else if (target.type === 'checkbox') {
+                submitForm(); // Envío inmediato para checkboxes
+            }
         });
+
+        // Llamada inicial para los elementos que ya están en la página
+        attachDynamicListeners();
     }
     // Lógica del Carrusel
     const carrusel = document.querySelector('.carrusel');

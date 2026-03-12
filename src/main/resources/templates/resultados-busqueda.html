@@ -20,6 +20,7 @@
                 <form th:action="@{/tienda/buscar}" method="get" id="form-filtros">
                     <!-- Campo oculto para mantener la consulta de búsqueda original -->
                     <input type="hidden" name="q" th:value="${consulta}">
+                    <input type="hidden" name="page" id="input-page" th:value="${currentPage}">
     
                     <!-- Filtro por Precio -->
                     <div class="filtro-grupo">
@@ -40,23 +41,65 @@
                             <input type="checkbox" id="cat-carta" name="categorias" value="carta" 
                                    th:checked="${#lists.isEmpty(currentCategorias) or #lists.contains(currentCategorias, 'carta')}">
                             <label for="cat-carta">Cartas</label>
+                            <span class="filtro-contador" th:if="${categoriaCounts.containsKey('carta')}" th:text="${categoriaCounts.get('carta')}"></span>
                         </div>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="cat-accesorio" name="categorias" value="accesorio"
                                    th:checked="${#lists.isEmpty(currentCategorias) or #lists.contains(currentCategorias, 'accesorio')}">
                             <label for="cat-accesorio">Accesorios</label>
+                            <span class="filtro-contador" th:if="${categoriaCounts.containsKey('accesorio')}" th:text="${categoriaCounts.get('accesorio')}"></span>
                         </div>
                     </div>
     
-                    <button type="submit" class="btn-continuar" style="width: 100%; margin-top: 10px;">Aplicar Filtros</button>
+                    <!-- Filtro por Juego -->
+                    <div class="filtro-grupo">
+                        <h4>Juego</h4>
+                        <div class="opcion-filtro">
+                            <input type="checkbox" id="juego-pokemon" name="juegos" value="Pokémon TCG"
+                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'Pokémon TCG')}">
+                            <label for="juego-pokemon">Pokémon TCG</label>
+                            <span class="filtro-contador" th:if="${juegoCounts.containsKey('Pokémon TCG')}" th:text="${juegoCounts.get('Pokémon TCG')}"></span>
+                        </div>
+                        <div class="opcion-filtro">
+                            <input type="checkbox" id="juego-magic" name="juegos" value="Magic: The Gathering"
+                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'Magic: The Gathering')}">
+                            <label for="juego-magic">Magic: The Gathering</label>
+                            <span class="filtro-contador" th:if="${juegoCounts.containsKey('Magic: The Gathering')}" th:text="${juegoCounts.get('Magic: The Gathering')}"></span>
+                        </div>
+                        <div class="opcion-filtro">
+                            <input type="checkbox" id="juego-yugioh" name="juegos" value="Yu-Gi-Oh!"
+                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'Yu-Gi-Oh!')}">
+                            <label for="juego-yugioh">Yu-Gi-Oh!</label>
+                            <span class="filtro-contador" th:if="${juegoCounts.containsKey('Yu-Gi-Oh!')}" th:text="${juegoCounts.get('Yu-Gi-Oh!')}"></span>
+                        </div>
+                        <div class="opcion-filtro">
+                            <input type="checkbox" id="juego-onepiece" name="juegos" value="One Piece Card Game"
+                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'One Piece Card Game')}">
+                            <label for="juego-onepiece">One Piece</label>
+                            <span class="filtro-contador" th:if="${juegoCounts.containsKey('One Piece Card Game')}" th:text="${juegoCounts.get('One Piece Card Game')}"></span>
+                        </div>
+                    </div>
                 </form>
             </div>
         </aside>
         
         <!-- Listado de productos -->
         <div class="listado-productos">
-            <h2 th:text="|Resultados de búsqueda para '${consulta}'|">Resultados de búsqueda</h2>
-            <p th:text="|${totalResultados} productos encontrados.|"></p>
+            <div class="cabecera-listado">
+                <div class="info-resultados">
+                    <h2 th:text="|Resultados para '${consulta}'|">Resultados de búsqueda</h2>
+                    <p th:text="|${totalResultados} productos encontrados.|"></p>
+                </div>
+                <div class="control-ordenacion">
+                    <label for="sort-select">Ordenar por:</label>
+                    <select id="sort-select" class="select-ordenar">
+                        <option value="relevance" th:selected="${currentSort == 'relevance' or currentSort == null}">Relevancia</option>
+                        <option value="price_asc" th:selected="${currentSort == 'price_asc'}">Precio: Menor a mayor</option>
+                        <option value="price_desc" th:selected="${currentSort == 'price_desc'}">Precio: Mayor a menor</option>
+                        <option value="name_asc" th:selected="${currentSort == 'name_asc'}">Nombre: A-Z</option>
+                    </select>
+                </div>
+            </div>
             <div th:if="${#lists.isEmpty(resultados)}" class="no-resultados" style="text-align: center; padding: 50px 20px;">
                 <h3>No se encontraron productos que coincidan con los filtros.</h3>
                 <p>Intenta con otros filtros o una nueva búsqueda.</p>
@@ -69,6 +112,21 @@
                         <p class="producto-precio" th:text="${producto.precio != null ? #numbers.formatDecimal(producto.precio, 1, 2, 'COMMA') + ' €' : 'Consultar'}">Precio</p>
                     </a>
                 </div>
+            </div>
+
+            <!-- Controles de Paginación -->
+            <div class="paginacion-container" th:if="${totalPages > 1}">
+                <button th:if="${currentPage > 0}" class="btn-paginacion" th:data-page="${currentPage - 1}">&laquo; Anterior</button>
+                
+                <div class="paginacion-numeros">
+                    <button th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:class="${i == currentPage} ? 'btn-paginacion activo' : 'btn-paginacion'"
+                            th:data-page="${i}"
+                            th:text="${i + 1}"
+                            th:if="${i >= currentPage - 2 and i <= currentPage + 2}"></button>
+                </div>
+
+                <button th:if="${currentPage < totalPages - 1}" class="btn-paginacion" th:data-page="${currentPage + 1}">Siguiente &raquo;</button>
             </div>
         </div>
     </main>
