@@ -20,33 +20,30 @@ INSERT INTO juego (juego_id, nombre, descripcion, web_oficial) VALUES (4, 'One P
 
 -- SETS
 --POKEMON
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (1, 1, 'Base Set', '1999-01-09', 'BS', 102);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (5, 1, 'Temporal Forces', '2024-03-22', 'TEF', 218);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (6, 1, 'Twilight Masquerade', '2024-05-24', 'TWM', 226);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (7, 1, 'Shrouded Fable', '2024-08-02', 'SFA', 99);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (8, 1, 'XY - Phantom Forces', '2014-11-05', 'PHF', 122);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (9, 1, 'Scarlet & Violet Promos (ID)', '2023-03-01', 'SV-P', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (10, 1, 'The Best of XY', '2017-04-21', 'XY', 188);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (11, 1, 'XY - Ancient Origins', '2015-08-12', 'AOR', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (12, 1, 'Lillie’s Clefairy ex Special Set', '2025-02-01', 'SV-P', 742);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (1, 1, 'XY - Phantom Forces', '2014-11-05', 'PHF', 122);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2, 1, 'Scarlet & Violet Promos (ID)', '2023-03-01', 'SV-P', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (3, 1, 'The Best of XY', '2017-04-21', 'XY', 188);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4, 1, 'XY - Ancient Origins', '2015-08-12', 'AOR', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (5, 1, 'Lillie’s Clefairy ex Special Set', '2025-02-01', 'SV-P', 742);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (6, 1, 'Prismatic Evolutions', '2025-01-17', 'PRE', 175);
 
 --MAGIC
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2, 2, 'Alpha', '1993-08-05', 'LEA', 295);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (44, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (55, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (66, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (7, 2, 'Alpha', '1993-08-05', 'LEA', 295);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (8, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (9, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (10, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
 
 --ONEPIECE
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (3, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (77, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (88, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (13, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (11, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (12, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (13, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (14, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
 
 --YUGIOH
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4, 3, 'Legend of Blue Eyes', '2002-03-08', 'LOB', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (14, 3, 'Legacy of Destruction', '2024-04-26', 'LEDE', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (15, 3, 'The Infinite Forbidden', '2024-07-19', 'INFO', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (16, 3, 'Rage of the Abyss', '2024-10-11', 'ROTA', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (15, 3, 'Legend of Blue Eyes', '2002-03-08', 'LOB', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (16, 3, 'Legacy of Destruction', '2024-04-26', 'LEDE', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (17, 3, 'The Infinite Forbidden', '2024-07-19', 'INFO', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (18, 3, 'Rage of the Abyss', '2024-10-11', 'ROTA', 100);
 
 
 
@@ -70,8 +67,8 @@ VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, 'Pokémon Vi
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Serangan Mundur, Victory Flame', 'Agua', 'Ninguna', 1);
 
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (103, 'N', '180/171', 'Full Art Rare', 'Entrenador', 190.00, 'Each player shuffles their hand into their deck and draws a card for each of their remaining Prize cards.', '/img/N.jpg', 1, 10, 2, 'Japonés');
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (103, 'N', '180/171', 'Full Art Rare', 'Entrenador', 190.00, 'Each player shuffles their hand into their deck and draws a card for each of their remaining Prize cards.', '/img/N.jpg', 1, 10, 2, 'Japonés');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'The Mega-Evolved form of Latias.', '/img/ML.png', 1, 11, 4, 'Inglés');
@@ -84,6 +81,60 @@ VALUES (105, 'Lillie’s Clefairy ex', '765/742', 'Special Art Rare', 'Criatura'
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (105, 190, 'Psíquico', 'Básico', 'Ninguna', 'Fairy Zone, Full Moon Rondó', 'Metal', 'Ninguna', 1);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Evolves from Rayquaza-EX', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (106, 220, 'Incoloro', 'Mega', 'Rayquaza-EX', 'Emerald Break', 'Rayo', 'Lucha', 1);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Evolves from Sceptile-EX', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (107, 220, 'Planta', 'Mega', 'Sceptile-EX', 'Jagged Saber', 'Fuego', 'Ninguna', 2);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Marnie''s companion.', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (108, 70, 'Oscuridad', 'Básico', 'Ninguna', 'Spiky Wheel', 'Planta', 'Ninguna', 0);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Evolui de Bisharp', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (109, 180, 'Metal', 'Fase 2', 'Bisharp', 'Derrocada, Laceração Massiva', 'Fuego', 'Planta', 4);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Ancient Pokémon', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (110, 240, 'Dragón', 'Básico', 'Ninguna', 'Burst Roar, Bellowing Thunder', 'Ninguna', 'Ninguna', 3);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (111, 'Mega Lopunny ex', '128/094', 'Ultra Rare Star', 'Criatura',25.00, 'The Mega-Evolved form of Lopunny.', '/img/Mega-Lopunny-ex.png', 1, 1, 37, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (111, 330, 'Incoloro', 'Stage 1', 'Buneary', 'Gale Thrust, Spiky Hopper', 'Lucha', 'Ninguna', 1);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (112, 'Mega Sharpedo ex', '127/094', 'Ultra Rare Star', 'Criatura', 45.00, 'The Mega-Evolved form of Sharpedo.', '/img/Mega-Sharpedo.png', 1, 1, 18, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (112, 330, 'Oscuridad', 'Stage 1', 'Carvanha', 'Greedy Fang, Hungry Jaws', 'Planta', 'Ninguna', 0);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (113, 'Umbreon ex', '161/131', 'Special Illustration Rare', 'Criatura', 900.00, 'Tera Pokémon ex', '/img/Umbreon-ex.png', 1, 6, 2, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (113, 280, 'Oscuridad', 'Fase 1', 'Eevee', 'Moon Mirage, Onyx', 'Planta', 'Ninguna', 2);
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (114, 'Sylveon ex', '156/131', 'Special Illustration Rare', 'Criatura', 270.00, 'Tera Pokémon ex', '/img/Sylveon-ex.png', 1, 6, 3, 'Inglés');
+
+INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
+VALUES (114, 270, 'Psíquico', 'Fase 1', 'Eevee', 'Magical Charm, Angelite', 'Metal', 'Ninguna', 2);
 
 
 
