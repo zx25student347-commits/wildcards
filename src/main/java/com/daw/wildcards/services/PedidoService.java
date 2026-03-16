@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.daw.wildcards.models.Accesorios;
 import com.daw.wildcards.models.CarritoCompra;
+import com.daw.wildcards.models.CarritoItem;
 import com.daw.wildcards.models.Carta;
 import com.daw.wildcards.models.EstadoPedido;
 import com.daw.wildcards.models.Pedido;
@@ -110,6 +111,35 @@ public class PedidoService {
         carritoService.limpiarCarrito(username);
 
         return pedidoGuardado;
+    }
+
+    /**
+     * Valida si hay stock suficiente para todos los productos en el carrito de un usuario.
+     * @param username El nombre de usuario.
+     * @throws IllegalStateException si no hay stock para algún producto o el carrito está vacío.
+     */
+    @Transactional(readOnly = true) // Es una operación de solo lectura, no modifica nada.
+    public void validarStockCarrito(String username) {
+        CarritoCompra carrito = carritoService.obtenerCarritoPorUsuario(username);
+        if (carrito.getItems() == null || carrito.getItems().isEmpty()) {
+            throw new IllegalStateException("El carrito está vacío, no se puede proceder al pago.");
+        }
+
+        for (CarritoItem item : carrito.getItems()) {
+            if (item.getCarta() != null) {
+                Carta carta = cartaRepository.findById(item.getCarta().getCartaId())
+                        .orElseThrow(() -> new RuntimeException("La carta con ID " + item.getCarta().getCartaId() + " no existe."));
+                if (carta.getStock() < item.getCantidad()) {
+                    throw new IllegalStateException("Stock insuficiente para la carta: '" + carta.getNombre() + "'. Disponible: " + carta.getStock() + ", en carrito: " + item.getCantidad());
+                }
+            } else if (item.getAccesorio() != null) {
+                Accesorios accesorio = accesorioRepository.findById(item.getAccesorio().getAccesorioId())
+                        .orElseThrow(() -> new RuntimeException("El accesorio con ID " + item.getAccesorio().getAccesorioId() + " no existe."));
+                if (accesorio.getStock() < item.getCantidad()) {
+                    throw new IllegalStateException("Stock insuficiente para el accesorio: '" + accesorio.getNombre() + "'. Disponible: " + accesorio.getStock() + ", en carrito: " + item.getCantidad());
+                }
+            }
+        }
     }
 
     public List<Pedido> obtenerPedidosDeUsuario(String username) {
