@@ -17,15 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para crear la tarjeta HTML de un pedido
     function crearTarjetaPedido(pedido) {
-        const itemsHtml = pedido.itemsPedido.map(item => `
-            <li class="pedido-item">
-                <img src="${item.carta.imagenUrl || 'https://placehold.co/60x84?text=N/A'}" alt="${item.carta.nombre}" class="pedido-item-img">
-                <div class="pedido-item-details">
-                    <h5 class="pedido-item-nombre">${item.carta.nombre}</h5>
-                    <p class="pedido-item-info">Cantidad: ${item.cantidad} | Precio: ${item.precioUnitario.toFixed(2)}€</p>
-                </div>
-            </li>
-        `).join('');
+        const itemsHtml = pedido.itemsPedido.map(item => {
+            const producto = item.carta || item.accesorio;
+            const nombre = producto ? producto.nombre : 'Producto no disponible';
+            const imagenUrl = producto ? (producto.imagenUrl || 'https://placehold.co/60x84?text=N/A') : 'https://placehold.co/60x84?text=N/A';
+
+            return `
+                <li class="pedido-item">
+                    <img src="${imagenUrl}" alt="${nombre}" class="pedido-item-img">
+                    <div class="pedido-item-details">
+                        <h5 class="pedido-item-nombre">${nombre}</h5>
+                        <p class="pedido-item-info">Cantidad: ${item.cantidadCompra} | Precio: ${item.precioCompra.toFixed(2)}€</p>
+                    </div>
+                </li>
+            `;
+        }).join('');
 
         return `
             <div class="pedido-card">
@@ -67,24 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Error al cargar los pedidos.');
 
             const pedidos = await response.json();
+            const contenedorPedidos = document.getElementById('lista-pedidos');
 
-            if (pedidos.length === 0) return; // Mantenemos los mensajes por defecto
+            if (pedidos.length === 0) {
+                contenedorPedidos.innerHTML = '<p>Aún no has realizado ningún pedido.</p>';
+                return;
+            }
 
-            const contenedores = {
-                PENDIENTE_PAGO: document.getElementById('pedidos-pendientes'),
-                PAGADO: document.getElementById('pedidos-pagados'),
-                ENVIADO: document.getElementById('pedidos-enviados'),
-                ENTREGADO: document.getElementById('pedidos-entregados'),
-            };
+            contenedorPedidos.innerHTML = '';
 
-            Object.values(contenedores).forEach(cont => { if(cont) cont.innerHTML = ''; });
-
-            pedidos.forEach(pedido => {
-                const contenedor = contenedores[pedido.estado];
-                if (contenedor) contenedor.insertAdjacentHTML('beforeend', crearTarjetaPedido(pedido));
-            });
+            // Ordenar por fecha descendente (más nuevo primero) y renderizar
+            pedidos.sort((a, b) => new Date(b.fechaPedido) - new Date(a.fechaPedido));
             
-            Object.values(contenedores).forEach(cont => { if(cont && cont.innerHTML === '') cont.innerHTML = '<p>No tienes pedidos en este estado.</p>'; });
+            pedidos.forEach(pedido => {
+                contenedorPedidos.insertAdjacentHTML('beforeend', crearTarjetaPedido(pedido));
+            });
 
         } catch (error) {
             console.error(error);

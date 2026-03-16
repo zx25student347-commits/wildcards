@@ -33,6 +33,17 @@
     100% { opacity: 0.6; transform: scale(1); }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes onda-sutil {
     from {
         transform: scale(1);
@@ -332,6 +343,47 @@
 .punto-nav.activo, .punto-nav:hover {
     background-color: var(--accent);
     transform: scale(1.1);
+}
+
+/* --- Sección Descripción (Home) --- */
+.seccion-descripcion {
+    background-color: var(--primary-1);
+    background-image: 
+        /* Capa 1: Gradiente radial para crear un fundido curvo que revela la imagen de fondo en la derecha */
+        radial-gradient(ellipse 100% 100% at right center, transparent 30%, var(--primary-1) 65%),
+        /* Capa 2: La imagen de fondo que queremos mostrar parcialmente */
+        url('/img/fondo_cartas.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 120px 20px;
+    text-align: center;
+    border-top: 1px solid var(--dark-muted);
+    border-bottom: 1px solid var(--dark-muted);
+    position: relative; /* Buena práctica para fondos complejos */
+    overflow: hidden; /* Asegura que el gradiente no se desborde */
+}
+
+.contenedor-descripcion {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.seccion-descripcion h2 {
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: franchise-glow 8s ease-in-out infinite alternate;
+}
+
+.seccion-descripcion p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 800px;
+    margin: 0 auto; /* Centra el párrafo si es más estrecho que el contenedor */
 }
 
 .categorias-destacadas {

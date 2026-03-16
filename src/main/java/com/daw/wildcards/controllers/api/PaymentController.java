@@ -46,12 +46,22 @@ public class PaymentController {
             return ResponseEntity.status(401).body("Usuario no autenticado");
         }
         String username = authentication.getName();
+
+        // 1. Validar stock ANTES de intentar crear la intención de pago
+        try {
+            pedidoService.validarStockCarrito(username);
+        } catch (IllegalStateException e) {
+            // Si no hay stock o el carrito está vacío, devolvemos un 400 Bad Request con el mensaje de error.
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
         CarritoCompra carrito = carritoService.obtenerCarritoPorUsuario(username);
 
         // Stripe requiere el monto en la unidad monetaria más pequeña (céntimos para EUR)
         long amountInCents = carrito.getPrecioTotal().multiply(new java.math.BigDecimal(100)).longValue();
 
-        if (amountInCents <= 0) {
+        // Esta validación se mantiene como una segunda capa de seguridad.
+        if (amountInCents <= 0) { 
             return ResponseEntity.badRequest().body("El carrito está vacío o el total es cero.");
         }
 
@@ -96,7 +106,13 @@ public class PaymentController {
                 String username = paymentIntent.getMetadata().get("username");
                 if (username != null) {
                     // El pago fue exitoso, creamos el pedido final en nuestro sistema
-                    pedidoService.crearPedidoDesdeCarrito(username);
+                    try {
+                        pedidoService.crearPedidoDesdeCarrito(username);
+                    } catch (IllegalStateException e) {
+                        // Es posible que el frontend ya haya creado el pedido y vaciado el carrito.
+                        // Ignoramos el error para que Stripe reciba el 200 OK.
+                        System.out.println("Aviso: " + e.getMessage());
+                    }
                 }
                 break;
             case "payment_intent.payment_failed":

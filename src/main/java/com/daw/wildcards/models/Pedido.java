@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
@@ -41,6 +44,8 @@ public class Pedido {
 
     // Relación con los items del pedido
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @JsonProperty("itemsPedido")
     private List<PedidoItem> items = new ArrayList<>();
 
     public Pedido() {
@@ -100,4 +105,8 @@ public class Pedido {
         this.items = items;
     }
     
+    @Override
+    public String toString() {
+        return "Pedido [id=" + pedidoId + ", estado=" + estado + ", fecha=" + fechaPedido + ", total=" + total + "]";
+    }
 }

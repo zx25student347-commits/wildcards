@@ -309,16 +309,23 @@ async function handlePagoSubmit(event) {
     botonConfirmar.disabled = true;
     buttonText.style.display = 'none';
     spinner.style.display = 'inline';
+    document.getElementById('card-errors').textContent = ''; // Limpiar errores previos
 
     // 1. Crear PaymentIntent en el backend
     const response = await authFetch('/api/payment/create-payment-intent', { method: 'POST' });
-    const { clientSecret, error: backendError } = await response.json();
-
-    if (backendError) {
-        document.getElementById('card-errors').textContent = backendError;
+    
+    // Si la respuesta no es OK (p.ej. 400 por falta de stock), manejamos el error.
+    if (!response.ok) {
+        const errorMessage = await response.text(); // El cuerpo del error será texto plano
+        document.getElementById('card-errors').textContent = errorMessage;
         // Reactivar botón
+        botonConfirmar.disabled = false;
+        buttonText.style.display = 'inline';
+        spinner.style.display = 'none';
         return;
     }
+
+    const { clientSecret } = await response.json();
 
     // 2. Confirmar el pago en el frontend con el clientSecret
     const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
@@ -335,7 +342,19 @@ async function handlePagoSubmit(event) {
     } else {
         // 3. Pago exitoso
         console.log('Pago completado:', paymentIntent);
-        // Redirigir a una página de confirmación de pedido
-        window.location.href = '/pedidos?status=success';
+        
+        // Llamar al backend para crear el pedido y limpiar el carrito
+        try {
+            const responsePedido = await authFetch('/api/pedido', { method: 'POST' });
+            if (responsePedido.ok) {
+                window.location.href = '/pedidos?status=success';
+            } else {
+                alert('Pago realizado, pero hubo un error al crear el pedido. Contacta con soporte.');
+                window.location.href = '/pedidos?status=error';
+            }
+        } catch (error) {
+            console.error('Error creando el pedido:', error);
+            window.location.href = '/pedidos?status=error';
+        }
     }
 }
