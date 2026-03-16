@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/fragmentos-estilo.css">
     <link rel="stylesheet" href="/css/wildcards.css">
     <script src="/js/wildcards.js" defer></script>
+    <script src="/js/pedidos.js" defer></script>
 </head>
 <body>
 
@@ -16,30 +17,8 @@
         <h1>Mis Pedidos</h1>
 
         <div class="seccion-pedidos">
-            <h2>Pedidos Pendientes de Pago</h2>
-            <div id="pedidos-pendientes" class="lista-pedidos">
-                <p>No tienes pedidos pendientes de pago.</p>
-            </div>
-        </div>
-
-        <div class="seccion-pedidos">
-            <h2>Pedidos Pagados</h2>
-            <div id="pedidos-pagados" class="lista-pedidos">
-                <p>No tienes pedidos pagados.</p>
-            </div>
-        </div>
-        
-        <div class="seccion-pedidos">
-            <h2>Pedidos Enviados</h2>
-            <div id="pedidos-enviados" class="lista-pedidos">
-                <p>No tienes pedidos enviados.</p>
-            </div>
-        </div>
-
-        <div class="seccion-pedidos">
-            <h2>Pedidos Entregados</h2>
-            <div id="pedidos-entregados" class="lista-pedidos">
-                <p>No tienes pedidos entregados.</p>
+            <div id="lista-pedidos" class="lista-pedidos">
+                <p>Cargando tus pedidos...</p>
             </div>
         </div>
 
@@ -47,6 +26,6 @@
 
     <footer th:replace="~{fragmentos/layout :: footer}"></footer>
 
-    <script src="/js/pedidos.js"></script>
+    
 </body>
 </html>
