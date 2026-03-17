@@ -304,7 +304,7 @@ body {
     background-color: #1a1a1a;
     /* Fondo oscuro */
     color: #fff;
-    padding: 40px 20px;
+    padding: 30px 20px;
     position: relative;
     border-top: none; /* Eliminado para corregir el hueco */
     overflow: hidden;
@@ -327,7 +327,8 @@ body {
     grid-template-columns: 2fr 1fr 1fr 1.5fr;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 30px;
+    gap: 15px;
+    align-items: start;
 }
 
 
@@ -379,6 +380,7 @@ body {
 .footer-columna h4 {
     color: #32cd32;
     /* Verde lima */
+    margin-top: 0;
     margin-bottom: 15px;
     font-size: 1rem;
     text-transform: uppercase;
@@ -391,7 +393,7 @@ body {
 }
 
 .footer-columna ul li {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .footer-columna ul li a {
@@ -401,13 +403,27 @@ body {
     /* Animación suave */
     display: inline-block;
     font-size: 0.85rem;
+    position: relative;
+}
+
+.footer-columna ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(to right, #ff00ff, #32cd32);
+    transition: width 0.3s ease;
 }
 
 .footer-columna ul li a:hover {
     color: #ff00ff;
-    /* Desplazamiento a la derecha */
 }
 
+.footer-columna ul li a:hover::after {
+    width: 100%;
+}
 /* Estilos para iconos de redes sociales */
 .social-links {
     display: flex;
@@ -423,7 +439,7 @@ body {
 }
 
 .metodo-pago-img {
-    height: 25px;
+    height: 32px;
     background-color: white;
     border-radius: 4px;
     padding: 2px;
