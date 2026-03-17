@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
     <!-- Fragmento del Header -->
@@ -31,7 +31,11 @@
             </form>
 
             <div class="iconos">
-                <a href="/login"><img src="icons/person.png" alt="usuario" class="icono"></a>
+                <!-- Enlace único controlado por JS (wildcards.js) -->
+                <!-- Por defecto lleva a login si no hay JS o token -->
+                <a id="enlace-usuario" href="/login">
+                    <img th:src="@{/icons/person.png}" src="/icons/person.png" alt="Usuario" class="icono">
+                </a>
                 <a href="/carrito"><img src="icons/carrito.png" alt="carrito" class="icono"></a>
             </div>
         </div>

@@ -11,6 +11,49 @@ function debounce(func, delay = 400) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- LÓGICA DE ENLACE DE USUARIO (TOKEN JWT) ---
+    const enlaceUsuario = document.getElementById('enlace-usuario');
+    if (enlaceUsuario) {
+        const token = localStorage.getItem('token');
+        
+        if (token) {
+            try {
+                // Decodificar payload del JWT
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                
+                const payload = JSON.parse(jsonPayload);
+
+                // Verificar expiración
+                if (payload.exp && Date.now() >= payload.exp * 1000) {
+                    localStorage.removeItem('token'); // Token expirado
+                } else {
+                    // Verificar roles (asumiendo formato estándar o Spring Security)
+                    const rolesRaw = payload.roles || payload.authorities || payload.scope || [];
+                    let esAdmin = false;
+
+                    if (Array.isArray(rolesRaw)) {
+                        // Comprueba si es string directo ('ROLE_ADMIN') o objeto con propiedad (r.authority/r.nombre)
+                        esAdmin = rolesRaw.some(r => r === 'ROLE_ADMIN' || (r && (r.authority === 'ROLE_ADMIN' || r.nombre === 'ROLE_ADMIN')));
+                    } else if (typeof rolesRaw === 'string') {
+                        esAdmin = rolesRaw.includes('ROLE_ADMIN');
+                    }
+
+                    if (esAdmin) {
+                        enlaceUsuario.href = '/admin/dashboard';
+                    } else {
+                        enlaceUsuario.href = '/pedidos';
+                    }
+                }
+            } catch (e) {
+                console.error("Error al procesar token de usuario", e);
+            }
+        }
+    }
+
     // Lógica del Menú Hamburguesa
     const menuBtn = document.getElementById('menuHamburguesa');
     const nav = document.querySelector('.nav-principal');

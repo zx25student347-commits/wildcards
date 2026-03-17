@@ -10,9 +10,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.daw.wildcards.security.service.CustomUserDetailsService;
@@ -45,9 +48,11 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**" , "/").permitAll()
                         // sólo usuarios con rol ADMIN pueden acceder a /admin/**
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        // Rutas exclusivas de cliente: Autenticado y que NO sea ADMIN
+                        .requestMatchers("/api/pedido/**","/api/carrito/**","/carrito","/pedidos")
+                            .access(new WebExpressionAuthorizationManager("isAuthenticated() and !hasRole('ADMIN')"))
                         // cualquier otro endpoint de la API necesita un token válido
                         .requestMatchers("/api/**").permitAll()
-                        .requestMatchers("/api/pedido/**","/api/carrito/**","/carrito","/pedido").authenticated()
                         // otras rutas estáticas o públicas se siguen permitiendo
                         .anyRequest().permitAll())
                 .authenticationProvider(authenticationProvider())
@@ -60,6 +65,15 @@ public class SecurityConfig {
                     } else {
                         String target = "/login?redirect=" + req.getRequestURI();
                         res.sendRedirect(target);
+                    }
+                })
+                // Manejador de acceso denegado: Si un ADMIN intenta entrar a /pedidos, lo mandamos al dashboard
+                .accessDeniedHandler((req, res, accessDeniedException) -> {
+                    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                    if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                        res.sendRedirect("/admin/dashboard");
+                    } else {
+                        res.sendRedirect("/login");
                     }
                 }))
                 // configuración básica de logout (borrará cookies si se usan)

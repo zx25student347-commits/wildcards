@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- SEGURIDAD: Si es ADMIN, redirigir al Dashboard inmediatamente ---
+    const token = localStorage.getItem('token');
+    if (token) {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            const payload = JSON.parse(jsonPayload);
+            
+            const rolesRaw = payload.roles || payload.authorities || [];
+            const esAdmin = Array.isArray(rolesRaw) && rolesRaw.some(r => r === 'ROLE_ADMIN' || (r && (r.authority === 'ROLE_ADMIN' || r.nombre === 'ROLE_ADMIN')));
+            
+            if (esAdmin) {
+                window.location.href = '/admin/dashboard';
+                return; // Detiene la carga de pedidos
+            }
+        } catch(e) { console.error("Error validando permisos en pedidos", e); }
+    }
+
+    // --- LOGOUT: Borrar localStorage y redirigir para borrar cookie ---
+    const btnLogout = document.getElementById('btn-logout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token'); // Borra el token del cliente
+            window.location.href = '/auth/logout'; // Redirige al endpoint que borra la cookie
+        });
+    }
+
     // Función para añadir el token a las peticiones (si usas autenticación por token)
     function authFetch(url, options = {}) {
         options.headers = options.headers || {};
