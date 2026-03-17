@@ -30,23 +30,28 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (8, 1, 'Scarlet & Violet—Paldea Evolved', '2023-06-09', 'PAL', 193);
 
 --MAGIC
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (9, 2, 'Alpha', '1993-08-05', 'LEA', 295);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (10, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (11, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (12, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (20, 2, 'Alpha', '1993-08-05', 'LEA', 295);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (21, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (22, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (23, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
 
 --ONEPIECE
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (13, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (14, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (15, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (16, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (30, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (31, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (32, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (33, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
 
 --YUGIOH
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (17, 3, 'Legend of Blue Eyes', '2002-03-08', 'LOB', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (18, 3, 'Legacy of Destruction', '2024-04-26', 'LEDE', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (19, 3, 'The Infinite Forbidden', '2024-07-19', 'INFO', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (20, 3, 'Rage of the Abyss', '2024-10-11', 'ROTA', 100);
-
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4000, 3, 'Eternity Code', '2020-05-01', 'ETCO', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4001, 3, 'Maximum Crisis', '2017-05-05', 'MACR', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4002, 3, 'Mechanical Companion Pack', '2024-01-01', 'MECH', 30);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4003, 3, 'Phantom Rage', '2020-11-06', 'PHRA', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4004, 3, 'Exor Special Collection', '2024-01-01', 'EXOR', 50);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4005, 3, 'Solar Eclipse Promo', '2024-01-01', 'SOLE', 20);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4006, 3, 'Gaming Legends Series', '2024-01-01', 'GALE', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4007, 3, 'Solar Eclipse Promo', '2024-01-01', 'SOLE', 20);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4008, 3, 'Dimension Force', '2022-05-20', 'DIFO', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4009, 3, 'Tuner Support Edition', '2024-01-01', 'TUNE', 40);
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
@@ -139,13 +144,13 @@ INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ata
 VALUES (114, 270, 'Psíquico', 'Fase 1', 'Eevee', 'Magical Charm, Angelite', 'Metal', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (115, 'Iono', '269/193', 'Special Illustration Rare', 'Entrenador', 90.00, 'Iono.', '/img/iono-pal.png', 1, 8, 67, 'Inglés');
+VALUES (115, 'Iono', '269/193', 'Special Illustration Rare', 'Entrenador', 90.00, 'Iono.', '/img/Iono.png', 1, 8, 67, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (115, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Cada jugador baraja su mano y la pone en el fondo de su baraja. Si alguno de los jugadores puso alguna carta en el fondo de su baraja de esta manera, cada jugador roba una carta por cada una de sus cartas de Premio restantes.', NULL, NULL, NULL);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma)
-VALUES (116, 'Dendra', '266/193', 'Special Illustration Rare', 'Entrenador', 10.00, 'Dendra.', '/img/Dendra-pal.png', 1, 8, 120, 'Inglés');
+VALUES (116, 'Dendra', '266/193', 'Special Illustration Rare', 'Entrenador', 10.00, 'Dendra.', '/img/Dendra.png', 1, 8, 120, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada)
 VALUES (116, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Pon una carta de tu mano en el fondo de tu baraja. Si lo haces, roba cartas hasta que tengas 5 cartas en tu mano. (Si no tienes otras cartas en tu mano, no puedes usar esta carta).', NULL, NULL, NULL);
@@ -197,6 +202,80 @@ VALUES (200, 'Black Lotus', 'N/A', 'Rare', 'Artifact', 50000.00, 'Adds 3 mana of
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (200, '0', 'Artifact', NULL, NULL, 'Sacrifice Black Lotus: Add three mana.', 'Colorless');
 
+
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (201, 'Ghost Mourner & Moonlit Chill', 'ETCO-EN036', 'Secret Rare', 'Monstruo', 0.50, 'Cuando tu adversario Invoca de Modo Especial uno o más monstruos boca arriba (excepto durante el Damage Step): puedes descartar esta carta, y después seleccionar 1 de esos monstruos; niega sus efectos hasta el final de este turno, y además, si ese monstruo boca arriba deja el campo este turno, su controlador recibe daño igual a su ATK original.', '/img/yugioh/ghostMourner.jpg', 3, 4000, 60, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (201, 3, 'VIENTO', 'Zombi / Cantante / Efecto', 0, 1800, 'Cuando tu adversario Invoca de Modo Especial uno o más monstruos boca arriba (excepto durante el Damage Step): puedes descartar esta carta, y después seleccionar 1 de esos monstruos; niega sus efectos hasta el final de este turno, y además, si ese monstruo boca arriba deja el campo este turno, su controlador recibe daño igual a su ATK original. Solo puedes usar este efecto de "Ghost Mourner & Moonlit Chill" una vez por turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (202, 'Duoterion', 'MACR-EN019', 'Super Rare', 'Monstruo', 1.50, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial.', '/img/yugioh/duoterion.jpg', 3, 4001, 3, 'Japonés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (202, 5, 'AGUA', 'Dinosaurio / Efecto', 2000, 1400, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial. Solo puedes usar cada efecto de "Duoterion" una vez por turno.');
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (203, 'K-9', 'MECH-EN01', 'Common', 'Monstruo', 0.50, 'Un compañero mecánico leal. Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.', '/img/yugioh/k9.jpg', 3, 4002, 56, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (203, 5, 'VIENTO', 'Guerrero / XYZ / Efecto', 2300, 1800, 'Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.');
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (204, 'Penguin Brave', 'PHRA-EN042', 'Ultra Rare', 'Monstruo', 2.00, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Solo puedes usar cada uno de los siguientes efectos de "Penguin Brave" una vez por turno. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo.', '/img/yugioh/penguin.jpg', 3, 4003, 34, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (204, 1, 'AGUA', 'Bestia Alada / Efecto', 100, 100, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo. Cuando tu adversario activa el efecto de un monstruo: puedes voltear boca arriba 1 monstruo de AGUA en Posición de Defensa boca abajo que controles.');
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (205, 'Exormana', 'EXOR-EN01', 'Ultra Rare', 'Monstruo', 5.00, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.', '/img/yugioh/Exormana.jpg', 3, 4004, 32, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (205, 4, 'OSCURIDAD', 'Hada / XYZ / Efecto', 2600, 1800, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (206, 'Shina the Total Solar Eclipse', 'SOLE-EN01', 'Ultra Rare', 'Monstruo', 5.00, 'Si esta carta es Invocada de Modo Normal o Especial: puedes cambiar todos los monstruos boca arriba en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.', '/img/yugioh/shina.jpg', 3, 4005, 27, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (207, 9, 'OSCURIDAD', 'Dragon / Efecto', 2900, 1200, 'Si esta carta es Invocada de Modo Normal o Especial: puedes cambiar todos los monstruos boca arriba en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (208, 'Lucina', 'GALE-EN02', 'Secret Rare', 'Monstruo', 20.00, 'Una guerrera de un futuro condenado que viaja en el tiempo. Si tu adversario controla un monstruo y tú no controlas ninguno, puedes Invocar esta carta de Modo Especial desde tu mano.', '/img/yugioh/lucina.jpg', 3, 4006, 1, 'Japonés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (208, 6, 'FUEGO', 'Guerrero / Efecto', 2500, 1800, 'Si tu adversario controla un monstruo y tú no controlas ninguno, puedes Invocar esta carta de Modo Especial desde tu mano. Una vez por turno, esta carta no puede ser destruida en batalla.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (209, 'Tina the Total Solar Eclipse', 'SOLE-EN02', 'Ultra Rare', 'Monstruo', 5.00, 'Si esta carta es mandada al Cementerio: puedes cambiar todos los monstruos en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.', '/img/yugioh/tina.jpg', 3, 4007, 45, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (209, 6, 'AGUA', 'Hechicero / Efecto', 2400, 1800, 'Si esta carta es mandada al Cementerio: puedes cambiar todos los monstruos en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (210, 'Elfnote', 'DIFO-EN026', 'Common', 'Monstruo', 0.20, 'Si esta carta es mandada al Cementerio: puedes seleccionar 1 monstruo en tu Cementerio; Invócalo de Modo Especial, pero sus efectos son negados. Puedes seleccionar 1 monstruo que controles; cambia su Nivel por el de esta carta hasta el final de este turno. Solo puedes usar cada efecto de "Elfnote" una vez por turno.', '/img/yugioh/elfnote.jpg', 3, 4008, 45, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (210, 6, 'LUZ', 'Hechicero / Efecto', 2200, 1800, 'Si esta carta es mandada al Cementerio: puedes seleccionar 1 monstruo en tu Cementerio; Invócalo de Modo Especial, pero sus efectos son negados. Puedes seleccionar 1 monstruo que controles; cambia su Nivel por el de esta carta hasta el final de este turno. Solo puedes usar cada efecto de "Elfnote" una vez por turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (211, 'Kewl', 'TUNE-EN01', 'Super Rare', 'Monstruo', 1.50, 'Si controlas un monstruo Cantante, puedes Invocar esta carta de Modo Especial (desde tu mano). Solo puedes Invocar a "Kewl" de Modo Especial una vez por turno de esta forma. Si esta carta es mandada al Cementerio como material para una Invocación por Sincronía: puedes robar 1 carta.', '/img/yugioh/kewl.jpg', 3, 4009, 16, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (211, 2, 'OSCURIDAD', 'Trueno / Cantante / Efecto', 800, 1000, 'Si controlas un monstruo Cantante, puedes Invocar esta carta de Modo Especial (desde tu mano). Solo puedes Invocar a "Kewl" de Modo Especial una vez por turno de esta forma. Si esta carta es mandada al Cementerio como material para una Invocación por Sincronía: puedes robar 1 carta.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (212, 'Kewl Tune', 'TUNE-EN02', 'Rare', 'Mágica', 2.00, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.', '/img/yugioh/kewlTune.jpg', 3, 4010, 24, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
+VALUES (212, 3, 'LUZ', 'Hada / Cantante Efecto', 900, 1900, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.');
+
+
+
 -- 1. Tabla padre 'cartas' (ID 300)
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (300, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00, 
@@ -206,14 +285,11 @@ VALUES (300, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00,
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (300, 'Rojo', 5, 6000, 1000, 'Puede atacar activo si tiene 2 o más DON!!');
 
--- 1. Tabla padre 'cartas' (ID 400)
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (400, 'Blue-Eyes White Dragon', 'LOB-001', 'Ultra Rare', 'Monstruo', 35.00, 
-'Este legendario dragón es una poderosa máquina de destrucción.', '/img/blueeyes.png', 3, 4, 15, 'Inglés');
 
--- 2. Tabla hija 'yugioh_cartas' (ID 400)
-INSERT INTO yugioh_cartas (carta_id, atributo, tipo_detalle, nivel, ataque, defensa, texto_efecto) 
-VALUES (400, 'Luz', 'Dragón', 8, 3000, 2500, 'Monstruo Normal');
+INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagenUrl, stock) 
+VALUES ('Tapete de Juego Pokemon Kanto', 'Tapete', 'Tapete de juego oficial con diseño artístico de alta definición. Presenta a los iniciales de la región de Kanto. Aproximadamente 24 x 13,5 pulgadas y se mantiene completamente plano. Superficie de tela suave para proteger las cartas y base de goma antideslizante para mayor estabilidad durante su uso. Color NEGRO.', 29.95, '/img/tapete-pk.png', 20
+);
+
 
 -- CARRITO DE COMPRA (Ejemplo para user@wildcards.com)
 INSERT INTO carrito_compra (carrito_id, cliente_id, session_id, fecha_creacion, updated_at, carrito_activo) 
