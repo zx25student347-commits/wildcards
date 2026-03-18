@@ -386,4 +386,111 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePuntos();
         resetInterval();
     }
+
+    // --- EFECTO DE CONFETI AL AÑADIR AL CARRITO ---
+    // Usamos delegación de eventos al body para detectar clics en botones dinámicos
+    document.body.addEventListener('click', (e) => {
+        // Busca si el clic fue en (o dentro de) un botón con clases típicas de compra
+        // Añade aquí las clases que usen tus botones, ej: 'btn-add', 'btn-comprar', 'agregar-carrito'
+        const btn = e.target.closest('.btn-add, .btn-agregar, .btn-comprar, .boton-comprar, #btnAgregarCarrito');
+        
+        if (btn) {
+            // Obtenemos las coordenadas del centro del botón para que el confeti salga de ahí
+            const rect = btn.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            // --- Detección de imagen para el Toast ---
+            let imgUrl = null;
+            
+            // 1. Si el botón está en una tarjeta de producto (vista grid/lista)
+            const card = btn.closest('.producto-card');
+            if (card) {
+                const imgElement = card.querySelector('img');
+                if (imgElement) imgUrl = imgElement.src;
+            } 
+            // 2. Si no, busca por ID en páginas de detalle (Carta o Accesorio)
+            else {
+                const imgDetalle = document.getElementById('carta-imagen') || document.getElementById('accesorio-imagen');
+                if (imgDetalle) imgUrl = imgDetalle.src;
+            }
+            
+            crearConfeti(x, y);
+            mostrarToast("¡Producto añadido al carrito!", imgUrl);
+        }
+    });
+
+    function crearConfeti(x, y) {
+        const colores = ['#ff00ff', '#32cd32', '#FFCB05', '#00ffff', '#ffffff']; // Paleta neón
+        const cantidad = 30; // Número de partículas
+
+        for (let i = 0; i < cantidad; i++) {
+            const particula = document.createElement('div');
+            particula.classList.add('particula-confeti');
+            document.body.appendChild(particula);
+
+            // Posición inicial
+            particula.style.left = `${x}px`;
+            particula.style.top = `${y}px`;
+            particula.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+
+            // Física aleatoria para cada partícula
+            const angulo = Math.random() * Math.PI * 2;
+            const velocidad = 60 + Math.random() * 100; // Distancia de dispersión
+            const tx = Math.cos(angulo) * velocidad;
+            const ty = Math.sin(angulo) * velocidad;
+
+            // Animación: se mueven hacia afuera y se desvanecen (scale 0)
+            const animacion = particula.animate([
+                { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+            ], {
+                duration: 600 + Math.random() * 400, // Duración variable
+                easing: 'cubic-bezier(0, .9, .57, 1)', // Efecto "explosión" suave
+                fill: 'forwards'
+            });
+
+            // Limpieza del DOM al terminar
+            animacion.onfinish = () => particula.remove();
+        }
+    }
+
+    // --- SISTEMA DE NOTIFICACIONES TOAST ---
+    function mostrarToast(mensaje, imagenUrl) {
+        // 1. Verificar si existe el contenedor, si no, crearlo
+        let container = document.getElementById('toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            container.classList.add('toast-container');
+            document.body.appendChild(container);
+        }
+
+        // 2. Crear el elemento toast
+        const toast = document.createElement('div');
+        toast.classList.add('toast-notification');
+        
+        // Construimos el HTML: Imagen (opcional) + Icono + Mensaje
+        const imgHtml = imagenUrl ? `<img src="${imagenUrl}" class="toast-img" alt="Producto">` : '';
+        
+        toast.innerHTML = `
+            ${imgHtml}
+            <div class="toast-icono">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <span>${mensaje}</span>
+        `;
+
+        // 3. Añadir al DOM y animar entrada
+        container.appendChild(toast);
+        // Pequeño delay para permitir que el navegador renderice antes de transformar
+        requestAnimationFrame(() => toast.classList.add('mostrar'));
+
+        // 4. Eliminar automáticamente después de 3 segundos
+        setTimeout(() => {
+            toast.classList.remove('mostrar'); // Animar salida
+            // Esperar a que termine la transición CSS para eliminar del DOM
+            toast.addEventListener('transitionend', () => toast.remove());
+        }, 3000);
+    }
 });
