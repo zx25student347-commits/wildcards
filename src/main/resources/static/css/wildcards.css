@@ -467,10 +467,13 @@
 }
 
 .filtro-container {
-    background-color: var(--primary-1);
+    background-color: rgba(28, 28, 28, 0.65); /* Fondo oscuro semi-transparente */
+    backdrop-filter: blur(12px); /* Desenfoque del fondo */
+    -webkit-backdrop-filter: blur(12px); /* Soporte para Safari */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil estilo cristal */
     padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Sombra más difusa */
 }
 
 .filtro-container h3 {
@@ -602,25 +605,50 @@
 }
 
 .producto-card {
-    background-color: var(--primary-1);
+    background-color: rgba(30, 30, 30, 0.55); /* Cristal más sutil (menos opacidad) */
+    backdrop-filter: blur(6px); /* Menos desenfoque que el filtro lateral */
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde apenas visible */
     border-radius: 15px;
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .producto-card:hover {
     transform: translateY(-5px);
+    background-color: rgba(30, 30, 30, 0.75); /* Se oscurece un poco al pasar el mouse */
+    border-color: rgba(255, 255, 255, 0.2); /* El borde brilla un poco más */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .producto-imagen {
-    width: 100%;
+    width: 200px; /* Ancho fijo acorde a la altura para mantener proporción de carta */
     height: 280px;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 15px;
-    background-color: var(--primary-1);
+    margin: 0 auto 15px; /* Centra el contenedor de la imagen horizontalmente */
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente para integrar la imagen */
+    padding: 8px; /* Marco fino y uniforme */
+    position: relative; /* Necesario para el efecto de brillo */
+}
+
+/* Efecto de brillo holográfico */
+.producto-imagen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Empieza fuera de la pantalla a la izquierda */
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    transform: skewX(-25deg); /* Inclina el brillo */
+    transition: left 0.75s ease-in-out;
+}
+
+.producto-card:hover .producto-imagen::before {
+    left: 150%; /* Mueve el brillo a través de la imagen hacia la derecha */
 }
 
 .producto-imagen img {
@@ -822,4 +850,26 @@
 .btn-paginacion:hover, .btn-paginacion.activo {
     border-color: var(--accent);
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Estilos para Fondo de Tienda (Efecto Radial) --- */
+.pagina-tienda {
+    position: relative;
+    isolation: isolate;
+}
+
+.pagina-tienda::before {
+    content: "";
+    position: fixed; /* Fijo al viewport */
+    inset: 0;
+    z-index: -1;
+    background-image: url("/img/fondo_cartas.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* Ajusta la intensidad de la imagen en los bordes */
+    /* Máscara: Transparente en el centro (0%) -> Opaco en los bordes (100%) */
+    -webkit-mask-image: radial-gradient(circle at center, transparent 10%, black 90%);
+    mask-image: radial-gradient(circle at center, transparent 10%, black 90%);
+    pointer-events: none;
 }
