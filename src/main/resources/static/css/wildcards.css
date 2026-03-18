@@ -605,25 +605,32 @@
 }
 
 .producto-card {
-    background-color: var(--primary-1);
+    background-color: rgba(30, 30, 30, 0.55); /* Cristal más sutil (menos opacidad) */
+    backdrop-filter: blur(6px); /* Menos desenfoque que el filtro lateral */
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde apenas visible */
     border-radius: 15px;
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .producto-card:hover {
     transform: translateY(-5px);
+    background-color: rgba(30, 30, 30, 0.75); /* Se oscurece un poco al pasar el mouse */
+    border-color: rgba(255, 255, 255, 0.2); /* El borde brilla un poco más */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .producto-imagen {
-    width: 100%;
+    width: 200px; /* Ancho fijo acorde a la altura para mantener proporción de carta */
     height: 280px;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 15px;
-    background-color: var(--primary-1);
+    margin: 0 auto 15px; /* Centra el contenedor de la imagen horizontalmente */
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente para integrar la imagen */
+    padding: 8px; /* Marco fino y uniforme */
 }
 
 .producto-imagen img {
