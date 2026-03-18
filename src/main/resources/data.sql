@@ -30,10 +30,10 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (8, 1, 'Scarlet & Violet—Paldea Evolved', '2023-06-09', 'PAL', 193);
 
 --MAGIC
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (20, 2, 'Alpha', '1993-08-05', 'LEA', 295);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (21, 2, 'Outlaws of Thunder Junction', '2024-04-19', 'OTJ', 271);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (22, 2, 'Bloomburrow', '2024-08-02', 'BLB', 281);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (23, 2, 'Duskmourn: House of Horror', '2024-09-27', 'DSK', 276);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2000, 2, 'Alpha', '1993-08-05', 'LEA', 295);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2001, 2, 'Teenage Mutant Ninja Turtles', '2024-08-01', 'TMT', 4);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2002, 2, 'Avatar: The Last Airbender', '2025-01-01', 'TLA', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2003, 2, 'Ixalan', '2017-09-29', 'XLN', 289);
 
 --ONEPIECE
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (30, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
@@ -52,10 +52,14 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4007, 3, 'Solar Eclipse Promo', '2024-01-01', 'SOLE', 20);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4008, 3, 'Dimension Force', '2022-05-20', 'DIFO', 100);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4009, 3, 'Tuner Support Edition', '2024-01-01', 'TUNE', 40);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4010, 3, 'Yu-Gi-Oh! Duel Monsters National Tournament', '1999-02-21', 'NONE', 1);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4011, 3, 'Yu-Gi-Oh! Championship Series 2023 Prize Cards', '2023-01-01', 'YCSW', 2);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4012, 3, 'Dimension of Chaos', '2015-11-06', 'DOCS', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4013, 3, 'Battle Pack: Epic Dawn', '2012-05-24', 'BP01', 220);
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 2.50, 'Escupe fuego que derrite rocas.', '/img/MCX.png', 1, 8, 10, 'Inglés');
+VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 2.50, 'Es uno de los pocos Pokémon en tener dos megaevoluciones distintas (X e Y).', '/img/MCX.png', 1, 8, 10, 'Inglés');
 
 -- 3. Insertamos en la tabla hija 'pokemon_cartas' usando el MISMO ID (100)
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
@@ -63,13 +67,13 @@ VALUES (100, 360, 'Fuego', 'Stage 2', 'Charmeleon', 'Lanzallamas, Giro Fuego', '
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (101, 'Mega Gengar ex', '056/094', 'Ultra Rare', 'Criatura', 1.00, 'The Mega-Evolved form of Gengar.', '/img/MG.png', 1, 8, 5, 'Inglés');
+VALUES (101, 'Mega Gengar ex', '056/094', 'Ultra Rare', 'Criatura', 1.00, 'Una curiosidad clave es su tercer ojo amarillo en la frente, que nunca parpadea y le permite ver dimensiones ocultas..', '/img/MG.png', 1, 8, 5, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (101, 350, 'Oscuridad', 'Stage 2', 'Haunter', 'Void Gale', 'Lucha', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, 'Pokémon Victoria.', '/img/Victiniex.png', 1, 7, 5, 'Indonesio');
+VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, ' Fue encerrado durante 200 años en la Isla Libertad por un antiguo guardián para proteger su inmenso poder.', '/img/Victiniex.png', 1, 7, 5, 'Indonesio');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Serangan Mundur, Victory Flame', 'Agua', 'Ninguna', 1);
@@ -78,43 +82,43 @@ VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Serangan Mundur, Victory Flame
 -- VALUES (103, 'N', '180/171', 'Full Art Rare', 'Entrenador', 190.00, 'Each player shuffles their hand into their deck and draws a card for each of their remaining Prize cards.', '/img/N.jpg', 1, 10, 2, 'Japonés');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'The Mega-Evolved form of Latias.', '/img/ML.png', 1, 1, 4, 'Inglés');
+VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'Este color morado es la mezcla del rojo de Latias y el color azul de Latios, simbolizando su fuerte vínculo.', '/img/ML.png', 1, 1, 4, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (104, 280, 'Dragón', 'Mega Evolution', 'Latias', 'Strafe, Illusory Impulse', 'Hada', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (105, 'Lillie’s Clefairy ex', '765/742', 'Special Art Rare', 'Criatura', 120.00, 'A Pokémon belonging to the trainer Lillie.', '/img/LL.png', 1, 5, 3, 'Japonés');
+VALUES (105, 'Lillie’s Clefairy ex', '765/742', 'Special Art Rare', 'Criatura', 120.00, 'La ilustración de esta carta subraya el profundo vínculo emocional entre Lillie y este Pokémon.', '/img/LL.png', 1, 5, 3, 'Japonés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (105, 190, 'Psíquico', 'Básico', 'Ninguna', 'Fairy Zone, Full Moon Rondó', 'Metal', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Evolves from Rayquaza-EX', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
+VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Se dice que vive en la capa de ozono, alimentándose de meteoritos y protegiendo al mundo de las amenazas externas.', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (106, 220, 'Incoloro', 'Mega', 'Rayquaza-EX', 'Emerald Break', 'Rayo', 'Lucha', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Evolves from Sceptile-EX', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
+VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Es considerado un depredador máximo en su hábitat natural, donde la vegetación crece densamente gracias a su energía.', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (107, 220, 'Planta', 'Mega', 'Sceptile-EX', 'Jagged Saber', 'Fuego', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Marnie''s companion.', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
+VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Morpeko fue un regalo de su hermano mayor, Nerio, cuando ella tenía cinco años, lo que la hizo más feliz y ayudó a definir su personalidad..', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (108, 70, 'Oscuridad', 'Básico', 'Ninguna', 'Spiky Wheel', 'Planta', 'Ninguna', 0);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Evolui de Bisharp', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
+VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Es un Pokémon tipo Siniestro/Acero basado en un rey de ajedrez y un shogun japonés, caracterizado por su movimiento lento que imita el paso corto del rey en el tablero', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (109, 180, 'Metal', 'Fase 2', 'Bisharp', 'Derrocada, Laceração Massiva', 'Fuego', 'Planta', 4);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Ancient Pokémon', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
+VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Está basado en un saurópodo (dinosaurio de cuello largo), y su diseño combina la majestuosidad de Raikou con un aspecto de "lagarto trueno" prehistórico.', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (110, 240, 'Dragón', 'Básico', 'Ninguna', 'Burst Roar, Bellowing Thunder', 'Ninguna', 'Ninguna', 3);
@@ -202,6 +206,18 @@ VALUES (200, 'Black Lotus', 'N/A', 'Rare', 'Artifact', 50000.00, 'Adds 3 mana of
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (200, '0', 'Artifact', NULL, NULL, 'Sacrifice Black Lotus: Add three mana.', 'Colorless');
 
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (201, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'Flying, vigilance, Waterbend', '/img/yue.jpg', 2, 5004, 2, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (201, '{3}{U}', 'Legendary Creature — Spirit Ally', 3, 3, 'Flying, vigilance, Waterbend 5, T: cast noncreature spell for free', 'Blue');
+
+-- Day of Black Sun (Conjuro)
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (202, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Destroy creatures with mana value X or less', '/img/sol_negro.jpg', 2, 5004, 3, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (202, '{X}{B}{B}', 'Sorcery', NULL, NULL, 'Each creature with mana value X or less loses all abilities and is destroyed', 'Black');
 
 
 
@@ -273,6 +289,30 @@ VALUES (212, 'Kewl Tune', 'TUNE-EN02', 'Rare', 'Mágica', 2.00, 'Selecciona 1 mo
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (212, 3, 'LUZ', 'Hada / Cantante Efecto', 900, 1900, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (213, 'Kanan the Swordmistress', 'NONE', 'Ultra Rare', 'Monstruo', 20000.00, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.', '/img/kanan.jpg', 3, 4010, 1, 'Japonés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (213, 4, 'TIERRA', 'Guerrero / Normal', 1400, 1400, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (214, 'Anotherverse Dragon', 'YCSW-EN013', 'Ultra Rare', 'Monstruo', 30000.00, 'Este dragón secreto ha conquistado muchas dimensiones, pero solo puede ser visto por el campeón del tiempo.', '/img/AnotherDragon.jpg', 3, 4011, 1, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (214, 8, 'TIERRA', 'Dragón / Normal', 2500, 2000, 'Este dragón secreto ha conquistado muchas dimensiones, pero solo puede ser visto por el campeón del tiempo.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (215, 'Odd-Eyes Vortex Dragon (Giant Card)', 'DOCS-EN045', 'Super Rare', 'Monstruo', 500000.00, 'Cuando esta carta es Invocada de Modo Especial: puedes seleccionar 1 monstruo en Posición de Ataque boca arriba que controle tu adversario; devuélvelo a la mano.', '/img/Dragon_vortice.jpg', 3, 4012, 1, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (215, 7, 'VIENTO', 'Dragón / Fusión / Efecto', 2500, 3000, '1 monstruo "Ojos Anómalos" + 1 Monstruo de Péndulo. Cuando esta carta es Invocada de Modo Especial: puedes devolver 1 monstruo en ataque del rival a la mano. Durante el turno de cualquier jugador, cuando se activa una carta o efecto: puedes barajar 1 Monstruo de Péndulo boca arriba en tu Deck Extra al Deck, niega la activación y destruye la carta.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (216, 'Pot of Greed', 'BP01-EN034', 'Rare', 'Mágica', 2.50, 'Roba 2 cartas.', '/img/potOfGreed.jpg', 3, 4004, 5, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (216, NULL, 'MÁGICA', 'Magia Normal', NULL, NULL, 'Roba 2 cartas.');
 
 
 
