@@ -205,74 +205,74 @@ VALUES (200, '0', 'Artifact', NULL, NULL, 'Sacrifice Black Lotus: Add three mana
 
 
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (201, 'Ghost Mourner & Moonlit Chill', 'ETCO-EN036', 'Secret Rare', 'Monstruo', 0.50, 'Cuando tu adversario Invoca de Modo Especial uno o más monstruos boca arriba (excepto durante el Damage Step): puedes descartar esta carta, y después seleccionar 1 de esos monstruos; niega sus efectos hasta el final de este turno, y además, si ese monstruo boca arriba deja el campo este turno, su controlador recibe daño igual a su ATK original.', '/img/yugioh/ghostMourner.jpg', 3, 4000, 60, 'Inglés');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (201, 'Ghost Mourner & Moonlit Chill', 'ETCO-EN036', 'Secret Rare', 'Monstruo', 0.50, 'Cuando tu adversario Invoca de Modo Especial uno o más monstruos boca arriba (excepto durante el Damage Step): puedes descartar esta carta, y después seleccionar 1 de esos monstruos; niega sus efectos hasta el final de este turno, y además, si ese monstruo boca arriba deja el campo este turno, su controlador recibe daño igual a su ATK original.', '/img/ghostMourner.jpg', 3, 4000, 60, 'Inglés');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (201, 3, 'VIENTO', 'Zombi / Cantante / Efecto', 0, 1800, 'Cuando tu adversario Invoca de Modo Especial uno o más monstruos boca arriba (excepto durante el Damage Step): puedes descartar esta carta, y después seleccionar 1 de esos monstruos; niega sus efectos hasta el final de este turno, y además, si ese monstruo boca arriba deja el campo este turno, su controlador recibe daño igual a su ATK original. Solo puedes usar este efecto de "Ghost Mourner & Moonlit Chill" una vez por turno.');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (201, 3, 'VIENTO', 'Zombi / Cantante / Efecto', 0, 1800, 'Cuando tu adversario Invoca de Modo Especial uno o más monstruos boca arriba (excepto durante el Damage Step): puedes descartar esta carta, y después seleccionar 1 de esos monstruos; niega sus efectos hasta el final de este turno, y además, si ese monstruo boca arriba deja el campo este turno, su controlador recibe daño igual a su ATK original. Solo puedes usar este efecto de "Ghost Mourner & Moonlit Chill" una vez por turno.');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (202, 'Duoterion', 'MACR-EN019', 'Super Rare', 'Monstruo', 1.50, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial.', '/img/yugioh/duoterion.jpg', 3, 4001, 3, 'Japonés');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (202, 'Duoterion', 'MACR-EN019', 'Super Rare', 'Monstruo', 1.50, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial.', '/img/duoterion.jpg', 3, 4001, 3, 'Japonés');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (202, 5, 'AGUA', 'Dinosaurio / Efecto', 2000, 1400, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial. Solo puedes usar cada efecto de "Duoterion" una vez por turno.');
-
-
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (203, 'K-9', 'MECH-EN01', 'Common', 'Monstruo', 0.50, 'Un compañero mecánico leal. Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.', '/img/yugioh/k9.jpg', 3, 4002, 56, 'Inglés');
-
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (203, 5, 'VIENTO', 'Guerrero / XYZ / Efecto', 2300, 1800, 'Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (202, 5, 'AGUA', 'Dinosaurio / Efecto', 2000, 1400, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial. Solo puedes usar cada efecto de "Duoterion" una vez por turno.');
 
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (204, 'Penguin Brave', 'PHRA-EN042', 'Ultra Rare', 'Monstruo', 2.00, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Solo puedes usar cada uno de los siguientes efectos de "Penguin Brave" una vez por turno. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo.', '/img/yugioh/penguin.jpg', 3, 4003, 34, 'Inglés');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (203, 'K-9', 'MECH-EN01', 'Common', 'Monstruo', 0.50, 'Un compañero mecánico leal. Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.', '/img/k9.jpg', 3, 4002, 56, 'Inglés');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (204, 1, 'AGUA', 'Bestia Alada / Efecto', 100, 100, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo. Cuando tu adversario activa el efecto de un monstruo: puedes voltear boca arriba 1 monstruo de AGUA en Posición de Defensa boca abajo que controles.');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (203, 5, 'VIENTO', 'Guerrero / XYZ / Efecto', 2300, 1800, 'Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.');
 
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (205, 'Exormana', 'EXOR-EN01', 'Ultra Rare', 'Monstruo', 5.00, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.', '/img/yugioh/Exormana.jpg', 3, 4004, 32, 'Inglés');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (204, 'Penguin Brave', 'PHRA-EN042', 'Ultra Rare', 'Monstruo', 2.00, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Solo puedes usar cada uno de los siguientes efectos de "Penguin Brave" una vez por turno. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo.', '/img/penguin.jpg', 3, 4003, 34, 'Inglés');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (205, 4, 'OSCURIDAD', 'Hada / XYZ / Efecto', 2600, 1800, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (204, 1, 'AGUA', 'Bestia Alada / Efecto', 100, 100, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo. Cuando tu adversario activa el efecto de un monstruo: puedes voltear boca arriba 1 monstruo de AGUA en Posición de Defensa boca abajo que controles.');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (206, 'Shina the Total Solar Eclipse', 'SOLE-EN01', 'Ultra Rare', 'Monstruo', 5.00, 'Si esta carta es Invocada de Modo Normal o Especial: puedes cambiar todos los monstruos boca arriba en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.', '/img/yugioh/shina.jpg', 3, 4005, 27, 'Inglés');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (207, 9, 'OSCURIDAD', 'Dragon / Efecto', 2900, 1200, 'Si esta carta es Invocada de Modo Normal o Especial: puedes cambiar todos los monstruos boca arriba en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (205, 'Exormana', 'EXOR-EN01', 'Ultra Rare', 'Monstruo', 5.00, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.', '/img/Exormana.jpg', 3, 4004, 32, 'Inglés');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (208, 'Lucina', 'GALE-EN02', 'Secret Rare', 'Monstruo', 20.00, 'Una guerrera de un futuro condenado que viaja en el tiempo. Si tu adversario controla un monstruo y tú no controlas ninguno, puedes Invocar esta carta de Modo Especial desde tu mano.', '/img/yugioh/lucina.jpg', 3, 4006, 1, 'Japonés');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (205, 4, 'OSCURIDAD', 'Hada / XYZ / Efecto', 2600, 1800, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (208, 6, 'FUEGO', 'Guerrero / Efecto', 2500, 1800, 'Si tu adversario controla un monstruo y tú no controlas ninguno, puedes Invocar esta carta de Modo Especial desde tu mano. Una vez por turno, esta carta no puede ser destruida en batalla.');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (206, 'Shina the Total Solar Eclipse', 'SOLE-EN01', 'Ultra Rare', 'Monstruo', 5.00, 'Si esta carta es Invocada de Modo Normal o Especial: puedes cambiar todos los monstruos boca arriba en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.', '/img/shina.jpg', 3, 4005, 27, 'Inglés');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (209, 'Tina the Total Solar Eclipse', 'SOLE-EN02', 'Ultra Rare', 'Monstruo', 5.00, 'Si esta carta es mandada al Cementerio: puedes cambiar todos los monstruos en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.', '/img/yugioh/tina.jpg', 3, 4007, 45, 'Inglés');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (206, 9, 'OSCURIDAD', 'Dragon / Efecto', 2900, 1200, 'Si esta carta es Invocada de Modo Normal o Especial: puedes cambiar todos los monstruos boca arriba en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (209, 6, 'AGUA', 'Hechicero / Efecto', 2400, 1800, 'Si esta carta es mandada al Cementerio: puedes cambiar todos los monstruos en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (208, 'Lucina', 'GALE-EN02', 'Secret Rare', 'Monstruo', 20.00, 'Una guerrera de un futuro condenado que viaja en el tiempo. Si tu adversario controla un monstruo y tú no controlas ninguno, puedes Invocar esta carta de Modo Especial desde tu mano.', '/img/lucina.jpg', 3, 4006, 1, 'Japonés');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (210, 'Elfnote', 'DIFO-EN026', 'Common', 'Monstruo', 0.20, 'Si esta carta es mandada al Cementerio: puedes seleccionar 1 monstruo en tu Cementerio; Invócalo de Modo Especial, pero sus efectos son negados. Puedes seleccionar 1 monstruo que controles; cambia su Nivel por el de esta carta hasta el final de este turno. Solo puedes usar cada efecto de "Elfnote" una vez por turno.', '/img/yugioh/elfnote.jpg', 3, 4008, 45, 'Inglés');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (208, 6, 'FUEGO', 'Guerrero / Efecto', 2500, 1800, 'Si tu adversario controla un monstruo y tú no controlas ninguno, puedes Invocar esta carta de Modo Especial desde tu mano. Una vez por turno, esta carta no puede ser destruida en batalla.');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (210, 6, 'LUZ', 'Hechicero / Efecto', 2200, 1800, 'Si esta carta es mandada al Cementerio: puedes seleccionar 1 monstruo en tu Cementerio; Invócalo de Modo Especial, pero sus efectos son negados. Puedes seleccionar 1 monstruo que controles; cambia su Nivel por el de esta carta hasta el final de este turno. Solo puedes usar cada efecto de "Elfnote" una vez por turno.');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (209, 'Tina the Total Solar Eclipse', 'SOLE-EN02', 'Ultra Rare', 'Monstruo', 5.00, 'Si esta carta es mandada al Cementerio: puedes cambiar todos los monstruos en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.', '/img/tina.jpg', 3, 4007, 45, 'Inglés');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (211, 'Kewl', 'TUNE-EN01', 'Super Rare', 'Monstruo', 1.50, 'Si controlas un monstruo Cantante, puedes Invocar esta carta de Modo Especial (desde tu mano). Solo puedes Invocar a "Kewl" de Modo Especial una vez por turno de esta forma. Si esta carta es mandada al Cementerio como material para una Invocación por Sincronía: puedes robar 1 carta.', '/img/yugioh/kewl.jpg', 3, 4009, 16, 'Inglés');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (209, 6, 'AGUA', 'Hechicero / Efecto', 2400, 1800, 'Si esta carta es mandada al Cementerio: puedes cambiar todos los monstruos en el campo a Posición de Defensa boca abajo. Ningún jugador puede activar cartas o efectos en respuesta a la activación de este efecto.');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (211, 2, 'OSCURIDAD', 'Trueno / Cantante / Efecto', 800, 1000, 'Si controlas un monstruo Cantante, puedes Invocar esta carta de Modo Especial (desde tu mano). Solo puedes Invocar a "Kewl" de Modo Especial una vez por turno de esta forma. Si esta carta es mandada al Cementerio como material para una Invocación por Sincronía: puedes robar 1 carta.');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (210, 'Elfnote', 'DIFO-EN026', 'Common', 'Monstruo', 0.20, 'Si esta carta es mandada al Cementerio: puedes seleccionar 1 monstruo en tu Cementerio; Invócalo de Modo Especial, pero sus efectos son negados. Puedes seleccionar 1 monstruo que controles; cambia su Nivel por el de esta carta hasta el final de este turno. Solo puedes usar cada efecto de "Elfnote" una vez por turno.', '/img/elfnote.jpg', 3, 4008, 45, 'Inglés');
 
--- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
--- VALUES (212, 'Kewl Tune', 'TUNE-EN02', 'Rare', 'Mágica', 2.00, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.', '/img/yugioh/kewlTune.jpg', 3, 4010, 24, 'Inglés');
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (210, 6, 'LUZ', 'Hechicero / Efecto', 2200, 1800, 'Si esta carta es mandada al Cementerio: puedes seleccionar 1 monstruo en tu Cementerio; Invócalo de Modo Especial, pero sus efectos son negados. Puedes seleccionar 1 monstruo que controles; cambia su Nivel por el de esta carta hasta el final de este turno. Solo puedes usar cada efecto de "Elfnote" una vez por turno.');
 
--- INSERT INTO yugioh_cartas (carta_id, nivel_rango, atributo, tipo_monstruo, atk, def, efecto_texto) 
--- VALUES (212, 3, 'LUZ', 'Hada / Cantante Efecto', 900, 1900, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.');
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (211, 'Kewl', 'TUNE-EN01', 'Super Rare', 'Monstruo', 1.50, 'Si controlas un monstruo Cantante, puedes Invocar esta carta de Modo Especial (desde tu mano). Solo puedes Invocar a "Kewl" de Modo Especial una vez por turno de esta forma. Si esta carta es mandada al Cementerio como material para una Invocación por Sincronía: puedes robar 1 carta.', '/img/kewl.jpg', 3, 4009, 16, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (211, 2, 'OSCURIDAD', 'Trueno / Cantante / Efecto', 800, 1000, 'Si controlas un monstruo Cantante, puedes Invocar esta carta de Modo Especial (desde tu mano). Solo puedes Invocar a "Kewl" de Modo Especial una vez por turno de esta forma. Si esta carta es mandada al Cementerio como material para una Invocación por Sincronía: puedes robar 1 carta.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (212, 'Kewl Tune', 'TUNE-EN02', 'Rare', 'Mágica', 2.00, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.', '/img/kewlTune.jpg', 3, 4009, 24, 'Inglés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (212, 3, 'LUZ', 'Hada / Cantante Efecto', 900, 1900, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.');
 
 
 
