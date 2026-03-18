@@ -823,3 +823,25 @@
     border-color: var(--accent);
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* --- Estilos para Fondo de Tienda (Efecto Radial) --- */
+.pagina-tienda {
+    position: relative;
+    isolation: isolate;
+}
+
+.pagina-tienda::before {
+    content: "";
+    position: fixed; /* Fijo al viewport */
+    inset: 0;
+    z-index: -1;
+    background-image: url("/img/fondo_cartas.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* Ajusta la intensidad de la imagen en los bordes */
+    /* Máscara: Transparente en el centro (0%) -> Opaco en los bordes (100%) */
+    -webkit-mask-image: radial-gradient(circle at center, transparent 10%, black 90%);
+    mask-image: radial-gradient(circle at center, transparent 10%, black 90%);
+    pointer-events: none;
+}
