@@ -33,7 +33,10 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2000, 2, 'Alpha', '1993-08-05', 'LEA', 295);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2001, 2, 'Teenage Mutant Ninja Turtles', '2024-08-01', 'TMT', 4);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2002, 2, 'Avatar: The Last Airbender', '2025-01-01', 'TLA', 100);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2003, 2, 'Ixalan', '2017-09-29', 'XLN', 289);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2003, 2, 'Primal Genesis', '2024-01-01', 'PRML', 100);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2004, 2, 'TMNT Villains Edition', '2024-01-01', 'TMNV', 1);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2005, 2, 'Reinos del Eclipse', '2024-03-19', 'RECL', 80);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2006, 2, 'Leyendas del Multiverso', '2024-03-19', 'LMULT', 50);
 
 --ONEPIECE
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (30, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
@@ -295,6 +298,9 @@ VALUES (216, 'Pot of Greed', 'BP01-EN034', 'Rare', 'Mágica', 2.50, 'Roba 2 cart
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (216, NULL, 'MÁGICA', 'Magia Normal', NULL, NULL, 'Roba 2 cartas.');
 
+
+
+
 -- 2. Tabla padre 'cartas' (ID 200)
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (300, 'Black Lotus', 'N/A', 'Rare', 'Artifact', 50000.00, 'En los años 90, antes de que valiera lo que un coche de lujo, se rumorea que algunos jugadores usaban el Black Lotus sin protectores en las mesas de los parques, o que incluso rompían la carta después de usarla porque malinterpretaron el texto de "sacrificar" (pensando que debías destruirla físicamente).', '/img/BlackLotus.png', 2, 2000, 1, 'Inglés');
@@ -304,16 +310,83 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (300, '0', 'Artifact', NULL, NULL, '{T}, sacrificar el Black Lotus: Agrega tres manás de un color cualquiera a tu reserva de maná.', 'Colorless');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (301, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'La Princesa Yue nació con una enfermedad incurable. Para salvarla, su padre la sumergió en el Oasis Sagrado, donde el Espíritu de la Luna (Tui) le transfirió parte de su vida. Este milagro no solo la sanó, sino que vinculó su alma al espíritu y volvió su cabello blanco plateado para siempre.', '/img/yue.jpg', 2, 2000, 2, 'Inglés');
+VALUES (301, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'La Princesa Yue nació con una enfermedad incurable. Para salvarla, su padre la sumergió en el Oasis Sagrado, donde el Espíritu de la Luna (Tui) le transfirió parte de su vida. Este milagro no solo la sanó, sino que vinculó su alma al espíritu y volvió su cabello blanco plateado para siempre.', '/img/yue.jpg', 2, 2002, 2, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (301, '{3}{U}', 'Legendary Creature — Spirit Ally', 3, 3, 'Vuela, vigilancia, Maestría Agua 5, {T}: Puedes lanzar un hechizo que no sea de criatura de tu mano sin pagar su coste de maná. (Mientras pagas un coste de maestría agua, puedes girar tus artefactos y criaturas para ayudar. Cada uno paga {1}).', 'Azul');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (302, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Los artistas se inspiraron en el planetario de Wan Shi Tong. El diseño de la carta busca que sientas que estás viendo el mapa astral que Sokka usó para predecir el ataque.', '/img/sol_negro.jpg', 2, 2002, 3, 'Inglés');
+VALUES (302, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Los artistas se inspiraron en el planetario de Wan Shi Tong. El diseño de la carta busca que sientas que estás viendo el mapa astral que Sokka usó para predecir el ataque.', '/img/sol-negro.jpg', 2, 2002, 3, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (302, '{X}{B}{B}', 'Sorcery', NULL, NULL, 'Cada criatura con valor de maná X o menos pierde todas las habilidades hasta el final del turno. Destruye esas criaturas.', 'Black');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (303, 'Leonardo', 'TMNT-01', 'Rare', 'Criatura Legendaria', 3650.00, 'El líder disciplinado del grupo. Experto en el uso de las katanas y en la estrategia táctica para proteger a sus hermanos.', '/img/leonardo.jpg', 2, 2001, 3, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (303, '1WUB', 'Legendary Creature - Turtle Ninja', '2', '4', 'Dañar primero, Vigilancia. Al comienzo del combate en tu turno, otra criatura objetivo que controles obtiene +1/+1 y gana la habilidad de Indestructible hasta el final del turno.', 'Azul, Blanco, Negro');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (304, 'Michelangelo', 'TMNT-02', 'Rare', 'Criatura Legendaria', 2000.00, 'El alma de la fiesta. Su estilo de combate con nunchakus es tan impredecible como su sentido del humor.', '/img/michelangelo.jpg', 2, 2001, 6, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (304, '1RGW', 'Legendary Creature - Turtle Ninja', '4', '2', 'Prisa. Cuando Michelangelo entre al campo de batalla, crea dos fichas de artefacto Comida. Siempre que sacrifiques una Comida, pon un contador +1/+1 sobre cada criatura que controles.', 'Rojo, Verde, Blanco');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (305, 'Raphael', 'TMNT-04', 'Rare', 'Criatura Legendaria', 3200.00, 'El guerrero más feroz y rebelde. Su ira es su mayor fuerza, permitiéndole atacar con una agresividad inigualable.', '/img/raphael.jpg', 2, 2001, 5, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (305, '1BRG', 'Legendary Creature - Turtle Ninja', '3', '3', 'Arrollar. Siempre que Raphael reciba daño, pon esa misma cantidad de contadores +1/+1 sobre él. Al comienzo de tu paso final, Raphael puede luchar contra la criatura objetivo que no controles.', 'Negro, Rojo, Verde');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.jpg', 2, 2003, 4, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (306, '1GUW', 'Legendary Creature - Turtle Ninja', '1', '5', 'Alcance. Siempre que lances un hechizo de artefacto, puedes robar una carta. {2}, {T}: Endereza el artefacto objetivo que controles.', 'Verde, Azul, Blanco');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (307, 'El Portador de la Noche', 'TMNV-01', 'Mythic Rare', 'Criatura Legendaria', 15.50, 'Una figura imponente que acecha desde las sombras del Clan del Pie. Su sola presencia debilita la voluntad de sus enemigos y fortalece a sus aliados oscuros.', '/img/portador.jpg', 2, 2004, 2, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (307, '3BB', 'Legendary Creature - Zombie Ninja', '5', '4', 'Menaza (Esta criatura no puede ser bloqueada excepto por dos o más criaturas). Siempre que El Portador de la Noche haga daño de combate a un jugador, ese jugador descarta una carta y tú robas una carta.', 'Negro');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (308, 'Dinosaurio Rugidor', 'PRML-01', 'Rare', 'Criatura', 8.50, 'Una fuerza de la naturaleza imparable. Su rugido se escucha a kilómetros de distancia, anunciando la llegada de una era de destrucción para aquellos que osen invadir su territorio.', '/img/Dinosaur.jpg', 2, 2005, 5, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (308, '4GG', 'Creature - Dinosaur', '6', '6', 'Arrollar (Esta criatura puede asignar el exceso de daño de combate al jugador o planeswalker defensor). Cuando el Dinosaurio Rugidor entre al campo de batalla, puedes hacer que luche contra la criatura objetivo que no controles.', 'Verde');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (309, 'Reinos Eclipsados', 'RECL-01', 'Rare', 'Tierra', 5.50, 'Un paisaje donde la luz y la sombra se entrelazan eternamente bajo un sol oscuro.', '/img/rainos-eclipsados.jpg', 2, 2005, 10, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (309, NULL, 'Land', NULL, NULL, '{T}: Agrega {C}. {T}, pagar 1 vida: Agrega {B} o {W} a tu reserva de maná.', 'Icoloro');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (310, 'Palacio de las Nubes', 'RECL-02', 'Mythic Rare', 'Encantamiento', 12.00, 'Una fortaleza mística que flota más allá del alcance de los mortales.', '/img/palacio-nubes.jpg', 2, 2005, 23, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (311, '2UU', 'Enchantment', NULL, NULL, 'Las criaturas que controlas con la habilidad de volar obtienen +1/+1. Al comienzo de tu paso final, si controlas tres o más criaturas con la habilidad de volar, roba una carta.', 'Azul');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (312, 'Ajani, Guerrero de la Garra', 'LMULT-01', 'Mythic Rare', 'Criatura Legendaria', 88.50, 'Un líder noble cuya fuerza solo es superada por su lealtad a su manada.', '/img/ajani.jpg', 2, 2006, 2, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (312, '2WW', 'Legendary Creature - Cat Warrior', '4', '4', 'Dañar primero, Vínculo vital. Siempre que otra criatura que controles entre al campo de batalla, puedes poner un contador +1/+1 sobre Ajani, Guerrero de la Garra.', 'Blanco');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (313, 'Demonio del Vacío', 'LMULT-02', 'Rare', 'Criatura', 39.00, 'Una entidad nacida del hambre eterna de los planos oscuros.', '/img/demonio.jpg', 2, 2006, 5, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (313, '3BB', 'Creature - Demon', '5', '5', 'Vuela. Al comienzo de tu mantenimiento, sacrifica otra criatura. Si no puedes, el Demonio del Vacío te hace 5 puntos de daño.', 'Negro');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (314, 'Espadachina del Destino', 'LMULT-03', 'Uncommon', 'Criatura', 6.00, 'Su hoja ha sido forjada en las estrellas y nunca falla su blanco.', '/img/espadachina.jpg', 2, 2007, 8, 'Español');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (314, '1RW', 'Creature - Human Knight', '3', '2', 'Prisa. Siempre que esta criatura ataque, otra criatura atacante objetivo obtiene +2/+0 hasta el final del turno.', 'Rojo, Blaco');
+
 
 
 
