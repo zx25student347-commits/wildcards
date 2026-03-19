@@ -31,7 +31,7 @@
             </header>
 
             <section class="filters">
-                <input type="text" placeholder="Buscar por username..." id="buscarUsername">
+                <input type="text" placeholder="Buscar por email..." id="buscarUsername">
             </section>
 
             <div class="table-container">
@@ -39,7 +39,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
+                            <th>Email</th>
                             <th>Roles</th>
                             <th>Habilitado</th>
                             <th>Acciones</th>
@@ -50,6 +50,34 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Sección de Gestión Global de Pedidos -->
+            <header style="margin-top: 40px; border-top: 2px solid var(--dark-muted); padding-top: 20px;">
+                <h1>Gestión Global de Pedidos</h1>
+            </header>
+
+            <section class="filters">
+                <input type="text" placeholder="Buscar pedido por usuario..." id="buscarPedidoUsername">
+            </section>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaPedidosGlobalBody">
+                        <!-- Se llena dinámicamente con JS -->
+                    </tbody>
+                </table>
+            </div>
+
         </main>
     </div>
 
@@ -103,6 +131,33 @@
                 <div class="form-actions">
                     <button type="submit" class="btn-submitform" id="btnSubmit">Crear Usuario</button>
                     <button type="button" class="btn-cancelform" id="btnCancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar estado de pedido -->
+    <div id="modalEditarPedido" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tituloModalPedido">Editar Estado del Pedido</h2>
+                <button class="btn-cerrar" id="btnCerrarModalPedido">&times;</button>
+            </div>
+            <form id="formularioPedido">
+                <p>Pedido ID: <strong id="pedidoIdEditar"></strong></p>
+                <div class="form-group">
+                    <label for="estadoPedido">Nuevo Estado:</label>
+                    <select id="estadoPedido" name="estadoPedido">
+                        <option value="PENDIENTE_PAGO">Pendiente Pago</option>
+                        <option value="PAGADO">Pagado</option>
+                        <option value="ENVIADO">Enviado</option>
+                        <option value="ENTREGADO">Entregado</option>
+                        <option value="CANCELADO">Cancelado</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submitform">Guardar Cambios</button>
+                    <button type="button" class="btn-cancelform" id="btnCancelarPedido">Cancelar</button>
                 </div>
             </form>
         </div>

@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,7 +16,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.daw.wildcards.security.service.CustomUserDetailsService;
@@ -44,17 +44,30 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // permite acceso libre a las rutas de autenticación y la página inicial
-                        .requestMatchers("/auth/**" , "/").permitAll()
-                        // sólo usuarios con rol ADMIN pueden acceder a /admin/**
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        // Rutas exclusivas de cliente: Autenticado y que NO sea ADMIN
-                        .requestMatchers("/api/pedido/**","/api/carrito/**","/carrito","/pedidos")
-                            .access(new WebExpressionAuthorizationManager("isAuthenticated() and !hasRole('ADMIN')"))
-                        // cualquier otro endpoint de la API necesita un token válido
-                        .requestMatchers("/api/**").permitAll()
-                        // otras rutas estáticas o públicas se siguen permitiendo
-                        .anyRequest().permitAll())
+                        // 1. Recursos públicos (autenticación, páginas principales, estáticos, APIs de lectura)
+                        .requestMatchers(
+                                "/auth/**", "/", "/login", "/registro",
+                                "/css/**", "/js/**", "/img/**",
+                                "/tienda/**", "/pokemon", "/onepiece", "/magic", "/yugioh", "/accesorios",
+                                "/carta/**", "/accesorio/**","/icons/**",
+                                "/api/productos/sugerencias"
+                        ).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/cartas/**", "/api/accesorios/**", "/api/sets").permitAll()
+
+                        // 2. Endpoints para administradores
+                        .requestMatchers(
+                                "/admin/**",
+                                "/api/usuarios/**" // Toda la gestión de usuarios es para admins
+                        ).hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/cartas/**", "/api/accesorios/**", "/api/sets").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/cartas/**", "/api/accesorios/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/cartas/**", "/api/accesorios/**", "/api/sets/**").hasRole("ADMIN")
+
+                        // 3. Endpoints para usuarios autenticados (clientes)
+                        .requestMatchers("/pedidos", "/carrito", "/api/pedido/**", "/api/carrito/**", "/api/payment/**").authenticated()
+
+                        // 4. Cualquier otra petición no contemplada requiere autenticación
+                        .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 // redirige al formulario de login si no hay autenticación
