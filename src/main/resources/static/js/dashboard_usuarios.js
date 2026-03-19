@@ -19,6 +19,7 @@ function authFetch(url, options = {}) {
 
 // Filtros
 const buscarUsername = document.getElementById('buscarUsername');
+const buscarPedidoUsername = document.getElementById('buscarPedidoUsername');
 
 // Modal de confirmación
 const modalConfirmacion = document.getElementById('modalConfirmacion');
@@ -152,6 +153,19 @@ buscarUsername.addEventListener('input', () => {
         fila.style.display = nombre.includes(texto) ? '' : 'none';
     });
 });
+
+// Filtro simple por username en pedidos
+if (buscarPedidoUsername) {
+    buscarPedidoUsername.addEventListener('input', () => {
+        const texto = buscarPedidoUsername.value.toLowerCase();
+        const filas = document.querySelectorAll('#tablaPedidosGlobalBody tr');
+        
+        filas.forEach(fila => {
+            const usuario = fila.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            fila.style.display = usuario.includes(texto) ? '' : 'none';
+        });
+    });
+}
 
 // Abrir modal Crear
 btnNuevoUsuario.addEventListener('click', () => {
