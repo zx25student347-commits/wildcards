@@ -68,8 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderizarDetalleCarta(carta) {
     document.title = carta.nombre; // Actualizar el título de la página
 
-    document.getElementById('carta-imagen').src = carta.imagenUrl || 'https://placehold.co/400x560?text=No+Imagen';
-    document.getElementById('carta-imagen').alt = carta.nombre;
+    const imgElement = document.getElementById('carta-imagen');
+    if (imgElement) {
+        imgElement.src = carta.imagenUrl || 'https://placehold.co/400x560?text=No+Imagen';
+        imgElement.alt = carta.nombre;
+
+        // Aseguramos que el contenedor tenga la clase necesaria para el efecto Glassmorphism
+        if (imgElement.parentElement) {
+            imgElement.parentElement.classList.add('single-img');
+        }
+    }
+    
     document.getElementById('carta-nombre').textContent = carta.nombre;
     document.getElementById('carta-juego').textContent = carta.juego ? carta.juego.nombre : 'N/A';
     document.getElementById('carta-set').textContent = carta.set ? carta.set.nombre : 'N/A';

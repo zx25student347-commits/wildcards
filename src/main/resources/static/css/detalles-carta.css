@@ -23,7 +23,7 @@ body {
 }
 
 .page {
-    height: 80vh;
+    min-height: 80vh;
     padding: 28px 0
 }
 
@@ -152,7 +152,70 @@ body {
 
 /* Single card view: image on the left, data on the right */
 .single-card{display:grid;grid-template-columns:420px 1fr;gap:28px;align-items:start;margin:28px 0}
-.single-img img{width:100%;max-width:420px;height:auto;display:block;border-radius:6px;border:8px solid #d6c49a;background:#fff}
+
+/* --- EFECTO GLASSMORPHISM --- */
+.single-img {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    /* Fondo y borde estilo cristal */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 10px; /* Espacio para que se vea el efecto cristal alrededor de la imagen */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.single-img img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    /* Eliminamos el borde sólido antiguo para integrarlo mejor */
+}
+
+/* Brillo que recorre la carta (Efecto Sheen) */
+.single-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    z-index: 3;
+    /* Animación al cargar la página */
+    animation: glass-shine-loop 5s ease-out infinite;
+    pointer-events: none;
+}
+
+.single-img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Repetir la animación al pasar el ratón */
+.single-img:hover::after {
+    animation: glass-shine 1.2s ease-out;
+}
+
+@keyframes glass-shine {
+    0% { left: -150%; opacity: 0; }
+    20% { opacity: 1; }
+    100% { left: 200%; opacity: 0; }
+}
+
+@keyframes glass-shine-loop {
+    0% { left: -150%; opacity: 0; }
+    5% { opacity: 1; }
+    30% { left: 200%; opacity: 0; }
+    100% { left: 200%; opacity: 0; }
+}
+
 .single-info{background:var(--panel);padding:22px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;justify-content:center}
 .single-info h2{margin-top:0;font-size:26px}
 .single-info .meta{color:var(--muted);margin:8px 0}
