@@ -206,18 +206,18 @@ VALUES (200, 'Black Lotus', 'N/A', 'Rare', 'Artifact', 50000.00, 'Adds 3 mana of
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (200, '0', 'Artifact', NULL, NULL, 'Sacrifice Black Lotus: Add three mana.', 'Colorless');
 
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (201, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'Flying, vigilance, Waterbend', '/img/yue.jpg', 2, 5004, 2, 'Inglés');
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (201, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'Flying, vigilance, Waterbend', '/img/yue.jpg', 2, 5004, 2, 'Inglés');
 
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (201, '{3}{U}', 'Legendary Creature — Spirit Ally', 3, 3, 'Flying, vigilance, Waterbend 5, T: cast noncreature spell for free', 'Blue');
+-- INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+-- VALUES (201, '{3}{U}', 'Legendary Creature — Spirit Ally', 3, 3, 'Flying, vigilance, Waterbend 5, T: cast noncreature spell for free', 'Blue');
 
--- Day of Black Sun (Conjuro)
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (202, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Destroy creatures with mana value X or less', '/img/sol_negro.jpg', 2, 5004, 3, 'Inglés');
+-- -- Day of Black Sun (Conjuro)
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (202, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Destroy creatures with mana value X or less', '/img/sol_negro.jpg', 2, 5004, 3, 'Inglés');
 
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (202, '{X}{B}{B}', 'Sorcery', NULL, NULL, 'Each creature with mana value X or less loses all abilities and is destroyed', 'Black');
+-- INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+-- VALUES (202, '{X}{B}{B}', 'Sorcery', NULL, NULL, 'Each creature with mana value X or less loses all abilities and is destroyed', 'Black');
 
 
 
