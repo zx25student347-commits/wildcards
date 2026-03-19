@@ -198,25 +198,7 @@ VALUES (122, NULL, 'Herramienta', 'ACE SPEC', 'Ninguna', 'Cuando el Pokémon Ter
 
 
 
--- 2. Tabla padre 'cartas' (ID 200)
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (200, 'Black Lotus', 'N/A', 'Rare', 'Artifact', 50000.00, 'En los años 90, antes de que valiera lo que un coche de lujo, se rumorea que algunos jugadores usaban el Black Lotus sin protectores en las mesas de los parques, o que incluso rompían la carta después de usarla porque malinterpretaron el texto de "sacrificar" (pensando que debías destruirla físicamente).', '/img/BlackLotus.png', 2, 2000, 1, 'Inglés');
 
--- 3. Tabla hija 'magic_cartas' (ID 200)
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (200, '0', 'Artifact', NULL, NULL, '{T}, sacrificar el Black Lotus: Agrega tres manás de un color cualquiera a tu reserva de maná.', 'Colorless');
-
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (201, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'La Princesa Yue nació con una enfermedad incurable. Para salvarla, su padre la sumergió en el Oasis Sagrado, donde el Espíritu de la Luna (Tui) le transfirió parte de su vida. Este milagro no solo la sanó, sino que vinculó su alma al espíritu y volvió su cabello blanco plateado para siempre.', '/img/yue.jpg', 2, 2000, 2, 'Inglés');
-
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (201, '{3}{U}', 'Legendary Creature — Spirit Ally', 3, 3, 'Vuela, vigilancia, Maestría Agua 5, {T}: Puedes lanzar un hechizo que no sea de criatura de tu mano sin pagar su coste de maná. (Mientras pagas un coste de maestría agua, puedes girar tus artefactos y criaturas para ayudar. Cada uno paga {1}).', 'Azul');
-
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (202, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Los artistas se inspiraron en el planetario de Wan Shi Tong. El diseño de la carta busca que sientas que estás viendo el mapa astral que Sokka usó para predecir el ataque.', '/img/sol_negro.jpg', 2, 2002, 3, 'Inglés');
-
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (202, '{X}{B}{B}', 'Sorcery', NULL, NULL, 'Cada criatura con valor de maná X o menos pierde todas las habilidades hasta el final del turno. Destruye esas criaturas.', 'Black');
 
 
 
@@ -313,16 +295,36 @@ VALUES (216, 'Pot of Greed', 'BP01-EN034', 'Rare', 'Mágica', 2.50, 'Roba 2 cart
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (216, NULL, 'MÁGICA', 'Magia Normal', NULL, NULL, 'Roba 2 cartas.');
 
+-- 2. Tabla padre 'cartas' (ID 200)
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (300, 'Black Lotus', 'N/A', 'Rare', 'Artifact', 50000.00, 'En los años 90, antes de que valiera lo que un coche de lujo, se rumorea que algunos jugadores usaban el Black Lotus sin protectores en las mesas de los parques, o que incluso rompían la carta después de usarla porque malinterpretaron el texto de "sacrificar" (pensando que debías destruirla físicamente).', '/img/BlackLotus.png', 2, 2000, 1, 'Inglés');
+
+-- 3. Tabla hija 'magic_cartas' (ID 200)
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (300, '0', 'Artifact', NULL, NULL, '{T}, sacrificar el Black Lotus: Agrega tres manás de un color cualquiera a tu reserva de maná.', 'Colorless');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (301, 'Yue, the Moon Spirit', 'R 0083', 'Rare', 'Legendary Creature', 12.00, 'La Princesa Yue nació con una enfermedad incurable. Para salvarla, su padre la sumergió en el Oasis Sagrado, donde el Espíritu de la Luna (Tui) le transfirió parte de su vida. Este milagro no solo la sanó, sino que vinculó su alma al espíritu y volvió su cabello blanco plateado para siempre.', '/img/yue.jpg', 2, 2000, 2, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (301, '{3}{U}', 'Legendary Creature — Spirit Ally', 3, 3, 'Vuela, vigilancia, Maestría Agua 5, {T}: Puedes lanzar un hechizo que no sea de criatura de tu mano sin pagar su coste de maná. (Mientras pagas un coste de maestría agua, puedes girar tus artefactos y criaturas para ayudar. Cada uno paga {1}).', 'Azul');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (302, 'Day of Black Sun', 'R 0094', 'Rare', 'Sorcery', 8.50, 'Los artistas se inspiraron en el planetario de Wan Shi Tong. El diseño de la carta busca que sientas que estás viendo el mapa astral que Sokka usó para predecir el ataque.', '/img/sol_negro.jpg', 2, 2002, 3, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (302, '{X}{B}{B}', 'Sorcery', NULL, NULL, 'Cada criatura con valor de maná X o menos pierde todas las habilidades hasta el final del turno. Destruye esas criaturas.', 'Black');
+
 
 
 -- 1. Tabla padre 'cartas' (ID 300)
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (300, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00, 
+VALUES (400, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00, 
 'Capitán de los Piratas del Sombrero de Paja.', '/img/luffy.png', 4, 3, 25, 'Japonés');
 
 -- 2. Tabla hija 'onepiece_cartas' (ID 300)
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (300, 'Rojo', 5, 6000, 1000, 'Puede atacar activo si tiene 2 o más DON!!');
+VALUES (400, 'Rojo', 5, 6000, 1000, 'Puede atacar activo si tiene 2 o más DON!!');
 
 
 INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
