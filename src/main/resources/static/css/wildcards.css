@@ -932,3 +932,74 @@
     border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* --- Efecto Vuelo al Carrito (Animación con Estela) --- */
+.fly-item {
+    position: fixed;
+    z-index: 99999;
+    pointer-events: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    /* Transición más lenta (1.2s) para que se aprecie mejor el movimiento */
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Elemento de la estela */
+.fly-trail {
+    position: fixed;
+    z-index: 99998;
+    pointer-events: none;
+    border-radius: 10px;
+    will-change: transform, opacity;
+    /* Animación más rápida para que la cola sea corta y sutil */
+    animation: trail-fade-out 0.3s ease-out forwards;
+    opacity: 0.15; /* Mucho más sutil para no distraer */
+}
+
+@keyframes trail-fade-out {
+    from {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+    to {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+}
+
+/* Estado de brillo intenso para la fase central de la animación */
+.fly-glow {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1), 0 0 80px 40px rgba(255, 255, 255, 0.5) !important;
+    filter: brightness(1.1) contrast(1.05); /* Brillo interno reducido para no quemar la imagen */
+    z-index: 100000 !important; /* Por encima de todo, incluido el header */
+}
+
+/* Fondo oscuro durante la animación central */
+.fly-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99995; /* Justo debajo de la carta (.fly-glow tiene 100000) */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+/* --- Efecto Destello en Carrito --- */
+.cart-flash {
+    animation: cart-pulse-glow 0.4s ease-out;
+}
+
+@keyframes cart-pulse-glow {
+    0% {
+        filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    }
+    30% {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9)) brightness(2);
+    }
+    100% {
+        filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0)) brightness(1);
+    }
+}
