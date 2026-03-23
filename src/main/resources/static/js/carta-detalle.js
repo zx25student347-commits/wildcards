@@ -51,15 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Producto añadido al carrito correctamente.');
+                    console.log('Producto añadido al carrito correctamente.');
                 } else if (response.status === 401 || response.status === 403) {
                     window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
                 } else {
-                    alert('Error al añadir el producto al carrito.');
+                    console.log('Error al añadir el producto al carrito.');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('Hubo un problema de conexión.');
+                console.log('Hubo un problema de conexión.');
             }
         });
     }

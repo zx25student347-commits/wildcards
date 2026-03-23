@@ -401,22 +401,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = rect.top + rect.height / 2;
             
             // --- Detección de imagen para el Toast ---
-            let imgUrl = null;
+            let imgElement = null;
             
             // 1. Si el botón está en una tarjeta de producto (vista grid/lista)
             const card = btn.closest('.producto-card');
             if (card) {
-                const imgElement = card.querySelector('img');
-                if (imgElement) imgUrl = imgElement.src;
+                imgElement = card.querySelector('img');
             } 
             // 2. Si no, busca por ID en páginas de detalle (Carta o Accesorio)
             else {
-                const imgDetalle = document.getElementById('carta-imagen') || document.getElementById('accesorio-imagen');
-                if (imgDetalle) imgUrl = imgDetalle.src;
+                imgElement = document.getElementById('carta-imagen') || document.getElementById('accesorio-imagen');
             }
+            
+            const imgUrl = imgElement ? imgElement.src : null;
             
             crearConfeti(x, y);
             mostrarToast("¡Producto añadido al carrito!", imgUrl);
+            
+            // --- ANIMACIÓN VUELO AL CARRITO ---
+            if (imgElement) {
+                animarVueloAlCarrito(imgElement);
+            }
         }
     });
 
@@ -492,5 +497,116 @@ document.addEventListener('DOMContentLoaded', () => {
             // Esperar a que termine la transición CSS para eliminar del DOM
             toast.addEventListener('transitionend', () => toast.remove());
         }, 3000);
+    }
+    
+    // --- ANIMACIÓN VUELO AL CARRITO ---
+    let isAnimating = false; // Variable de control para el cooldown
+
+    function animarVueloAlCarrito(imgSource) {
+        if (isAnimating) return; // Si ya hay una animación en curso, no hacer nada
+
+        let cartTarget = document.querySelector('a[href*="carrito"]'); 
+        if (!cartTarget) cartTarget = document.getElementById('contadorCarrito');
+        
+        if (!imgSource || !cartTarget) return;
+
+        isAnimating = true; // Bloquear nuevas animaciones
+
+        // 1. Crear el clon principal que volará
+        const flyImg = imgSource.cloneNode(true);
+        flyImg.classList.add('fly-item');
+        
+        // 2. Posición Inicial (Coordenadas exactas)
+        const startRect = imgSource.getBoundingClientRect();
+        flyImg.style.left = `${startRect.left}px`;
+        flyImg.style.top = `${startRect.top}px`;
+        flyImg.style.width = `${startRect.width}px`;
+        flyImg.style.height = `${startRect.height}px`;
+        flyImg.style.transition = 'all 1.6s cubic-bezier(0.19, 1, 0.22, 1)'; // Transición ajustada
+        
+        document.body.appendChild(flyImg);
+        
+        // Crear overlay oscuro
+        const overlay = document.createElement('div');
+        overlay.classList.add('fly-overlay');
+        document.body.appendChild(overlay);
+
+        // Forzar reflow para que el navegador registre la posición inicial
+        flyImg.getBoundingClientRect();
+
+        // --- FASE 1: IR AL CENTRO (Presentación) ---
+        setTimeout(() => {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Centramos la imagen restando la mitad de su tamaño al centro de la pantalla
+            const centerX = (viewportWidth / 2) - (startRect.width / 2);
+            const centerY = (viewportHeight / 2) - (startRect.height / 2);
+
+            flyImg.style.left = `${centerX}px`;
+            flyImg.style.top = `${centerY}px`;
+            flyImg.style.transform = 'scale(1.5)'; // Zoom Grande
+            flyImg.classList.add('fly-glow'); // Brillo intenso
+            overlay.style.opacity = '1'; // Oscurecer fondo
+        }, 10);
+
+        // --- FASE 2: VOLAR AL CARRITO (Curva) ---
+        // Esperamos 1650ms (tiempo de viaje al centro 1.6s + pequeña pausa 0.05s)
+        setTimeout(() => {
+            const endRect = cartTarget.getBoundingClientRect();
+            
+            // Calcular posición final centrada en el icono del carrito
+            // El tamaño final será pequeño (ej. 30px)
+            const finalSize = 30;
+            const endLeft = endRect.left + (endRect.width / 2) - (finalSize / 2);
+            const endTop = endRect.top + (endRect.height / 2) - (finalSize / 2);
+
+            // Quitamos el brillo y cambiamos la transición para crear la CURVA
+            flyImg.classList.remove('fly-glow');
+            overlay.style.opacity = '0'; // Restaurar luz fondo
+            setTimeout(() => overlay.remove(), 500); // Eliminar del DOM al terminar transición
+            
+            // TRUCO CURVA: 'left' lineal y 'top' con cubic-bezier (o viceversa) desincronizan el movimiento
+            // creando un arco en lugar de una línea recta.
+            flyImg.style.transition = 'left 0.8s linear, top 0.8s cubic-bezier(0.5, 0, 0.5, 1), width 0.8s ease, height 0.8s ease, transform 0.8s ease';
+            
+            flyImg.style.left = `${endLeft}px`;
+            flyImg.style.top = `${endTop}px`;
+            flyImg.style.width = `${finalSize}px`;
+            flyImg.style.height = `${finalSize}px`;
+            flyImg.style.transform = 'scale(1) rotate(360deg)'; // Pequeña rotación al viajar
+
+            // Iniciamos la estela solo durante el vuelo rápido
+            const trailInterval = setInterval(() => {
+                const rect = flyImg.getBoundingClientRect();
+                const trail = flyImg.cloneNode();
+                trail.classList.remove('fly-item', 'fly-glow'); // Limpiar clases funcionales
+                trail.classList.add('fly-trail');
+                
+                trail.style.position = 'fixed';
+                trail.style.left = `${rect.left}px`;
+                trail.style.top = `${rect.top}px`;
+                trail.style.width = `${rect.width}px`;
+                trail.style.height = `${rect.height}px`;
+                trail.style.transition = 'none';
+                trail.style.transform = flyImg.style.transform;
+                
+                document.body.appendChild(trail);
+                
+                trail.addEventListener('animationend', () => trail.remove());
+            }, 50);
+
+            // Limpieza al llegar
+            setTimeout(() => {
+                clearInterval(trailInterval);
+                flyImg.remove();
+                isAnimating = false; // Liberar bloqueo (Cooldown terminado)
+                
+                // Efecto "golpe" en el carrito
+                cartTarget.classList.add('cart-flash');
+                cartTarget.addEventListener('animationend', () => cartTarget.classList.remove('cart-flash'), { once: true });
+            }, 800); // Coincide con la duración de la transición (0.8s)
+        
+        }, 1650);
     }
 });
