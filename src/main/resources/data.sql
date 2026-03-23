@@ -41,9 +41,10 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 --ONEPIECE
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (30, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (31, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (32, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (32, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 152);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (33, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
-
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (34, 4, 'Emperors in the New World', '2024-08-31', 'OP-09', 160);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (35, 4, 'The Azure Sea `s Seven', '2025-11-22', 'OP-14', 158);
 --YUGIOH
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4000, 3, 'Eternity Code', '2020-05-01', 'ETCO', 100);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4001, 3, 'Maximum Crisis', '2017-05-05', 'MACR', 100);
@@ -217,20 +218,17 @@ VALUES (202, 'Duoterion', 'MACR-EN019', 'Super Rare', 'Monstruo', 1.50, 'Puedes 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (202, 5, 'AGUA', 'Dinosaurio / Efecto', 2000, 1400, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial. Solo puedes usar cada efecto de "Duoterion" una vez por turno.');
 
-
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (203, 'K-9', 'MECH-EN01', 'Common', 'Monstruo', 0.50, 'Un compañero mecánico leal. Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.', '/img/k9.jpg', 3, 4002, 56, 'Inglés');
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (203, 5, 'VIENTO', 'Guerrero / XYZ / Efecto', 2300, 1800, 'Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.');
 
-
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (204, 'Penguin Brave', 'PHRA-EN042', 'Ultra Rare', 'Monstruo', 2.00, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Solo puedes usar cada uno de los siguientes efectos de "Penguin Brave" una vez por turno. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo.', '/img/penguin.jpg', 3, 4003, 34, 'Inglés');
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (204, 1, 'AGUA', 'Bestia Alada / Efecto', 100, 100, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo. Cuando tu adversario activa el efecto de un monstruo: puedes voltear boca arriba 1 monstruo de AGUA en Posición de Defensa boca abajo que controles.');
-
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (205, 'Exormana', 'EXOR-EN01', 'Ultra Rare', 'Monstruo', 5.00, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.', '/img/Exormana.jpg', 3, 4004, 32, 'Inglés');
@@ -398,6 +396,38 @@ VALUES (400, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00,
 -- 2. Tabla hija 'onepiece_cartas' (ID 300)
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (400, 'Rojo', 5, 6000, 1000, 'Puede atacar activo si tiene 2 o más DON!!');
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (401, 'Dr. Vegapunk', 'OP07-097', 'Leader', 'Líder', 60.00, 'El genio científico de la Marina y líder de Egghead.', '/img/vegapunk.png', 4, 32, 13, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (401, 'Amarillo', 2, 5000, NULL, '[Activación: Principal] [Una vez por turno] Puedes añadir 1 carta de Personaje con el tipo {Egghead} y un coste de 5 o menos desde tu mano a la parte superior de tus cartas de Vida boca arriba.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (402, 'Boa Hancock (Special Art)', 'OP07-051', 'SR', 'Personaje', 605.00, 'Emperatriz de Amazon Lily, posee la fruta Mero Mero no mi, una fruta de tipo (Paramecia) que permite convertir en piedra a quien sienten atracción por ella, incluso con sus ataques.', '/img/boa-sp.png', 4, 32, 2, 'Japonés/Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (402, 'Azul', 2, 8000, NULL, '[Bloqueador] [Al bloquear] [Al atacar] Si tienes 5 o menos cartas en tu mano, roba 1 carta.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (403, 'Kaido & Linlin', 'OP07-077', 'SEC-Parallel', 'Event', 2.00, 'Arte alternativo que muestra la alianza de los dos Yonko en Onigashima. Una de las cartas más poderosas y visualmente impactantes del set 500 Years into the Future.', '/img/kaido-bigMom.png', 4, 32, 12, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (403, 'Morado', 1, NULL, NULL, '[Al jugar] DON!! -2: Si tu líder tiene los tipos {Los Cuatro Emperadores}, roba 1 carta, y esta criatura gana [Banish] y [Double Attack] durante este turno. Luego, añade hasta 1 carta de la parte superior de tu mazo a tus cartas de vida.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (404, 'Charlotte Linlin', 'OP07-114', 'SR', 'Personaje', 34.00, 'La capitana de los Piratas de Big Mom y emperatriz del mar (Yonkou), posee la Soru Soru no Mi, una fruta tipo (Paramecia) que le permite manipular las almas, extraer la vida de otros y dar vida a objetos creando así sus propios sirvientes.', '/img/linlin.png', 4, 300, 5, 'Japonés');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (405, 'Buggy (Wanted Poster)', 'OP07-005', 'SP', 'Personaje', 55.00, 'Edición Especial "SP" con diseño de cartel de recompensa. Una pieza de colección altamente cotizada por los fans de Cross Guild.', '/img/cartel-buggy.png', 4, 34, 5, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (405, 'Azul', 10, 12000, NULL, '[Al jugar] Mira las 5 cartas superiores de tu mazo, revela hasta una carta de tipo {Cross Guild} (que no sea Buggy) y añádela a tu mano. Luego, pon el resto en la parte inferior de tu mazo.');
+
+
+
+
 
 
 INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
