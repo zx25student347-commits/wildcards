@@ -367,25 +367,25 @@ INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descri
 VALUES (310, 'Palacio de las Nubes', 'RECL-02', 'Mythic Rare', 'Encantamiento', 12.00, 'Una fortaleza mística que flota más allá del alcance de los mortales.', '/img/palacio-nubes.jpg', 2, 2005, 23, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (311, '2UU', 'Enchantment', NULL, NULL, 'Las criaturas que controlas con la habilidad de volar obtienen +1/+1. Al comienzo de tu paso final, si controlas tres o más criaturas con la habilidad de volar, roba una carta.', 'Azul');
+VALUES (310, '2UU', 'Enchantment', NULL, NULL, 'Las criaturas que controlas con la habilidad de volar obtienen +1/+1. Al comienzo de tu paso final, si controlas tres o más criaturas con la habilidad de volar, roba una carta.', 'Azul');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (312, 'Ajani, Guerrero de la Garra', 'LMULT-01', 'Mythic Rare', 'Criatura Legendaria', 88.50, 'Un líder noble cuya fuerza solo es superada por su lealtad a su manada.', '/img/ajani.jpg', 2, 2006, 2, 'Inglés');
+VALUES (311, 'Ajani, Guerrero de la Garra', 'LMULT-01', 'Mythic Rare', 'Criatura Legendaria', 88.50, 'Un líder noble cuya fuerza solo es superada por su lealtad a su manada.', '/img/ajani.jpg', 2, 2006, 2, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (312, '2WW', 'Legendary Creature - Cat Warrior', '4', '4', 'Dañar primero, Vínculo vital. Siempre que otra criatura que controles entre al campo de batalla, puedes poner un contador +1/+1 sobre Ajani, Guerrero de la Garra.', 'Blanco');
+VALUES (311, '2WW', 'Legendary Creature - Cat Warrior', '4', '4', 'Dañar primero, Vínculo vital. Siempre que otra criatura que controles entre al campo de batalla, puedes poner un contador +1/+1 sobre Ajani, Guerrero de la Garra.', 'Blanco');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (313, 'Demonio del Vacío', 'LMULT-02', 'Rare', 'Criatura', 39.00, 'Una entidad nacida del hambre eterna de los planos oscuros.', '/img/demonio.jpg', 2, 2006, 5, 'Inglés');
+VALUES (312, 'Demonio del Vacío', 'LMULT-02', 'Rare', 'Criatura', 39.00, 'Una entidad nacida del hambre eterna de los planos oscuros.', '/img/demonio.jpg', 2, 2006, 5, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (313, '3BB', 'Creature - Demon', '5', '5', 'Vuela. Al comienzo de tu mantenimiento, sacrifica otra criatura. Si no puedes, el Demonio del Vacío te hace 5 puntos de daño.', 'Negro');
+VALUES (312, '3BB', 'Creature - Demon', '5', '5', 'Vuela. Al comienzo de tu mantenimiento, sacrifica otra criatura. Si no puedes, el Demonio del Vacío te hace 5 puntos de daño.', 'Negro');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (314, 'Espadachina del Destino', 'LMULT-03', 'Uncommon', 'Criatura', 6.00, 'Su hoja ha sido forjada en las estrellas y nunca falla su blanco.', '/img/espadachina.jpg', 2, 2007, 8, 'Español');
+VALUES (313, 'Espadachina del Destino', 'LMULT-03', 'Uncommon', 'Criatura', 6.00, 'Su hoja ha sido forjada en las estrellas y nunca falla su blanco.', '/img/espadachina.jpg', 2, 2006, 8, 'Español');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (314, '1RW', 'Creature - Human Knight', '3', '2', 'Prisa. Siempre que esta criatura ataque, otra criatura atacante objetivo obtiene +2/+0 hasta el final del turno.', 'Rojo, Blaco');
+VALUES (313, '1RW', 'Creature - Human Knight', '3', '2', 'Prisa. Siempre que esta criatura ataque, otra criatura atacante objetivo obtiene +2/+0 hasta el final del turno.', 'Rojo, Blaco');
 
 
 
