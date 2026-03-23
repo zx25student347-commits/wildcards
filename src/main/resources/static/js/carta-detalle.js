@@ -76,6 +76,7 @@ function renderizarDetalleCarta(carta) {
         // Aseguramos que el contenedor tenga la clase necesaria para el efecto Glassmorphism
         if (imgElement.parentElement) {
             imgElement.parentElement.classList.add('single-img');
+            iniciarEfectoExpositor(imgElement.parentElement);
         }
     }
     
@@ -137,4 +138,97 @@ function renderizarDetalleCarta(carta) {
     }
 
     
+}
+
+/**
+ * Habilita el efecto de expositor 3D interactivo (arrastrar para rotar)
+ */
+function iniciarEfectoExpositor(elemento) {
+    let isDragging = false;
+    let centerX, centerY;
+
+    // Evitar arrastre nativo de la imagen (ghost image)
+    const img = elemento.querySelector('img');
+    if (img) {
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+    }
+
+    // Doble clic para abrir Lightbox
+    elemento.addEventListener('dblclick', () => {
+        if (img) {
+            mostrarLightbox(img.src);
+        }
+    });
+
+    elemento.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        elemento.classList.add('is-dragging');
+        
+        // Capturar centro actual para cálculos relativos
+        const rect = elemento.getBoundingClientRect();
+        centerX = rect.left + rect.width / 2;
+        centerY = rect.top + rect.height / 2;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            elemento.classList.remove('is-dragging');
+            
+            // Restaurar posición original suavemente (el CSS transition se reactiva al quitar is-dragging)
+            elemento.style.transform = '';
+        }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        
+        // Sensibilidad y límites
+        const rotateY = deltaX / 10; // Mover ratón derecha -> girar eje Y positivo
+        const rotateX = -deltaY / 10; // Mover ratón abajo -> girar eje X negativo
+
+        elemento.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.1, 1.1, 1.1)`;
+    });
+}
+
+/**
+ * Crea y muestra un lightbox a pantalla completa con la imagen proporcionada
+ */
+function mostrarLightbox(imagenUrl) {
+    let overlay = document.getElementById('lightbox-overlay');
+    
+    // Si no existe el elemento en el DOM, lo creamos
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'lightbox-overlay';
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <div class="lightbox-close">&times;</div>
+            <img src="" alt="Vista ampliada">
+        `;
+        document.body.appendChild(overlay);
+
+        // Eventos para cerrar
+        const cerrar = () => overlay.classList.remove('activo');
+        
+        overlay.querySelector('.lightbox-close').addEventListener('click', cerrar);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) cerrar();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrar();
+        });
+    }
+
+    // Actualizamos la imagen y mostramos
+    const img = overlay.querySelector('img');
+    img.src = imagenUrl;
+    
+    // Pequeño delay para permitir que la transición CSS funcione
+    requestAnimationFrame(() => {
+        overlay.classList.add('activo');
+    });
 }
