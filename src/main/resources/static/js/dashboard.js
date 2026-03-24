@@ -40,6 +40,7 @@
 
         // Filtros
         const buscarNombre = document.getElementById('buscarNombre');
+        const filtroJuego = document.getElementById('filtroJuego');
         const filtroRareza = document.getElementById('filtroRareza');
         const filtroSet = document.getElementById('filtroSet');
 
@@ -53,6 +54,8 @@
         // Estado de edición
         let modoEdicion = false;
         let idCartaEnEdicion = null;
+
+        let allCartas = [];
 
         // Mapeo para el backend (Asumiendo IDs de juegos y nombres de clases para Jackson)
         const juegoMap = {
@@ -109,8 +112,9 @@
                 const response = await authFetch(API_URL);
                 if (!response.ok) throw new Error('Error al cargar cartas');
                 const cartas = await response.json();
+                allCartas = cartas;
                 renderizarTabla(cartas);
-                inicializarFiltroSets(cartas);
+                actualizarFiltroSets();
             } catch (error) {
                 console.error(error);
                 alert('No se pudieron cargar las cartas.');
@@ -148,12 +152,18 @@
         }
 
         // Inicializar sets disponibles en el filtro
-        function inicializarFiltroSets(cartas) {
+        function actualizarFiltroSets() {
+            const juegoSeleccionado = filtroJuego.value;
             const setsUnicos = new Set();
-            cartas.forEach(c => {
-                if (c.set) setsUnicos.add(c.set.nombre || c.set);
+            
+            allCartas.forEach(c => {
+                const nombreJuego = c.juego ? (c.juego.nombre || 'Desconocido') : 'Desconocido';
+                if (!juegoSeleccionado || nombreJuego === juegoSeleccionado) {
+                    if (c.set) setsUnicos.add(c.set.nombre || c.set);
+                }
             });
             
+            const setActual = filtroSet.value;
             filtroSet.innerHTML = '<option value="">Todos los Sets</option>';
             const setsOrdenados = Array.from(setsUnicos).sort();
             setsOrdenados.forEach(set => {
@@ -162,6 +172,7 @@
                 option.textContent = set;
                 filtroSet.appendChild(option);
             });
+            if (setsUnicos.has(setActual)) filtroSet.value = setActual;
         }
 
         // Función para filtrar la tabla
@@ -169,6 +180,7 @@
             const tablaBody = document.getElementById('tablaCartasBody');
             const filas = tablaBody.querySelectorAll('tr');
             const nombreBusqueda = buscarNombre.value.toLowerCase();
+            const juegoSeleccionado = filtroJuego.value;
             const rarezaSeleccionada = filtroRareza.value;
             const setSeleccionado = filtroSet.value;
 
@@ -176,12 +188,20 @@
                 let mostrar = true;
                 const celdas = fila.querySelectorAll('td');
                 const nombre = celdas[2].textContent.toLowerCase();
+                const juego = celdas[3].textContent.trim();
                 const set = celdas[4].textContent;
                 const rareza = celdas[5].textContent;
 
                 // Filtro por nombre
                 if (nombreBusqueda && !nombre.includes(nombreBusqueda)) {
                     mostrar = false;
+                }
+
+                // Filtro por juego
+                if (juegoSeleccionado && mostrar) {
+                    if (juego !== juegoSeleccionado) {
+                        mostrar = false;
+                    }
                 }
 
                 // Filtro por rareza
@@ -204,6 +224,10 @@
 
         // Event listeners para filtros
         buscarNombre.addEventListener('input', aplicarFiltros);
+        filtroJuego.addEventListener('change', () => {
+            actualizarFiltroSets();
+            aplicarFiltros();
+        });
         filtroRareza.addEventListener('change', aplicarFiltros);
         filtroSet.addEventListener('change', aplicarFiltros);
 

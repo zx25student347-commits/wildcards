@@ -86,6 +86,13 @@ function renderizarTabla(usuarios) {
         }
 
         const estado = usuario.enabled ? '<span style="color: #4ade80;">Activo</span>' : '<span style="color: #f87171;">Inactivo</span>';
+        
+        // Verificar si es admin para mostrar o no el botón de pedidos
+        const esAdmin = rolesStr.includes('ADMIN');
+        let btnPedidos = '';
+        if (!esAdmin) {
+            btnPedidos = `<button class="btn-ver-pedidos" data-username="${usuario.username}">Pedidos</button>`;
+        }
 
         tr.innerHTML = `
             <td>${usuario.id}</td>
@@ -95,6 +102,7 @@ function renderizarTabla(usuarios) {
             <td>
                 <button class="btn-edit" data-id="${usuario.id}">Editar</button>
                 <button class="btn-delete" data-id="${usuario.id}" data-nombre="${usuario.username}">Eliminar</button>
+                ${btnPedidos}
             </td>
         `;
         tbody.appendChild(tr);
@@ -102,6 +110,7 @@ function renderizarTabla(usuarios) {
 
     agregarEventosEditar();
     agregarEventosEliminar();
+    agregarEventosVerPedidos();
 }
 
 function renderizarTablaPedidosGlobal(pedidos) {
@@ -305,6 +314,23 @@ function agregarEventosEditar() {
             } catch (error) {
                 console.error(error);
                 alert('Error al cargar datos para editar');
+            }
+        });
+    });
+}
+
+// Función para ir a la tabla de pedidos y filtrar por usuario
+function agregarEventosVerPedidos() {
+    document.querySelectorAll('.btn-ver-pedidos').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const username = e.target.getAttribute('data-username');
+            const filtroInput = document.getElementById('buscarPedidoUsername');
+            const headerPedidos = document.getElementById('headerPedidos');
+            
+            if (headerPedidos && filtroInput) {
+                headerPedidos.scrollIntoView({ behavior: 'smooth' });
+                filtroInput.value = username;
+                filtroInput.dispatchEvent(new Event('input')); // Disparar el evento para que se aplique el filtro
             }
         });
     });
