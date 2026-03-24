@@ -1052,7 +1052,8 @@
     top: 50%;
     transform: translateY(-50%);
     
-    background: linear-gradient(to right, #ff00ff, #32cd32);
+    background: linear-gradient(90deg, #ff00ff, #32cd32, #ff00ff);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -1086,16 +1087,23 @@
     display: inline-block;
     width: 22px;
     height: 22px;
-    background: url('/icons/casita.png') no-repeat center center;
-    background-size: contain;
+    
+    /* Aplicamos el mismo degradado que las flechas */
+    background: linear-gradient(90deg, #ff00ff, #32cd32, #ff00ff);
+    background-size: 200% auto;
+    
+    /* Usamos la imagen como máscara para recortar el degradado */
+    -webkit-mask: url('/icons/casita.png') no-repeat center center;
+    mask: url('/icons/casita.png') no-repeat center center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+
     font-size: 0; /* Oculta el texto "Inicio" */
     vertical-align: middle;
-    filter: grayscale(100%) brightness(1.5); /* Blanco apagado por defecto */
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .breadcrumbs a[href="/"]:hover {
-    filter: none; /* Recupera color original */
-    filter: drop-shadow(0 0 5px var(--accent)); /* O añade brillo si es blanca */
+    filter: drop-shadow(0 0 5px var(--accent));
     transform: scale(1.15);
 }
