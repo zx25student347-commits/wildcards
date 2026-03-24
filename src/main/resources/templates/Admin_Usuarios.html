@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="/css/dashboard.css">
     <script src="/js/dashboard_usuarios.js" defer></script>
     <script src="/js/logout.js" defer></script>
+    <style>
+        .btn-ver-pedidos {
+            background-color: #3b82f6; /* Azul brillante */
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .btn-ver-pedidos:hover {
+            background-color: #2563eb; /* Azul más oscuro al pasar el ratón */
+        }
+    </style>
 </head>
 <body>
     <div class="admin-container">
@@ -22,9 +38,10 @@
         </aside>
 
         <main class="main-content">
-            <header>
+            <header id="headerUsuarios">
                 <h1>Gestión de Usuarios</h1>
                 <div style="display: flex; gap: 10px; align-items: center;">
+                     <a href="#headerPedidos" class="btn-add" style="background-color: #2563EB; text-decoration: none; display: flex; align-items: center; justify-content: center;">Ir a Pedidos</a>
                     <button class="btn-add" id="btnNuevoUsuario"> Nuevo Usuario</button>
                     <a href="#" onclick="logout()" class="btn-add" style="background-color: #555;">Cerrar sesión</a>
                 </div>
@@ -52,8 +69,11 @@
             </div>
 
             <!-- Sección de Gestión Global de Pedidos -->
-            <header style="margin-top: 40px; border-top: 2px solid var(--dark-muted); padding-top: 20px;">
+            <header id="headerPedidos" style="margin-top: 40px; border-top: 2px solid var(--dark-muted); padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
                 <h1>Gestión Global de Pedidos</h1>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a href="#headerUsuarios" class="btn-add" style="background-color: #2563EB; text-decoration: none; display: flex; align-items: center; justify-content: center;">Ir a Usuarios</a>
+                </div>
             </header>
 
             <section class="filters">

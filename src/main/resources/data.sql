@@ -39,10 +39,22 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (2006, 2, 'Leyendas del Multiverso', '2024-03-19', 'LMULT', 50);
 
 --ONEPIECE
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (30, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 121);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (31, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (32, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 126);
-INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (33, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (30, 4, 'Romance Dawn', '2022-12-02', 'OP-01', 156);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (31, 4, 'Paramount War', '2023-03-10', 'OP-02', 155);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (32, 4, 'Pillars of Strength', '2023-06-30', 'OP-03', 155);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (34, 4, 'Kingdoms of Intrigue', '2023-09-22', 'OP-04', 150);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (35, 4, 'Awakening of the New', '2023-12-08', 'OP-05', 155);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (36, 4, 'Wings of the Captain', '2024-03-15', 'OP-06', 152);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (37, 4, '500 Years in the Future', '2024-06-28', 'OP-07', 152);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (38, 4, 'Two Legends', '2024-09-13', 'OP-08', 126);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (39, 4, 'Emperors in the New World', '2024-08-31', 'OP-09', 160);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (40, 4, 'Royal Blood', '2025-03-21', 'OP-10', 156);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (41, 4, 'A Fist of Divine Speed', '2025-03-01', 'OP-11', 156);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (42, 4, 'Legacy of the Master', '2025-08-22', 'OP-12', 157);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (43, 4, 'Carrying on his Will', '2025-11-07', 'OP-13', 179);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (44, 4, 'The Azure Sea`s Seven', '2025-11-22', 'OP-14', 158);
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (45, 4, 'Adventure on Kami`s Island', '2026-02-28', 'OP-15', 154);
+
 
 --YUGIOH
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4000, 3, 'Eternity Code', '2020-05-01', 'ETCO', 100);
@@ -217,20 +229,17 @@ VALUES (202, 'Duoterion', 'MACR-EN019', 'Super Rare', 'Monstruo', 1.50, 'Puedes 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (202, 5, 'AGUA', 'Dinosaurio / Efecto', 2000, 1400, 'Puedes descartar esta carta; añade a tu mano 1 Magia/Trampa "Bonding" en tu Deck. Si esta carta es Invocada de Modo Normal o Especial: puedes seleccionar 1 "Hydrogeddon", "Oxygeddon" o "Duoterion" en tu Cementerio; Invócalo de Modo Especial. Solo puedes usar cada efecto de "Duoterion" una vez por turno.');
 
-
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (203, 'K-9', 'MECH-EN01', 'Common', 'Monstruo', 0.50, 'Un compañero mecánico leal. Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.', '/img/k9.jpg', 3, 4002, 56, 'Inglés');
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (203, 5, 'VIENTO', 'Guerrero / XYZ / Efecto', 2300, 1800, 'Si controlas un monstruo de Nivel 3, puedes Invocar esta carta de Modo Especial desde tu mano. Si esta carta es destruida, puedes añadir 1 monstruo Máquina de Nivel 3 de tu Deck a tu mano.');
 
-
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (204, 'Penguin Brave', 'PHRA-EN042', 'Ultra Rare', 'Monstruo', 2.00, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Solo puedes usar cada uno de los siguientes efectos de "Penguin Brave" una vez por turno. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo.', '/img/penguin.jpg', 3, 4003, 34, 'Inglés');
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (204, 1, 'AGUA', 'Bestia Alada / Efecto', 100, 100, '1 Cantante + 1+ monstruos que no sean Cantantes. Tu adversario no puede seleccionar monstruos en Posición de Defensa boca abajo con efectos de cartas. Si esta carta es Invocada por Sincronía: puedes Invocar de Modo Especial, desde tu Deck, 1 monstruo "Penguin" en Posición de Defensa boca abajo. Cuando tu adversario activa el efecto de un monstruo: puedes voltear boca arriba 1 monstruo de AGUA en Posición de Defensa boca abajo que controles.');
-
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (205, 'Exormana', 'EXOR-EN01', 'Ultra Rare', 'Monstruo', 5.00, '2+ Monstruos incluyendo un monstruo "Exor". Esta carta no puede ser destruida por efectos de cartas de tu adversario mientras apunte a un monstruo. Una vez por turno (Efecto Rápido): puedes seleccionar 1 monstruo al que esta carta apunte; cámbialo a Posición de Defensa boca abajo.', '/img/Exormana.jpg', 3, 4004, 32, 'Inglés');
@@ -287,7 +296,7 @@ INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defe
 VALUES (214, 8, 'TIERRA', 'Dragón / Normal', 2500, 2000, 'Este dragón secreto ha conquistado muchas dimensiones, pero solo puede ser visto por el campeón del tiempo.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (215, 'Odd-Eyes Vortex Dragon (Giant Card)', 'DOCS-EN045', 'Super Rare', 'Monstruo', 500000.00, 'Cuando esta carta es Invocada de Modo Especial: puedes seleccionar 1 monstruo en Posición de Ataque boca arriba que controle tu adversario; devuélvelo a la mano.', '/img/Dragon_vortice.jpg', 3, 4012, 1, 'Inglés');
+VALUES (215, 'Odd-Eyes Vortex Dragon', 'DOCS-EN045', 'Super Rare', 'Monstruo', 500000.00, 'Cuando esta carta es Invocada de Modo Especial: puedes seleccionar 1 monstruo en Posición de Ataque boca arriba que controle tu adversario; devuélvelo a la mano.', '/img/Dragon_vortice.jpg', 3, 4012, 1, 'Inglés');
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (215, 7, 'VIENTO', 'Dragón / Fusión / Efecto', 2500, 3000, '1 monstruo "Ojos Anómalos" + 1 Monstruo de Péndulo. Cuando esta carta es Invocada de Modo Especial: puedes devolver 1 monstruo en ataque del rival a la mano. Durante el turno de cualquier jugador, cuando se activa una carta o efecto: puedes barajar 1 Monstruo de Péndulo boca arriba en tu Deck Extra al Deck, niega la activación y destruye la carta.');
@@ -340,7 +349,7 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (305, '1BRG', 'Legendary Creature - Turtle Ninja', '3', '3', 'Arrollar. Siempre que Raphael reciba daño, pon esa misma cantidad de contadores +1/+1 sobre él. Al comienzo de tu paso final, Raphael puede luchar contra la criatura objetivo que no controles.', 'Negro, Rojo, Verde');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.jpg', 2, 2003, 4, 'Inglés');
+VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.jpg', 2, 2001, 4, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (306, '1GUW', 'Legendary Creature - Turtle Ninja', '1', '5', 'Alcance. Siempre que lances un hechizo de artefacto, puedes robar una carta. {2}, {T}: Endereza el artefacto objetivo que controles.', 'Verde, Azul, Blanco');
@@ -398,6 +407,64 @@ VALUES (400, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00,
 -- 2. Tabla hija 'onepiece_cartas' (ID 300)
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (400, 'Rojo', 5, 6000, 1000, 'Puede atacar activo si tiene 2 o más DON!!');
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (401, 'Dr. Vegapunk', 'OP07-097', 'Leader', 'Líder', 60.00, 'El genio científico de la Marina y líder de Egghead.', '/img/vegapunk.png', 4, 37, 13, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (401, 'Amarillo', 2, 5000, NULL, '[Activación: Principal] [Una vez por turno] Puedes añadir 1 carta de Personaje con el tipo {Egghead} y un coste de 5 o menos desde tu mano a la parte superior de tus cartas de Vida boca arriba.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (402, 'Boa Hancock', 'OP07-051', 'SR', 'Personaje', 605.00, 'Emperatriz de Amazon Lily, posee la fruta Mero Mero no mi, una fruta de tipo (Paramecia) que permite convertir en piedra a quien sienten atracción por ella, incluso con sus ataques.', '/img/boa-manga.png', 4, 37, 2, 'Japonés/Inglés');
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (402, 'Azul', 2, 8000, NULL, '[Bloqueador] [Al bloquear] [Al atacar] Si tienes 5 o menos cartas en tu mano, roba 1 carta.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (403, 'Kaido & Linlin', 'OP07-077', 'SEC-Parallel', 'Event', 2.00, 'Arte alternativo que muestra la alianza de los dos Yonko en Onigashima. Una de las cartas más poderosas y visualmente impactantes del set 500 Years into the Future.', '/img/kaido-bigMom.png', 4, 37, 12, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (403, 'Morado', 1, NULL, NULL, '[Al jugar] DON!! -2: Si tu líder tiene los tipos {Los Cuatro Emperadores}, roba 1 carta, y esta criatura gana [Banish] y [Double Attack] durante este turno. Luego, añade hasta 1 carta de la parte superior de tu mazo a tus cartas de vida.');
+
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (404, 'Charlotte Linlin', 'OP07-114', 'SR', 'Personaje', 34.00, 'La capitana de los Piratas de Big Mom y emperatriz del mar (Yonkou), posee la Soru Soru no Mi, una fruta tipo (Paramecia) que le permite manipular las almas, extraer la vida de otros y dar vida a objetos creando así sus propios sirvientes.', '/img/linlin.png', 4, 300, 5, 'Japonés');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (405, 'Buggy (Wanted Poster)', 'OP07-005', 'SP', 'Personaje', 55.00, 'Edición Especial "SP" con diseño de cartel de recompensa. Una pieza de colección altamente cotizada por los fans de Cross Guild.', '/img/cartel-buggy.png', 4, 37, 5, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (405, 'Azul', 10, 12000, NULL, '[Al jugar] Mira las 5 cartas superiores de tu mazo, revela hasta una carta de tipo {Cross Guild} (que no sea Buggy) y añádela a tu mano. Luego, pon el resto en la parte inferior de tu mazo.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (406, 'Yamato', 'OP01-121', 'SEC', 'Personaje', 75.50, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato.png', 4, 30, 10, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (406, 'Verde', 5, 5000, 1000, '[Doble Ataque] [En tu turno] Si tu oponente tiene 2 o menos cartas de vida, este líder gana +1000 de poder.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (407, 'Perona', 'OP01-077', 'UC', 'Personaje', 14.00, 'Perona posee Horo Horo no Mi, una fruta de tipo (Paramecia) que le permite crear fantasmas negativos y explosivos, pertenece a la tripulacion de Thriller Bark Pirates.', '/img/perona.png', 4, 30, 8, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (407, 'Azul', 1, 2000, 1000, '[Activación: Principal] [Una vez por turno] Elige uno: Descansa hasta 1 de los personajes de tu oponente de coste 4 o menos; o reduce el coste de 1 personaje de tu oponente en -1 durante este turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (408, "Who's-Who", 'OP01-109', 'UC', 'Personaje', 1.00, 'Who`s. Who tiene una fruta Neko Neko no Mi, una fruta tipo (Zoan) que le permite convertirse en un tigre dientes de sable, miembro de los Tobiroppo y los Piratas de las Bestias.', '/img/who.png', 4, 30, 3, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (408, 'Morado', 2, 3000, 1000, '[Al jugar] Si tu líder tiene el tipo {Piratas de las Bestias}, K.O. a un personaje de tu oponente de coste 3 o menos.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (409, 'In Two Years at Sabaody Archipelago', 'OP01-030', 'UC', 'Evento', 0.50, 'Representa la reunión de los Sombrero de Paja tras el salto temporal.', '/img/In-two-years.png', 4, 30, 20, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (409, 'Rojo', 1, NULL, NULL, '[Principal] Mira 5 cartas de la parte superior de tu mazo, revela hasta 1 carta de tipo {Straw Hat Crew} y añádela a tu mano.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (413, 'Shanks', 'OP01-120', 'SEC', 'Personaje', 2150.00, 'Shanks llamado el (pelirrojo) es uno de los emperadores del mar (Yonko) que no posee fruta del diablo basando su poder en el haki y su habilidad con la espada. Su sombrero paso de su capitan a el y de el a Luffy', '/img/shanks-manga.png', 4, 30, 2, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (413, 'Rojo', 9, 10000, NULL, '[Al jugar] Si tu líder es Rojo, descarta 2 cartas de tu mano: K.O. a todos los personajes del oponente con 10000 de poder o menos. Esta carta gana [Prisa] durante este turno.');
+
 
 
 INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
