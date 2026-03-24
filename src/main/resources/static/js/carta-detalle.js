@@ -81,7 +81,19 @@ function renderizarDetalleCarta(carta) {
     }
     
     document.getElementById('carta-nombre').textContent = carta.nombre;
-    document.getElementById('carta-juego').textContent = carta.juego ? carta.juego.nombre : 'N/A';
+
+    // Configurar enlace del Juego
+    const juegoElement = document.getElementById('carta-juego');
+    const nombreJuego = carta.juego ? carta.juego.nombre : 'N/A';
+    juegoElement.textContent = nombreJuego;
+    
+    let urlJuego = '/';
+    if (nombreJuego === 'Pokémon TCG') urlJuego = '/pokemon';
+    else if (nombreJuego === 'Magic: The Gathering') urlJuego = '/magic';
+    else if (nombreJuego === 'Yu-Gi-Oh!') urlJuego = '/yugioh';
+    else if (nombreJuego === 'One Piece Card Game') urlJuego = '/onepiece';
+    juegoElement.href = urlJuego;
+
     document.getElementById('carta-set').textContent = carta.set ? carta.set.nombre : 'N/A';
     document.getElementById('carta-precio').textContent = carta.precio ? `${parseFloat(carta.precio).toFixed(2)} €` : 'Consultar';
     document.getElementById('carta-descripcion').textContent = carta.descripcion || 'No hay descripción disponible.';

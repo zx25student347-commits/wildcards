@@ -33,12 +33,6 @@ body {
     padding: 0 18px
 }
 
-.breadcrumbs {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 6px
-}
-
 .page-title {
     font-size: 36px;
     margin: 6px 0 4px
