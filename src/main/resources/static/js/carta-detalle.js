@@ -94,7 +94,11 @@ function renderizarDetalleCarta(carta) {
     else if (nombreJuego === 'One Piece Card Game') urlJuego = '/onepiece';
     juegoElement.href = urlJuego;
 
-    document.getElementById('carta-set').textContent = carta.set ? carta.set.nombre : 'N/A';
+    const setElement = document.getElementById('carta-set');
+    const nombreSet = carta.set ? carta.set.nombre : 'N/A';
+    setElement.textContent = nombreSet;
+    setElement.href = carta.set ? `${urlJuego}?set=${encodeURIComponent(nombreSet)}` : '#';
+
     document.getElementById('carta-precio').textContent = carta.precio ? `${parseFloat(carta.precio).toFixed(2)} €` : 'Consultar';
     document.getElementById('carta-descripcion').textContent = carta.descripcion || 'No hay descripción disponible.';
 
