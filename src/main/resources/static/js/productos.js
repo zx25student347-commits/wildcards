@@ -62,16 +62,47 @@ document.addEventListener("DOMContentLoaded", () => {
     function setupFilters() {
         const sliderPrecio = document.querySelector('.slider-precio');
         const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]');
+        const selectSet = document.getElementById('filtro-set');
 
         if (sliderPrecio) {
             sliderPrecio.addEventListener('input', aplicarFiltros);
         }
+
+        if (selectSet && allProducts.length > 0) {
+            const sets = new Set();
+            allProducts.forEach(item => {
+                if (item.set) {
+                    const setName = typeof item.set === 'object' ? item.set.nombre : item.set;
+                    if (setName) sets.add(setName);
+                }
+            });
+            
+            Array.from(sets).sort().forEach(setName => {
+                const option = document.createElement('option');
+                option.value = setName;
+                option.textContent = setName;
+                selectSet.appendChild(option);
+            });
+
+            // Preseleccionar set si viene en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const setParam = urlParams.get('set');
+            if (setParam && sets.has(setParam)) {
+                selectSet.value = setParam;
+            }
+
+            selectSet.addEventListener('change', aplicarFiltros);
+        }
+
         checkboxesIdioma.forEach(cb => cb.addEventListener('change', aplicarFiltros));
     }
 
     function aplicarFiltros() {
         const sliderPrecio = document.querySelector('.slider-precio');
         const maxPrecio = sliderPrecio ? parseFloat(sliderPrecio.value) : Infinity;
+        
+        const selectSet = document.getElementById('filtro-set');
+        const setSeleccionado = selectSet ? selectSet.value : '';
 
         const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]:checked');
         const idiomasSeleccionados = Array.from(checkboxesIdioma).map(cb => cb.value);
@@ -82,6 +113,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const filtrados = allProducts.filter(item => {
             // Filtro Precio
             if (item.precio && item.precio > maxPrecio) return false;
+
+            // Filtro Set
+            if (setSeleccionado) {
+                const itemSet = item.set ? (typeof item.set === 'object' ? item.set.nombre : item.set) : '';
+                if (itemSet !== setSeleccionado) return false;
+            }
 
             // Filtro Idioma
             if (idiomasSeleccionados.length > 0) {
