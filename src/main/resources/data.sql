@@ -413,18 +413,19 @@ INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descri
 VALUES (401, 'Dr. Vegapunk', 'OP07-097', 'Leader', 'Líder', 60.00, 'El genio científico de la Marina y líder de Egghead.', '/img/vegapunk.png', 4, 37, 13, 'Japonés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (401, 'Amarillo', 2, 5000, NULL, '[Activación: Principal] [Una vez por turno] Puedes añadir 1 carta de Personaje con el tipo {Egghead} y un coste de 5 o menos desde tu mano a la parte superior de tus cartas de Vida boca arriba.');
+VALUES (401, 'Amarillo', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] Puedes añadir 1 carta de Personaje con el tipo {Egghead} y un coste de 5 o menos desde tu mano a la parte superior de tus cartas de Vida boca arriba.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (402, 'Boa Hancock', 'OP07-051', 'SR', 'Personaje', 605.00, 'Emperatriz de Amazon Lily, posee la fruta Mero Mero no mi, una fruta de tipo (Paramecia) que permite convertir en piedra a quien sienten atracción por ella, incluso con sus ataques.', '/img/boa-manga.png', 4, 37, 2, 'Japonés/Inglés');
+
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (402, 'Azul', 2, 8000, NULL, '[Bloqueador] [Al bloquear] [Al atacar] Si tienes 5 o menos cartas en tu mano, roba 1 carta.');
+VALUES (402, 'Azul', 6, 8000, 0, '[Bloqueador] [Al bloquear] [Al atacar] Si tienes 5 o menos cartas en tu mano, roba 1 carta.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (403, 'Kaido & Linlin', 'OP07-077', 'SEC-Parallel', 'Event', 2.00, 'Arte alternativo que muestra la alianza de los dos Yonko en Onigashima. Una de las cartas más poderosas y visualmente impactantes del set 500 Years into the Future.', '/img/kaido-bigMom.png', 4, 37, 12, 'Japonés');
+VALUES (403, 'Kaido & Linlin', 'OP07-077', 'R', 'Event', 2.00, 'Arte alternativo que muestra la alianza de los dos Yonko en Onigashima. Una de las cartas más poderosas y visualmente impactantes del set 500 Years into the Future.', '/img/kaido-bigMom.png', 4, 37, 12, 'Japonés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (403, 'Morado', 1, NULL, NULL, '[Al jugar] DON!! -2: Si tu líder tiene los tipos {Los Cuatro Emperadores}, roba 1 carta, y esta criatura gana [Banish] y [Double Attack] durante este turno. Luego, añade hasta 1 carta de la parte superior de tu mazo a tus cartas de vida.');
+VALUES (403, 'Morado', 1, 0, 0, '[Al jugar] DON!! -2: Si tu líder tiene los tipos {Los Cuatro Emperadores}, roba 1 carta, y esta criatura gana [Banish] y [Double Attack] durante este turno. Luego, añade hasta 1 carta de la parte superior de tu mazo a tus cartas de vida.');
 
 -- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 -- VALUES (404, 'Charlotte Linlin', 'OP07-114', 'SR', 'Personaje', 34.00, 'La capitana de los Piratas de Big Mom y emperatriz del mar (Yonkou), posee la Soru Soru no Mi, una fruta tipo (Paramecia) que le permite manipular las almas, extraer la vida de otros y dar vida a objetos creando así sus propios sirvientes.', '/img/linlin.png', 4, 300, 5, 'Japonés');
@@ -433,7 +434,7 @@ INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descri
 VALUES (405, 'Buggy (Wanted Poster)', 'OP07-005', 'SP', 'Personaje', 55.00, 'Edición Especial "SP" con diseño de cartel de recompensa. Una pieza de colección altamente cotizada por los fans de Cross Guild.', '/img/cartel-buggy.png', 4, 37, 5, 'Japonés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (405, 'Azul', 10, 12000, NULL, '[Al jugar] Mira las 5 cartas superiores de tu mazo, revela hasta una carta de tipo {Cross Guild} (que no sea Buggy) y añádela a tu mano. Luego, pon el resto en la parte inferior de tu mazo.');
+VALUES (405, 'Azul', 10, 12000, 0, '[Al jugar] Mira las 5 cartas superiores de tu mazo, revela hasta una carta de tipo {Cross Guild} (que no sea Buggy) y añádela a tu mano. Luego, pon el resto en la parte inferior de tu mazo.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (406, 'Yamato', 'OP01-121', 'SEC', 'Personaje', 75.50, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato.png', 4, 30, 10, 'Inglés');
@@ -457,19 +458,88 @@ INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descri
 VALUES (409, 'In Two Years at Sabaody Archipelago', 'OP01-030', 'UC', 'Evento', 0.50, 'Representa la reunión de los Sombrero de Paja tras el salto temporal.', '/img/In-two-years.png', 4, 30, 20, 'Inglés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (409, 'Rojo', 1, NULL, NULL, '[Principal] Mira 5 cartas de la parte superior de tu mazo, revela hasta 1 carta de tipo {Straw Hat Crew} y añádela a tu mano.');
+VALUES (409, 'Rojo', 1, 0, 0, '[Principal] Mira 5 cartas de la parte superior de tu mazo, revela hasta 1 carta de tipo {Straw Hat Crew} y añádela a tu mano.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (413, 'Shanks', 'OP01-120', 'SEC', 'Personaje', 2150.00, 'Shanks llamado el (pelirrojo) es uno de los emperadores del mar (Yonko) que no posee fruta del diablo basando su poder en el haki y su habilidad con la espada. Su sombrero paso de su capitan a el y de el a Luffy', '/img/shanks-manga.png', 4, 30, 2, 'Inglés');
+VALUES (410, 'Shanks', 'OP01-120', 'SEC', 'Personaje', 2150.00, 'Shanks llamado el (pelirrojo) es uno de los emperadores del mar (Yonko) que no posee fruta del diablo basando su poder en el haki y su habilidad con la espada. Su sombrero paso de su capitan a el y de el a Luffy', '/img/shanks-manga.png', 4, 30, 2, 'Inglés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (413, 'Rojo', 9, 10000, NULL, '[Al jugar] Si tu líder es Rojo, descarta 2 cartas de tu mano: K.O. a todos los personajes del oponente con 10000 de poder o menos. Esta carta gana [Prisa] durante este turno.');
+VALUES (410, 'Rojo', 9, 10000, 0, '[Al jugar] Si tu líder es Rojo, descarta 2 cartas de tu mano: K.O. a todos los personajes del oponente con 10000 de poder o menos. Esta carta gana [Prisa] durante este turno.');
 
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (411, 'Zephyr', 'OP02-072', 'Leader', 'Líder', 0,02, 'Z, el Brazo Negro, líder de la Neo Marina y antagonista principal de One Piece Film: Z. Antiguo almirante y maestro de Kizaru y Aokiji, su objetivo es erradicar en los piratas tras sufrir pérdidas muy duras haciendo que pierda la fe en la justicia.', '/img/zephyr.png', 4, 31, 53, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (411, 'Morado/Negro', 0, 5000, 0, '[Al Atacar] DON!! -4: K.O. hasta a 1 de los personajes de tu oponente con un coste de 3 o menos. Después, este Líder gana +1000 de poder durante este turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (412, 'Yamato', 'OP02-042', 'R', 'Personaje', 0.10, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato_(op-02).png', 4, 31, 16, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (412, 'Verde', 4, 6000, 0, 'Trata el nombre de esta carta también como [Kouzuki Oden]. [Al jugar] Descansa hasta 1 de los personajes de tu oponente con un coste de 6 o menos.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (413, 'Portgas.D.Ace', 'OP02-013', 'M', 'Personaje', 850.00, 'Portgas.D.Ace comandante de la segunda división de los Piratas de Edward Newgate (Barba blanca) y hermano de Monkey.D.Luffy, posee Mera Mera no Mi una fruta tipo (Logia) que le premite crear, controlar y convertirse en fuego.', '/img/ace-manga.png', 4, 31, 2, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (413, 'Rojo', 7, 7000, 0, '[Al jugar] Da a hasta 2 personajes de tu oponente -3000 de poder. Si tu Líder es "Piratas de Barbablanca", esta carta gana [Prisa].');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (414, 'Kouzuki Toki', 'OP02-031', 'R', 'Personaje', 3.10, 'Kouzuki Toki es una mujer misteriosa del País de Wano y esposa de Kozuki Oden, posee una fruta del diablo llamada Toki Toki no Mi tipo (Paramecia) que le permite viajar hacia el futuro en el tiempo. ', '/img/toki.png', 4, 31, 32, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (414, 'Verde', 1, 0, 1000, 'Si tienes un Personaje [Kouzuki Oden], este Personaje gana [Bloqueador].');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (415, 'Squard', 'OP02-009', 'AA', 'Personaje', 1.00, 'Squard Capitán de los Piratas de la Vorágine y aliado de Barbablanca durante la guerra de Marineford.', '/img/squard.png', 4, 31, 31, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (415, 'Rojo', 3, 5000, 0, '[Al jugar] Si tu Líder incluye "Piratas de Barbablanca" en su tipo, da a hasta 1 personaje de tu oponente -4000 de poder durante este turno y añade 1 carta de la parte superior de tus cartas de Vida a tu mano.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (416, 'Shanks', 'OP-DON', 'PROMO', 'DON!! Card', 2.30, 'Shanks llamado el (pelirrojo) es uno de los emperadores del mar (Yonko) que no posee fruta del diablo basando su poder en el haki y su habilidad con la espada. Su sombrero paso de su capitan a el y de el a Luffy.', '/img/shanks-don.png', 4, 31, 10, 'Inglés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (416, 'Incoloro', 0, 0, 0, '[Tu Turno] El Personaje o Líder al que esté ligada esta carta gana +1000 de poder.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (417, 'Sakazuki', 'OP02-099', 'AA', 'Personaje', 35.00, 'Sakazuki conocido también por Akainu es el almirante de Flota de la Marina. Poseedor de la fruta Magu Magu no Mi una fruta (Logia) que le permite crear y controlar magma. Un líder implacable centrado en la Justicia Absoluta.', '/img/sakazuki.png', 4, 31, 71, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (417, 'Negro', 6, 7000, 0, '[Activate: Main] [Once Per Turn] Roba 1 carta y descarta 1 carta de tu mano. [Al Atacar] Da a hasta 1 de los personajes de tu oponente -1 de coste durante este turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (418, 'Kizaru', 'OP02-114', 'AA', 'Personaje', 5.00, 'Almirante de la Marina con el poder de la fruta Pika Pika no Mi una fruta de tipo (Logia) que le permite convertirse en luz y moverse a la velocidad de la luz. Sigue una justicia ambigua', '/img/kizaru.png', 4, 31, 22, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (418, 'Negro', 4, 5000, 1000, '[Bloqueador] [Tu Turno] Si este Personaje está descansado, no puede ser K.O. por efectos de cartas. [Al Bloquear] Este personaje gana +1000 de poder durante esta batalla.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (419, 'Little Sadi', 'OP02-073', 'AA', 'Personaje', 3.50, ' Little Sadi es una guardia de Impel Down famosa por su carácter sádico, disfruta castigando a los prisioneros y comanda a las Bestias Carcelarias.', '/img/little-sadi.png', 4, 31, 44, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (419, 'Morado', 3, 3000, 2000, '[Al jugar] Puedes jugar 1 Personaje de tipo [Jailer Beast] con un coste de 4 o menos desde tu mano en modo descansado.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (420, 'Monkey.D.Garp', 'OP02-002', 'AA', 'Líder', 28.50, 'Monkey.D.Garp también conocido por el Héroe de la Marina es vicealmirante de la Marina. Conocido por su fuerza física devastadora y por acorralar al Rey de los Piratas.', '/img/garp.png', 4, 31, 12, 'Japonés');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (420, 'Rojo/Negro', 0, 5000, 0, '[Al Atacar] Da a hasta 1 de los personajes de tu oponente con un coste de 0: K.O. [Tu Turno] Cuando el coste de un personaje es reducido, este personaje gana +2000 de poder durante este turno.');
 
 
 INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
 VALUES ('Tapete de Juego Pokemon Kanto', 'Tapete', 'Tapete de juego oficial con diseño artístico de alta definición. Presenta a los iniciales de la región de Kanto. Aproximadamente 24 x 13,5 pulgadas y se mantiene completamente plano. Superficie de tela suave para proteger las cartas y base de goma antideslizante para mayor estabilidad durante su uso. Color NEGRO.', 29.95, '/img/tapete-pk.png', 20
 );
+
+INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
+VALUES ('Tapete de Juego Nami & Zeus', 'Tapete', 'Tapete de juego premium con diseño artístico de Nami y Zeus. Superficie de tela suave de alta calidad para proteger las cartas durante el juego y base de goma antideslizante para evitar desplazamientos. Ideal para One Piece Card Game.', 34.95, '/img/tapete-Nami&Zeus.png', 15
+);
+
+INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
+VALUES ('Álbum de Coleccionista Eevee', 'Álbum', 
+    'Carpeta de 9 bolsillos con diseño artístico de Eevee. Material libre de ácido y PVC para una protección segura a largo plazo. Capacidad para 360 cartas con carga lateral para evitar caídas.', 24.50, '/img/album-eevee.png', 20
+);
+
 
 
 -- CARRITO DE COMPRA (Ejemplo para user@wildcards.com)
