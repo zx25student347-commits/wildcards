@@ -499,6 +499,16 @@
     cursor: pointer;
 }
 
+.filtro-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--dark-muted);
+    background-color: var(--primary-2);
+    color: var(--white);
+    cursor: pointer;
+}
+
 .rango-valores {
     display: flex;
     justify-content: space-between;
