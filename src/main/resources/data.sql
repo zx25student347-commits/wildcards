@@ -467,7 +467,7 @@ INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect)
 VALUES (410, 'Rojo', 9, 10000, 0, '[Al jugar] Si tu líder es Rojo, descarta 2 cartas de tu mano: K.O. a todos los personajes del oponente con 10000 de poder o menos. Esta carta gana [Prisa] durante este turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (411, 'Zephyr', 'OP02-072', 'Leader', 'Líder', 0,02, 'Z, el Brazo Negro, líder de la Neo Marina y antagonista principal de One Piece Film: Z. Antiguo almirante y maestro de Kizaru y Aokiji, su objetivo es erradicar en los piratas tras sufrir pérdidas muy duras haciendo que pierda la fe en la justicia.', '/img/zephyr.png', 4, 31, 53, 'Inglés');
+VALUES (411, 'Zephyr', 'OP02-072', 'AA', 'Líder', 0.02, 'Z, el Brazo Negro, líder de la Neo Marina y antagonista principal de One Piece Film: Z. Antiguo almirante y maestro de Kizaru y Aokiji, su objetivo es erradicar en los piratas tras sufrir pérdidas muy duras haciendo que pierda la fe en la justicia.', '/img/zephyr.png', 4, 31, 53, 'Inglés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (411, 'Morado/Negro', 0, 5000, 0, '[Al Atacar] DON!! -4: K.O. hasta a 1 de los personajes de tu oponente con un coste de 3 o menos. Después, este Líder gana +1000 de poder durante este turno.');
