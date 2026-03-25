@@ -1026,6 +1026,29 @@
     font-weight: 500;
 }
 
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: -200% 50%; }
+}
+
+/* Animación de entrada para el texto (fade in + slide) */
+@keyframes text-appear {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Animación de entrada para los separadores */
+@keyframes separator-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
 /* Estilo limpio para los enlaces (sin fondo/borde) */
 .breadcrumbs a {
     color: var(--muted);
@@ -1033,6 +1056,8 @@
     transition: color 0.3s ease, text-shadow 0.3s ease;
     position: relative;
     font-size: 0.95rem; /* Restauramos el tamaño de fuente para los enlaces */
+    /* Animación de entrada por defecto para enlaces */
+    animation: text-appear 0.6s ease backwards;
 }
 
 /* Estilo para el elemento actual (texto final) */
@@ -1043,6 +1068,7 @@
     cursor: default;
     font-size: 0.95rem; /* Restauramos el tamaño de fuente para el texto final */
     position: relative;
+    animation: text-appear 0.6s ease backwards;
 }
 
 /* Espacio extra a la izquierda para acomodar la flecha absoluta */
@@ -1068,7 +1094,22 @@
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+    /* Combinamos: flujo continuo de color + aparición al cargar */
+    animation: gradient-flow 3s linear infinite, separator-appear 0.6s ease backwards;
 }
+
+/* Retrasos secuenciales para que aparezcan uno tras otro */
+.breadcrumbs > *:nth-child(2)::before { animation-delay: 0s, 0.15s; } /* 0s para el gradiente, 0.15s para aparecer */
+.breadcrumbs > *:nth-child(3)::before { animation-delay: 0s, 0.3s; }
+.breadcrumbs > *:nth-child(4)::before { animation-delay: 0s, 0.45s; }
+.breadcrumbs > *:nth-child(5)::before { animation-delay: 0s, 0.6s; }
+
+/* Retrasos secuenciales para los elementos de texto (hijos directos) */
+.breadcrumbs > *:nth-child(1) { animation-delay: 0s; } /* Home */
+.breadcrumbs > *:nth-child(2) { animation-delay: 0.15s; }
+.breadcrumbs > *:nth-child(3) { animation-delay: 0.3s; }
+.breadcrumbs > *:nth-child(4) { animation-delay: 0.45s; }
+.breadcrumbs > *:nth-child(5) { animation-delay: 0.6s; }
 
 /* Hover con efecto brillo (estilo header/neon) */
 .breadcrumbs a:hover {
@@ -1111,6 +1152,8 @@
     font-size: 0; /* Oculta el texto "Inicio" */
     vertical-align: middle;
     transition: transform 0.3s ease;
+    /* Combinamos: animación continua de color + aparición inicial */
+    animation: gradient-flow 3s linear infinite, text-appear 0.6s ease backwards;
 }
 
 .breadcrumbs a[href="/"]:hover {
