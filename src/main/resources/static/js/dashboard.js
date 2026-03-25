@@ -115,6 +115,7 @@
                 allCartas = cartas;
                 renderizarTabla(cartas);
                 actualizarFiltroSets();
+                actualizarFiltroRareza();
             } catch (error) {
                 console.error(error);
                 alert('No se pudieron cargar las cartas.');
@@ -175,6 +176,30 @@
             if (setsUnicos.has(setActual)) filtroSet.value = setActual;
         }
 
+        // Inicializar rarezas disponibles en el filtro
+        function actualizarFiltroRareza() {
+            const juegoSeleccionado = filtroJuego.value;
+            const rarezasUnicas = new Set();
+
+            allCartas.forEach(c => {
+                const nombreJuego = c.juego ? (c.juego.nombre || 'Desconocido') : 'Desconocido';
+                if (!juegoSeleccionado || nombreJuego === juegoSeleccionado) {
+                    if (c.rareza) rarezasUnicas.add(c.rareza);
+                }
+            });
+
+            const rarezaActual = filtroRareza.value;
+            filtroRareza.innerHTML = '<option value="">Todas las Rarezas</option>';
+            const rarezasOrdenadas = Array.from(rarezasUnicas).sort();
+            rarezasOrdenadas.forEach(r => {
+                const option = document.createElement('option');
+                option.value = r;
+                option.textContent = r;
+                filtroRareza.appendChild(option);
+            });
+            if (rarezasUnicas.has(rarezaActual)) filtroRareza.value = rarezaActual;
+        }
+
         // Función para filtrar la tabla
         function aplicarFiltros() {
             const tablaBody = document.getElementById('tablaCartasBody');
@@ -226,6 +251,7 @@
         buscarNombre.addEventListener('input', aplicarFiltros);
         filtroJuego.addEventListener('change', () => {
             actualizarFiltroSets();
+            actualizarFiltroRareza();
             aplicarFiltros();
         });
         filtroRareza.addEventListener('change', aplicarFiltros);
