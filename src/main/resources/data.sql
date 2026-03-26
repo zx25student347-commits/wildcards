@@ -307,6 +307,24 @@ VALUES (216, 'Pot of Greed', 'BP01-EN034', 'Rare', 'Mágica', 2.50, 'Roba 2 cart
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (216, NULL, 'MÁGICA', 'Magia Normal', NULL, NULL, 'Roba 2 cartas.');
 
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (217, 'Dinomorfia Rexterm', 'DIFO-038', 'Starlight Rare', 'Monstruo', 30.00 , 'Dinomorfia Rexterm significa (el rey que extremina todo) y su manera de pensar era esta cuando intentas controlar la vida... acabas creando algo que te supera.', '/img/Dinomorfia-Rexterm.jpg', 3, 4008, 3, 'Japonés');  
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (217, 8, 'OSCURIDAD', 'Dinosaurio / Fusión / Efecto', 3000, 0, '2 monstruos "Dinomorfia, Mientras tus LP sean menores o iguales a los de tu adversario, tu oponente no puede activar efectos de monstruos con ATK mayor que tus LP. Si recibes daño de efecto: puedes pagar hacer que el daño que recibas sea 0, y si lo haces reduce a la mitad tus LP. Solo puedes usar este efecto una vez por turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (218, 'Pintora Meteorológica Arco Iris Lunas', 'DIFO-050', 'Starlight Rare', 'Monstruo', 30.00 , 'Su nombre proviene de un arcoiris nocturno creado por la luz de la luna este fenomeno es muy dificil de ver.', '/img/pintora.jpg', 3, 4008, 3, 'Japonés');  
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (218, 0, 'OSCURIDAD', 'Hada / Link / Efecto', 2400, 0, '2+ monstruos "The Weather". Los monstruos "The Weather" en las zonas a las que apunta esta carta ganan este efecto. puedes desterrar esta carta; Invoca de Modo Especial 1 monstruo "The Weather" desde tu Deck. Solo puedes usar este efecto de "The Weather Painter Moonbow una vez por turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (219, 'Terrogarra Tri-Heart', 'DIFO-049', 'Secret Rare', 'Monstruo', 15.00 , 'Su nombre represnta tres corazonnes / tres volutades dentro de una sola criatura.', '/img/Terrogarra.jpg', 3, 4008, 3, 'Japonés');
+
+INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+VALUES (219, 0, 'OSCURIDAD', 'Bestia Guerrero / Link / Efecto', 3000, 0, '3 monstruos de efecto. Los monstruos en Posición de Defensa no pueden activar sus efectos. Esta carta puede atacar a todos los monstruos en Posición de Defensa que controle tu adversario, una vez a cada uno. Una vez tu turno: puedes invocar de Modo Especial 1 monstruo "Scareclaw" desde tu Cementerio a una zona a la que apunte esta carta en Posicón de Defensa.');
+
 
 
 
