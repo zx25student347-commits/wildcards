@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let mensajeErrorCarga;
     let mensajeNoDisponible;
     let allProducts = [];
+    let bubbleInterval; // Control para las burbujas de One Piece
+    let filterTimeout; // Para controlar la pausa del filtrado
 
     if (endpoint === 'accesorios') {
         apiUrl = '/api/accesorios';
@@ -40,33 +42,121 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Error al cargar el catálogo.</p>';
         });
 
+    function toggleGridLoading(show) {
+        const grid = document.getElementById('productos-grid');
+        let loader = document.getElementById('grid-loader');
+
+        // Crear el loader dinámicamente si no existe
+        if (!loader && grid) {
+            loader = document.createElement('div');
+            loader.id = 'grid-loader';
+            loader.className = `grid-loader loader-${endpoint}`;
+            loader.innerHTML = '<div class="spinner"></div>';
+            grid.parentElement.appendChild(loader);
+        }
+
+        if (grid) grid.classList.toggle('loading-blur', show);
+        
+        if (loader) {
+            loader.style.display = show ? 'flex' : 'none';
+
+            // --- Generador de Burbujas para One Piece ---
+            if (show && endpoint === 'onepiece') {
+                if (!bubbleInterval) {
+                    bubbleInterval = setInterval(() => {
+                        const bubble = document.createElement('div');
+                        bubble.className = 'bubble';
+                        const size = Math.random() * 12 + 4;
+                        bubble.style.width = `${size}px`;
+                        bubble.style.height = `${size}px`;
+                        bubble.style.left = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
+                        bubble.style.setProperty('--sway', `${(Math.random() - 0.5) * 100}px`);
+                        bubble.style.animationDuration = `${Math.random() * 1.5 + 1}s`;
+                        loader.appendChild(bubble);
+                        setTimeout(() => bubble.remove(), 2500);
+                    }, 150);
+                }
+            } else if (bubbleInterval) {
+                clearInterval(bubbleInterval);
+                bubbleInterval = null;
+            }
+        }
+    }
+
     function actualizarRangoPrecio() {
         if (!allProducts || allProducts.length === 0) return;
 
         const maxPrecio = allProducts.reduce((max, item) => Math.max(max, parseFloat(item.precio) || 0), 0);
-        const maxRedondeado = Math.ceil(maxPrecio);
+        const maxRedondeado = Math.ceil(maxPrecio) || 500;
 
-        const sliderPrecio = document.querySelector('.slider-precio');
-        if (sliderPrecio) {
-            sliderPrecio.max = maxRedondeado;
-            sliderPrecio.value = maxRedondeado; // Inicializar con el rango completo
+        const minInput = document.getElementById('min-price');
+        const maxInput = document.getElementById('max-price');
+
+        if (minInput && maxInput) {
+            minInput.max = maxRedondeado;
+            maxInput.max = maxRedondeado;
+            maxInput.value = maxRedondeado;
+            
+            document.getElementById('max-price-val').textContent = `${maxRedondeado}€`;
         }
+        actualizarTrack();
+    }
 
-        const rangoValores = document.querySelector('.rango-valores');
-        if (rangoValores) {
-            const spans = rangoValores.querySelectorAll('span');
-            if (spans.length > 1) spans[1].textContent = `${maxRedondeado}€`;
+    function actualizarTrack() {
+        const minInput = document.getElementById('min-price');
+        const maxInput = document.getElementById('max-price');
+        const minTooltip = document.getElementById('min-tooltip');
+        const maxTooltip = document.getElementById('max-tooltip');
+        const track = document.querySelector('.slider-track');
+        if (!minInput || !maxInput || !track) return;
+
+        const maxVal = minInput.max || 500;
+        const percent1 = (minInput.value / maxVal) * 100;
+        const percent2 = (maxInput.value / maxVal) * 100;
+
+        track.style.background = `linear-gradient(to right, rgba(255,255,255,0.1) ${percent1}%, var(--accent) ${percent1}%, var(--accent) ${percent2}%, rgba(255,255,255,0.1) ${percent2}%)`;
+
+        // Posicionar tooltips y actualizar texto
+        if (minTooltip) {
+            minTooltip.textContent = `${minInput.value}€`;
+            minTooltip.style.left = `calc(${percent1}% + (${9 - percent1 * 0.18}px))`;
+        }
+        if (maxTooltip) {
+            maxTooltip.textContent = `${maxInput.value}€`;
+            maxTooltip.style.left = `calc(${percent2}% + (${9 - percent2 * 0.18}px))`;
         }
     }
 
     function setupFilters() {
-        const sliderPrecio = document.querySelector('.slider-precio');
+        const minInput = document.getElementById('min-price');
+        const maxInput = document.getElementById('max-price');
         const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]');
         const selectSet = document.getElementById('filtro-set');
 
-        if (sliderPrecio) {
-            sliderPrecio.addEventListener('input', aplicarFiltros);
-        }
+        [minInput, maxInput].forEach(input => {
+            if (input) {
+                input.addEventListener('input', () => {
+                    // Mostrar cargador inmediatamente al tocar el slider
+                    toggleGridLoading(true);
+
+                    // Evitar que el min supere al max
+                    if (parseInt(minInput.value) > parseInt(maxInput.value)) {
+                        if (event.target === minInput) minInput.value = maxInput.value;
+                        else maxInput.value = minInput.value;
+                    }
+                    
+                    document.getElementById('min-price-val').textContent = `${minInput.value}€`;
+                    document.getElementById('max-price-val').textContent = `${maxInput.value}€`;
+                    actualizarTrack();
+
+                    // Cancelar el filtrado anterior y programar uno nuevo (Debounce)
+                    clearTimeout(filterTimeout);
+                    filterTimeout = setTimeout(() => {
+                        aplicarFiltros();
+                    }, 500); // Espera 0.5 segundos después de que el usuario deje de mover
+                });
+            }
+        });
 
         if (selectSet && allProducts.length > 0) {
             const sets = new Set();
@@ -98,8 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function aplicarFiltros() {
-        const sliderPrecio = document.querySelector('.slider-precio');
-        const maxPrecio = sliderPrecio ? parseFloat(sliderPrecio.value) : Infinity;
+        const minInput = document.getElementById('min-price');
+        const maxInput = document.getElementById('max-price');
+        const minPrecio = minInput ? parseFloat(minInput.value) : 0;
+        const maxPrecio = maxInput ? parseFloat(maxInput.value) : Infinity;
         
         const selectSet = document.getElementById('filtro-set');
         const setSeleccionado = selectSet ? selectSet.value : '';
@@ -112,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const filtrados = allProducts.filter(item => {
             // Filtro Precio
-            if (item.precio && item.precio > maxPrecio) return false;
+            if (item.precio && (item.precio < minPrecio || item.precio > maxPrecio)) return false;
 
             // Filtro Set
             if (setSeleccionado) {
@@ -129,7 +221,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return true;
         });
 
-        renderizarGrid(filtrados);
+        // Pequeño delay artificial para que la animación sea perceptible y profesional
+        setTimeout(() => {
+            renderizarGrid(filtrados);
+            toggleGridLoading(false);
+        }, 150);
     }
 
     function renderizarGrid(items) {

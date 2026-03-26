@@ -24,10 +24,14 @@
 
                     <div class="filtro-grupo">
                         <h4>Precio</h4>
-                        <input type="range" min="0" max="500" value="250" class="slider-precio">
                         <div class="rango-valores">
-                            <span>0€</span>
-                            <span>500€</span>
+                            <span id="min-price-val">0€</span>
+                            <span id="max-price-val">500€</span>
+                        </div>
+                        <div class="double-slider-container">
+                            <div class="slider-track"></div>
+                            <input type="range" min="0" max="500" value="0" class="min-price" id="min-price">
+                            <input type="range" min="0" max="500" value="500" class="max-price" id="max-price">
                         </div>
                     </div>
 
@@ -48,7 +52,7 @@
             </aside>
 
             <section class="listado-productos">
-                <h1>Pokémon TCG</h1>
+                <h1>Yu-Gi-Oh! TCG</h1>
                 <p>Explora nuestra colección de cartas y productos.</p>
 
                 <div id="productos-grid" class="productos-grid"></div>

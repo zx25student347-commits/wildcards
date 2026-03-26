@@ -352,7 +352,7 @@
         /* Capa 1: Gradiente radial para crear un fundido curvo que revela la imagen de fondo en la derecha */
         radial-gradient(ellipse 100% 100% at right center, transparent 30%, var(--primary-1) 65%),
         /* Capa 2: La imagen de fondo que queremos mostrar parcialmente */
-        url('/img/fondo_cartas.png');
+        url('/img/sus.jpg');
     background-position: right center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -459,6 +459,7 @@
 
 .listado-productos {
     flex: 1;
+    position: relative; /* Necesario para posicionar el spinner */
 }
 
 .barra-lateral {
@@ -493,10 +494,102 @@
     color: var(--muted);
 }
 
-.slider-precio {
+/* --- Estilos Slider Doble Elegante --- */
+.double-slider-container {
+    position: relative;
     width: 100%;
-    accent-color: var(--accent);
+    height: 30px;
+}
+
+.slider-track {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.double-slider-container input[type="range"] {
+    position: absolute;
+    width: 100%;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* --- Tooltip Flotante para el Slider --- */
+.double-slider-container .tooltip {
+    position: absolute;
+    background: var(--accent);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    top: -40px; /* Posicionado sobre el tirador */
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    white-space: nowrap;
+}
+
+.double-slider-container .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: var(--accent);
+}
+
+.double-slider-container input[type="range"]:hover + .tooltip,
+.double-slider-container input[type="range"]:active + .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Estilo de los tiradores (thumbs) */
+input[type="range"]::-webkit-slider-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--accent);
     cursor: pointer;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Animación sutil para los valores */
+.rango-valores span {
+    transition: all 0.3s ease;
+    font-variant-numeric: tabular-nums;
+}
+
+.rango-valores span.highlight {
+    color: var(--accent);
+    transform: scale(1.1);
+    text-shadow: 0 0 8px var(--accent);
 }
 
 .filtro-select {
@@ -514,7 +607,8 @@
     justify-content: space-between;
     font-size: 0.9rem;
     color: var(--muted);
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .opcion-filtro {
@@ -599,11 +693,156 @@
     font-size: 0.9rem;
 }
 
-/* Estado de carga AJAX para la lista de productos */
+/* --- Estado de carga y Blur --- */
 .listado-productos.cargando {
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-    pointer-events: none; /* Previene clics mientras se carga */
+    pointer-events: none;
+}
+
+.productos-grid {
+    transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.productos-grid.loading-blur {
+    filter: blur(12px);
+    opacity: 0.6;
+}
+
+.grid-loader {
+    position: absolute;
+    top: 200px; /* Posición aproximada en el centro visual inicial */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    perspective: 1000px; /* Añade profundidad para que la rotación 3D se vea real */
+    pointer-events: none;
+}
+
+.grid-loader .spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.1);
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    animation: spin-loader 1s linear infinite;
+    box-shadow: 0 0 20px rgba(65, 12, 134, 0.4);
+}
+
+/* --- Spinners Temáticos por Franquicia --- */
+
+/* Pokéball (Pokémon) */
+.loader-pokemon .spinner {
+    border: 3px solid #000;
+    background: linear-gradient(to bottom, #ff0000 46%, #000 46%, #000 54%, #fff 54%);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    position: relative;
+}
+
+.loader-pokemon .spinner::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Logo Yu-Gi-Oh! */
+.loader-yugioh .spinner {
+    border: none;
+    border-radius: 0;
+    background: url('/img/yugioh-logo.png') no-repeat center;
+    background-size: contain;
+    width: 90px;
+    height: 90px;
+    box-shadow: none;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    animation: spin-puzzle 2s linear infinite;
+    position: relative;
+}
+
+/* --- Spinners Temáticos Adicionales --- */
+
+/* Calavera Jolly Roger (One Piece) */
+.loader-onepiece .spinner {
+    border: none;
+    border-radius: 0;
+    background: url('/img/one-piece-logo.png') no-repeat center;
+    background-size: contain;
+    width: 80px;
+    height: 80px;
+    box-shadow: none;
+    /* Usamos la animación de yugioh y añadimos un brillo suave para que resalte */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    animation: spin-puzzle 2s linear infinite;
+}
+
+/* Estilo de las Burbujas */
+.loader-onepiece .bubble {
+    position: absolute;
+    bottom: 20px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1; /* Aparecen por detrás del logo */
+    animation: bubble-rise ease-in forwards;
+}
+
+/* Chispa Planeswalker (Magic) */
+.loader-magic .spinner {
+    border: none;
+    border-radius: 0;
+    background-color: #ff8c00; /* Naranja/Dorado icónico de Magic */
+    width: 65px;
+    height: 65px;
+    box-shadow: none;
+    /* Máscara SVG del símbolo Planeswalker */
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 0c-10 0-18 8-18 18v144L128 32c-6-8-18-10-26-4s-10 18-4 26l110 138v218c0 10 8 18 18 18s18-8 18-18V210L354 72c6-8 4-20-4-26s-20-4-26 4L274 162V18c0-10-8-18-18-18zM54 238c-10 0-18 8-18 18s8 18 18 18h114l-114 114c-7 7-7 19 0 26s19 7 26 0l114-114v114c0 10 8 18 18 18s18-8 18-18v-114l114 114c7 7 19 7 26 0s7-19 0-26l-114-114h114c10 0 18-8 18-18s-8-18-18-18H238z'/%3E%3C/svg%3E") no-repeat center;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 0c-10 0-18 8-18 18v144L128 32c-6-8-18-10-26-4s-10 18-4 26l110 138v218c0 10 8 18 18 18s18-8 18-18V210L354 72c6-8 4-20-4-26s-20-4-26 4L274 162V18c0-10-8-18-18-18zM54 238c-10 0-18 8-18 18s8 18 18 18h114l-114 114c-7 7-7 19 0 26s19 7 26 0l114-114v114c0 10 8 18 18 18s18-8 18-18v-114l114 114c7 7 19 7 26 0s7-19 0-26l-114-114h114c10 0 18-8 18-18s-8-18-18-18H238z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    animation: spark-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes spin-loader {
+    to { transform: rotate(360deg); }
+}
+
+/* Animación de balanceo para One Piece (como un barco) */
+@keyframes ship-rock {
+    0%, 100% { transform: rotate(-10deg) translateY(0); filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+    50% { transform: rotate(10deg) translateY(-10px); filter: drop-shadow(0 5px 15px rgba(255,255,255,0.5)); }
+}
+
+/* Animación de pulsación mágica para Magic */
+@keyframes spark-pulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.7; filter: drop-shadow(0 0 5px #ff8c00); }
+    50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 20px #ff4500); }
+}
+
+/* Animación de ascenso para las burbujas */
+@keyframes bubble-rise {
+    0% { 
+        transform: translateY(0) translateX(0) scale(0.5); 
+        opacity: 0; 
+    }
+    20% { opacity: 0.8; }
+    100% { 
+        transform: translateY(-180px) translateX(var(--sway)) scale(1.2); 
+        opacity: 0; 
+    }
+}
+
+@keyframes spin-puzzle {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
 }
 
 /* Grid de Productos */
