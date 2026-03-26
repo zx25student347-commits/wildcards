@@ -83,6 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 option.textContent = setName;
                 selectSet.appendChild(option);
             });
+
+            // Preseleccionar set si viene en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const setParam = urlParams.get('set');
+            if (setParam && sets.has(setParam)) {
+                selectSet.value = setParam;
+            }
+
             selectSet.addEventListener('change', aplicarFiltros);
         }
 
