@@ -1,7 +1,12 @@
 package com.daw.wildcards.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class AuthRequestDTO {
+    @NotBlank(message = "El nombre de usuario no puede estar vacío")
     private String username;
+
+    @NotBlank(message = "La contraseña no puede estar vacía")
     private String password;
     
     public AuthRequestDTO() {

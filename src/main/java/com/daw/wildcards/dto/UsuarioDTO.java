@@ -1,9 +1,13 @@
 package com.daw.wildcards.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Set;
 
 public class UsuarioDTO {
     private Long id;
+    @NotBlank(message = "El nombre de usuario es obligatorio")
+    @Email(message = "Debe ser un email válido")
     private String username;
     private Set<String> roles;
     
