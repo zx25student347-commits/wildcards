@@ -64,7 +64,7 @@ public class AuthController {
         org.springframework.http.ResponseCookie cookie = org.springframework.http.ResponseCookie.from("token", token)
                 .httpOnly(true)
                 .path("/")
-                .maxAge(60 * 60) // 1 hora
+                .maxAge(((60 * 60)*24)*15) // 1 hora
                 .sameSite("Strict")
                 .build();
 
