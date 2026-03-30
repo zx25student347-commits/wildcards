@@ -414,6 +414,66 @@ VALUES (313, 'Espadachina del Destino', 'LMULT-03', 'Uncommon', 'Criatura', 6.00
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (313, '1RW', 'Creature - Human Knight', '3', '2', 'Prisa. Siempre que esta criatura ataque, otra criatura atacante objetivo obtiene +2/+0 hasta el final del turno.', 'Rojo, Blaco');
 
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (314, 'The Ooze', '0177', 'Rare', 'Artefacto Legendario', 8.50, 'El mutágeno que lo cambió todo.', '/img/ooze.jpg', 2, 2001, 15, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (314, '2', 'Legendary Artifact', NULL, NULL, 'Siempre que una criatura que controles con un contador +1/+1 deje el campo de batalla, crea una ficha de Mutágeno por cada contador +1/+1 que tuviera. {T}: Exilia la carta objetivo de un cementerio. Crea una ficha de Mutágeno.', 'Incoloro');
+
+SERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (315, 'Técnica de Karai', '0152', 'Uncommon', 'Conjuro', 4.50, 'La disciplina del Clan del Pie es implacable.', '/img/karai.jpg', 2, 2001, 55, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (315, '1WB', 'Sorcery', NULL, NULL, 'Escabullir {W}{B} (Puedes lanzar este hechizo por {W}{B} si también devuelves un atacante no bloqueado que controles a la mano durante el paso de declaración de bloqueadores). Elige uno o ambos — La criatura objetivo obtiene +3/+3 hasta el final del turno; La criatura objetivo obtiene -3/-3 hasta el final del turno.', 'Blanco, Negro');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (316, 'Tortugas por Siempre', '0027', 'Rare', 'Instantáneo', 12.00, '"Nos vemos por el multiverso, hermanos." —Un Leonardo u otro.', '/img/tortugas-siempre.jpg', 2, 2001, 37, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (316, '3W', 'Instant', NULL, NULL, 'Busca en tu biblioteca y/o fuera del juego exactamente cuatro cartas de criatura legendaria que poseas con nombres diferentes, luego muestra esas cartas. Un oponente elige dos de ellas. Pon las cartas elegidas en tu mano y baraja el resto en tu biblioteca.', 'Blanco');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (317, 'Bovino Transdimensional', '0134', 'Rare', 'Criatura', 7.00, '"La naturaleza de una cabeza de vaca cíborg gigante y incorpórea que viaja a través del tiempo y el espacio plantea innumerables preguntas. Pero a Cudley no le gusta hablar con la boca llena."', '/img/bovido.jpg', 2, 2001, 6, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (317, '2G', 'Creature — Ox Avatar', '0', '4', 'Vuela. {T}: Agrega dos manás de cualquier color.', 'Verde');
+
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (318, 'Sheoldred, la Susurradora', 'MUL-0081', 'Mythic', 'Criatura legendaria', 15.00, 'Una de las siete Siete de Nueva Pirexia.', '/img/susurradora.png', 2, 2006, 4, 'Español');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (318, '5BB', 'Legendary Creature — Phyrexian Praetor', '6', '6', 'Cruza pantanos. Al comienzo de tu mantenimiento, regresa la carta de criatura objetivo de tu cementerio al campo de batalla. Al comienzo del mantenimiento de cada oponente, ese jugador sacrifica una criatura.', 'Negro');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (319, 'Anafenza, espíritu del árbol familiar', 'MUL-0001', 'Rare', 'Criatura legendaria', 3.50, 'La Legión de las Máquinas codiciaba su fuerza, pero un espíritu de arena, sol y recuerdos es imposible de perfeccionar.', '/img/espiritu-arbol.jpg', 2, 2006, 12, 'Español');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (319, 'WW', 'Legendary Creature — Spirit Soldier', '2', '2', 'Siempre que otra criatura que no sea ficha entre al campo de batalla bajo tu control, fortalece 1. (Elige una criatura con la menor resistencia entre las criaturas que controlas y pon un contador +1/+1 sobre ella.)', 'Blanco');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (320, 'Ragavan, ratero hábil', 'MUL-0021', 'Mythic', 'Criatura legendaria', 45.00, 'El pirata más famoso de Kaladesh.', '/img/ragavan.jpg', 2, 2006, 2, 'Español');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (320, 'R', 'Legendary Creature — Monkey Pirate', '2', '1', 'Siempre que Ragavan, ratero hábil haga daño de combate a un jugador, crea una ficha de Tesoro y exilia la primera carta de la biblioteca de ese jugador. Hasta el final del turno, puedes lanzar esa carta. Rapidez {1}{R}.', 'Rojo');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (321, 'Contemplar el Multiverso', 'KHM-046', 'Common', 'Instantáneo', 0.50, 'Ante Niko se abrieron un sinnúmero de mundos, y todos necesitaban héroes.', '/img/contemplar.jpg', 2, 2006, 25, 'Español');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (321, '3U', 'Instant', NULL, NULL, 'Adivina 2, luego roba dos cartas. Profetizar {1}{U}. (Durante tu turno, puedes pagar {2} y exiliar esta carta de tu mano boca abajo. Puedes lanzarla en un turno posterior pagando su coste de profetizar).', 'Azul');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (322, 'Veneno psíquico', '5ED-104', 'Common', 'Encantamiento', 0.40, 'Una mente envenenada solo encuentra dolor en el esfuerzo.', '/img/venono-psiquico.jpg', 2, 1997, 15, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (322, '1U', 'Enchant Land', NULL, NULL, 'Siempre que la tierra objetivo sea girada, el Veneno psíquico hace 2 puntos de daño al controlador de esa tierra.', 'Azul');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (323, 'Parálisis', '5ED-181', 'Common', 'Encantamiento', 0.35, 'El cuerpo se vuelve una prisión de carne inmóvil.', '/img/paralisis.jpg', 2, 1997, 20, 'Inglés');
+
+INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+VALUES (323, 'B', 'Enchant Creature', NULL, NULL, 'La criatura objetivo no se endereza de forma normal durante el paso de enderezar a menos que se paguen {4}. Gira la criatura objetivo cuando la Parálisis sea lanzada.', 'Negro');
 
 
 
