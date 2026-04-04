@@ -132,6 +132,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const maxInput = document.getElementById('max-price');
         const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]');
         const selectSet = document.getElementById('filtro-set');
+        const btnReset = document.getElementById('btn-reset-filtros');
+
+        if (btnReset) {
+            btnReset.addEventListener('click', () => {
+                toggleGridLoading(true);
+                
+                // Resetear valores
+                if (minInput) minInput.value = 0;
+                if (maxInput) maxInput.value = maxInput.max;
+                if (selectSet) selectSet.value = '';
+                checkboxesIdioma.forEach(cb => cb.checked = false);
+
+                // Actualizar visualmente los textos de precio
+                if (document.getElementById('min-price-val')) document.getElementById('min-price-val').textContent = '0€';
+                if (document.getElementById('max-price-val')) document.getElementById('max-price-val').textContent = `${maxInput ? maxInput.max : 500}€`;
+
+                actualizarTrack();
+                aplicarFiltros();
+            });
+        }
 
         [minInput, maxInput].forEach(input => {
             if (input) {

@@ -352,7 +352,7 @@
         /* Capa 1: Gradiente radial para crear un fundido curvo que revela la imagen de fondo en la derecha */
         radial-gradient(ellipse 100% 100% at right center, transparent 30%, var(--primary-1) 65%),
         /* Capa 2: La imagen de fondo que queremos mostrar parcialmente */
-        url('/img/sus.jpg');
+        url('/img/fondo_cartas.png');
     background-position: right center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -483,6 +483,26 @@
     border-bottom: 2px solid var(--accent);
     padding-bottom: 10px;
     margin-bottom: 20px;
+}
+
+.btn-reset {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--muted);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reset:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    color: var(--white);
+    box-shadow: 0 0 15px rgba(65, 12, 134, 0.3);
 }
 
 .filtro-grupo {

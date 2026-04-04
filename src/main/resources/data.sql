@@ -409,7 +409,7 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (312, '3BB', 'Creature - Demon', '5', '5', 'Vuela. Al comienzo de tu mantenimiento, sacrifica otra criatura. Si no puedes, el Demonio del Vacío te hace 5 puntos de daño.', 'Negro');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (313, 'Espadachina del Destino', 'LMULT-03', 'Uncommon', 'Criatura', 6.00, 'Su hoja ha sido forjada en las estrellas y nunca falla su blanco.', '/img/espadachina.jpg', 2, 2006, 8, 'Español');
+VALUES (313, 'Espadachina del Destino', 'LMULT-03', 'Uncommon', 'Criatura', 6.00, 'Su hoja ha sido forjada en las estrellas y nunca falla su blanco.', '/img/espadachina.jpg', 2, 2006, 8, 'Japonés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (313, '1RW', 'Creature - Human Knight', '3', '2', 'Prisa. Siempre que esta criatura ataque, otra criatura atacante objetivo obtiene +2/+0 hasta el final del turno.', 'Rojo, Blaco');
@@ -420,7 +420,7 @@ VALUES (314, 'The Ooze', '0177', 'Rare', 'Artefacto Legendario', 8.50, 'El mutá
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (314, '2', 'Legendary Artifact', NULL, NULL, 'Siempre que una criatura que controles con un contador +1/+1 deje el campo de batalla, crea una ficha de Mutágeno por cada contador +1/+1 que tuviera. {T}: Exilia la carta objetivo de un cementerio. Crea una ficha de Mutágeno.', 'Incoloro');
 
-SERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (315, 'Técnica de Karai', '0152', 'Uncommon', 'Conjuro', 4.50, 'La disciplina del Clan del Pie es implacable.', '/img/karai.jpg', 2, 2001, 55, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
@@ -446,7 +446,7 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (318, '5BB', 'Legendary Creature — Phyrexian Praetor', '6', '6', 'Cruza pantanos. Al comienzo de tu mantenimiento, regresa la carta de criatura objetivo de tu cementerio al campo de batalla. Al comienzo del mantenimiento de cada oponente, ese jugador sacrifica una criatura.', 'Negro');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (319, 'Anafenza, espíritu del árbol familiar', 'MUL-0001', 'Rare', 'Criatura legendaria', 3.50, 'La Legión de las Máquinas codiciaba su fuerza, pero un espíritu de arena, sol y recuerdos es imposible de perfeccionar.', '/img/espiritu-arbol.jpg', 2, 2006, 12, 'Español');
+VALUES (319, 'Anafenza, espíritu del árbol familiar', 'MUL-0001', 'Rare', 'Criatura legendaria', 3.50, 'La Legión de las Máquinas codiciaba su fuerza, pero un espíritu de arena, sol y recuerdos es imposible de perfeccionar.', '/img/espiritu-arbol.png', 2, 2006, 12, 'Español');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (319, 'WW', 'Legendary Creature — Spirit Soldier', '2', '2', 'Siempre que otra criatura que no sea ficha entre al campo de batalla bajo tu control, fortalece 1. (Elige una criatura con la menor resistencia entre las criaturas que controlas y pon un contador +1/+1 sobre ella.)', 'Blanco');
@@ -464,27 +464,21 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (321, '3U', 'Instant', NULL, NULL, 'Adivina 2, luego roba dos cartas. Profetizar {1}{U}. (Durante tu turno, puedes pagar {2} y exiliar esta carta de tu mano boca abajo. Puedes lanzarla en un turno posterior pagando su coste de profetizar).', 'Azul');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (322, 'Veneno psíquico', '5ED-104', 'Common', 'Encantamiento', 0.40, 'Una mente envenenada solo encuentra dolor en el esfuerzo.', '/img/venono-psiquico.jpg', 2, 1997, 15, 'Inglés');
+VALUES (322, 'Veneno psíquico', '5ED-104', 'Common', 'Encantamiento', 0.40, 'Una mente envenenada solo encuentra dolor en el esfuerzo.', '/img/venono-psiquico.jpg', 2, 2000, 15, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (322, '1U', 'Enchant Land', NULL, NULL, 'Siempre que la tierra objetivo sea girada, el Veneno psíquico hace 2 puntos de daño al controlador de esa tierra.', 'Azul');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (323, 'Parálisis', '5ED-181', 'Common', 'Encantamiento', 0.35, 'El cuerpo se vuelve una prisión de carne inmóvil.', '/img/paralisis.jpg', 2, 1997, 20, 'Inglés');
+VALUES (323, 'Parálisis', '5ED-181', 'Common', 'Encantamiento', 0.35, 'El cuerpo se vuelve una prisión de carne inmóvil.', '/img/paralisis.jpg', 2, 2000, 20, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (323, 'B', 'Enchant Creature', NULL, NULL, 'La criatura objetivo no se endereza de forma normal durante el paso de enderezar a menos que se paguen {4}. Gira la criatura objetivo cuando la Parálisis sea lanzada.', 'Negro');
 
 
 
--- 1. Tabla padre 'cartas' (ID 300)
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (400, 'Monkey D. Luffy', 'OP01-001', 'Leader', 'Personaje', 15.00, 
-'Capitán de los Piratas del Sombrero de Paja.', '/img/luffy.png', 4, 3, 25, 'Japonés');
 
--- 2. Tabla hija 'onepiece_cartas' (ID 300)
-INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
-VALUES (400, 'Rojo', 5, 6000, 1000, 'Puede atacar activo si tiene 2 o más DON!!');
+
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
