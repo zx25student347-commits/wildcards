@@ -220,6 +220,32 @@ body {
     filter: brightness(0) invert(1)
 }
 
+.enlace-carrito {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.contador-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ff00ff; /* Color neón base */
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--primary-1);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+    pointer-events: none;
+    z-index: 5;
+}
+
 /* Estilos Menú Hamburguesa */
 .menu-hamburguesa {
     display: none;

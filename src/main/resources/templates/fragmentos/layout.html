@@ -36,7 +36,10 @@
                 <a id="enlace-usuario" href="/login">
                     <img th:src="@{/icons/person.png}" src="/icons/person.png" alt="Usuario" class="icono">
                 </a>
-                <a href="/carrito"><img src="/icons/carrito.png" alt="carrito" class="icono"></a>
+                <a href="/carrito" class="enlace-carrito">
+                    <img src="/icons/carrito.png" alt="carrito" class="icono">
+                    <span id="contadorCarrito" class="contador-badge" style="display: none;">0</span>
+                </a>
             </div>
         </div>
     </header>

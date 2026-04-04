@@ -11,6 +11,41 @@ function debounce(func, delay = 400) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- LÓGICA DEL CONTADOR DE CARRITO GLOBAL ---
+    const actualizarContadorGlobal = async () => {
+        const contador = document.getElementById('contadorCarrito');
+        const token = localStorage.getItem('token');
+        if (!contador) return;
+        
+        if (!token) {
+            contador.style.display = 'none';
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/carrito', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
+            if (response.ok) {
+                const carrito = await response.json();
+                const totalItems = carrito.items ? carrito.items.reduce((acc, item) => acc + item.cantidad, 0) : 0;
+                
+                if (totalItems > 0) {
+                    contador.textContent = totalItems;
+                    contador.style.display = 'flex';
+                    contador.classList.add('actualizado');
+                    setTimeout(() => contador.classList.remove('actualizado'), 500);
+                } else {
+                    contador.style.display = 'none';
+                }
+            }
+        } catch (e) {
+            contador.style.display = 'none';
+        }
+    };
+
+    actualizarContadorGlobal();
+
     // --- LÓGICA DE ENLACE DE USUARIO (TOKEN JWT) ---
     const enlaceUsuario = document.getElementById('enlace-usuario');
     if (enlaceUsuario) {
@@ -418,6 +453,9 @@ document.addEventListener('DOMContentLoaded', () => {
             crearConfeti(x, y);
             mostrarToast("¡Producto añadido al carrito!", imgUrl);
             
+            // Actualizar contador global tras un breve delay para que la petición de guardado termine
+            setTimeout(actualizarContadorGlobal, 1000);
+
             // --- ANIMACIÓN VUELO AL CARRITO ---
             if (imgElement) {
                 animarVueloAlCarrito(imgElement);
