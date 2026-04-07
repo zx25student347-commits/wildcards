@@ -54,7 +54,7 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (43, 4, 'Carrying on his Will', '2025-11-07', 'OP-13', 179);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (44, 4, 'The Azure Sea`s Seven', '2025-11-22', 'OP-14', 158);
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (45, 4, 'Adventure on Kami`s Island', '2026-02-28', 'OP-15', 154);
-
+INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (46, 4, 'Starter Deck: Straw Hat Crew', '2022-12-02', 'ST-01', 17);
 
 --YUGIOH
 INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, cartas_total) VALUES (4000, 3, 'Eternity Code', '2020-05-01', 'ETCO', 100);
@@ -545,7 +545,7 @@ INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect)
 VALUES (411, 'Morado/Negro', 0, 5000, 0, '[Al Atacar] DON!! -4: K.O. hasta a 1 de los personajes de tu oponente con un coste de 3 o menos. Después, este Líder gana +1000 de poder durante este turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (412, 'Yamato', 'OP02-042', 'R', 'Personaje', 0.10, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato_(op-02).png', 4, 31, 16, 'Inglés');
+VALUES (412, 'Yamato', 'OP02-042', 'R', 'Personaje', 0.10, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato(op-02).png', 4, 31, 16, 'Inglés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (412, 'Verde', 4, 6000, 0, 'Trata el nombre de esta carta también como [Kouzuki Oden]. [Al jugar] Descansa hasta 1 de los personajes de tu oponente con un coste de 6 o menos.');
@@ -597,6 +597,19 @@ VALUES (420, 'Monkey.D.Garp', 'OP02-002', 'AA', 'Líder', 28.50, 'Monkey.D.Garp 
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (420, 'Rojo/Negro', 0, 5000, 0, '[Al Atacar] Da a hasta 1 de los personajes de tu oponente con un coste de 0: K.O. [Tu Turno] Cuando el coste de un personaje es reducido, este personaje gana +2000 de poder durante este turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (421, 'Monkey.D.Luffy', 'OP01-001', 'L', 'Líder', 10.00, 'Edición limitada de la Flagship Battle España. El capitán de los Sombrero de Paja con arte conmemorativo regional.', '/img/M-D-Luffy-Spain.jpg', 4, 46, 21, 'Español');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (421, 'Rojo', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] Da a tu Líder o a 1 de tus Personajes +1000 de poder durante este turno.');
+
+INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+VALUES (422, 'Crocodile', 'OP01-002', 'L', 'Líder', 100.00, 'Edición limitada de la Flagship Battle España. El ex-Shichibukai y líder de Baroque Works con arte conmemorativo regional.', '/img/cocodrile-spain.png', 4, 46, 13, 'Español');
+
+INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
+VALUES (422, 'Azul', NULL, 5000, NULL, '[Activación: Principal] [Una vez por turno] DON!! -4 (Puedes devolver el número especificado de cartas DON!! de tu campo a tu mazo DON!!) Devuelve hasta 1 Personaje con un coste de 5 o menos a la mano de su propietario.');
+
 
 
 INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
