@@ -9,6 +9,7 @@ import com.daw.wildcards.repositories.AccesorioRepository;
 import com.daw.wildcards.repositories.CartaRepository;
 import com.daw.wildcards.repositories.JuegoRepository;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,8 +27,15 @@ public class SugerenciaService {
         this.juegoRepository = juegoRepository;
     }
 
+    private String normalizar(String texto) {
+        if (texto == null) return "";
+        return Normalizer.normalize(texto, Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                .toLowerCase();
+    }
+
     public List<String> getSugerencias(String consulta) {
-        String consultaLower = consulta.toLowerCase();
+        String consultaNorm = normalizar(consulta);
         Pageable pageRequest = PageRequest.of(0, 5); // Límite para nombres de productos
 
         // 1. Sugerencias de productos (cartas y accesorios)
@@ -38,13 +46,13 @@ public class SugerenciaService {
         // Se asume que JuegoRepository está inyectado y tiene un método findAll()
         List<String> sugerenciasJuegos = juegoRepository.findAll().stream()
                 .map(Juego::getNombre)
-                .filter(nombre -> nombre.toLowerCase().contains(consultaLower))
+                .filter(nombre -> normalizar(nombre).contains(consultaNorm))
                 .collect(Collectors.toList());
 
-        // 3. Sugerencias de categorías
+        // 3. Sugerencias de categorías (Solo generales, los juegos ya vienen de la base de datos)
         List<String> categorias = List.of("Cartas", "Accesorios");
         List<String> sugerenciasCategorias = categorias.stream()
-                .filter(cat -> cat.toLowerCase().contains(consultaLower))
+                .filter(cat -> normalizar(cat).contains(consultaNorm))
                 .collect(Collectors.toList());
 
         // 4. Combinar todas las sugerencias, dando prioridad a categorías y juegos

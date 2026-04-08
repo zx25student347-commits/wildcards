@@ -117,6 +117,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formularioBusqueda) {
         const inputDeBusqueda = formularioBusqueda.querySelector('input[type="search"]');
 
+        // Función para normalizar texto (quitar tildes y pasar a minúsculas)
+        const normalizarTexto = (texto) => 
+            texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        // Configuración de categorías para evitar duplicados y mejorar la búsqueda
+        const categoriasConfig = [
+            { nombre: 'Pokémon TCG', url: '/pokemon', terminos: ['pokemon', 'pokémon', 'tcg'] },
+            { nombre: 'One Piece Card Game', url: '/onepiece', terminos: ['one piece', 'onepiece', 'opcg'] },
+            { nombre: 'Yu-Gi-Oh!', url: '/yugioh', terminos: ['yugioh', 'yu-gi-oh', 'yugi'] },
+            { nombre: 'Magic: The Gathering', url: '/magic', terminos: ['magic', 'mtg', 'gathering'] },
+            { nombre: 'Accesorios', url: '/accesorios', terminos: ['fundas', 'tapetes', 'accesorios'] }
+        ];
+
         // --- INICIO: APARTADO DE AUTOCOMPLETADO DE LA BARRA DE NAVEGACIÓN ---
 
         // +++ Crear y añadir el spinner de carga al formulario +++
@@ -162,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. Event listener en el input que dispara la búsqueda de sugerencias
         inputDeBusqueda.addEventListener('input', async () => {
             const consulta = inputDeBusqueda.value.trim();
+            const consultaNorm = normalizarTexto(consulta);
 
             if (consulta.length < 2) { // No buscar si la consulta es muy corta
                 sugerenciasContainer.style.display = 'none';
@@ -170,16 +184,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             spinner.style.display = 'block'; // Mostrar spinner
 
+            // Filtrar categorías configuradas (sin duplicados por URL)
+            const sugerenciasLocales = categoriasConfig
+                .filter(cat => 
+                    normalizarTexto(cat.nombre).includes(consultaNorm) || 
+                    cat.terminos.some(t => normalizarTexto(t).includes(consultaNorm))
+                )
+                .map(cat => cat.nombre);
+
             try {
                 // Esta API (a crear en el backend) debería devolver un array de strings con nombres de productos
                 const response = await fetch(`/api/productos/sugerencias?q=${encodeURIComponent(consulta)}`);
                 if (!response.ok) throw new Error('Respuesta no válida de la API');
 
                 const sugerencias = await response.json();
-                renderizarSugerencias(sugerencias);
+                
+                // Mezclar locales con API y eliminar duplicados (insensible a mayúsculas)
+                const todasSugerencias = [...sugerenciasLocales];
+                sugerencias.forEach(s => {
+                    if (!todasSugerencias.some(local => local.toLowerCase() === s.toLowerCase())) {
+                        todasSugerencias.push(s);
+                    }
+                });
+
+                renderizarSugerencias(todasSugerencias.slice(0, 10));
             } catch (error) {
                 console.error('Error al obtener sugerencias:', error);
-                sugerenciasContainer.style.display = 'none';
+                renderizarSugerencias(sugerenciasLocales); // Fallback a locales si falla la API
             } finally {
                 spinner.style.display = 'none'; // Ocultar spinner
             }
@@ -197,9 +228,21 @@ document.addEventListener('DOMContentLoaded', () => {
         formularioBusqueda.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevenir el envío normal del formulario
             const consulta = inputDeBusqueda.value.trim();
+            const consultaNorm = normalizarTexto(consulta);
 
             if (consulta) {
-                // Redirigir a una página de resultados de búsqueda.
+                // Buscar si la consulta coincide con una categoría para redirigir directamente
+                const catMatch = categoriasConfig.find(cat => 
+                    normalizarTexto(cat.nombre) === consultaNorm || 
+                    cat.terminos.some(t => normalizarTexto(t) === consultaNorm)
+                );
+
+                if (catMatch) {
+                    window.location.href = catMatch.url;
+                    return;
+                }
+
+                // Si no es un juego, redirigir a la página de resultados de búsqueda normal.
                 window.location.href = `/tienda/buscar?q=${encodeURIComponent(consulta)}`;
             }
         });
