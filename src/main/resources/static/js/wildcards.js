@@ -117,6 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formularioBusqueda) {
         const inputDeBusqueda = formularioBusqueda.querySelector('input[type="search"]');
 
+        // Estructura para Ghost Text (Autocompletado visual detrás del texto)
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('search-wrapper');
+        inputDeBusqueda.parentNode.insertBefore(wrapper, inputDeBusqueda);
+
+        const ghost = document.createElement('div');
+        ghost.classList.add('search-ghost');
+        wrapper.appendChild(ghost);
+        wrapper.appendChild(inputDeBusqueda);
+
         // Función para normalizar texto (quitar tildes y pasar a minúsculas)
         const normalizarTexto = (texto) => 
             texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -129,6 +139,20 @@ document.addEventListener('DOMContentLoaded', () => {
             { nombre: 'Magic: The Gathering', url: '/magic', terminos: ['magic', 'mtg', 'gathering'] },
             { nombre: 'Accesorios', url: '/accesorios', terminos: ['fundas', 'tapetes', 'accesorios'] }
         ];
+
+        // Manejar teclas para aceptar la sugerencia (Tab o Flecha Derecha)
+        inputDeBusqueda.addEventListener('keydown', (e) => {
+            const ghostText = ghost.textContent;
+            if (ghostText && (e.key === 'Tab' || e.key === 'ArrowRight')) {
+                // Solo si el cursor está al final de lo escrito
+                if (inputDeBusqueda.selectionStart === inputDeBusqueda.value.length) {
+                    e.preventDefault();
+                    inputDeBusqueda.value = ghostText;
+                    ghost.innerHTML = '';
+                    sugerenciasContainer.style.display = 'none';
+                }
+            }
+        });
 
         // --- INICIO: APARTADO DE AUTOCOMPLETADO DE LA BARRA DE NAVEGACIÓN ---
 
@@ -163,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Al hacer clic en una sugerencia, se rellena el input y se busca
                 item.addEventListener('click', () => {
                     inputDeBusqueda.value = sugerencia;
+                    ghost.innerHTML = '';
                     sugerenciasContainer.style.display = 'none';
                     formularioBusqueda.requestSubmit(); // Envía el formulario
                 });
@@ -173,12 +198,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // 3. Event listener en el input que dispara la búsqueda de sugerencias
-        inputDeBusqueda.addEventListener('input', async () => {
-            const consulta = inputDeBusqueda.value.trim();
+        inputDeBusqueda.addEventListener('input', async (event) => {
+            const textoEscrito = inputDeBusqueda.value;
+            const consulta = textoEscrito.trim();
             const consultaNorm = normalizarTexto(consulta);
 
             if (consulta.length < 2) { // No buscar si la consulta es muy corta
                 sugerenciasContainer.style.display = 'none';
+                ghost.innerHTML = '';
                 return;
             }
 
@@ -208,6 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 renderizarSugerencias(todasSugerencias.slice(0, 10));
+
+                // --- Lógica de "Ghost Text" ---
+                const primeraSugerencia = todasSugerencias[0];
+                if (primeraSugerencia && consulta.length > 0) {
+                    const sugerenciaNorm = normalizarTexto(primeraSugerencia);
+                    if (sugerenciaNorm.startsWith(consultaNorm)) {
+                        // El texto ya escrito se pone en un span invisible para alinear el resto perfectamente
+                        const parteEscrita = primeraSugerencia.substring(0, consulta.length);
+                        const resto = primeraSugerencia.substring(consulta.length);
+                        ghost.innerHTML = `<span style="opacity: 0">${parteEscrita}</span><span>${resto}</span>`;
+                    } else {
+                        ghost.innerHTML = '';
+                    }
+                } else {
+                    ghost.innerHTML = '';
+                }
             } catch (error) {
                 console.error('Error al obtener sugerencias:', error);
                 renderizarSugerencias(sugerenciasLocales); // Fallback a locales si falla la API
@@ -248,11 +291,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- LÓGICA DE FILTROS COLAPSABLES EN MÓVIL ---
+    const sidebar = document.querySelector('.barra-lateral');
+    const containerTienda = document.querySelector('.contenedor-tienda');
+
+    if (sidebar && containerTienda) {
+        // Crear el botón de toggle
+        const btnToggle = document.createElement('button');
+        btnToggle.className = 'btn-toggle-filtros';
+        btnToggle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            <span>Mostrar Filtros</span>
+        `;
+        
+        // Insertarlo al principio del contenedor
+        containerTienda.insertBefore(btnToggle, containerTienda.firstChild);
+
+        btnToggle.addEventListener('click', () => {
+            const estaAbierto = sidebar.classList.toggle('abierto');
+            btnToggle.querySelector('span').textContent = estaAbierto ? 'Ocultar Filtros' : 'Mostrar Filtros';
+            // Si se abre, hacemos un scroll suave para ver los filtros
+            if (estaAbierto) sidebar.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
     // --- INICIO: LÓGICA DE FILTROS AUTOMÁTICOS EN PÁGINA DE BÚSQUEDA ---
     const formFiltros = document.getElementById('form-filtros');
     if (formFiltros) {
         const mainContent = document.querySelector('.listado-productos');
         const sidebar = document.querySelector('.barra-lateral');
+
+        // --- Lógica del Slider Doble en Búsqueda (Sincronizada con diseño de catálogo) ---
+        const actualizarTrackBusqueda = () => {
+            const minInput = document.getElementById('min-price');
+            const maxInput = document.getElementById('max-price');
+            const track = document.querySelector('.slider-track');
+            const minTooltip = document.getElementById('min-tooltip');
+            const maxTooltip = document.getElementById('max-tooltip');
+            
+            if (!minInput || !maxInput || !track) return;
+            
+            const maxVal = minInput.max || 500;
+            const percent1 = (minInput.value / maxVal) * 100;
+            const percent2 = (maxInput.value / maxVal) * 100;
+
+            // Actualizar color de la barra
+            track.style.background = `linear-gradient(to right, rgba(255,255,255,0.1) ${percent1}%, var(--accent) ${percent1}%, var(--accent) ${percent2}%, rgba(255,255,255,0.1) ${percent2}%)`;
+
+            // Posicionar y actualizar tooltips
+            if (minTooltip) {
+                minTooltip.textContent = `${minInput.value}€`;
+                minTooltip.style.left = `calc(${percent1}% + (${9 - percent1 * 0.18}px))`;
+            }
+            if (maxTooltip) {
+                maxTooltip.textContent = `${maxInput.value}€`;
+                maxTooltip.style.left = `calc(${percent2}% + (${9 - percent2 * 0.18}px))`;
+            }
+        };
 
         const submitForm = async () => {
             if (!mainContent || !sidebar) return;
@@ -305,6 +400,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 5. Re-asociar los listeners a los nuevos elementos dinámicos
                 attachDynamicListeners();
+                // Re-inicializar visualmente el slider tras la recarga AJAX
+                actualizarTrackBusqueda();
 
             } catch (error) {
                 console.error('Error al actualizar los resultados con AJAX:', error);
@@ -319,6 +416,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Crear una versión "debounced" de la función de envío para el slider
         const debouncedSubmit = debounce(submitForm, 500);
+
+        // Botón Reset para Búsqueda (Mismo comportamiento que catálogo)
+        document.body.addEventListener('click', (e) => {
+            if (e.target && e.target.id === 'btn-reset-filtros') {
+                const currentForm = document.getElementById('form-filtros');
+                if (!currentForm) return;
+                
+                currentForm.reset();
+                // Forzar visualmente el track al estado inicial
+                setTimeout(() => {
+                    actualizarTrackBusqueda();
+                    submitForm();
+                }, 10);
+            }
+        });
 
         // Función para añadir listeners a elementos que se recargan (paginación y ordenación)
         function attachDynamicListeners() {
@@ -362,8 +474,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (target.type === 'range') {
-                const valorPrecioMaxDisplay = document.getElementById('valor-precio-max');
-                if (valorPrecioMaxDisplay) valorPrecioMaxDisplay.textContent = `${target.value}€`;
+                const minI = document.getElementById('min-price');
+                const maxI = document.getElementById('max-price');
+                
+                if (minI && maxI) {
+                    // Evitar que los tiradores se crucen
+                    if (parseInt(minI.value) > parseInt(maxI.value)) {
+                        if (target === minI) minI.value = maxI.value;
+                        else maxI.value = minI.value;
+                    }
+                    document.getElementById('min-price-val').textContent = `${minI.value}€`;
+                    document.getElementById('max-price-val').textContent = `${maxI.value}€`;
+                    actualizarTrackBusqueda();
+                }
                 debouncedSubmit(); // Envío con retardo
             } else if (target.type === 'checkbox') {
                 submitForm(); // Envío inmediato para checkboxes

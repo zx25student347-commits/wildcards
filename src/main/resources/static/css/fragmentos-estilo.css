@@ -132,23 +132,53 @@ main {
     position: relative; /* Para posicionar el spinner */
 }
 
-.formulario-busqueda input[type=search] {
+.search-wrapper {
+    position: relative;
     width: 420px;
     max-width: 40vw;
-    padding: 12px 18px;
+    background: var(--white);
     border-radius: 30px;
     border: 1px solid var(--primary-2);
-    background: var(--white);
-    color: #111;
     transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
-.formulario-busqueda input[type=search]:focus {
+.search-wrapper:focus-within {
     width: 480px;
     max-width: 45vw;
-    outline: none;
     border-color: #ff00ff;
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+}
+
+.search-ghost {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 12px 18px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #999; /* Gris claro para la sugerencia */
+    pointer-events: none;
+    white-space: pre;
+    display: flex;
+    align-items: center;
+    z-index: 0;
+}
+
+.formulario-busqueda input[type=search] {
+    width: 100%;
+    padding: 12px 18px;
+    border: none;
+    background: transparent;
+    color: #111;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
 }
 
 .formulario-busqueda button {

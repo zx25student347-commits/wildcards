@@ -22,17 +22,26 @@
                     <input type="hidden" name="q" th:value="${consulta}">
                     <input type="hidden" name="page" id="input-page" th:value="${currentPage}">
     
-                    <!-- Filtro por Precio -->
+                    <!-- Filtro por Precio con Diseño de Catálogo -->
                     <div class="filtro-grupo">
-                        <h4>Precio Máximo</h4>
-                        <input type="range" class="slider-precio" name="maxPrecio" 
-                               th:value="${currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible}" 
-                               min="0" th:max="${maxPrecioPosible}" step="1">
+                        <h4>Precio</h4>
                         <div class="rango-valores">
-                            <span>0€</span>
-                            <span id="valor-precio-max" th:text="${(currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible)} + '€'">100€</span>
+                            <span id="min-price-val" th:text="${(currentMinPrecio != null ? currentMinPrecio : 0)} + '€'">0€</span>
+                            <span id="max-price-val" th:text="${(currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible)} + '€'">500€</span>
+                        </div>
+                        <div class="double-slider-container">
+                            <div class="slider-track"></div>
+                            <input type="range" name="minPrecio" th:value="${currentMinPrecio != null ? currentMinPrecio : 0}" 
+                                   min="0" th:max="${maxPrecioPosible}" class="min-price" id="min-price">
+                            <div class="tooltip" id="min-tooltip" th:text="${(currentMinPrecio != null ? currentMinPrecio : 0)} + '€'">0€</div>
+                            
+                            <input type="range" name="maxPrecio" th:value="${currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible}" 
+                                   min="0" th:max="${maxPrecioPosible}" class="max-price" id="max-price">
+                            <div class="tooltip" id="max-tooltip" th:text="${(currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible)} + '€'">500€</div>
                         </div>
                     </div>
+
+                    <button type="button" id="btn-reset-filtros" class="btn-reset">Limpiar Filtros</button>
     
                     <!-- Filtro por Categoría -->
                     <div class="filtro-grupo">

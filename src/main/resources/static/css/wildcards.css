@@ -670,13 +670,48 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border: 1px solid var(--dark-muted);
 }
 
+.btn-toggle-filtros {
+    display: none; /* Oculto en escritorio */
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(65, 12, 134, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-toggle-filtros:active {
+    transform: scale(0.98);
+}
+
 @media (max-width: 850px) {
     .contenedor-tienda {
         flex-direction: column;
+        gap: 10px;
     }
 
     .barra-lateral {
+        display: none; /* Oculto por defecto en móvil */
         width: 100%;
+        order: 2;
+    }
+
+    .barra-lateral.abierto {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .btn-toggle-filtros {
+        display: flex; /* Visible solo en móvil */
+        order: 1;
     }
 }
 
