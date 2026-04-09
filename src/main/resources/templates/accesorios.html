@@ -39,10 +39,24 @@
             </aside>
 
             <section class="listado-productos">
-                <h1>Accesorios</h1>
-                <p>Explora nuestra colección de productos.</p>
+                <div class="cabecera-listado">
+                    <div class="info-resultados">
+                        <h1>Accesorios</h1>
+                        <p>Cargando productos...</p>
+                    </div>
+                    <div class="control-ordenacion">
+                        <label for="sort-select">Ordenar por:</label>
+                        <select id="sort-select" class="select-ordenar">
+                            <option value="relevance">Relevancia</option>
+                            <option value="price_asc">Precio: Menor a mayor</option>
+                            <option value="price_desc">Precio: Mayor a menor</option>
+                            <option value="name_asc">Nombre: A-Z</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div id="productos-grid" class="productos-grid"></div>
+                <div id="paginacion-container" class="paginacion-container"></div>
             </section>
         </div>
     </main>

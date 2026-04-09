@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let bubbleInterval; // Control para las burbujas de One Piece
     let filterTimeout; // Para controlar la pausa del filtrado
 
+    let currentPage = 0;
+    const itemsPerPage = 12;
+    let currentSort = 'relevance';
+
     if (endpoint === 'accesorios') {
         apiUrl = '/api/accesorios';
         productoTipo = 'accesorios';
@@ -134,6 +138,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectSet = document.getElementById('filtro-set');
         const btnReset = document.getElementById('btn-reset-filtros');
 
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', () => {
+                currentSort = sortSelect.value;
+                currentPage = 0;
+                aplicarFiltros();
+            });
+        }
+
         if (btnReset) {
             btnReset.addEventListener('click', () => {
                 toggleGridLoading(true);
@@ -143,6 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (maxInput) maxInput.value = maxInput.max;
                 if (selectSet) selectSet.value = '';
                 checkboxesIdioma.forEach(cb => cb.checked = false);
+                if (sortSelect) sortSelect.value = 'relevance';
+                currentSort = 'relevance';
+                currentPage = 0;
 
                 // Actualizar visualmente los textos de precio
                 if (document.getElementById('min-price-val')) document.getElementById('min-price-val').textContent = '0€';
@@ -172,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Cancelar el filtrado anterior y programar uno nuevo (Debounce)
                     clearTimeout(filterTimeout);
                     filterTimeout = setTimeout(() => {
+                        currentPage = 0;
                         aplicarFiltros();
                     }, 500); // Espera 0.5 segundos después de que el usuario deje de mover
                 });
@@ -201,10 +218,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectSet.value = setParam;
             }
 
-            selectSet.addEventListener('change', aplicarFiltros);
+            selectSet.addEventListener('change', () => {
+                currentPage = 0;
+                aplicarFiltros();
+            });
         }
 
-        checkboxesIdioma.forEach(cb => cb.addEventListener('change', aplicarFiltros));
+        checkboxesIdioma.forEach(cb => cb.addEventListener('change', () => {
+            currentPage = 0;
+            aplicarFiltros();
+        }));
     }
 
     function aplicarFiltros() {
@@ -222,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mapeo de valores del checkbox (HTML) a valores de la BD
         const mapaIdiomas = { 'en': 'Inglés', 'es': 'Español', 'jp': 'Japonés' };
 
-        const filtrados = allProducts.filter(item => {
+        let filtrados = allProducts.filter(item => {
             // Filtro Precio
             if (item.precio && (item.precio < minPrecio || item.precio > maxPrecio)) return false;
 
@@ -241,25 +264,104 @@ document.addEventListener("DOMContentLoaded", () => {
             return true;
         });
 
+        // Ordenación
+        if (currentSort === 'price_asc') {
+            filtrados.sort((a, b) => (a.precio || 0) - (b.precio || 0));
+        } else if (currentSort === 'price_desc') {
+            filtrados.sort((a, b) => (b.precio || 0) - (a.precio || 0));
+        } else if (currentSort === 'name_asc') {
+            filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        }
+
+        const totalItems = filtrados.length;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        if (currentPage >= totalPages && totalPages > 0) currentPage = totalPages - 1;
+
+        const start = currentPage * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, totalItems);
+        const paginaActual = filtrados.slice(start, end);
+
         // Pequeño delay artificial para que la animación sea perceptible y profesional
         setTimeout(() => {
-            renderizarGrid(filtrados);
+            renderizarGrid(paginaActual, totalItems);
+            renderizarPaginacion(totalItems);
             toggleGridLoading(false);
         }, 150);
     }
 
-    function renderizarGrid(items) {
+    function renderizarGrid(items, totalItems) {
+        const infoResultadosP = document.querySelector('.info-resultados p');
+        if (infoResultadosP) {
+            infoResultadosP.textContent = `${totalItems} productos encontrados.`;
+        }
+
         grid.innerHTML = "";
         if (items.length === 0) {
             const msg = allProducts.length === 0 ? mensajeNoDisponible : 'No hay productos que coincidan con los filtros.';
             grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">${msg}</p>`;
             return;
         }
-        grid.innerHTML = items.map(item => crearTarjeta(item)).join('');
+        grid.innerHTML = items.map((item, index) => crearTarjeta(item, index)).join('');
+    }
+
+    function renderizarPaginacion(totalItems) {
+        const container = document.getElementById('paginacion-container');
+        if (!container) return;
+
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        container.innerHTML = '';
+
+        if (totalPages <= 1) return;
+
+        // Botón Anterior
+        if (currentPage > 0) {
+            const btnPrev = document.createElement('button');
+            btnPrev.className = 'btn-paginacion';
+            btnPrev.innerHTML = '&laquo; Anterior';
+            btnPrev.onclick = () => { 
+                currentPage--; 
+                aplicarFiltros(); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            };
+            container.appendChild(btnPrev);
+        }
+
+        const numContainer = document.createElement('div');
+        numContainer.className = 'paginacion-numeros';
+
+        // Números de página
+        for (let i = 0; i < totalPages; i++) {
+            if (i >= currentPage - 2 && i <= currentPage + 2) {
+                const btnPage = document.createElement('button');
+                btnPage.className = i === currentPage ? 'btn-paginacion activo' : 'btn-paginacion';
+                btnPage.textContent = i + 1;
+                btnPage.onclick = () => { 
+                    currentPage = i; 
+                    aplicarFiltros(); 
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+                numContainer.appendChild(btnPage);
+            }
+        }
+        container.appendChild(numContainer);
+
+        // Botón Siguiente
+        if (currentPage < totalPages - 1) {
+            const btnNext = document.createElement('button');
+            btnNext.className = 'btn-paginacion';
+            btnNext.innerHTML = 'Siguiente &raquo;';
+            btnNext.onclick = () => { 
+                currentPage++; 
+                aplicarFiltros(); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            };
+            container.appendChild(btnNext);
+        }
     }
 });
 
-function crearTarjeta(item) {
+function crearTarjeta(item, index = 0) {
     const esCarta = item.hasOwnProperty('cartaId');
     const precio = item.precio ? parseFloat(item.precio).toFixed(2) + ' €' : 'Consultar';
     const imagen = item.imagenUrl || 'https://placehold.co/200x280?text=No+Imagen';
@@ -268,7 +370,7 @@ function crearTarjeta(item) {
 
     return `
         <a href="${link}" class="producto-card-link">
-            <div class="producto-card">
+            <div class="producto-card" style="animation-delay: ${index * 50}ms">
                 <div class="producto-imagen">
                     <img src="${imagen}" alt="${item.nombre}" onerror="this.onerror=null;this.src='https://placehold.co/200x280?text=No+Imagen'">
                 </div>
