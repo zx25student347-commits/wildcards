@@ -321,6 +321,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainContent = document.querySelector('.listado-productos');
         const sidebar = document.querySelector('.barra-lateral');
 
+        // Obtener el grid de productos para manipularlo
+        const productosGrid = document.querySelector('.productos-grid');
+
+        // Función para renderizar esqueletos en la página de búsqueda
+        function renderizarSkeletonsBusqueda() {
+            if (!productosGrid) return;
+            // Usamos 12 esqueletos, que es el número por defecto de items por página
+            productosGrid.innerHTML = Array(12).fill(0).map(() => `
+                <div class="skeleton-card">
+                    <div class="skeleton-img"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-price"></div>
+                </div>
+            `).join('');
+            const infoResultadosP = document.querySelector('.info-resultados p');
+            if (infoResultadosP) {
+                infoResultadosP.textContent = 'Cargando productos...';
+            }
+        }
+
+        // Función para alternar el estado de carga (blur y esqueletos)
+        function toggleGridLoadingBusqueda(show) {
+            if (productosGrid) {
+                productosGrid.classList.toggle('loading-blur', show);
+            }
+            if (show) renderizarSkeletonsBusqueda();
+        }
+
         // --- Lógica del Slider Doble en Búsqueda (Sincronizada con diseño de catálogo) ---
         const actualizarTrackBusqueda = () => {
             const minInput = document.getElementById('min-price');
@@ -352,8 +380,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitForm = async () => {
             if (!mainContent || !sidebar) return;
 
-            // 1. Añadir estado de carga
-            mainContent.classList.add('cargando');
+            // 1. Añadir estado de carga (skeletons y blur)
+            toggleGridLoadingBusqueda(true);
 
             // Prepara los datos del formulario para la petición
             const currentForm = document.getElementById('form-filtros');
@@ -408,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = url; // Como fallback, recarga la página
             } finally {
                 // 6. Quitar estado de carga
-                mainContent.classList.remove('cargando');
+                toggleGridLoadingBusqueda(false);
                 // Scroll suave hacia la parte superior de los resultados
                 window.scrollTo({ top: mainContent.offsetTop - 100, behavior: 'smooth' });
             }
@@ -495,6 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Llamada inicial para los elementos que ya están en la página
         attachDynamicListeners();
+        actualizarTrackBusqueda(); // Asegurar que el track del slider se renderice correctamente al cargar la página
     }
     // Lógica del Carrusel
     const carrusel = document.querySelector('.carrusel');

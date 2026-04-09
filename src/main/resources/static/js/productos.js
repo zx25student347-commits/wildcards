@@ -30,6 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
         mensajeNoDisponible = 'No hay cartas disponibles para este juego.';
     }
 
+    function renderizarSkeletons() {
+        grid.innerHTML = Array(itemsPerPage).fill(0).map(() => `
+            <div class="skeleton-card">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-price"></div>
+            </div>
+        `).join('');
+    }
+
+    renderizarSkeletons();
+
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) throw new Error(mensajeErrorCarga);
