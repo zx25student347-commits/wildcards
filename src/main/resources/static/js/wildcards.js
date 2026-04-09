@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/api/carrito', {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
+            
+            // Si el servidor rechaza el token, lo borramos para evitar bucles de redirección
+            if (response.status === 401 || response.status === 403) {
+                localStorage.removeItem('token');
+                contador.style.display = 'none';
+                return;
+            }
+
             if (response.ok) {
                 const carrito = await response.json();
                 const totalItems = carrito.items ? carrito.items.reduce((acc, item) => acc + item.cantidad, 0) : 0;

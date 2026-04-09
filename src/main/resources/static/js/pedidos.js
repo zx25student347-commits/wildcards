@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await authFetch('/api/pedido');
 
             if (response.status === 401 || response.status === 403) {
+                localStorage.removeItem('token'); // Limpiar token inválido
                 document.querySelector('.contenedor-pedidos').innerHTML = '<h1>Acceso denegado</h1><p>Debes <a href="/login">iniciar sesión</a> para ver tus pedidos.</p>';
                 return;
             }

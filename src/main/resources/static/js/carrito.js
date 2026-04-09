@@ -69,6 +69,7 @@ async function cargarCarrito() {
         const response = await authFetch('/api/carrito');
 
         if (response.status === 401 || response.status === 403) {
+            localStorage.removeItem('token'); // Limpiar token inválido
             window.location.href = `/login?redirect=${window.location.pathname}`;
             return;
         }
