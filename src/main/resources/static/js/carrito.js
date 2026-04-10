@@ -126,20 +126,26 @@ function renderizarCarrito(carrito) {
         const tarjeta = clone.querySelector('.tarjeta-carrito');
         tarjeta.style.animationDelay = `${index * 100}ms`;
 
+        const producto = item.carta || item.accesorio;
+        const esCarta = !!item.carta;
+
         const cantidadInput = clone.querySelector('.cantidad-item');
 
         // Añade el listener para actualizar la cantidad
         cantidadInput.addEventListener('change', (e) => {
             const nuevaCantidad = parseInt(e.target.value);
-            // Enviamos incluso si es 0 para que el backend lo borre
-            actualizarCantidadItem(item.carta.cartaId, nuevaCantidad);
+            actualizarCantidadItem(esCarta ? producto.cartaId : null, !esCarta ? producto.accesorioId : null, nuevaCantidad);
         });
         
-        clone.querySelector('.titulo-item').textContent = item.carta.nombre;
+        clone.querySelector('.titulo-item').textContent = producto.nombre;
         
         const metaParts = [];
-        if (item.carta.set && item.carta.set.nombre) metaParts.push(item.carta.set.nombre);
-        if (item.carta.rareza) metaParts.push(item.carta.rareza);
+        if (esCarta) {
+            if (item.carta.set && item.carta.set.nombre) metaParts.push(item.carta.set.nombre);
+            if (item.carta.rareza) metaParts.push(item.carta.rareza);
+        } else {
+            metaParts.push(item.accesorio.tipo || 'Accesorio');
+        }
         clone.querySelector('.meta-item').textContent = metaParts.join(' - ') || 'Detalles no disponibles';
 
         cantidadInput.value = item.cantidad;
@@ -198,15 +204,16 @@ function actualizarContadorNavbar(cantidad) {
 
 /**
  * Llama a la API para actualizar la cantidad de un item y vuelve a renderizar el carrito.
- * @param {number} cartaId El ID de la carta a actualizar.
+ * @param {number|null} cartaId El ID de la carta a actualizar.
+ * @param {number|null} accesorioId El ID del accesorio a actualizar.
  * @param {number} cantidad La nueva cantidad.
  */
-async function actualizarCantidadItem(cartaId, cantidad) {
+async function actualizarCantidadItem(cartaId, accesorioId, cantidad) {
     try {
         const response = await authFetch(`/api/carrito/items`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ cartaId: cartaId, cantidad: cantidad })
+            body: JSON.stringify({ cartaId, accesorioId, cantidad })
         });
 
         if (!response.ok) {

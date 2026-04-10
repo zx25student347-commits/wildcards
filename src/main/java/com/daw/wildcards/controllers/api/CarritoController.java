@@ -41,26 +41,29 @@ public class CarritoController {
     @PostMapping("/items")
     public ResponseEntity<CarritoCompra> anadirItem(@RequestBody Map<String, Integer> payload) {
         Integer cartaId = payload.get("cartaId");
+        Integer accesorioId = payload.get("accesorioId");
         Integer cantidad = payload.getOrDefault("cantidad", 1);
 
-        if (cartaId == null) {
+        if (cartaId == null && accesorioId == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        CarritoCompra carritoActualizado = carritoService.anadirItem(getUsuarioActual(), cartaId, cantidad);
+        // Asumimos que carritoService.anadirItem puede manejar uno de los IDs como null
+        CarritoCompra carritoActualizado = carritoService.anadirItem(getUsuarioActual(), cartaId, accesorioId, cantidad);
         return ResponseEntity.ok(carritoActualizado);
     }
 
     @PutMapping("/items")
     public ResponseEntity<CarritoCompra> actualizarCantidad(@RequestBody Map<String, Integer> payload) {
         Integer cartaId = payload.get("cartaId");
+        Integer accesorioId = payload.get("accesorioId");
         Integer cantidad = payload.get("cantidad");
 
-        if (cartaId == null || cantidad == null) {
+        if ((cartaId == null && accesorioId == null) || cantidad == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        CarritoCompra carritoActualizado = carritoService.actualizarCantidad(getUsuarioActual(), cartaId, cantidad);
+        CarritoCompra carritoActualizado = carritoService.actualizarCantidad(getUsuarioActual(), cartaId, accesorioId, cantidad);
         return ResponseEntity.ok(carritoActualizado);
     }
 

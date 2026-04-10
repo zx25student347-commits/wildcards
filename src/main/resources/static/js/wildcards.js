@@ -11,48 +11,48 @@ function debounce(func, delay = 400) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- LÓGICA DEL CONTADOR DE CARRITO GLOBAL ---
-    const actualizarContadorGlobal = async () => {
-        const contador = document.getElementById('contadorCarrito');
-        const token = localStorage.getItem('token');
-        if (!contador) return;
+    // // --- LÓGICA DEL CONTADOR DE CARRITO GLOBAL ---
+    // const actualizarContadorGlobal = async () => {
+    //     const contador = document.getElementById('contadorCarrito');
+    //     const token = localStorage.getItem('token');
+    //     if (!contador) return;
         
-        if (!token) {
-            contador.style.display = 'none';
-            return;
-        }
+    //     if (!token) {
+    //         contador.style.display = 'none';
+    //         return;
+    //     }
 
-        try {
-            const response = await fetch('/api/carrito', {
-                headers: { 'Authorization': 'Bearer ' + token }
-            });
+    //     try {
+    //         const response = await fetch('/api/carrito', {
+    //             headers: { 'Authorization': 'Bearer ' + token }
+    //         });
             
-            // Si el servidor rechaza el token, lo borramos para evitar bucles de redirección
-            if (response.status === 401 || response.status === 403) {
-                localStorage.removeItem('token');
-                contador.style.display = 'none';
-                return;
-            }
+    //         // Si el servidor rechaza el token, lo borramos para evitar bucles de redirección
+    //         if (response.status === 401 || response.status === 403) {
+    //             localStorage.removeItem('token');
+    //             contador.style.display = 'none';
+    //             return;
+    //         }
 
-            if (response.ok) {
-                const carrito = await response.json();
-                const totalItems = carrito.items ? carrito.items.reduce((acc, item) => acc + item.cantidad, 0) : 0;
+    //         if (response.ok) {
+    //             const carrito = await response.json();
+    //             const totalItems = carrito.items ? carrito.items.reduce((acc, item) => acc + item.cantidad, 0) : 0;
                 
-                if (totalItems > 0) {
-                    contador.textContent = totalItems;
-                    contador.style.display = 'flex';
-                    contador.classList.add('actualizado');
-                    setTimeout(() => contador.classList.remove('actualizado'), 500);
-                } else {
-                    contador.style.display = 'none';
-                }
-            }
-        } catch (e) {
-            contador.style.display = 'none';
-        }
-    };
+    //             if (totalItems > 0) {
+    //                 contador.textContent = totalItems;
+    //                 contador.style.display = 'flex';
+    //                 contador.classList.add('actualizado');
+    //                 setTimeout(() => contador.classList.remove('actualizado'), 500);
+    //             } else {
+    //                 contador.style.display = 'none';
+    //             }
+    //         }
+    //     } catch (e) {
+    //         contador.style.display = 'none';
+    //     }
+    // };
 
-    actualizarContadorGlobal();
+    // actualizarContadorGlobal();
 
     // --- LÓGICA DE ENLACE DE USUARIO (TOKEN JWT) ---
     const enlaceUsuario = document.getElementById('enlace-usuario');
@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarToast("¡Producto añadido al carrito!", imgUrl);
             
             // Actualizar contador global tras un breve delay para que la petición de guardado termine
-            setTimeout(actualizarContadorGlobal, 1000);
+            
 
             // --- ANIMACIÓN VUELO AL CARRITO ---
             if (imgElement) {

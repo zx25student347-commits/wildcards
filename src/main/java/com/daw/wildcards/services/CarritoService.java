@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.daw.wildcards.models.CarritoCompra;
 import com.daw.wildcards.models.CarritoItem;
 import com.daw.wildcards.models.Carta;
+import com.daw.wildcards.models.Accesorios;
 import com.daw.wildcards.models.Usuario;
 import com.daw.wildcards.repositories.CarritoCompraRepository;
 import com.daw.wildcards.repositories.CarritoItemRepository;
@@ -21,16 +22,19 @@ public class CarritoService {
     private final CarritoCompraRepository carritoRepository;
     private final CarritoItemRepository carritoItemRepository;
     private final UsuarioService usuarioService;
-    private final CartaService cartaService;
+    private final CartaService cartaService; // Mantener para compatibilidad con actualizarCantidad
+    private final AccesoriosService accesoriosService;
 
     public CarritoService(CarritoCompraRepository carritoRepository, 
                           CarritoItemRepository carritoItemRepository,
                           UsuarioService usuarioService,
-                          CartaService cartaService) {
+                          CartaService cartaService,
+                          AccesoriosService accesoriosService) {
         this.carritoRepository = carritoRepository;
         this.carritoItemRepository = carritoItemRepository;
         this.usuarioService = usuarioService;
         this.cartaService = cartaService;
+        this.accesoriosService = accesoriosService;
     }
 
     public CarritoCompra obtenerCarritoPorUsuario(String username) {
@@ -52,16 +56,20 @@ public class CarritoService {
     }
 
     @Transactional
-    public CarritoCompra anadirItem(String username, Integer cartaId, Integer cantidad) {
+    public CarritoCompra anadirItem(String username, Integer cartaId, Integer accesorioId, Integer cantidad) {
         CarritoCompra carrito = obtenerCarritoPorUsuario(username);
-        Carta carta = cartaService.obtenerPorId(cartaId)
-                .orElseThrow(() -> new RuntimeException("Carta no encontrada"));
-
-        // Buscar si el item ya existe en el carrito
+    
+        if (cartaId == null && accesorioId == null) {
+            throw new IllegalArgumentException("Debe proporcionar un cartaId o un accesorioId.");
+        }
+    
         Optional<CarritoItem> itemExistente = carrito.getItems().stream()
-                .filter(item -> item.getCarta().getCartaId().equals(cartaId))
+                .filter(item -> 
+                    (cartaId != null && item.getCarta() != null && item.getCarta().getCartaId().equals(cartaId)) ||
+                    (accesorioId != null && item.getAccesorio() != null && item.getAccesorio().getAccesorioId().equals(accesorioId))
+                )
                 .findFirst();
-
+    
         if (itemExistente.isPresent()) {
             CarritoItem item = itemExistente.get();
             item.setCantidad(item.getCantidad() + cantidad);
@@ -69,25 +77,37 @@ public class CarritoService {
         } else {
             CarritoItem newItem = new CarritoItem();
             newItem.setCarrito(carrito);
-            newItem.setCarta(carta);
             newItem.setCantidad(cantidad);
-            newItem.setPrecioUnidad(BigDecimal.valueOf(carta.getPrecio()));
-            // newItem.setIdioma("ES");    // Default Español
-            
+    
+            if (cartaId != null) {
+                Carta carta = cartaService.obtenerPorId(cartaId)
+                        .orElseThrow(() -> new RuntimeException("Carta no encontrada con ID: " + cartaId));
+                newItem.setCarta(carta);
+                newItem.setPrecioUnidad(BigDecimal.valueOf(carta.getPrecio()));
+            } else { // accesorioId != null
+                Accesorios accesorio = accesoriosService.findById(accesorioId)
+                        .orElseThrow(() -> new RuntimeException("Accesorio no encontrado con ID: " + accesorioId));
+                newItem.setAccesorio(accesorio);
+                newItem.setPrecioUnidad(BigDecimal.valueOf(accesorio.getPrecio()));
+            }
+    
             carrito.getItems().add(newItem);
             carritoItemRepository.save(newItem);
         }
-
+    
         carrito.setUpdatedAt(LocalDateTime.now());
         return carritoRepository.save(carrito);
     }
 
     @Transactional
-    public CarritoCompra actualizarCantidad(String username, Integer cartaId, Integer cantidad) {
+    public CarritoCompra actualizarCantidad(String username, Integer cartaId, Integer accesorioId, Integer cantidad) {
         CarritoCompra carrito = obtenerCarritoPorUsuario(username);
 
         Optional<CarritoItem> itemOptional = carrito.getItems().stream()
-                .filter(item -> item.getCarta() != null && item.getCarta().getCartaId().equals(cartaId))
+                .filter(item -> 
+                    (cartaId != null && item.getCarta() != null && item.getCarta().getCartaId().equals(cartaId)) ||
+                    (accesorioId != null && item.getAccesorio() != null && item.getAccesorio().getAccesorioId().equals(accesorioId))
+                )
                 .findFirst();
 
         if (itemOptional.isPresent()) {

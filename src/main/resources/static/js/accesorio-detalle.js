@@ -15,6 +15,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         const accesorio = await response.json();
         renderizarDetalle(accesorio);
 
+        // Lógica para el botón de Añadir al Carrito
+        const btnAgregar = document.getElementById('btnAgregarCarrito');
+        if (btnAgregar) {
+            btnAgregar.addEventListener('click', async () => {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    // Si no hay token (usuario no logueado), redirigir al login
+                    window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/carrito/items', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            accesorioId: parseInt(accesorioId),
+                            cantidad: 1
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Si wildcards.js tiene la función global, la llamamos
+                        if (window.actualizarContadorGlobal) window.actualizarContadorGlobal();
+                    } else if (response.status === 401 || response.status === 403) {
+                        window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+                    }
+                } catch (error) {
+                    console.error('Error al añadir al carrito:', error);
+                }
+            });
+        }
+
     } catch (error) {
         console.error(error);
         document.querySelector('.detail-center').innerHTML = '<h2>Error al cargar el accesorio</h2><p>Es posible que el producto no exista o haya un problema de conexión.</p>';
