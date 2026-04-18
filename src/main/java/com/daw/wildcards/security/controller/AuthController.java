@@ -5,6 +5,7 @@ import com.daw.wildcards.dto.*;
 import com.daw.wildcards.security.jwt.JwtService;
 import com.daw.wildcards.security.service.CustomUserDetailsService;
 import com.daw.wildcards.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Value;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -21,6 +22,9 @@ public class AuthController {
     private final JwtService jwtService;
     private final UsuarioService usuarioService;
     private final CustomUserDetailsService userDetailsService;
+    
+    @Value("${jwt.expiration}")
+    private long jwtExpirationMs;
 
     public AuthController(AuthenticationManager authenticationManager,
                           JwtService jwtService,
@@ -64,7 +68,7 @@ public class AuthController {
         org.springframework.http.ResponseCookie cookie = org.springframework.http.ResponseCookie.from("token", token)
                 .httpOnly(true)
                 .path("/")
-                .maxAge(((60 * 60)*24)*15) // 1 hora
+                .maxAge(jwtExpirationMs / 1000) 
                 .sameSite("Strict")
                 .build();
 
