@@ -50,6 +50,29 @@ public class AccesoriosController {
         return new ResponseEntity<>(nuevoAccesorio, HttpStatus.CREATED);
     }
 
+    @PutMapping(value = "/{id}", consumes = {"multipart/form-data"})
+    public ResponseEntity<Accesorios> actualizarAccesorio(
+            @PathVariable Integer id,
+            @RequestPart("accesorio") Accesorios accesorio,
+            @RequestPart(value = "file", required = false) MultipartFile file) {
+
+        return accesoriosService.findById(id)
+                .map(existente -> {
+                    existente.setNombre(accesorio.getNombre());
+                    existente.setPrecio(accesorio.getPrecio());
+                    existente.setStock(accesorio.getStock());
+                    existente.setDescripcion(accesorio.getDescripcion());
+
+                    if (file != null && !file.isEmpty()) {
+                        String filename = storageService.store(file);
+                        existente.setImagenUrl("/img/" + filename);
+                    }
+
+                    return ResponseEntity.ok(accesoriosService.save(existente));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarAccesorio(@PathVariable Integer id) {
         if (accesoriosService.findById(id).isEmpty()) {

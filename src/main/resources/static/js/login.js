@@ -26,8 +26,10 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         localStorage.setItem("token", result.token);
         // si la URL de login contenía ?redirect=/algo intentamos volver ahí
         const params = new URLSearchParams(window.location.search);
-        const redirect = params.get('redirect');
-        if (redirect) {
+        let redirect = params.get('redirect');
+
+        // Evitar volver a páginas de error o bucles de login
+        if (redirect && !redirect.includes('/error') && !redirect.includes('/login')) {
             window.location.href = redirect;
         } else {
             window.location.href = "/"; // URL limpia a la raíz

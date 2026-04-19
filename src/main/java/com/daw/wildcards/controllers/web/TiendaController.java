@@ -32,6 +32,7 @@ public class TiendaController {
     @GetMapping("/buscar")
     public String buscarProductos(
             @RequestParam(value = "q", required = false, defaultValue = "") String consulta,
+            @RequestParam(required = false) Double minPrecio,
             @RequestParam(required = false) Double maxPrecio,
             @RequestParam(required = false) List<String> categorias,
             @RequestParam(required = false) List<String> juegos,
@@ -60,7 +61,8 @@ public class TiendaController {
 
         // Pre-filtrar por precio, que se aplica a todos los cálculos de recuento
         List<ProductoBusquedaDTO> resultadosFiltradosPorPrecio = todosLosResultados.stream()
-                .filter(p -> maxPrecio == null || p.getPrecio() == null || p.getPrecio() <= maxPrecio)
+                .filter(p -> (minPrecio == null || p.getPrecio() == null || p.getPrecio() >= minPrecio) &&
+                             (maxPrecio == null || p.getPrecio() == null || p.getPrecio() <= maxPrecio))
                 .collect(Collectors.toList());
 
         // Calcular recuentos para CATEGORÍAS (considerando filtro de JUEGO si está activo)
@@ -109,6 +111,7 @@ public class TiendaController {
         model.addAttribute("consulta", consulta);
         model.addAttribute("totalResultados", totalItems);
         model.addAttribute("maxPrecioPosible", Math.ceil(maxPrecioPosible));
+        model.addAttribute("currentMinPrecio", minPrecio);
         model.addAttribute("currentMaxPrecio", maxPrecio);
         model.addAttribute("currentCategorias", categorias != null ? categorias : List.of());
         model.addAttribute("currentJuegos", juegos != null ? juegos : List.of());

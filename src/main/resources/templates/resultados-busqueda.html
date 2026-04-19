@@ -26,18 +26,18 @@
                     <div class="filtro-grupo">
                         <h4>Precio</h4>
                         <div class="rango-valores">
-                            <span id="min-price-val" th:text="${(currentMinPrecio != null ? currentMinPrecio : 0)} + '€'">0€</span>
-                            <span id="max-price-val" th:text="${(currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible)} + '€'">500€</span>
+                            <span id="min-price-val" th:text="${(currentMinPrecio != null ? #numbers.formatInteger(currentMinPrecio,1) : 0)} + '€'">0€</span>
+                            <span id="max-price-val" th:text="${(currentMaxPrecio != null ? #numbers.formatInteger(currentMaxPrecio,1) : #numbers.formatInteger(maxPrecioPosible,1))} + '€'">500€</span>
                         </div>
                         <div class="double-slider-container">
                             <div class="slider-track"></div>
                             <input type="range" name="minPrecio" th:value="${currentMinPrecio != null ? currentMinPrecio : 0}" 
                                    min="0" th:max="${maxPrecioPosible}" class="min-price" id="min-price">
-                            <div class="tooltip" id="min-tooltip" th:text="${(currentMinPrecio != null ? currentMinPrecio : 0)} + '€'">0€</div>
+                            <div class="tooltip" id="min-tooltip" th:text="${(currentMinPrecio != null ? #numbers.formatInteger(currentMinPrecio,1) : 0)} + '€'">0€</div>
                             
                             <input type="range" name="maxPrecio" th:value="${currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible}" 
                                    min="0" th:max="${maxPrecioPosible}" class="max-price" id="max-price">
-                            <div class="tooltip" id="max-tooltip" th:text="${(currentMaxPrecio != null ? currentMaxPrecio : maxPrecioPosible)} + '€'">500€</div>
+                            <div class="tooltip" id="max-tooltip" th:text="${(currentMaxPrecio != null ? #numbers.formatInteger(currentMaxPrecio,1) : #numbers.formatInteger(maxPrecioPosible,1))} + '€'">500€</div>
                         </div>
                     </div>
 

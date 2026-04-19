@@ -70,7 +70,10 @@ async function cargarCarrito() {
 
         if (response.status === 401 || response.status === 403) {
             localStorage.removeItem('token'); // Limpiar token inválido
-            window.location.href = `/login?redirect=${window.location.pathname}`;
+            // Solo redirigir si no estamos ya en login para evitar bucles
+            if (!window.location.pathname.includes('/login')) {
+                window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+            }
             return;
         }
 

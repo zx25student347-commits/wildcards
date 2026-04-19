@@ -7,6 +7,16 @@ const formularioAccesorio = document.getElementById('formularioAccesorio');
 const tituloModal = document.getElementById('tituloModal');
 const btnSubmit = document.getElementById('btnSubmit');
 
+// Función auxiliar para incluir el Token JWT en las peticiones
+function authFetch(url, options = {}) {
+    options.headers = options.headers || {};
+    const token = localStorage.getItem('token');
+    if (token) {
+        options.headers['Authorization'] = 'Bearer ' + token;
+    }
+    return fetch(url, options);
+}
+
 // Filtros
 const buscarNombre = document.getElementById('buscarNombre');
 
@@ -27,7 +37,7 @@ document.addEventListener('DOMContentLoaded', cargarAccesorios);
 
 async function cargarAccesorios() {
     try {
-        const response = await fetch(API_URL);
+        const response = await authFetch(API_URL);
         if (!response.ok) throw new Error('Error al cargar accesorios');
         const accesorios = await response.json();
         renderizarTabla(accesorios);
@@ -120,7 +130,7 @@ formularioAccesorio.addEventListener('submit', async (e) => {
         const method = modoEdicion ? 'PUT' : 'POST';
         const url = modoEdicion ? `${API_URL}/${idAccesorioEnEdicion}` : API_URL;
 
-        const response = await fetch(url, {
+        const response = await authFetch(url, {
             method: method,
             body: formData
         });
@@ -144,7 +154,7 @@ function agregarEventosEditar() {
             const id = e.target.getAttribute('data-id');
             
             try {
-                const response = await fetch(`${API_URL}/${id}`);
+                const response = await authFetch(`${API_URL}/${id}`);
                 if (!response.ok) throw new Error('Error al obtener accesorio');
                 const accesorio = await response.json();
 
@@ -183,7 +193,7 @@ function agregarEventosEliminar() {
 btnSi.addEventListener('click', async () => {
     if (!accesorioActualAEliminar) return;
     try {
-        const response = await fetch(`${API_URL}/${accesorioActualAEliminar}`, { method: 'DELETE' });
+        const response = await authFetch(`${API_URL}/${accesorioActualAEliminar}`, { method: 'DELETE' });
         if (!response.ok) throw new Error('Error al eliminar');
         alert('Accesorio eliminado');
         cerrarModales();

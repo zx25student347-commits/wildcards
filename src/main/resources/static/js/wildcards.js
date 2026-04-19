@@ -54,14 +54,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // actualizarContadorGlobal();
 
-    // --- LÓGICA DE ENLACE DE USUARIO (TOKEN JWT) ---
+    // --- GESTIÓN GLOBAL DE TOKEN JWT ---
+    const token = localStorage.getItem('token');
+    const esPaginaLogin = window.location.pathname.includes('/login');
+
+    if (token) {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+            const payload = JSON.parse(jsonPayload);
+
+            // Verificar expiración proactivamente en cada carga de página
+            if (payload.exp && Date.now() >= payload.exp * 1000) {
+                console.warn("Token expirado detectado. Limpiando...");
+                localStorage.removeItem('token');
+                if (!esPaginaLogin) {
+                    window.location.reload(); // Recargar para limpiar estado de la app
+                }
+            }
+        } catch (e) {
+            console.error("Token corrupto detectado:", e);
+            localStorage.removeItem('token');
+        }
+    }
+
     const enlaceUsuario = document.getElementById('enlace-usuario');
     if (enlaceUsuario) {
-        const token = localStorage.getItem('token');
-        
         if (token) {
             try {
-                // Decodificar payload del JWT
                 const base64Url = token.split('.')[1];
                 const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
                 const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
@@ -70,11 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const payload = JSON.parse(jsonPayload);
 
-                // Verificar expiración
-                if (payload.exp && Date.now() >= payload.exp * 1000) {
-                    localStorage.removeItem('token'); // Token expirado
-                } else {
-                    // Verificar roles (asumiendo formato estándar o Spring Security)
+                if (!(payload.exp && Date.now() >= payload.exp * 1000)) {
                     const rolesRaw = payload.roles || payload.authorities || payload.scope || [];
                     let esAdmin = false;
 
@@ -367,9 +384,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!minInput || !maxInput || !track) return;
             
-            const maxVal = minInput.max || 500;
-            const percent1 = (minInput.value / maxVal) * 100;
-            const percent2 = (maxInput.value / maxVal) * 100;
+            const maxVal = parseFloat(minInput.max) || 500;
+            const percent1 = (parseFloat(minInput.value) / maxVal) * 100;
+            const percent2 = (parseFloat(maxInput.value) / maxVal) * 100;
 
             // Actualizar color de la barra
             track.style.background = `linear-gradient(to right, rgba(255,255,255,0.1) ${percent1}%, var(--accent) ${percent1}%, var(--accent) ${percent2}%, rgba(255,255,255,0.1) ${percent2}%)`;
