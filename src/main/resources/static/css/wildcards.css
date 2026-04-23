@@ -1529,3 +1529,61 @@ input[type="range"]::-webkit-slider-thumb:hover {
     filter: drop-shadow(0 0 5px var(--accent));
     transform: scale(1.15);
 }
+
+/* --- Estilos para Detalles de Carta (Pills de Pokémon) --- */
+.pokemon-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.stat-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.pill-label {
+    font-size: 0.65rem;
+    color: #999;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.pill-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.pill-icon { display: flex; align-items: center; justify-content: center; }
+.pill-icon svg { width: 18px; height: 18px; }
+.pill-icon.heart { color: #ff4d4d; }
+.pill-icon.layers { color: #4db8ff; }
+.pill-icon.rhombus { color: #888; }
+
+/* Tipos de Pokémon */
+.pill-icon.type-fire { color: #ff4422; }
+.pill-icon.type-water { color: #4499ff; }
+.pill-icon.type-grass { color: #77cc55; }
+.pill-icon.type-lightning { color: #ffcc33; }
+.pill-icon.type-psychic { color: #ff6699; }
+.pill-icon.type-fighting { color: #a040a0; } /* Morado como pidió el usuario */
+.pill-icon.type-darkness { color: #555555; }
+.pill-icon.type-metal { color: #999999; }
+.pill-icon.type-colorless { color: #aaaaaa; }
+.pill-icon.type-dragon { color: #c0a000; }
+
+.pill-text { font-size: 0.95rem; font-weight: 700; color: var(--white); }
