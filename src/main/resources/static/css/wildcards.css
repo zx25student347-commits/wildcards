@@ -72,6 +72,17 @@
     }
 }
 
+/* Animación de latido sutil para el logo o elementos destacados */
+@keyframes heartbeat-subtle {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.12); } /* Primer latido bien perceptible */
+    30% { transform: scale(1); }
+    45% { transform: scale(1.06); }  /* Segundo latido más suave */
+    60% { transform: scale(1); }
+    100% { transform: scale(1); }    /* Pausa rítmica */
+}
+
+
 /* Page Background */
 .pagina-login {
     /* El fondo multicolor animado será la capa inferior. */
@@ -1570,7 +1581,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .pill-icon { display: flex; align-items: center; justify-content: center; }
 .pill-icon svg { width: 18px; height: 18px; }
-.pill-icon.heart { color: #ff4d4d; }
+.pill-icon.heart { 
+    color: #ff4d4d;
+    animation: heartbeat-subtle 2.2s infinite ease-in-out;
+}
 .pill-icon.layers { color: #4db8ff; }
 .pill-icon.rhombus { color: #888; }
 
