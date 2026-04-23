@@ -1575,9 +1575,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .stat-pill:hover {
     background: rgba(255, 255, 255, 0.1);
-    border-color: var(--accent);
     transform: translateY(-2px);
 }
+
+/* Resplandor dinámico basado en el color del icono */
+.stat-pill:has(.heart):hover { border-color: #ff4d4d; box-shadow: 0 0 15px rgba(255, 77, 77, 0.3); }
+.stat-pill:has(.layers):hover { border-color: #4db8ff; box-shadow: 0 0 15px rgba(77, 184, 255, 0.3); }
+.stat-pill:has(.rhombus):hover { border-color: #888; box-shadow: 0 0 15px rgba(136, 136, 136, 0.3); }
+
+/* Resplandor para Tipos Elementales */
+.stat-pill:has(.type-fire):hover { border-color: #ff4422; box-shadow: 0 0 15px rgba(255, 68, 34, 0.3); }
+.stat-pill:has(.type-water):hover { border-color: #4499ff; box-shadow: 0 0 15px rgba(68, 153, 255, 0.3); }
+.stat-pill:has(.type-grass):hover { border-color: #77cc55; box-shadow: 0 0 15px rgba(119, 204, 85, 0.3); }
+.stat-pill:has(.type-lightning):hover { border-color: #ffcc33; box-shadow: 0 0 15px rgba(255, 204, 51, 0.3); }
+.stat-pill:has(.type-psychic):hover { border-color: #ff6699; box-shadow: 0 0 15px rgba(255, 102, 153, 0.3); }
+.stat-pill:has(.type-fighting):hover { border-color: #a040a0; box-shadow: 0 0 15px rgba(160, 64, 160, 0.3); }
+.stat-pill:has(.type-darkness):hover { border-color: #555; box-shadow: 0 0 15px rgba(85, 85, 85, 0.3); }
+.stat-pill:has(.type-metal):hover { border-color: #999; box-shadow: 0 0 15px rgba(153, 153, 153, 0.3); }
+.stat-pill:has(.type-colorless):hover { border-color: #aaa; box-shadow: 0 0 15px rgba(170, 170, 170, 0.3); }
+.stat-pill:has(.type-dragon):hover { border-color: #c0a000; box-shadow: 0 0 15px rgba(192, 160, 0, 0.3); }
 
 .pill-icon { display: flex; align-items: center; justify-content: center; }
 .pill-icon svg { width: 18px; height: 18px; }
