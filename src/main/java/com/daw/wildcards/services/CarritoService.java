@@ -69,6 +69,19 @@ public class CarritoService {
                     (accesorioId != null && item.getAccesorio() != null && item.getAccesorio().getAccesorioId().equals(accesorioId))
                 )
                 .findFirst();
+
+        // Gestionar Stock del producto
+        if (cartaId != null) {
+            Carta carta = cartaService.obtenerPorId(cartaId).orElseThrow(() -> new RuntimeException("Carta no encontrada"));
+            if (carta.getStock() < cantidad) throw new RuntimeException("Stock insuficiente");
+            carta.setStock(carta.getStock() - cantidad);
+            cartaService.guardar(carta);
+        } else {
+            Accesorios acc = accesoriosService.findById(accesorioId).orElseThrow(() -> new RuntimeException("Accesorio no encontrado"));
+            if (acc.getStock() < cantidad) throw new RuntimeException("Stock insuficiente");
+            acc.setStock(acc.getStock() - cantidad);
+            accesoriosService.save(acc);
+        }
     
         if (itemExistente.isPresent()) {
             CarritoItem item = itemExistente.get();
@@ -112,6 +125,21 @@ public class CarritoService {
 
         if (itemOptional.isPresent()) {
             CarritoItem item = itemOptional.get();
+            int diferencia = cantidad - item.getCantidad();
+            
+            // Actualizar stock del producto físico
+            if (item.getCarta() != null) {
+                Carta carta = item.getCarta();
+                if (carta.getStock() < diferencia) throw new RuntimeException("No hay stock suficiente");
+                carta.setStock(carta.getStock() - diferencia);
+                cartaService.guardar(carta);
+            } else if (item.getAccesorio() != null) {
+                Accesorios acc = item.getAccesorio();
+                if (acc.getStock() < diferencia) throw new RuntimeException("No hay stock suficiente");
+                acc.setStock(acc.getStock() - diferencia);
+                accesoriosService.save(acc);
+            }
+
             if (cantidad <= 0) {
                 eliminarItem(username, item.getCarritoItemId());
             } else {
@@ -135,6 +163,16 @@ public class CarritoService {
                 .findFirst();
 
         if (itemToDelete.isPresent()) {
+            CarritoItem item = itemToDelete.get();
+            // Devolver stock al producto
+            if (item.getCarta() != null) {
+                item.getCarta().setStock(item.getCarta().getStock() + item.getCantidad());
+                cartaService.guardar(item.getCarta());
+            } else if (item.getAccesorio() != null) {
+                item.getAccesorio().setStock(item.getAccesorio().getStock() + item.getCantidad());
+                accesoriosService.save(item.getAccesorio());
+            }
+
             carrito.getItems().remove(itemToDelete.get());
             carritoItemRepository.delete(itemToDelete.get());
             carrito.setUpdatedAt(LocalDateTime.now());

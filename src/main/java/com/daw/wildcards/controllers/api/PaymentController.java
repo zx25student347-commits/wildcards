@@ -47,14 +47,6 @@ public class PaymentController {
         }
         String username = authentication.getName();
 
-        // 1. Validar stock ANTES de intentar crear la intención de pago
-        try {
-            pedidoService.validarStockCarrito(username);
-        } catch (IllegalStateException e) {
-            // Si no hay stock o el carrito está vacío, devolvemos un 400 Bad Request con el mensaje de error.
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-
         CarritoCompra carrito = carritoService.obtenerCarritoPorUsuario(username);
 
         // Stripe requiere el monto en la unidad monetaria más pequeña (céntimos para EUR)

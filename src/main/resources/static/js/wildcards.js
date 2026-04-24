@@ -11,49 +11,7 @@ function debounce(func, delay = 400) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // // --- LÓGICA DEL CONTADOR DE CARRITO GLOBAL ---
-    // const actualizarContadorGlobal = async () => {
-    //     const contador = document.getElementById('contadorCarrito');
-    //     const token = localStorage.getItem('token');
-    //     if (!contador) return;
-        
-    //     if (!token) {
-    //         contador.style.display = 'none';
-    //         return;
-    //     }
-
-    //     try {
-    //         const response = await fetch('/api/carrito', {
-    //             headers: { 'Authorization': 'Bearer ' + token }
-    //         });
-            
-    //         // Si el servidor rechaza el token, lo borramos para evitar bucles de redirección
-    //         if (response.status === 401 || response.status === 403) {
-    //             localStorage.removeItem('token');
-    //             contador.style.display = 'none';
-    //             return;
-    //         }
-
-    //         if (response.ok) {
-    //             const carrito = await response.json();
-    //             const totalItems = carrito.items ? carrito.items.reduce((acc, item) => acc + item.cantidad, 0) : 0;
-                
-    //             if (totalItems > 0) {
-    //                 contador.textContent = totalItems;
-    //                 contador.style.display = 'flex';
-    //                 contador.classList.add('actualizado');
-    //                 setTimeout(() => contador.classList.remove('actualizado'), 500);
-    //             } else {
-    //                 contador.style.display = 'none';
-    //             }
-    //         }
-    //     } catch (e) {
-    //         contador.style.display = 'none';
-    //     }
-    // };
-
-    // actualizarContadorGlobal();
-
+   
     // --- GESTIÓN GLOBAL DE TOKEN JWT ---
     const token = localStorage.getItem('token');
     const esPaginaLogin = window.location.pathname.includes('/login');
@@ -650,6 +608,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = e.target.closest('.btn-add, .btn-agregar, .btn-comprar, .boton-comprar, #btnAgregarCarrito');
         
         if (btn) {
+            // Si el botón está deshabilitado, mostramos error y cancelamos la acción
+            if (btn.disabled) {
+                mostrarToast("No hay stock disponible para este producto", null, true);
+                return;
+            }
+
+            // Validación de cantidad vs stock
+            const cantidadInput = document.getElementById('cantidad');
+            const stockNumEl = document.getElementById('carta-stock-num') || document.getElementById('accesorio-stock-num');
+            if (cantidadInput && stockNumEl) {
+                const cantidad = parseInt(cantidadInput.value) || 1;
+                const stockActual = parseInt(stockNumEl.textContent) || 0;
+                if (cantidad > stockActual) {
+                    mostrarToast("No puedes añadir más unidades de las disponibles en stock", null, true);
+                    return;
+                }
+            }
+
             // Obtenemos las coordenadas del centro del botón para que el confeti salga de ahí
             const rect = btn.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
@@ -719,7 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- SISTEMA DE NOTIFICACIONES TOAST ---
-    function mostrarToast(mensaje, imagenUrl) {
+    window.mostrarToast = function(mensaje, imagenUrl, esError = false) {
         // 1. Verificar si existe el contenedor, si no, crearlo
         let container = document.getElementById('toast-container');
         if (!container) {
@@ -732,14 +708,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Crear el elemento toast
         const toast = document.createElement('div');
         toast.classList.add('toast-notification');
+        if (esError) toast.classList.add('toast-error');
         
         // Construimos el HTML: Imagen (opcional) + Icono + Mensaje
         const imgHtml = imagenUrl ? `<img src="${imagenUrl}" class="toast-img" alt="Producto">` : '';
+        const iconoHtml = esError 
+            ? `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`
+            : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
         
         toast.innerHTML = `
             ${imgHtml}
             <div class="toast-icono">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                ${iconoHtml}
             </div>
             <span>${mensaje}</span>
         `;

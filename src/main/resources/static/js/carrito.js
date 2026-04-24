@@ -2,6 +2,9 @@
 let stripe;
 let cardElement;
 
+// Bandera para controlar que la animación escalonada solo ocurra al entrar al carrito
+let esPrimeraCarga = true;
+
 // Función auxiliar para incluir el Token JWT en las peticiones (Igual que en dashboard.js)
 function authFetch(url, options = {}) {
     options.headers = options.headers || {};
@@ -125,20 +128,50 @@ function renderizarCarrito(carrito) {
     carrito.items.forEach((item, index) => {
         const clone = plantilla.content.cloneNode(true);
         
-        // Añade un retardo a la animación de entrada para un efecto escalonado
         const tarjeta = clone.querySelector('.tarjeta-carrito');
-        tarjeta.style.animationDelay = `${index * 100}ms`;
+        
+        if (esPrimeraCarga) {
+            // Solo aplicamos el retraso de animación en la carga inicial
+            tarjeta.style.animationDelay = `${index * 100}ms`;
+        } else {
+            // En actualizaciones posteriores (cambios de cantidad), eliminamos la animación para que sea instantáneo
+            tarjeta.style.animation = 'none';
+            tarjeta.style.opacity = '1';
+            tarjeta.style.transform = 'none';
+        }
 
         const producto = item.carta || item.accesorio;
         const esCarta = !!item.carta;
 
         const cantidadInput = clone.querySelector('.cantidad-item');
+        const btnMinus = clone.querySelector('.qty-btn.minus');
+        const btnPlus = clone.querySelector('.qty-btn.plus');
 
-        // Añade el listener para actualizar la cantidad
-        cantidadInput.addEventListener('change', (e) => {
-            const nuevaCantidad = parseInt(e.target.value);
-            actualizarCantidadItem(esCarta ? producto.cartaId : null, !esCarta ? producto.accesorioId : null, nuevaCantidad);
-        });
+        // Configuración de los nuevos botones de cantidad (estilo WildCards)
+        if (btnMinus && btnPlus && cantidadInput) {
+            btnMinus.onclick = () => {
+                const val = parseInt(cantidadInput.value) || 1;
+                if (val > 1) {
+                    actualizarCantidadItem(esCarta ? producto.cartaId : null, !esCarta ? (producto.accesorioId || producto.id) : null, val - 1);
+                }
+            };
+
+            btnPlus.onclick = () => {
+                const val = parseInt(cantidadInput.value) || 1;
+                // Verificamos si queda stock disponible en el servidor para añadir más
+                if (producto.stock > 0) {
+                    actualizarCantidadItem(esCarta ? producto.cartaId : null, !esCarta ? (producto.accesorioId || producto.id) : null, val + 1);
+                } else if (window.mostrarToast) {
+                    window.mostrarToast("No hay más stock disponible", null, true);
+                }
+            };
+        } else if (cantidadInput) {
+            // Fallback por si el HTML aún no tiene la estructura de botones personalizada
+            cantidadInput.addEventListener('change', (e) => {
+                const nuevaCantidad = parseInt(e.target.value);
+                actualizarCantidadItem(esCarta ? producto.cartaId : null, !esCarta ? (producto.accesorioId || producto.id) : null, nuevaCantidad);
+            });
+        }
         
         clone.querySelector('.titulo-item').textContent = producto.nombre;
         
@@ -165,6 +198,9 @@ function renderizarCarrito(carrito) {
         cantidadTotalArticulos += item.cantidad;
         precioTotal += precioItemTotal;
     });
+
+    // Después del primer renderizado, desactivamos la bandera
+    esPrimeraCarga = false;
 
     renderizarResumen(cantidadTotalArticulos, precioTotal);
     actualizarContadorNavbar(cantidadTotalArticulos);
@@ -219,18 +255,21 @@ async function actualizarCantidadItem(cartaId, accesorioId, cantidad) {
             body: JSON.stringify({ cartaId, accesorioId, cantidad })
         });
 
-        if (!response.ok) {
-            throw new Error('No se pudo actualizar la cantidad del producto.');
+        if (response.ok) {
+            // La API devuelve el carrito actualizado, lo renderizamos de nuevo.
+            const carritoActualizado = await response.json();
+            renderizarCarrito(carritoActualizado);
+        } else {
+            const errorMsg = await response.text();
+            if (window.mostrarToast) {
+                window.mostrarToast(errorMsg || "Error al actualizar la cantidad", null, true);
+            }
+            throw new Error(errorMsg);
         }
-
-        // La API devuelve el carrito actualizado, lo renderizamos de nuevo.
-        const carritoActualizado = await response.json();
-        renderizarCarrito(carritoActualizado);
-
+        
     } catch (error) {
         console.error("Error al actualizar el item:", error);
-        // En caso de error, recargamos el carrito desde el servidor para asegurar consistencia.
-        cargarCarrito();
+        if (!error.message || !error.message.includes("stock")) cargarCarrito();
     }
 }
 

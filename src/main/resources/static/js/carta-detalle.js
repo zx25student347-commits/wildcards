@@ -16,6 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(carta => {
             renderizarDetalleCarta(carta);
+            
+            // Configurar botones +/-
+            const btnMinus = document.querySelector('.qty-btn.minus');
+            const btnPlus = document.querySelector('.qty-btn.plus');
+            const input = document.getElementById('cantidad');
+            if(btnMinus && btnPlus && input) {
+                btnMinus.onclick = () => {
+                    const val = parseInt(input.value) || 1;
+                    if (val > 1) input.value = val - 1;
+                };
+                btnPlus.onclick = () => {
+                    const val = parseInt(input.value) || 1;
+                    const max = parseInt(input.max) || 0;
+                    if (val < max) input.value = val + 1;
+                };
+            }
         })
         .catch(error => {
             console.error('Error al cargar la carta:', error);
@@ -26,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAgregar = document.getElementById('btnAgregarCarrito');
     if (btnAgregar) {
         btnAgregar.addEventListener('click', async () => {
+            if (btnAgregar.disabled) {
+                return;
+            }
+
             const token = localStorage.getItem('token');
             
             if (!token) {
@@ -36,6 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const cantidadInput = document.getElementById('cantidad');
             const cantidad = cantidadInput ? parseInt(cantidadInput.value) : 1;
+
+            const stockActual = parseInt(document.getElementById('carta-stock-num').textContent) || 0;
+            if (cantidad > stockActual) {
+                // La notificación la maneja el listener global en wildcards.js
+                return;
+            }
 
             try {
                 const response = await fetch('/api/carrito/items', {
@@ -52,6 +78,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     console.log('Producto añadido al carrito correctamente.');
+                    
+                    // Actualizar el stock visualmente sin recargar la página
+                    const stockNumEl = document.getElementById('carta-stock-num');
+                    if (stockNumEl) {
+                        const stockActual = parseInt(stockNumEl.textContent) || 0;
+                        const nuevoStock = Math.max(0, stockActual - cantidad);
+                        stockNumEl.textContent = nuevoStock;
+                        if (cantidadInput) cantidadInput.max = nuevoStock;
+                        if (nuevoStock <= 0) {
+                            btnAgregar.disabled = true;
+                            btnAgregar.textContent = 'Agotado';
+                        }
+                    }
                 } else if (response.status === 401 || response.status === 403) {
                     window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
                 } else {
@@ -100,6 +139,18 @@ function renderizarDetalleCarta(carta) {
     setElement.href = carta.set ? `${urlJuego}?set=${encodeURIComponent(nombreSet)}` : '#';
 
     document.getElementById('carta-precio').textContent = carta.precio ? `${parseFloat(carta.precio).toFixed(2)} €` : 'Consultar';
+    const stock = carta.stock || 0;
+    document.getElementById('carta-stock-num').textContent = stock;
+    
+    const cantidadInput = document.getElementById('cantidad');
+    if (cantidadInput) cantidadInput.max = stock;
+
+    const btnAgregar = document.getElementById('btnAgregarCarrito');
+    if (btnAgregar && stock <= 0) {
+        btnAgregar.disabled = true;
+        btnAgregar.textContent = 'Agotado';
+    }
+
     document.getElementById('carta-descripcion').textContent = carta.descripcion || 'No hay descripción disponible.';
 
     const detallesEspecificos = document.getElementById('detalles-especificos');

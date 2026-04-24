@@ -66,11 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
             <div class="pedido-card">
-                <div class="pedido-header">
-                    <div class="pedido-info">
-                        <span>Pedido</span>
-                        <strong>#${pedido.id}</strong>
-                    </div>
+                <div class="pedido-header">                  
                     <div class="pedido-info">
                         <span>Fecha</span>
                         <strong>${formatFecha(pedido.fechaPedido)}</strong>

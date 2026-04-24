@@ -15,10 +15,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         const accesorio = await response.json();
         renderizarDetalle(accesorio);
 
+        // Configurar botones +/-
+        const btnMinus = document.querySelector('.qty-btn.minus');
+        const btnPlus = document.querySelector('.qty-btn.plus');
+        const input = document.getElementById('cantidad');
+        if(btnMinus && btnPlus && input) {
+            btnMinus.onclick = () => {
+                const val = parseInt(input.value) || 1;
+                if (val > 1) input.value = val - 1;
+            };
+            btnPlus.onclick = () => {
+                const val = parseInt(input.value) || 1;
+                const max = parseInt(input.max) || 0;
+                if (val < max) input.value = val + 1;
+            };
+        }
+
         // Lógica para el botón de Añadir al Carrito
         const btnAgregar = document.getElementById('btnAgregarCarrito');
         if (btnAgregar) {
             btnAgregar.addEventListener('click', async () => {
+                if (btnAgregar.disabled) {
+                    return;
+                }
+
                 const token = localStorage.getItem('token');
                 if (!token) {
                     // Si no hay token (usuario no logueado), redirigir al login
@@ -26,17 +46,41 @@ document.addEventListener('DOMContentLoaded', async () => {
                     return;
                 }
 
+                const cantidadInput = document.getElementById('cantidad');
+                const cantidad = cantidadInput ? parseInt(cantidadInput.value) : 1;
+
+                const stockActual = parseInt(document.getElementById('accesorio-stock-num').textContent) || 0;
+                if (cantidad > stockActual) {
+                    return;
+                }
+
                 try {
                     const response = await fetch('/api/carrito/items', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
                         body: JSON.stringify({
                             accesorioId: parseInt(accesorioId),
-                            cantidad: 1
+                            cantidad: cantidad
                         })
                     });
 
                     if (response.ok) {
+                        // Actualizar el stock visualmente
+                        const stockNumEl = document.getElementById('accesorio-stock-num');
+                        if (stockNumEl) {
+                            const stockActual = parseInt(stockNumEl.textContent) || 0;
+                            const nuevoStock = Math.max(0, stockActual - cantidad);
+                            stockNumEl.textContent = nuevoStock;
+                            if (cantidadInput) cantidadInput.max = nuevoStock;
+                            if (nuevoStock <= 0) {
+                                btnAgregar.disabled = true;
+                                btnAgregar.textContent = 'Agotado';
+                            }
+                        }
+
                         // Si wildcards.js tiene la función global, la llamamos
                         if (window.actualizarContadorGlobal) window.actualizarContadorGlobal();
                     } else if (response.status === 401 || response.status === 403) {
@@ -77,7 +121,17 @@ function renderizarDetalle(accesorio) {
     // Precio y Stock
     const precio = accesorio.precio ? parseFloat(accesorio.precio).toFixed(2) + ' €' : 'Consultar';
     setText('accesorio-precio', precio);
-    setText('accesorio-stock', (accesorio.stock && accesorio.stock > 0) ? `${accesorio.stock} unidades en stock` : 'Agotado');
+    const stock = accesorio.stock || 0;
+    setText('accesorio-stock-num', stock);
+
+    const cantidadInput = document.getElementById('cantidad');
+    if (cantidadInput) cantidadInput.max = stock;
+
+    const btnAgregar = document.getElementById('btnAgregarCarrito');
+    if (btnAgregar && stock <= 0) {
+        btnAgregar.disabled = true;
+        btnAgregar.textContent = 'Agotado';
+    }
 }
 
 function setText(id, text) {
