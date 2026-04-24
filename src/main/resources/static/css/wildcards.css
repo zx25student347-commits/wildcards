@@ -71,6 +71,14 @@
         left: 100%;
     }
 }
+@keyframes scroll-v {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+@keyframes scroll-v-reverse {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+}
 
 /* Animación de latido sutil para el logo o elementos destacados */
 @keyframes heartbeat-subtle {
@@ -85,17 +93,8 @@
 
 /* Page Background */
 .pagina-login {
-    /* El fondo multicolor animado será la capa inferior. */
-    position: relative; /* Necesario para que el pseudo-elemento ::before se posicione respecto a este. */
-    background: linear-gradient(-45deg, 
-            #3D7DCA,
-            #FFCB05,
-            #E60012,
-            #40055c,
-            #D4AF37
-        );
-    background-size: 400% 400%;
-    animation: animated-gradient 15s ease infinite;
+    position: relative;
+    background-color: #333; /* Fondo gris oscuro sólido */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,24 +102,75 @@
     padding: 20px;
     overflow: hidden;
     /* Aislamos el contexto de apilamiento para que z-index funcione de forma predecible */
-    isolation: isolate;
+    isolation: auto;
 }
 
-/* Usamos un pseudo-elemento para poner la imagen por encima del fondo multicolor.
-   Estará entre el fondo (del .pagina-login) y el contenido (el .contenedor-login). */
-.pagina-login::before {
-    content: "";
+/* --- Estilos Carrusel Vertical --- */
+.carrusel-vertical {
     position: absolute;
-    inset: 0; /* top:0; right:0; bottom:0; left:0; */
-    z-index: -1; /* Lo colocamos detrás del contenido del .pagina-login */
-
-    background-image: url("/img/fondo_cartas.png");
-    background-position: center;
-    background-size: cover;
-
-    /* Hacemos la imagen un poco transparente para que se vea el fondo de colores a través de ella. */
-    opacity: 0.85; 
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: rgba(0, 0, 0, 0.7); /* Más opaco para que se vea claramente */
+    backdrop-filter: blur(8px); /* Efecto cristal para integrarse con el fondo gris */
+    border-right: 2px solid rgba(65, 12, 134, 0.3); /* Borde con el color de acento */
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5); /* Sombra lateral para profundidad */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alineamos arriba para que el track empiece desde el tope */
+    z-index: 10; /* Aseguramos que esté por encima del fondo */
+    /* Máscara de desvanecimiento arriba y abajo */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
+
+/* Estilos específicos para la banda derecha */
+.carrusel-vertical.der {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 2px solid rgba(65, 12, 134, 0.3);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Clase para invertir la dirección del track */
+.carrusel-vertical-track.reverse {
+    animation-name: scroll-v-reverse;
+}
+
+.carrusel-vertical-track {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espaciado uniforme entre cartas */
+    animation: scroll-v linear infinite;
+}
+
+/* Variaciones de velocidad */
+.v-fast { animation-duration: 25s; }
+.v-medium { animation-duration: 35s; }
+.v-slow { animation-duration: 45s; }
+.v-very-slow { animation-duration: 60s; }
+
+.carrusel-vertical-track:hover {
+    animation-play-state: paused;
+}
+
+.carrusel-vertical-item {
+    width: 210px; /* Tamaño fijo para que quepa bien en la banda */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(0.7);
+}
+
+.carrusel-vertical-item:hover {
+    transform: scale(1.1) rotate(-2deg);
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
 /* Contenedor */
 .contenedor-login {
     width: 100%;
@@ -723,6 +773,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
     .btn-toggle-filtros {
         display: flex; /* Visible solo en móvil */
         order: 1;
+    }
+
+    /* Ocultar carrusel en pantallas pequeñas para no saturar */
+    .carrusel-vertical {
+        display: none;
     }
 }
 
