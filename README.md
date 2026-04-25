@@ -54,4 +54,43 @@ Notas
 - Los controladores API ofrecen endpoints JSON para operaciones asíncronas (ej. llamadas desde JS del frontend).
 - El servicio de almacenamiento (`FileSystemStorageService`) gestiona ficheros subidos si los hay (imágenes, etc.).
 
+Despliegue con Docker
+---------------------
+Se han añadido `Dockerfile`, `.dockerignore` y `docker-compose.yml` para facilitar el despliegue local.
+
+- Levantar con Docker Compose (recomendado):
+
+```bash
+docker-compose up --build -d
+```
+
+Esto construye la imagen de la aplicación y arranca también un contenedor MySQL configurado con:
+
+- Base de datos: `wildcards`
+- Usuario: `wildcards`
+- Contraseña: `wildcards` (cambia esto en producción)
+
+- Alternativa (con build local del JAR):
+
+```bash
+# Windows PowerShell
+.\mvnw.cmd package
+docker build -t wildcards:latest .
+docker run -p 8080:8080 \
+  -e SPRING_DATASOURCE_URL=jdbc:mysql://<DB_HOST>:3306/wildcards \
+  -e SPRING_DATASOURCE_USERNAME=wildcards \
+  -e SPRING_DATASOURCE_PASSWORD=wildcards \
+  wildcards:latest
+```
+
+Puntos importantes:
+
+- `depends_on` en Compose no garantiza que MySQL esté listo; la aplicación puede intentar conectar antes de tiempo. Para mayor fiabilidad considera añadir un `healthcheck` para MySQL o usar un script de espera (`wait-for-it`, `dockerize`, o retry) antes de iniciar la app.
+- No incluyas secretos en `application.properties` para producción (ej. `stripe.key.secret`, `jwt.secret`). Pásalos como variables de entorno o Docker secrets.
+- Ajusta `MYSQL_ROOT_PASSWORD` en `docker-compose.yml` por una contraseña segura antes de usar en entornos no locales.
+- Si la app escucha en otro puerto, actualiza el `EXPOSE` o el mapeo de puertos en Compose.
+
+
+
+
 

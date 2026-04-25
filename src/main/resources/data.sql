@@ -605,7 +605,7 @@ INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect)
 VALUES (421, 'Rojo', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] Da a tu Líder o a 1 de tus Personajes +1000 de poder durante este turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (422, 'Crocodile', 'ST01-002', 'L', 'Líder', 100.00, 'Edición limitada de la Flagship Battle España. El ex-Shichibukai y líder de Baroque Works con arte conmemorativo regional.', '/img/cocodrile-spain.png', 4, 46, 13, 'Español');
+VALUES (422, 'Crocodile', 'ST01-002', 'L', 'Líder', 100.00, 'Edición limitada de la Flagship Battle España. El ex-Shichibukai y líder de Baroque Works con arte conmemorativo regional.', '/img/cocodrile-spain.jpg', 4, 46, 13, 'Español');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (422, 'Azul', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] DON!! -4 (Puedes devolver el número especificado de cartas DON!! de tu campo a tu mazo DON!!) Devuelve hasta 1 Personaje con un coste de 5 o menos a la mano de su propietario.');
