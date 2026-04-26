@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const minInput = document.getElementById('min-price');
         const maxInput = document.getElementById('max-price');
         const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]');
+        const checkboxesTipo = document.querySelectorAll('input[name="tipo"]');
         const selectSet = document.getElementById('filtro-set');
         const btnReset = document.getElementById('btn-reset-filtros');
 
@@ -168,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (maxInput) maxInput.value = maxInput.max;
                 if (selectSet) selectSet.value = '';
                 checkboxesIdioma.forEach(cb => cb.checked = false);
+                checkboxesTipo.forEach(cb => cb.checked = false);
                 if (sortSelect) sortSelect.value = 'relevance';
                 currentSort = 'relevance';
                 currentPage = 0;
@@ -240,6 +242,11 @@ document.addEventListener("DOMContentLoaded", () => {
             currentPage = 0;
             aplicarFiltros();
         }));
+
+        checkboxesTipo.forEach(cb => cb.addEventListener('change', () => {
+            currentPage = 0;
+            aplicarFiltros();
+        }));
     }
 
     function aplicarFiltros() {
@@ -254,6 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const checkboxesIdioma = document.querySelectorAll('input[name="idioma"]:checked');
         const idiomasSeleccionados = Array.from(checkboxesIdioma).map(cb => cb.value);
 
+        const checkboxesTipo = document.querySelectorAll('input[name="tipo"]:checked');
+        const tiposSeleccionados = Array.from(checkboxesTipo).map(cb => cb.value);
+
         // Mapeo de valores del checkbox (HTML) a valores de la BD
         const mapaIdiomas = { 'en': 'Inglés', 'es': 'Español', 'jp': 'Japonés' };
 
@@ -265,6 +275,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (setSeleccionado) {
                 const itemSet = item.set ? (typeof item.set === 'object' ? item.set.nombre : item.set) : '';
                 if (itemSet !== setSeleccionado) return false;
+            }
+
+            // Filtro Tipo (Categoría de Accesorio)
+            if (tiposSeleccionados.length > 0) {
+                if (!item.tipo || !tiposSeleccionados.includes(item.tipo)) return false;
             }
 
             // Filtro Idioma

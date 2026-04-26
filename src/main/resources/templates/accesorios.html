@@ -1,66 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accesorios</title>
-    <link rel="stylesheet" href="/css/fragmentos-estilo.css">
-    <link rel="stylesheet" href="/css/wildcards.css">
+    <link rel="stylesheet" href="/css/fragmentos-estilo.css" />
+    <link rel="stylesheet" href="/css/wildcards.css" />
     <script src="js/wildcards.js" defer></script>
     <script src="js/productos.js" defer></script>
+  </head>
 
-</head>
-
-<body class="pagina-tienda">
+  <body class="pagina-tienda">
     <header th:replace="~{fragmentos/layout :: header}"></header>
 
     <main>
-        <div class="contenedor-tienda">
+      <div class="contenedor-tienda">
+        <aside class="barra-lateral">
+          <div class="filtro-container">
+            <h3>Filtrar por</h3>
 
-            <aside class="barra-lateral">
-                <div class="filtro-container">
-                    <h3>Filtrar por</h3>
+            <div class="filtro-grupo">
+              <h4>Precio</h4>
+              <div class="rango-valores">
+                <span id="min-price-val">0€</span>
+                <span id="max-price-val">500€</span>
+              </div>
+              <div class="double-slider-container">
+                <div class="slider-track"></div>
+                <input
+                  type="range"
+                  min="0"
+                  max="500"
+                  value="0"
+                  class="min-price"
+                  id="min-price"
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="500"
+                  value="500"
+                  class="max-price"
+                  id="max-price"
+                />
+              </div>
+            </div>
+            <div class="filtro-grupo">
+              <h4>Categoría</h4>
+              <label class="opcion-filtro"
+                ><input type="checkbox" name="tipo" value="Álbum" />
+                Álbumes</label
+              >
+              <label class="opcion-filtro"
+                ><input type="checkbox" name="tipo" value="Fundas" />
+                Fundas</label
+              >
+              <label class="opcion-filtro"
+                ><input type="checkbox" name="tipo" value="Caja" /> Cajas</label
+              >
+              <label class="opcion-filtro"
+                ><input type="checkbox" name="tipo" value="Tapete" />
+                Tapetes</label
+              >
+            </div>
+            <button id="btn-reset-filtros" class="btn-reset">
+              Limpiar Filtros
+            </button>
+          </div>
+        </aside>
 
-                    <div class="filtro-grupo">
-                        <h4>Precio</h4>
-                        <div class="rango-valores">
-                            <span id="min-price-val">0€</span>
-                            <span id="max-price-val">500€</span>
-                        </div>
-                        <div class="double-slider-container">
-                            <div class="slider-track"></div>
-                            <input type="range" min="0" max="500" value="0" class="min-price" id="min-price">
-                            <input type="range" min="0" max="500" value="500" class="max-price" id="max-price">
-                        </div>
-                    </div>
-                    <button id="btn-reset-filtros" class="btn-reset">Limpiar Filtros</button>
-                </div>
-            </aside>
+        <section class="listado-productos">
+          <div class="cabecera-listado">
+            <div class="info-resultados">
+              <h1>Accesorios</h1>
+              <p>Cargando productos...</p>
+            </div>
+            <div class="control-ordenacion">
+              <label for="sort-select">Ordenar por:</label>
+              <select id="sort-select" class="select-ordenar">
+                <option value="relevance">Relevancia</option>
+                <option value="price_asc">Precio: Menor a mayor</option>
+                <option value="price_desc">Precio: Mayor a menor</option>
+                <option value="name_asc">Nombre: A-Z</option>
+              </select>
+            </div>
+          </div>
 
-            <section class="listado-productos">
-                <div class="cabecera-listado">
-                    <div class="info-resultados">
-                        <h1>Accesorios</h1>
-                        <p>Cargando productos...</p>
-                    </div>
-                    <div class="control-ordenacion">
-                        <label for="sort-select">Ordenar por:</label>
-                        <select id="sort-select" class="select-ordenar">
-                            <option value="relevance">Relevancia</option>
-                            <option value="price_asc">Precio: Menor a mayor</option>
-                            <option value="price_desc">Precio: Mayor a menor</option>
-                            <option value="name_asc">Nombre: A-Z</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="productos-grid" class="productos-grid"></div>
-                <div id="paginacion-container" class="paginacion-container"></div>
-            </section>
-        </div>
+          <div id="productos-grid" class="productos-grid"></div>
+          <div id="paginacion-container" class="paginacion-container"></div>
+        </section>
+      </div>
     </main>
     <footer th:replace="~{fragmentos/layout :: footer}"></footer>
-</body>
-
+  </body>
 </html>

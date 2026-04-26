@@ -625,6 +625,50 @@ VALUES ('Álbum de Coleccionista Eevee', 'Álbum',
     'Carpeta de 9 bolsillos con diseño artístico de Eevee. Material libre de ácido y PVC para una protección segura a largo plazo. Capacidad para 360 cartas con carga lateral para evitar caídas.', 24.50, '/img/album-eevee.png', 20
 );
 
+INSERT INTO accesorios (nombre, tipo, descripcion, precio, imagen_Url, stock) 
+VALUES 
+
+-- 🟡 POKÉMON 
+('Pokemon TCG Playmat Charizard Ultra Pro', 'Tapete', 'Tapete oficial Pokémon fabricado por Ultra Pro con ilustración de Charizard. Tamaño aproximado 24 x 13.5 pulgadas. Superficie de tela suave y base de goma antideslizante.', 26.99, '/img/pokemon-charizard-ultrapro.png', 20),
+
+('Pokemon TCG Playmat Pikachu Ultra Pro', 'Tapete', 'Tapete oficial Pokémon con diseño de Pikachu. Material de tela premium que protege las cartas y base antideslizante.', 24.99, '/img/pokemon-pikachu-ultrapro.png', 18),
+
+('Pokemon TCG Sleeves Pikachu Ultra Pro (65u)', 'Fundas', 'Fundas oficiales Pokémon Ultra Pro con ilustración de Pikachu. Tamaño estándar (66x91 mm), pack de 65 unidades.', 8.99, '/img/pokemon-pikachu-sleeves.png', 40),
+
+('Pokemon TCG Portfolio Pikachu 9 Pocket Ultra Pro', 'Álbum', 'Álbum oficial Pokémon Ultra Pro de 9 bolsillos por página. Capacidad aproximada de 360 cartas con carga lateral.', 19.99, '/img/pokemon-pikachu-binder.png', 15),
+
+('Pokemon Deck Box Pikachu Ultra Pro', 'Caja', 'Deck Box oficial Pokémon con diseño Pikachu. Capacidad para 80 cartas con fundas.', 4.99, '/img/pokemon-pikachu-deckbox.png', 30),
+
+
+-- 🟠 ONE PIECE 
+('One Piece Card Game Official Playmat Monkey D. Luffy', 'Tapete', 'Tapete oficial Bandai del One Piece Card Game con ilustración de Luffy. Superficie de tela y base antideslizante.', 29.99, '/img/op-luffy-playmat.png', 15),
+
+('One Piece Card Game Sleeves Straw Hat Crew (70u)', 'Fundas', 'Fundas oficiales Bandai con la tripulación de Sombrero de Paja. Pack de 70 unidades.', 11.99, '/img/op-strawhat-sleeves.png', 35),
+
+('One Piece Card Game Storage Box Luffy', 'Caja', 'Caja oficial Bandai para cartas One Piece. Capacidad para mazos completos con fundas.', 9.99, '/img/op-luffy-deckbox.png', 20),
+
+('One Piece Card Game Playmat Trafalgar Law', 'Tapete', 'Tapete oficial con ilustración de Trafalgar Law. Material premium con base de goma.', 29.99, '/img/op-law-playmat.png', 12),
+
+
+-- 🟣 MAGIC THE GATHERING 
+('MTG Playmat Black Lotus Ultra Pro', 'Tapete', 'Tapete con ilustración de Black Lotus con licencia oficial de Magic: The Gathering. Tamaño estándar competitivo.', 27.99, '/img/mtg-blacklotus.png', 10),
+
+('Dragon Shield Matte Black Sleeves (100u)', 'Fundas', 'Fundas Dragon Shield mate negras. Tamaño estándar (63x88 mm). Alta durabilidad para juego competitivo.', 10.99, '/img/dragonshield-black.png', 50),
+
+('Ultimate Guard Boulder 100+ Deck Box', 'Caja', 'Deck box rígido Ultimate Guard Boulder 100+. Capacidad para más de 100 cartas con fundas.', 11.99, '/img/boulder-100.png', 40),
+
+('MTG PRO Binder 9 Pocket Ultra Pro', 'Álbum', 'Álbum Ultra Pro PRO-Binder con 9 bolsillos y carga lateral. Capacidad aproximada de 360 cartas.', 24.99, '/img/mtg-binder.png', 12),
+
+
+-- 🔵 YU-GI-OH
+('Yu-Gi-Oh Dark Magician Girl Playmat Konami', 'Tapete', 'Tapete oficial Konami con ilustración de Dark Magician Girl. Superficie de tela suave y base antideslizante.', 29.99, '/img/ygo-dmg-playmat.png', 10),
+
+('Yu-Gi-Oh Card Sleeves Blue-Eyes White Dragon (60u)', 'Fundas', 'Fundas oficiales Yu-Gi-Oh con Blue-Eyes White Dragon. Tamaño japonés (62x89 mm). Pack de 60.', 9.99, '/img/ygo-blueeyes.png', 35),
+
+('Yu-Gi-Oh Deck Box Yugi & Kaiba', 'Caja', 'Deck box oficial con ilustraciones de Yugi y Kaiba. Capacidad estándar para cartas con fundas.', 6.99, '/img/ygo-deckbox.png', 25),
+
+('Yu-Gi-Oh Portfolio 9 Pocket Konami', 'Álbum', 'Álbum oficial Yu-Gi-Oh con 9 bolsillos por página. Ideal para coleccionistas.', 19.99, '/img/ygo-binder.png', 15);
+
 
 
 -- CARRITO DE COMPRA (Ejemplo para user@wildcards.com)
