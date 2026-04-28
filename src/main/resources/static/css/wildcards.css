@@ -1645,6 +1645,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
     transition: all 0.3s ease;
 }
 
+.stat-pill.span-3 {
+    grid-column: span 3;
+}
+
 .pill-icon {
     display: flex;
     align-items: center;
@@ -1670,8 +1674,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .pill-icon.star { color: #FFD700; }
 .pill-icon.sword { color: #cfcfcf; }
 .pill-icon.shield { color: #4db8ff; }
-.pill-icon.mana { color: #ff66aa; }
+.pill-icon.mana { color: #f1c40f; } /* Color oro por defecto */
 .pill-icon.coin { color: #f1c40f; }
+
+/* Colores específicos de Maná Magic */
+.pill-icon.mana-white { color: #fffbd5; }
+.pill-icon.mana-blue { color: #67c1ef; }
+.pill-icon.mana-black { color: #a69f9d; }
+.pill-icon.mana-red { color: #f9aa8f; }
+.pill-icon.mana-green { color: #9bd3ae; }
+.pill-icon.mana-colorless { color: #cfcfcf; }
+.pill-icon.mana-default { color: #f1c40f; }
 
 .pill-icon.heart svg {
     animation: heartbeat-subtle 2s ease-in-out infinite;
@@ -1715,8 +1728,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .stat-pill:has(.star):hover { border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
 .stat-pill:has(.sword):hover { border-color: #aaa; box-shadow: 0 0 15px rgba(170, 170, 170, 0.3); }
 .stat-pill:has(.shield):hover { border-color: #4db8ff; box-shadow: 0 0 15px rgba(77, 184, 255, 0.3); }
-.stat-pill:has(.mana):hover { border-color: #ff66aa; box-shadow: 0 0 15px rgba(255, 102, 170, 0.3); }
 .stat-pill:has(.coin):hover { border-color: #f1c40f; box-shadow: 0 0 15px rgba(241, 196, 15, 0.3); }
+
+/* Resplandor dinámico para Magic Mana */
+.stat-pill:has(.mana-white):hover { border-color: #fffbd5; box-shadow: 0 0 15px rgba(255, 251, 213, 0.4); }
+.stat-pill:has(.mana-blue):hover { border-color: #67c1ef; box-shadow: 0 0 15px rgba(103, 193, 239, 0.4); }
+.stat-pill:has(.mana-black):hover { border-color: #a69f9d; box-shadow: 0 0 15px rgba(166, 159, 157, 0.4); }
+.stat-pill:has(.mana-red):hover { border-color: #f9aa8f; box-shadow: 0 0 15px rgba(249, 170, 143, 0.4); }
+.stat-pill:has(.mana-green):hover { border-color: #9bd3ae; box-shadow: 0 0 15px rgba(155, 211, 174, 0.4); }
+.stat-pill:has(.mana-colorless):hover { border-color: #cfcfcf; box-shadow: 0 0 15px rgba(207, 207, 207, 0.4); }
+.stat-pill:has(.mana-default):hover { border-color: #f1c40f; box-shadow: 0 0 15px rgba(241, 196, 15, 0.4); }
 
 /* Resplandor para Tipos Elementales */
 .stat-pill:has(.type-fire):hover { border-color: #ff4422; box-shadow: 0 0 15px rgba(255, 68, 34, 0.3); }

@@ -159,20 +159,23 @@ function renderizarDetalleCarta(carta) {
     // Usamos el @type para identificar el tipo de carta
     switch (carta['@type']) {
         case 'MagicCarta':
+            // Detectar el color principal para el brillo dinámico
+            const colorStr = (carta.colors || 'Incoloro').toLowerCase();
+            let manaColorClass = 'mana-default'; // Oro/Multicolor por defecto
+            if (colorStr.includes('blanco') || colorStr.includes('white')) manaColorClass = 'mana-white';
+            else if (colorStr.includes('azul') || colorStr.includes('blue')) manaColorClass = 'mana-blue';
+            else if (colorStr.includes('negro') || colorStr.includes('black')) manaColorClass = 'mana-black';
+            else if (colorStr.includes('rojo') || colorStr.includes('red')) manaColorClass = 'mana-red';
+            else if (colorStr.includes('verde') || colorStr.includes('green')) manaColorClass = 'mana-green';
+            else if (colorStr.includes('incoloro') || colorStr.includes('colorless')) manaColorClass = 'mana-colorless';
+
             detallesEspecificos.innerHTML += `
                 <div class="pokemon-stats-grid">
                     <div class="stat-pill">
                         <span class="pill-label">COSTE DE MANÁ</span>
                         <div class="pill-content">
-                            <span class="pill-icon mana"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg></span>
+                            <span class="pill-icon mana ${manaColorClass}"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg></span>
                             <span class="pill-text">${carta.manaCost || 'N/A'}</span>
-                        </div>
-                    </div>
-                    <div class="stat-pill">
-                        <span class="pill-label">TIPO</span>
-                        <div class="pill-content">
-                            <span class="pill-icon layers"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg></span>
-                            <span class="pill-text">${carta.cardType || 'N/A'}</span>
                         </div>
                     </div>
                     <div class="stat-pill">
@@ -187,6 +190,13 @@ function renderizarDetalleCarta(carta) {
                         <div class="pill-content">
                             <span class="pill-icon rhombus"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
                             <span class="pill-text">${carta.colors || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill span-3">
+                        <span class="pill-label">TIPO</span>
+                        <div class="pill-content">
+                            <span class="pill-icon layers"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg></span>
+                            <span class="pill-text">${carta.cardType || 'N/A'}</span>
                         </div>
                     </div>
                 </div>
@@ -287,17 +297,17 @@ function renderizarDetalleCarta(carta) {
                         </div>
                     </div>
                     <div class="stat-pill">
-                        <span class="pill-label">TIPO</span>
-                        <div class="pill-content">
-                            <span class="pill-icon layers"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg></span>
-                            <span class="pill-text">${carta.tipoDetalle || 'N/A'}</span>
-                        </div>
-                    </div>
-                    <div class="stat-pill">
                         <span class="pill-label">ATK / DEF</span>
                         <div class="pill-content">
                             <span class="pill-icon sword"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3l-2-2-9 9-2.5-2.5L3 12l2.5 2.5L2 18l3 3 3.5-3.5L11 20l4.5-4.5-2.5-2.5 9-9z"/></svg></span>
                             <span class="pill-text">${carta.ataque || '0'} / ${carta.defensa || '0'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill span-3">
+                        <span class="pill-label">TIPO</span>
+                        <div class="pill-content">
+                            <span class="pill-icon layers"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg></span>
+                            <span class="pill-text">${carta.tipoDetalle || 'N/A'}</span>
                         </div>
                     </div>
                 </div>
