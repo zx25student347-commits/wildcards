@@ -2,12 +2,14 @@ package com.daw.wildcards.dto;
 
 public class AuthResponseDTO {
     private String token;
+    private String message;
 
     public AuthResponseDTO() {
     }
 
-    public AuthResponseDTO(String token) {
+    public AuthResponseDTO(String token, String message) {
         this.token = token;
+        this.message = message;
     }
 
     public String getToken() {
@@ -16,6 +18,14 @@ public class AuthResponseDTO {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     

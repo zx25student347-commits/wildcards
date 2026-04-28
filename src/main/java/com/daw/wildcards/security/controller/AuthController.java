@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,14 +53,18 @@ public class AuthController {
     // 🔹 LOGIN
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> login(@RequestBody AuthRequestDTO request) {
-
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
-
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getPassword()
+                    )
+            );
+        } catch (BadCredentialsException e) {
+            // Si las credenciales son incorrectas, devolvemos un 401 Unauthorized
+            return ResponseEntity.status(401).body(new AuthResponseDTO(null, "Usuario o contraseña incorrectos"));
+        }
+        
         var userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 
         String token = jwtService.generateToken(userDetails);
@@ -74,7 +79,7 @@ public class AuthController {
 
         return ResponseEntity.ok()
                 .header(org.springframework.http.HttpHeaders.SET_COOKIE, cookie.toString())
-                .body(new AuthResponseDTO(token));
+                .body(new AuthResponseDTO(token, "Inicio de sesión exitoso"));
     }
 
     // 🔹 LOGOUT (borra la cookie en el servidor y redirige al login)
