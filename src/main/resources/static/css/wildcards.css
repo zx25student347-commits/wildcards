@@ -1667,6 +1667,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .pill-icon.heart { color: #ff4d4d; }
 .pill-icon.layers { color: #4db8ff; }
 .pill-icon.rhombus { color: #cfcfcf; }
+.pill-icon.star { color: #FFD700; }
+.pill-icon.sword { color: #cfcfcf; }
+.pill-icon.shield { color: #4db8ff; }
+.pill-icon.mana { color: #ff66aa; }
+.pill-icon.coin { color: #f1c40f; }
 
 .pill-icon.heart svg {
     animation: heartbeat-subtle 2s ease-in-out infinite;
@@ -1683,6 +1688,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .pill-icon.type-metal { color: #99aabb; }
 .pill-icon.type-colorless { color: #ffffff; }
 .pill-icon.type-dragon { color: #c6a100; }
+.pill-icon.type-fairy { color: #ff66cc; }
 
 .pill-label {
     font-size: 0.65rem;
@@ -1706,6 +1712,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .stat-pill:has(.heart):hover { border-color: #ff4d4d; box-shadow: 0 0 15px rgba(255, 77, 77, 0.3); }
 .stat-pill:has(.layers):hover { border-color: #4db8ff; box-shadow: 0 0 15px rgba(77, 184, 255, 0.3); }
 .stat-pill:has(.rhombus):hover { border-color: #888; box-shadow: 0 0 15px rgba(136, 136, 136, 0.3); }
+.stat-pill:has(.star):hover { border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+.stat-pill:has(.sword):hover { border-color: #aaa; box-shadow: 0 0 15px rgba(170, 170, 170, 0.3); }
+.stat-pill:has(.shield):hover { border-color: #4db8ff; box-shadow: 0 0 15px rgba(77, 184, 255, 0.3); }
+.stat-pill:has(.mana):hover { border-color: #ff66aa; box-shadow: 0 0 15px rgba(255, 102, 170, 0.3); }
+.stat-pill:has(.coin):hover { border-color: #f1c40f; box-shadow: 0 0 15px rgba(241, 196, 15, 0.3); }
 
 /* Resplandor para Tipos Elementales */
 .stat-pill:has(.type-fire):hover { border-color: #ff4422; box-shadow: 0 0 15px rgba(255, 68, 34, 0.3); }
@@ -1714,6 +1725,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .stat-pill:has(.type-lightning):hover { border-color: #ffcc33; box-shadow: 0 0 15px rgba(255, 204, 51, 0.3); }
 .stat-pill:has(.type-darkness):hover { border-color: #777788; box-shadow: 0 0 15px rgba(119, 119, 136, 0.3); }
 .stat-pill:has(.type-colorless):hover { border-color: #ffffff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
+.stat-pill:has(.type-fairy):hover { border-color: #ff66cc; box-shadow: 0 0 15px rgba(255, 102, 204, 0.3); }
 
 /* --- Custom Quantity Selector Global --- */
 .qty-selector {

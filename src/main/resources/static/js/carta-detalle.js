@@ -155,17 +155,41 @@ function renderizarDetalleCarta(carta) {
 
     const detallesEspecificos = document.getElementById('detalles-especificos');
     detallesEspecificos.innerHTML = '<h3>Detalles del Juego</h3>';
-    const listaDetalles = document.createElement('ul');
 
     // Usamos el @type para identificar el tipo de carta
     switch (carta['@type']) {
         case 'MagicCarta':
-            listaDetalles.innerHTML = `
-                <li><strong>Coste de Maná:</strong> ${carta.manaCost || 'N/A'}</li>
-                <li><strong>Tipo:</strong> ${carta.cardType || 'N/A'}</li>
-                <li><strong>Fuerza/Resistencia:</strong> ${carta.power || 'N/A'} / ${carta.toughness || 'N/A'}</li>
-                <li><strong>Colores:</strong> ${carta.colors || 'N/A'}</li>
-                <li><strong>Habilidades:</strong> ${carta.abilities || 'N/A'}</li>
+            detallesEspecificos.innerHTML += `
+                <div class="pokemon-stats-grid">
+                    <div class="stat-pill">
+                        <span class="pill-label">COSTE DE MANÁ</span>
+                        <div class="pill-content">
+                            <span class="pill-icon mana"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg></span>
+                            <span class="pill-text">${carta.manaCost || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">TIPO</span>
+                        <div class="pill-content">
+                            <span class="pill-icon layers"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg></span>
+                            <span class="pill-text">${carta.cardType || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">FUERZA / RESISTENCIA</span>
+                        <div class="pill-content">
+                            <span class="pill-icon sword"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3l-2-2-9 9-2.5-2.5L3 12l2.5 2.5L2 18l3 3 3.5-3.5L11 20l4.5-4.5-2.5-2.5 9-9z"/></svg></span>
+                            <span class="pill-text">${carta.power || '0'} / ${carta.toughness || '0'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">COLORES</span>
+                        <div class="pill-content">
+                            <span class="pill-icon rhombus"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
+                            <span class="pill-text">${carta.colors || 'N/A'}</span>
+                        </div>
+                    </div>
+                </div>
             `;
             break;
         case 'PokemonCarta':
@@ -188,16 +212,17 @@ function renderizarDetalleCarta(carta) {
                     'rayo': { cls: 'type-lightning', svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>' },
                     'psíquico': { cls: 'type-psychic', svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z"/></svg>' },
                     'lucha': { cls: 'type-fighting', svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10 0 0,0 2,12 10,10 0 0,0 12,22 10,10 0 0,0 22,12 10,10 0 0,0 12,2 M17,13.5c0,1.9-1.6,3.5-3.5,3.5h-3c-1.9,0-3.5-1.6-3.5-3.5V11c0-.8.7-1.5 1.5-1.5s1.5.7 1.5,1.5V12h1V9.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5,1.5V12h1V11c0-.8.7-1.5 1.5-1.5s1.5.7 1.5,1.5V13.5z"/></svg>' },
-                    'oscuridad': { cls: 'type-darkness', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M14.5,4.5 A7.5,7.5 0 1,0 14.5,19.5 A12,12 0 0,1 14.5,4.5 Z"/></svg>' },
+                    'oscuridad': { cls: 'type-darkness', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M4.5,10 A7.5,7.5 0 1,0 19.5,10 A12,12 0 0,1 4.5,10 Z"/></svg>' },
                     'metal': { cls: 'type-metal', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M12,6 L7,8.5 V12 C7,15.5 12,18.5 12,18.5 S17,15.5 17,12 V8.5 L12,6 Z M11,9 H13 V12 H15 V13 H13 V16 H11 V13 H9 V12 H11 V9 Z"/></svg>' },
                     'incoloro': { cls: 'type-colorless', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M12,17.27L18.18,21L16.45,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.55,13.97L5.82,21L12,17.27Z"/></svg>' },
-                    'dragón': { cls: 'type-dragon', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M12,19 L7,10 L5,5 L12,9 L19,5 L17,10 Z"/></svg>' }
+                    'dragón': { cls: 'type-dragon', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M12,19 L7,10 L5,5 L12,9 L19,5 L17,10 Z"/></svg>' },
+                    'hada': { cls: 'type-fairy', svg: '<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12,2A10,10 0 1,0 12,22A10,10 0 1,0 12,2Z M12,13 C12,13 15,16 18,13 C20,11 19,8 16,8.5 C14.5,9 12,11 12,11 C12,11 9.5,9 8,8.5 C5,8 4,11 6,13 C9,16 12,13 12,13 Z"/></svg>' }
                 };
                 const item = map[t] || { cls: 'type-default', svg: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>' };
                 return `<span class="pill-icon ${item.cls}">${item.svg}</span>`;
             };
 
-            detallesEspecificos.innerHTML = `
+            detallesEspecificos.innerHTML += `
                 <div class="pokemon-stats-grid">
                     <div class="stat-pill">
                         <span class="pill-label">PUNTOS DE SALUD</span>
@@ -245,28 +270,76 @@ function renderizarDetalleCarta(carta) {
             `;
             break;
         case 'YugiohCarta':
-             listaDetalles.innerHTML = `
-                <li><strong>Nivel/Rango:</strong> ${carta.nivel || 'N/A'}</li>
-                <li><strong>Atributo:</strong> ${carta.atributo || 'N/A'}</li>
-                <li><strong>Tipo:</strong> ${carta.tipoDetalle || 'N/A'}</li>
-                <li><strong>ATK/DEF:</strong> ${carta.ataque || 'N/A'} / ${carta.defensa || 'N/A'}</li>
+             detallesEspecificos.innerHTML += `
+                <div class="pokemon-stats-grid">
+                    <div class="stat-pill">
+                        <span class="pill-label">NIVEL / RANGO</span>
+                        <div class="pill-content">
+                            <span class="pill-icon star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+                            <span class="pill-text">${carta.nivel || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">ATRIBUTO</span>
+                        <div class="pill-content">
+                            <span class="pill-icon rhombus"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
+                            <span class="pill-text">${carta.atributo || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">TIPO</span>
+                        <div class="pill-content">
+                            <span class="pill-icon layers"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg></span>
+                            <span class="pill-text">${carta.tipoDetalle || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">ATK / DEF</span>
+                        <div class="pill-content">
+                            <span class="pill-icon sword"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3l-2-2-9 9-2.5-2.5L3 12l2.5 2.5L2 18l3 3 3.5-3.5L11 20l4.5-4.5-2.5-2.5 9-9z"/></svg></span>
+                            <span class="pill-text">${carta.ataque || '0'} / ${carta.defensa || '0'}</span>
+                        </div>
+                    </div>
+                </div>
             `;
             break;
         case 'OnePieceCarta':
-            listaDetalles.innerHTML = `
-                <li><strong>Coste:</strong> ${carta.coste || 'N/A'}</li>
-                <li><strong>Poder:</strong> ${carta.power || 'N/A'}</li>
-                <li><strong>Color:</strong> ${carta.color || 'N/A'}</li>
-                <li><strong>Counter:</strong> ${carta.counter || 'N/A'}</li>
+            detallesEspecificos.innerHTML += `
+                <div class="pokemon-stats-grid">
+                    <div class="stat-pill">
+                        <span class="pill-label">COSTE</span>
+                        <div class="pill-content">
+                            <span class="pill-icon coin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.39 2.1-1.39 1.47 0 1.96.72 2.03 1.46h1.52c-.06-1.33-1.01-2.45-2.61-2.78V5.5h-1.93v1.26c-1.47.31-2.67 1.28-2.67 2.72 0 1.91 1.6 2.88 3.99 3.45 2.18.51 2.68 1.18 2.68 2.13 0 1.13-.93 1.64-2.26 1.64-1.87 0-2.48-.96-2.58-1.79H8.2c.08 1.52 1.25 2.62 2.7 3.01v1.29h1.93v-1.28c1.55-.26 2.76-1.16 2.76-2.68 0-2.31-1.85-3-4.28-3.62z"/></svg></span>
+                            <span class="pill-text">${carta.coste || '0'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">PODER</span>
+                        <div class="pill-content">
+                            <span class="pill-icon type-fighting"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10 0 0,0 2,12 10,10 0 0,0 12,22 10,10 0 0,0 22,12 10,10 0 0,0 12,2 M17,13.5c0,1.9-1.6,3.5-3.5,3.5h-3c-1.9,0-3.5-1.6-3.5-3.5V11c0-.8.7-1.5 1.5-1.5s1.5.7 1.5,1.5V12h1V9.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5,1.5V12h1V11c0-.8.7-1.5 1.5-1.5s1.5.7 1.5,1.5V13.5z"/></svg></span>
+                            <span class="pill-text">${carta.power || '0'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">COLOR</span>
+                        <div class="pill-content">
+                            <span class="pill-icon rhombus"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
+                            <span class="pill-text">${carta.color || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">COUNTER</span>
+                        <div class="pill-content">
+                            <span class="pill-icon shield"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></span>
+                            <span class="pill-text">${carta.counter || '0'}</span>
+                        </div>
+                    </div>
+                </div>
             `;
             break;
         default:
             detallesEspecificos.style.display = 'none';
             break;
-    }
-    
-    if (listaDetalles.children.length > 0) {
-        detallesEspecificos.appendChild(listaDetalles);
     }
 
     
