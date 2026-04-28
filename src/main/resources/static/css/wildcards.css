@@ -1678,7 +1678,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .pill-icon.type-fighting { color: #ff8844; }
 .pill-icon.type-darkness { color: #777788; }
 .pill-icon.type-metal { color: #99aabb; }
-.pill-icon.type-colorless { color: #ccaa99; }
+.pill-icon.type-colorless { color: #ffffff; }
 .pill-icon.type-dragon { color: #c6a100; }
 
 .pill-label {
@@ -1709,6 +1709,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .stat-pill:has(.type-water):hover { border-color: #4499ff; box-shadow: 0 0 15px rgba(68, 153, 255, 0.3); }
 .stat-pill:has(.type-grass):hover { border-color: #77cc55; box-shadow: 0 0 15px rgba(119, 204, 85, 0.3); }
 .stat-pill:has(.type-lightning):hover { border-color: #ffcc33; box-shadow: 0 0 15px rgba(255, 204, 51, 0.3); }
+.stat-pill:has(.type-colorless):hover { border-color: #ffffff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
 
 /* --- Custom Quantity Selector Global --- */
 .qty-selector {
