@@ -256,6 +256,24 @@
     font-size: 0.85rem;
 }
 
+.error-mensaje {
+    color: #f87171; /* Rojo suave */
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    min-height: 14px;
+}
+
+.error-mensaje.general {
+    text-align: center;
+    background: rgba(248, 113, 113, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    display: none; /* Oculto por defecto */
+}
+
 .grupo-input input {
     padding: 12px;
     border-radius: 8px;
@@ -1346,26 +1364,29 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: var(--white);
     padding: 16px 24px;
     border-radius: 12px;
-    border-left: 4px solid #32cd32; /* Borde verde indicando éxito */
+    border: 2px solid #32cd32; /* Borde verde para éxito */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     gap: 15px;
     transform: translateX(120%); /* Empieza fuera de la pantalla */
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Entrada elástica */
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), border-color 0.3s; 
     pointer-events: auto; /* El toast sí captura el mouse */
     backdrop-filter: blur(10px);
     font-weight: 500;
     min-width: 300px;
+    z-index: 10001;
 }
 
 /* Estilo para notificaciones de error */
 .toast-notification.toast-error {
-    border-left-color: #f87171;
+    border: 2px solid;
+    animation: animated-border 8s linear infinite; /* Animación de colores de la página */
 }
 
 .toast-notification.toast-error .toast-icono {
-    color: #f87171;
+    color: var(--white);
+    filter: drop-shadow(0 0 5px #f87171);
 }
 
 .toast-notification.mostrar {
