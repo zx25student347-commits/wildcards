@@ -36,13 +36,13 @@
                 </div>
                 
                 <div class="detail-right">
-                    <div style="background: var(--panel); padding: 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
-                        <h3 style="margin-top:0; color: var(--white);">Comprar</h3>
+                    <div class="purchase-panel">
+                        <h3 class="purchase-title">Comprar</h3>
                         <div class="purchase-row">
-                            <span id="accesorio-precio" class="price" style="font-size: 1.5rem;">0.00 €</span>
+                            <span id="accesorio-precio" class="price">0.00 €</span>
                         </div>
-                        <div class="quantity-control" style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
-                            <label for="cantidad" style="color: var(--muted); font-size: 0.9rem;">Cantidad:</label>
+                        <div class="quantity-control">
+                            <label for="cantidad">Cantidad:</label>
                             <div class="qty-selector">
                                 <button type="button" class="qty-btn minus">-</button>
                                 <input type="number" id="cantidad" value="1" min="1" readonly>
@@ -50,7 +50,7 @@
                             </div>
                             <span class="stock-available">(Stock: <span id="accesorio-stock-num">0</span>)</span>
                         </div>
-                        <div style="margin-top: 15px;">
+                        <div class="purchase-button-container">
                             <button id="btnAgregarCarrito" class="btn-add" style="width: 100%;">Añadir al carrito</button>
                         </div>
                     </div>
