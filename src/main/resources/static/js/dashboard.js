@@ -600,7 +600,15 @@
                         method: 'DELETE'
                     });
                     
-                    if (!response.ok) throw new Error('Error al eliminar');
+                    if (response.status === 405) {
+                        throw new Error('El servidor no permite el método DELETE. Verifica que el controlador tenga @DeleteMapping.');
+                    }
+                    
+                    if (response.status === 500) {
+                        throw new Error('No se puede eliminar: La carta está asociada a un pedido o carrito activo.');
+                    }
+                    
+                    if (!response.ok) throw new Error('Error al eliminar la carta');
 
                     modalConfirmacion.style.display = 'none';
                     alert('Carta eliminada correctamente');
@@ -608,7 +616,7 @@
                     cargarCartas(); // Recargar tabla
                 } catch (error) {
                     console.error(error);
-                    alert('Error al eliminar la carta');
+                    alert('Error: ' + error.message);
                 }
             }
         });

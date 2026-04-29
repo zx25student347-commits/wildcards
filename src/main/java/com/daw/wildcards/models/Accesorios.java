@@ -1,11 +1,9 @@
 package com.daw.wildcards.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table (name = "accesorios")
@@ -31,6 +29,14 @@ public class Accesorios {
 
     @Column
     private Integer stock;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "accesorio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CarritoItem> carritoItems = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "accesorio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PedidoItem> pedidoItems = new ArrayList<>();
 
     public Accesorios() {
     }

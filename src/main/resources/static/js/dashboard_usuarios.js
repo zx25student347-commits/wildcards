@@ -384,24 +384,32 @@ btnSi.addEventListener('click', async () => {
     if (usuarioActualAEliminar) {
         try {
             const response = await authFetch(`${API_URL}/${usuarioActualAEliminar}`, { method: 'DELETE' });
-            if (!response.ok) throw new Error('Error al eliminar');
+            if (response.status === 405) throw new Error('Método DELETE no soportado en el servidor para Usuarios.');
+            
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error(text || 'Error al eliminar');
+            }
+            
             alert('Usuario eliminado');
             cerrarModales();
             cargarUsuarios();
         } catch (error) {
             console.error(error);
-            alert('Error al eliminar el usuario');
+            alert('Error: ' + error.message);
         }
     } else if (pedidoActualAEliminar) {
         try {
             const response = await authFetch(`/api/pedido/${pedidoActualAEliminar}`, { method: 'DELETE' });
-            if (!response.ok) throw new Error('Error al eliminar el pedido');
+            if (response.status === 405) throw new Error('Método DELETE no soportado en el servidor para Pedidos.');
+            if (!response.ok) throw new Error('Error al eliminar el pedido.');
+            
             alert('Pedido eliminado');
             cerrarModales();
             cargarTodosLosPedidos(); // Recargar la tabla de pedidos
         } catch (error) {
             console.error(error);
-            alert('Error al eliminar el pedido');
+            alert('Error: ' + error.message);
         }
     }
 });
