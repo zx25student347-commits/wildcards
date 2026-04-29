@@ -94,7 +94,7 @@
 /* Page Background */
 .pagina-login {
     position: relative;
-    background-color: #333; /* Fondo gris oscuro sólido */
+    background-color: #1a1a1a; /* Fondo base ligeramente más claro */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,6 +105,18 @@
     isolation: auto;
 }
 
+.pagina-login::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/img/fondo_cartas.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25; /* Opacidad un poco más alta para que se vea mejor el fondo */
+    z-index: 0;
+    pointer-events: none;
+}
+
 /* --- Estilos Carrusel Vertical --- */
 .carrusel-vertical {
     position: absolute;
@@ -112,7 +124,7 @@
     top: 0;
     bottom: 0;
     width: 250px;
-    background: rgba(0, 0, 0, 0.7); /* Más opaco para que se vea claramente */
+    background: rgba(0, 0, 0, 0.4); /* Menos opaco para que el fondo se aprecie mejor */
     backdrop-filter: blur(8px); /* Efecto cristal para integrarse con el fondo gris */
     border-right: 2px solid rgba(65, 12, 134, 0.3); /* Borde con el color de acento */
     box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5); /* Sombra lateral para profundidad */
