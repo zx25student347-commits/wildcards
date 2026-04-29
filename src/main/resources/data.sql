@@ -74,7 +74,7 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 2.50, 'Charizard sobrevuela los cielos en busca de oponentes poderosos. Exhala fuego de tal intensidad que derrite cualquier cosa. Sin embargo, jamás dirige su aliento de fuego contra un adversario más débil que él..', '/img/MCX.png', 1, 8, 10, 'Inglés');
+VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 2.50, 'Charizard pertenece a la Primera Generación (Gen I), está inspirado principalmente en los dragones occidentales, especialmente los de la mitología europea', '/img/MCX.png', 1, 8, 10, 'Inglés');
 
 -- 3. Insertamos en la tabla hija 'pokemon_cartas' usando el MISMO ID (100)
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
@@ -82,13 +82,13 @@ VALUES (100, 360, 'Fuego', 'Stage 2', 'Charmeleon', 'Lanzallamas, Giro Fuego', '
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (101, 'Mega Gengar ex', '056/094', 'Ultra Rare', 'Criatura', 1.00, 'Para quitarle la vida a su presa, se desliza en su sombra y espera su oportunidad en silencio.', '/img/MG.png', 1, 8, 5, 'Inglés');
+VALUES (101, 'Mega Gengar ex', '056/094', 'Ultra Rare', 'Criatura', 1.00, 'Gengar pertenece a la Primera Generación (Gen I), está inspirado en el concepto japonés de los yōkai, espíritus traviesos o malignos que se esconden en la oscuridad. También recuerda a la idea de la sombra viva,.', '/img/MG.png', 1, 8, 5, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (101, 350, 'Oscuridad', 'Stage 2', 'Haunter', 'Vendaval del Vacío', 'Lucha', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, ' Pokémon que atrae la victoria. Dicen que el Entrenador que lo lleve saldrá vencedor de cualquier batalla.', '/img/Victiniex.png', 1, 7, 5, 'Indonesio');
+VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, ' PVictini pertenece a la Quinta Generación (Gen V), está inspirado en el concepto de la victoria y la buena suerte. Sus orejas en forma de “V” representan claramente “Victory”, y su aspecto pequeño y adorable contrasta con su poder simbólico enorme. También tiene influencias de criaturas míticas que traen fortuna, como pequeños espíritus protectores o hadas de la suerte, combinadas con energía ilimitada..', '/img/Victiniex.png', 1, 7, 5, 'Indonesio');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Ataque en Retirada, Llama de la Victoria', 'Agua', 'Ninguna', 1);
@@ -97,115 +97,115 @@ VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Ataque en Retirada, Llama de l
 -- VALUES (103, 'N', '180/171', 'Full Art Rare', 'Entrenador', 190.00, 'Each player shuffles their hand into their deck and draws a card for each of their remaining Prize cards.', '/img/N.jpg', 1, 10, 2, 'Japonés');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'Latias es muy sensible a los sentimientos de la gente. Si detecta algún ápice de hostilidad, desplegará las plumas que tiene por todo el cuerpo y se pondrá a chillar para intimidar al enemigo.', '/img/ML.png', 1, 1, 4, 'Inglés');
+VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'Latias pertenece a la Tercera Generación (Gen III), está inspirada en criaturas elegantes y protectoras, combinando rasgos de aviones a reacción con dragones suaves y formas aerodinámicas. Su cuerpo estilizado parece diseñado para cortar el viento sin esfuerzo.', '/img/ML.png', 1, 1, 4, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (104, 280, 'Dragón', 'Mega Evolution', 'Latias', 'Pasada, Impulso Ilusorio', 'Hada', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (105, 'Lillie’s Clefairy ex', '765/742', 'Special Art Rare', 'Criatura', 120.00, 'La ilustración de esta carta subraya el profundo vínculo emocional entre Lillie y este Pokémon.', '/img/LL.png', 1, 5, 3, 'Japonés');
+VALUES (105, 'Lillie’s Clefairy ex', '765/742', 'Special Art Rare', 'Criatura', 120.00, 'Lillie aparece en la Séptima Generación (Gen VII), Lillie empieza teniendo miedo a los Pokémon, pero su relación con Clefairy le ayuda a ganar confianza poco a poco. Clefairy actúa como un apoyo emocional, mostrando que los Pokémon pueden ser amables y cercanos. Su vínculo simboliza el crecimiento de Lillie: de miedo a confianza, sin necesidad de combates ', '/img/LL.png', 1, 5, 3, 'Japonés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (105, 190, 'Psíquico', 'Básico', 'Ninguna', 'Zona Hada, Rondó de Luna Llena', 'Metal', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Dicen que Rayquaza ha vivido durante millones de años. Las leyendas cuentan que puso fin al continuo enfrentamiento entre Groudon y Kyogre..', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
+VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Rayquaza pertenece a la Tercera Generación (Gen III), está inspirado en los dragones orientales, especialmente los de la mitología china, asociados al cielo, el clima y el poder divino.', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (106, 220, 'Incoloro', 'Mega', 'Rayquaza-EX', 'Rotura Esmeralda', 'Rayo', 'Lucha', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Las hojas que crecen en sus brazos son lo suficientemente afiladas como para derribar árboles gruesos, cortándolos limpiamente. No tiene rival en el combate en la jungla..', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
+VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Sceptile pertenece a la Tercera Generación (Gen III), es inspirado en un reptil ágil (como un gecko o lagarto) combinado con elementos de la naturaleza, especialmente plantas y árboles. Su cola y hojas afiladas recuerdan a espadas vegetales, como si fuera un guardián del bosque armado por la propia naturaleza. ', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (107, 220, 'Planta', 'Mega', 'Sceptile-EX', 'Sable Dentado', 'Fuego', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Morpeko come semillas constantemente para mantener a raya su hambre. Si pasa hambre durante demasiado tiempo, se vuelve salvaje y brutal.', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
+VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Ambos pertenecen a la Octava Generación (Gen VIII), Marnie y Morpeko tienen un vínculo muy fuerte: Morpeko es su compañero inseparable. Su cambio al modo voraz (Hangry) refleja un lado más agresivo, pero Marnie sabe controlarlo y entenderlo. Su relación muestra equilibrio y confianza, combinando la calma de Marnie con la energía impredecible de Morpeko ', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (108, 70, 'Oscuridad', 'Básico', 'Ninguna', 'Rueda de Pinchos', 'Planta', 'Ninguna', 0);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Solo el Bisharp más destacado entre las filas de cada gran ejército tiene el honor de evolucionar a Kingambit.', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
+VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Kingambit pertenece a la Novena Generación (Gen IX), está inspirado en los líderes militares del Japón feudal, como los shōgun o daimyō, combinados con la estética de un samurái de alto rango. Además, su nombre y concepto están ligados al ajedrez (“king” + “gambit”), representando a un rey estratégico que sacrifica piezas (sus Bisharp) para asegurar la victoria.', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (109, 180, 'Metal', 'Fase 2', 'Bisharp', 'Derribo, Laceración Masiva', 'Fuego', 'Planta', 4);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Se dice que calcina todo cuanto lo rodea con los rayos que libera su pelaje. Aparte de eso, se sabe muy poco sobre esta criatura.', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
+VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Raging Bolt pertenece a la Novena Generación (Gen IX), Está inspirado en una versión prehistórica de Raikou, combinando rasgos de dinosaurios saurópodos (cuello largo) con la fuerza de las tormentas. Representa la electricidad en su forma más primitiva y salvaje, como si fuera un trueno viviente de otra era.  ', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (110, 240, 'Dragón', 'Básico', 'Ninguna', 'Rugido Explosivo, Trueno Bramante', 'Ninguna', 'Ninguna', 3);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (111, 'Mega Lopunny ex', '128/094', 'Ultra Rare Star', 'Criatura',25.00, 'Está siempre atento a lo que ocurre a su alrededor. Si advierte peligro, se defenderá con patadas de potencia devastadora', '/img/Mega-Lopunny-ex.png', 1, 1, 37, 'Inglés');
+VALUES (111, 'Mega Lopunny ex', '128/094', 'Ultra Rare Star', 'Criatura',25.00, 'Lopunny pertenece a la Cuarta Generación (Gen IV), Está inspirado en conejos elegantes combinados con estética de modelo o bailarina, destacando agilidad, estilo y precisión. Su diseño mezcla belleza y fuerza física. ', '/img/Mega-Lopunny-ex.png', 1, 1, 37, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (111, 330, 'Incoloro', 'Stage 1', 'Buneary', 'Impulso de Vendaval, Saltador con Pinchos', 'Lucha', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (112, 'Mega Sharpedo ex', '127/094', 'Ultra Rare Star', 'Criatura', 45.00, 'En cuanto detecta el olor de una presa, expele agua marina para propulsarse hacia delante y atacar a una velocidad de 120 km/h.', '/img/Mega-Sharpedo.png', 1, 1, 18, 'Inglés');
+VALUES (112, 'Mega Sharpedo ex', '127/094', 'Ultra Rare Star', 'Criatura', 45.00, 'Sharpedo pertenece a la Tercera Generación (Gen III), Está basado en un tiburón combinado con un torpedo, representando velocidad, agresividad y peligro en el océano. .', '/img/Mega-Sharpedo.png', 1, 1, 18, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (112, 330, 'Oscuridad', 'Stage 1', 'Carvanha', 'Colmillo Avaro, Mandíbulas Hambrientas', 'Planta', 'Ninguna', 0);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (113, 'Umbreon ex', '161/131', 'Special Illustration Rare', 'Criatura', 900.00, 'Si se expone al aura de la luna, los anillos de su cuerpo relucen y adquiere un poder misterioso.', '/img/Umbreon-ex.png', 1, 6, 2, 'Inglés');
+VALUES (113, 'Umbreon ex', '161/131', 'Special Illustration Rare', 'Criatura', 900.00, 'Umbreon pertenece a la Segunda Generación (Gen II), una de las evoluciones de Eevee, esta evolución está inspirada en zorros/gatos nocturnos y el simbolismo de la luna, representando sigilo, oscuridad y elegancia.   ', '/img/Umbreon-ex.png', 1, 6, 2, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (113, 280, 'Oscuridad', 'Fase 1', 'Eevee', 'Espejismo Lunar, Ónice', 'Planta', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (114, 'Sylveon ex', '156/131', 'Special Illustration Rare', 'Criatura', 270.00, 'Con sus apéndices sensoriales con forma de cinta, emite unas ondas tranquilizadoras capaces de neutralizar la hostilidad de sus rivales.', '/img/Sylveon-ex.png', 1, 6, 3, 'Inglés');
+VALUES (114, 'Sylveon ex', '156/131', 'Special Illustration Rare', 'Criatura', 270.00, 'Sylveon pertenece a la Sexta Generación (Gen VI), una evolución de Eevee, esta evolución está inspirada en la ternura, los lazos y las emociones, representando vínculos afectivos y armonía.  ', '/img/Sylveon-ex.png', 1, 6, 3, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (114, 270, 'Psíquico', 'Fase 1', 'Eevee', 'Encanto Mágico, Angelita', 'Metal', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (115, 'Iono', '269/193', 'Special Illustration Rare', 'Entrenador', 90.00, 'Mucha gente piensa que los dos Magnemite que lleva en la cabeza son Pokémon reales o accesorios mecánicos, pero la realidad es que no son reales son pinzas para el pelo de gran tamaño.', '/img/Iono.png', 1, 8, 67, 'Inglés');
+VALUES (115, 'Iono', '269/193', 'Special Illustration Rare', 'Entrenador', 90.00, 'Iono pertenece a la Novena Generación (Gen IX), Iono tiene una conexión muy marcada con Bellibolt, su compañero principal. Su relación se basa en la energía y el espectáculo: Bellibolt genera electricidad y ella la convierte en entretenimiento para su audiencia. Más que entrenadora clásica, es como una streamer que lucha junto a su Pokémon, mostrando una conexión divertida, moderna y muy sincronizada', '/img/Iono.png', 1, 8, 67, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (115, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Cada jugador baraja su mano y la pone en el fondo de su baraja. Si alguno de los jugadores puso alguna carta en el fondo de su baraja de esta manera, cada jugador roba una carta por cada una de sus cartas de Premio restantes.', NULL, NULL, NULL);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma)
-VALUES (116, 'Dendra', '266/193', 'Special Illustration Rare', 'Entrenador', 10.00, 'Siempre está corriendo por el patio de la Academia. Si hablas con ella, suele estar sin aliento o a punto de empezar una serie de 100 flexiones. Representa la filosofía de "mente sana en cuerpo sano".', '/img/Dendra.png', 1, 8, 120, 'Inglés');
+VALUES (116, 'Dendra', '266/193', 'Special Illustration Rare', 'Entrenador', 10.00, 'Dendra pertenece a la Novena Generación (Gen IX), siempre está corriendo por el patio de la Academia. Si hablas con ella, suele estar sin aliento o a punto de empezar una serie de 100 flexiones. Representa la filosofía de "mente sana en cuerpo sano".', '/img/Dendra.png', 1, 8, 120, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada)
 VALUES (116, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Pon una carta de tu mano en el fondo de tu baraja. Si lo haces, roba cartas hasta que tengas 5 cartas en tu mano. (Si no tienes otras cartas en tu mano, no puedes usar esta carta).', NULL, NULL, NULL);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (117, 'Slowking ex', '238/193', 'Ultra Rare', 'Criatura', 5.00, 'Al ser mordido en la cabeza, Slowpoke absorbió unas toxinas que liberaron su poder oculto.', '/img/Slowking-ex.png', 1, 8, 88, 'Inglés');
+VALUES (117, 'Slowking ex', '238/193', 'Ultra Rare', 'Criatura', 5.00, 'Slowking pertenece a la Segunda Generación (Gen II), Está inspirado en un sabio o rey intelectual, combinando humor con inteligencia extrema gracias a su relación con Shellder. ', '/img/Slowking-ex.png', 1, 8, 88, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (117, 270, 'Psíquico', 'Fase 1', 'Slowpoke', 'Cabezazo Sabio, Más Psique', 'Oscuridad', 'Ninguna', 3);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (118, 'Quaquaval ex', '260/193', 'Special Illustration Rare', 'Criatura', 25.00, 'Realiza una exótica danza mientras controla la tremenda fuerza de sus extremidades, capaces de hacer volcar un camión de una patada.', '/img/Quaquaval-ex.png', 1, 8, 46, 'Inglés');
+VALUES (118, 'Quaquaval ex', '260/193', 'Special Illustration Rare', 'Criatura', 25.00, 'Quaquaval pertenece a la Novena Generación (Gen IX), Está inspirado en bailes latinos (samba/carnaval) y en el pavo real, combinando espectáculo y combate. .', '/img/Quaquaval-ex.png', 1, 8, 46, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (118, 320, 'Agua', 'Fase 2', 'Quaxwell', 'Danza Apasionante, Disparo Espiral', 'Rayo', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (119, 'Eri', '136/131', 'Special Illustration Rare', 'Entrenador', 1.30, 'Era una estudiante modelo y una atleta de élite, pero sufrió bullying precisamente por ser "demasiado perfecta" o destacar demasiado. Esto es lo que la llevó a unirse a Cassiopea; ella no es una "rebelde" por mala conducta, sino por protección a sus amigos..', '/img/eri.jpg', 1, 6, 79, 'Inglés');
+VALUES (119, 'Eri', '136/131', 'Special Illustration Rare', 'Entrenador', 1.30, 'Eri pertenece a la Novena Generación (Gen IX), era una estudiante modelo y una atleta de élite, pero sufrió bullying precisamente por ser "demasiado perfecta" o destacar demasiado. Esto es lo que la llevó a unirse a Cassiopea; ella no es una "rebelde" por mala conducta, sino por protección a sus amigos.', '/img/eri.jpg', 1, 6, 79, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (119, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Tu rival revela su mano y tu descartas hasta 2 cartas objeto que encuentres allí', NULL, NULL, NULL);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (120, 'Espeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 400.00, 'Al predecir el siguiente movimiento de su rival, los extremos de su cola bífida tiemblan ligeramente.', '/img/Espeon.png', 1, 6, 20, 'Inglés');
+VALUES (120, 'Espeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 400.00, 'Espeon pertenece a la Segunda Generación (Gen II), una de las evoluciones de Eevee, esta evolución está inspirada en gatos elegantes y poderes psíquicos, asociados al sol y la percepción.', '/img/Espeon.png', 1, 6, 20, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (120, 270, 'Psíquico', 'Fase 1', 'Eevee', 'Psicocambio, Asombro', 'Psíquico', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (121, 'Leafeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 246.00, 'En días soleados, duerme y hace la fotosíntesis, con la que emite aire puro a su alrededor.', '/img/Leafeon.png', 1, 6, 15, 'Inglés');
+VALUES (121, 'Leafeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 246.00, 'Leafeon pertenece a la Cuarta Generación (Gen IV), una de las evoluciones de Eevee, esta evolución está inspirada en la naturaleza y las plantas, combinado con rasgos de zorro.', '/img/Leafeon.png', 1, 6, 15, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (121, 270, 'Planta', 'Fase 1', 'Eevee', 'Tormenta Verde, Ágata Musgo', 'Fuego', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (122, 'Sparkling Crystal', '129/131', 'ACE SPEC Rare', 'Objeto', 0.70, 'Cuando el Pokémon Tera al que está unida esta carta usa un ataque, ese ataque cuesta 1 Energía menos.  (La Energía puede ser de cualquier tipo).', '/img/Sparkling-Crystal.png', 1, 6, 200, 'Inglés');
+VALUES (122, 'Sparkling Crystal', '129/131', 'ACE SPEC Rare', 'Objeto', 0.70, 'Sparkling Crystal forma parte del bloque moderno de Escarlata y Púrpura, está inspirado en cristales de energía pura y el fenómeno Teracristal, simbolizando poder concentrado.', '/img/Sparkling-Crystal.png', 1, 6, 200, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (122, NULL, 'Herramienta', 'ACE SPEC', 'Ninguna', 'Cuando el Pokémon Tera al que esté unida esta carta usa un ataque que cuesta 1 energía (La energía puede ser de cualquier tipo)', NULL, NULL, NULL);
