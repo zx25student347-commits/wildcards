@@ -74,7 +74,7 @@ INSERT INTO cartas_sets (set_id, juego_id, nombre, fecha_salida, codigo_set, car
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 2.50, 'Es uno de los pocos Pokémon en tener dos megaevoluciones distintas (X e Y).', '/img/MCX.png', 1, 8, 10, 'Inglés');
+VALUES (100, 'Mega-Charizard x', '4/102', 'Rare', 'Criatura', 2.50, 'Charizard sobrevuela los cielos en busca de oponentes poderosos. Exhala fuego de tal intensidad que derrite cualquier cosa. Sin embargo, jamás dirige su aliento de fuego contra un adversario más débil que él..', '/img/MCX.png', 1, 8, 10, 'Inglés');
 
 -- 3. Insertamos en la tabla hija 'pokemon_cartas' usando el MISMO ID (100)
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
@@ -82,13 +82,13 @@ VALUES (100, 360, 'Fuego', 'Stage 2', 'Charmeleon', 'Lanzallamas, Giro Fuego', '
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (101, 'Mega Gengar ex', '056/094', 'Ultra Rare', 'Criatura', 1.00, 'Una curiosidad clave es su tercer ojo amarillo en la frente, que nunca parpadea y le permite ver dimensiones ocultas..', '/img/MG.png', 1, 8, 5, 'Inglés');
+VALUES (101, 'Mega Gengar ex', '056/094', 'Ultra Rare', 'Criatura', 1.00, 'Para quitarle la vida a su presa, se desliza en su sombra y espera su oportunidad en silencio.', '/img/MG.png', 1, 8, 5, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (101, 350, 'Oscuridad', 'Stage 2', 'Haunter', 'Vendaval del Vacío', 'Lucha', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, ' Fue encerrado durante 200 años en la Isla Libertad por un antiguo guardián para proteger su inmenso poder.', '/img/Victiniex.png', 1, 7, 5, 'Indonesio');
+VALUES (102, 'Victini ex', '077/SV-P', 'Promo', 'Criatura', 350.00, ' Pokémon que atrae la victoria. Dicen que el Entrenador que lo lleve saldrá vencedor de cualquier batalla.', '/img/Victiniex.png', 1, 7, 5, 'Indonesio');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Ataque en Retirada, Llama de la Victoria', 'Agua', 'Ninguna', 1);
@@ -97,7 +97,7 @@ VALUES (102, 190, 'Fuego', 'Básico', 'Ninguna', 'Ataque en Retirada, Llama de l
 -- VALUES (103, 'N', '180/171', 'Full Art Rare', 'Entrenador', 190.00, 'Each player shuffles their hand into their deck and draws a card for each of their remaining Prize cards.', '/img/N.jpg', 1, 10, 2, 'Japonés');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'Este color morado es la mezcla del rojo de Latias y el color azul de Latios, simbolizando su fuerte vínculo.', '/img/ML.png', 1, 1, 4, 'Inglés');
+VALUES (104, 'Mega Latias ex', '100/132', 'Ultra Rare', 'Criatura', 0.50, 'Latias es muy sensible a los sentimientos de la gente. Si detecta algún ápice de hostilidad, desplegará las plumas que tiene por todo el cuerpo y se pondrá a chillar para intimidar al enemigo.', '/img/ML.png', 1, 1, 4, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (104, 280, 'Dragón', 'Mega Evolution', 'Latias', 'Pasada, Impulso Ilusorio', 'Hada', 'Ninguna', 1);
@@ -109,55 +109,55 @@ INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ata
 VALUES (105, 190, 'Psíquico', 'Básico', 'Ninguna', 'Zona Hada, Rondó de Luna Llena', 'Metal', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Se dice que vive en la capa de ozono, alimentándose de meteoritos y protegiendo al mundo de las amenazas externas.', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
+VALUES (106, 'M-Rayquaza-EX', '98/98', 'Ultra Rare', 'Criatura', 700.00, 'Dicen que Rayquaza ha vivido durante millones de años. Las leyendas cuentan que puso fin al continuo enfrentamiento entre Groudon y Kyogre..', '/img/M-Rayquaza-EX.png', 1, 4, 20, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (106, 220, 'Incoloro', 'Mega', 'Rayquaza-EX', 'Rotura Esmeralda', 'Rayo', 'Lucha', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Es considerado un depredador máximo en su hábitat natural, donde la vegetación crece densamente gracias a su energía.', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
+VALUES (107, 'M-Sceptile-EX', '85/98', 'Ultra Rare', 'Criatura', 80.00, 'Las hojas que crecen en sus brazos son lo suficientemente afiladas como para derribar árboles gruesos, cortándolos limpiamente. No tiene rival en el combate en la jungla..', '/img/M-Sceptile-EX.png', 1, 4, 33, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (107, 220, 'Planta', 'Mega', 'Sceptile-EX', 'Sable Dentado', 'Fuego', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Morpeko fue un regalo de su hermano mayor, Nerio, cuando ella tenía cinco años, lo que la hizo más feliz y ayudó a definir su personalidad..', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
+VALUES (108, 'Marnie''s Morpeko', '206', 'Promo', 'Criatura', 35.00, 'Morpeko come semillas constantemente para mantener a raya su hambre. Si pasa hambre durante demasiado tiempo, se vuelve salvaje y brutal.', '/img/Marnies-Morpeko.png', 1, 2, 50, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (108, 70, 'Oscuridad', 'Básico', 'Ninguna', 'Rueda de Pinchos', 'Planta', 'Ninguna', 0);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Es un Pokémon tipo Siniestro/Acero basado en un rey de ajedrez y un shogun japonés, caracterizado por su movimiento lento que imita el paso corto del rey en el tablero', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
+VALUES (109, 'Kingambit', '130', 'Promo Rare', 'Criatura', 1.00, 'Solo el Bisharp más destacado entre las filas de cada gran ejército tiene el honor de evolucionar a Kingambit.', '/img/Kingambit.png', 1, 2, 60, 'Portugués');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (109, 180, 'Metal', 'Fase 2', 'Bisharp', 'Derribo, Laceración Masiva', 'Fuego', 'Planta', 4);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Está basado en un saurópodo (dinosaurio de cuello largo), y su diseño combina la majestuosidad de Raikou con un aspecto de "lagarto trueno" prehistórico.', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
+VALUES (110, 'Raging Bolt ex', '166/131', 'Special Illustration Rare', 'Criatura', 85.00, 'Se dice que calcina todo cuanto lo rodea con los rayos que libera su pelaje. Aparte de eso, se sabe muy poco sobre esta criatura.', '/img/Raging-Bolt-ex.png', 1, 2, 54, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (110, 240, 'Dragón', 'Básico', 'Ninguna', 'Rugido Explosivo, Trueno Bramante', 'Ninguna', 'Ninguna', 3);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (111, 'Mega Lopunny ex', '128/094', 'Ultra Rare Star', 'Criatura',25.00, 'El pelaje oscuro de sus piernas no es solo color; simula las mallas de compresión que usan los atletas para mejorar la circulación y el rendimiento.', '/img/Mega-Lopunny-ex.png', 1, 1, 37, 'Inglés');
+VALUES (111, 'Mega Lopunny ex', '128/094', 'Ultra Rare Star', 'Criatura',25.00, 'Está siempre atento a lo que ocurre a su alrededor. Si advierte peligro, se defenderá con patadas de potencia devastadora', '/img/Mega-Lopunny-ex.png', 1, 1, 37, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (111, 330, 'Incoloro', 'Stage 1', 'Buneary', 'Impulso de Vendaval, Saltador con Pinchos', 'Lucha', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (112, 'Mega Sharpedo ex', '127/094', 'Ultra Rare Star', 'Criatura', 45.00, 'Las marcas amarillas en su cuerpo son una referencia directa a las marcas de advertencia en los proyectiles militares.', '/img/Mega-Sharpedo.png', 1, 1, 18, 'Inglés');
+VALUES (112, 'Mega Sharpedo ex', '127/094', 'Ultra Rare Star', 'Criatura', 45.00, 'En cuanto detecta el olor de una presa, expele agua marina para propulsarse hacia delante y atacar a una velocidad de 120 km/h.', '/img/Mega-Sharpedo.png', 1, 1, 18, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (112, 330, 'Oscuridad', 'Stage 1', 'Carvanha', 'Colmillo Avaro, Mandíbulas Hambrientas', 'Planta', 'Ninguna', 0);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (113, 'Umbreon ex', '161/131', 'Special Illustration Rare', 'Criatura', 900.00, 'Cuando se siente amenazado, Umbreon secreta un sudor venenoso por sus poros para protegerse.', '/img/Umbreon-ex.png', 1, 6, 2, 'Inglés');
+VALUES (113, 'Umbreon ex', '161/131', 'Special Illustration Rare', 'Criatura', 900.00, 'Si se expone al aura de la luna, los anillos de su cuerpo relucen y adquiere un poder misterioso.', '/img/Umbreon-ex.png', 1, 6, 2, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (113, 280, 'Oscuridad', 'Fase 1', 'Eevee', 'Espejismo Lunar, Ónice', 'Planta', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (114, 'Sylveon ex', '156/131', 'Special Illustration Rare', 'Criatura', 270.00, 'Sus colores (rosa, blanco y azul) y sus cintas voladoras son una referencia directa a las transformaciones de estas heroínas.', '/img/Sylveon-ex.png', 1, 6, 3, 'Inglés');
+VALUES (114, 'Sylveon ex', '156/131', 'Special Illustration Rare', 'Criatura', 270.00, 'Con sus apéndices sensoriales con forma de cinta, emite unas ondas tranquilizadoras capaces de neutralizar la hostilidad de sus rivales.', '/img/Sylveon-ex.png', 1, 6, 3, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (114, 270, 'Psíquico', 'Fase 1', 'Eevee', 'Encanto Mágico, Angelita', 'Metal', 'Ninguna', 2);
@@ -175,13 +175,13 @@ INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ata
 VALUES (116, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Pon una carta de tu mano en el fondo de tu baraja. Si lo haces, roba cartas hasta que tengas 5 cartas en tu mano. (Si no tienes otras cartas en tu mano, no puedes usar esta carta).', NULL, NULL, NULL);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (117, 'Slowking ex', '238/193', 'Ultra Rare', 'Criatura', 5.00, 'Slowking es uno de los poquísimos Pokémon que ha demostrado poder hablar el lenguaje humano.', '/img/Slowking-ex.png', 1, 8, 88, 'Inglés');
+VALUES (117, 'Slowking ex', '238/193', 'Ultra Rare', 'Criatura', 5.00, 'Al ser mordido en la cabeza, Slowpoke absorbió unas toxinas que liberaron su poder oculto.', '/img/Slowking-ex.png', 1, 8, 88, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (117, 270, 'Psíquico', 'Fase 1', 'Slowpoke', 'Cabezazo Sabio, Más Psique', 'Oscuridad', 'Ninguna', 3);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (118, 'Quaquaval ex', '260/193', 'Special Illustration Rare', 'Criatura', 25.00, 'Sus plumas traseras no son solo una cola; imitan los grandes y coloridos tocados de plumas que usan los pasistas.', '/img/Quaquaval-ex.png', 1, 8, 46, 'Inglés');
+VALUES (118, 'Quaquaval ex', '260/193', 'Special Illustration Rare', 'Criatura', 25.00, 'Realiza una exótica danza mientras controla la tremenda fuerza de sus extremidades, capaces de hacer volcar un camión de una patada.', '/img/Quaquaval-ex.png', 1, 8, 46, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (118, 320, 'Agua', 'Fase 2', 'Quaxwell', 'Danza Apasionante, Disparo Espiral', 'Rayo', 'Ninguna', 2);
@@ -193,19 +193,19 @@ INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ata
 VALUES (119, NULL, 'Soporte', 'Entrenador', 'Ninguna', 'Tu rival revela su mano y tu descartas hasta 2 cartas objeto que encuentres allí', NULL, NULL, NULL);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (120, 'Espeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 400.00, 'Mucha gente cree que la gema roja en su frente es solo un adorno, pero es un órgano vital.', '/img/Espeon.png', 1, 6, 20, 'Inglés');
+VALUES (120, 'Espeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 400.00, 'Al predecir el siguiente movimiento de su rival, los extremos de su cola bífida tiemblan ligeramente.', '/img/Espeon.png', 1, 6, 20, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (120, 270, 'Psíquico', 'Fase 1', 'Eevee', 'Psicocambio, Asombro', 'Psíquico', 'Ninguna', 1);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (121, 'Leafeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 246.00, 'Su estructura celular es similar a la de los vegetales, lo que le permite realizar la fotosíntesis para obtener energía sin necesidad de comer.', '/img/Leafeon.png', 1, 6, 15, 'Inglés');
+VALUES (121, 'Leafeon ex', '155/131', 'Special Illustration Rare', 'Criatura', 246.00, 'En días soleados, duerme y hace la fotosíntesis, con la que emite aire puro a su alrededor.', '/img/Leafeon.png', 1, 6, 15, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (121, 270, 'Planta', 'Fase 1', 'Eevee', 'Tormenta Verde, Ágata Musgo', 'Fuego', 'Ninguna', 2);
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (122, 'Sparkling Crystal', '129/131', 'ACE SPEC Rare', 'Objeto', 0.70, 'En la mineralogía real, el diamante (el material más duro de la Tierra) cristaliza naturalmente en forma de octaedro de ahí viene la referencia para hacer esta carta.', '/img/Sparkling-Crystal.png', 1, 6, 200, 'Inglés');
+VALUES (122, 'Sparkling Crystal', '129/131', 'ACE SPEC Rare', 'Objeto', 0.70, 'Cuando el Pokémon Tera al que está unida esta carta usa un ataque, ese ataque cuesta 1 Energía menos.  (La Energía puede ser de cualquier tipo).', '/img/Sparkling-Crystal.png', 1, 6, 200, 'Inglés');
 
 INSERT INTO pokemon_cartas (carta_id, hp, pokemon_tipo, fase, evoluciona_de, ataques, debilidad, resistencia, coste_retirada) 
 VALUES (122, NULL, 'Herramienta', 'ACE SPEC', 'Ninguna', 'Cuando el Pokémon Tera al que esté unida esta carta usa un ataque que cuesta 1 energía (La energía puede ser de cualquier tipo)', NULL, NULL, NULL);
@@ -482,7 +482,7 @@ VALUES (323, 'B', 'Enchant Creature', NULL, NULL, 'La criatura objetivo no se en
 
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (401, 'Dr. Vegapunk', 'OP07-097', 'Leader', 'Líder', 60.00, 'El genio científico de la Marina y líder de Egghead.', '/img/vegapunk.png', 4, 37, 13, 'Japonés');
+VALUES (401, 'Dr. Vegapunk', 'OP07-097', 'Leader', 'Líder', 60.00, 'Proviene de la isla Karakuri la Isla del Futuro, originalmente tenía una cabeza enorme debido a la Fruta del Diablo "Cerebro-Cerebro" (Nomi Nomi no Mi).', '/img/vegapunk.png', 4, 37, 13, 'Japonés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (401, 'Amarillo', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] Puedes añadir 1 carta de Personaje con el tipo {Egghead} y un coste de 5 o menos desde tu mano a la parte superior de tus cartas de Vida boca arriba.');
@@ -503,13 +503,13 @@ VALUES (403, 'Morado', 1, 0, 0, '[Al jugar] DON!! -2: Si tu líder tiene los tip
 -- VALUES (404, 'Charlotte Linlin', 'OP07-114', 'SR', 'Personaje', 34.00, 'La capitana de los Piratas de Big Mom y emperatriz del mar (Yonkou), posee la Soru Soru no Mi, una fruta tipo (Paramecia) que le permite manipular las almas, extraer la vida de otros y dar vida a objetos creando así sus propios sirvientes.', '/img/linlin.png', 4, 300, 5, 'Japonés');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (405, 'Buggy (Wanted Poster)', 'OP07-005', 'SP', 'Personaje', 55.00, 'Edición Especial "SP" con diseño de cartel de recompensa. Una pieza de colección altamente cotizada por los fans de Cross Guild.', '/img/cartel-buggy.png', 4, 37, 5, 'Japonés');
+VALUES (405, 'Buggy (Wanted Poster)', 'OP07-005', 'SP', 'Personaje', 55.00, 'Capitán de los Piratas de Buggy, posee la fruta Bara Bara: una fruta del diablo de tipo paramecia que le permite separar sus partes del cuerpo y luchar con ellas independientes entre sí', '/img/cartel-buggy.png', 4, 37, 5, 'Japonés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (405, 'Azul', 10, 12000, 0, '[Al jugar] Mira las 5 cartas superiores de tu mazo, revela hasta una carta de tipo {Cross Guild} (que no sea Buggy) y añádela a tu mano. Luego, pon el resto en la parte inferior de tu mazo.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (406, 'Yamato', 'OP01-121', 'SEC', 'Personaje', 75.50, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato.png', 4, 30, 10, 'Inglés');
+VALUES (406, 'Yamato', 'OP01-121', 'SEC', 'Personaje', 75.50, 'Yamato consumió la fruta Inu Inu: modelo Okuchi no Makami: una fruta del diablo de tipo zoan mítica que le permite transformarse en un lobo divino, así como un híbrido entre un humano y ese animal. Según Kaidou, esta bestia es una «Deidad guardiana del País de Wano»..', '/img/yamato.png', 4, 30, 10, 'Inglés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (406, 'Verde', 5, 5000, 1000, '[Doble Ataque] [En tu turno] Si tu oponente tiene 2 o menos cartas de vida, este líder gana +1000 de poder.');
@@ -545,7 +545,7 @@ INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect)
 VALUES (411, 'Morado/Negro', 0, 5000, 0, '[Al Atacar] DON!! -4: K.O. hasta a 1 de los personajes de tu oponente con un coste de 3 o menos. Después, este Líder gana +1000 de poder durante este turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (412, 'Yamato', 'OP02-042', 'R', 'Personaje', 0.10, 'Yamato utiliza un arma llamada kanabo, un arma tradicional japonesa asociada a los onis(demonios).', '/img/yamato(op-02).png', 4, 31, 16, 'Inglés');
+VALUES (412, 'Yamato', 'OP02-042', 'R', 'Personaje', 0.10, 'Yamato consumió la fruta Inu Inu: modelo Okuchi no Makami: una fruta del diablo de tipo zoan mítica que le permite transformarse en un lobo divino, así como un híbrido entre un humano y ese animal. Según Kaidou, esta bestia es una «Deidad guardiana del País de Wano»..', '/img/yamato(op-02).png', 4, 31, 16, 'Inglés');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (412, 'Verde', 4, 6000, 0, 'Trata el nombre de esta carta también como [Kouzuki Oden]. [Al jugar] Descansa hasta 1 de los personajes de tu oponente con un coste de 6 o menos.');
@@ -599,13 +599,13 @@ INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect)
 VALUES (420, 'Rojo/Negro', 0, 5000, 0, '[Al Atacar] Da a hasta 1 de los personajes de tu oponente con un coste de 0: K.O. [Tu Turno] Cuando el coste de un personaje es reducido, este personaje gana +2000 de poder durante este turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (421, 'Monkey.D.Luffy', 'ST01-001', 'L', 'Líder', 10.00, 'Edición limitada de la Flagship Battle España. El capitán de los Sombrero de Paja con arte conmemorativo regional.', '/img/M-D-Luffy-Spain.jpg', 4, 46, 21, 'Español');
+VALUES (421, 'Monkey.D.Luffy', 'ST01-001', 'L', 'Líder', 10.00, 'Luffy protagonista y Capitán de los Sombrero de Paja posee la fruta Gomu Gomu no Mi, una fruta del diablo de tipo Logia que le permite estirar su cuerpo como si fuera goma.', '/img/M-D-Luffy-Spain.jpg', 4, 46, 21, 'Español');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (421, 'Rojo', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] Da a tu Líder o a 1 de tus Personajes +1000 de poder durante este turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (422, 'Crocodile', 'ST01-002', 'L', 'Líder', 100.00, 'Edición limitada de la Flagship Battle España. El ex-Shichibukai y líder de Baroque Works con arte conmemorativo regional.', '/img/cocodrile-spain.jpg', 4, 46, 13, 'Español');
+VALUES (422, 'Crocodile', 'ST01-002', 'L', 'Líder', 100.00, 'Crocodile posee la Suna Suna no Mi (fruta Arena-Arena), una de tipo Logia que le permite convertirse, crear y manipular arena a voluntad.', '/img/cocodrile-spain.jpg', 4, 46, 13, 'Español');
 
 INSERT INTO onepiece_cartas (carta_id, color, coste, power, counter, effect) 
 VALUES (422, 'Azul', 0, 5000, 0, '[Activación: Principal] [Una vez por turno] DON!! -4 (Puedes devolver el número especificado de cartas DON!! de tu campo a tu mazo DON!!) Devuelve hasta 1 Personaje con un coste de 5 o menos a la mano de su propietario.');
