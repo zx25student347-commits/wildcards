@@ -280,6 +280,17 @@ function renderizarDetalleCarta(carta) {
             `;
             break;
         case 'YugiohCarta':
+             // Detectar el atributo para el brillo dinámico
+             const attr = (carta.atributo || '').toLowerCase();
+             let attrClass = 'attr-default';
+             if (attr.includes('luz')) attrClass = 'attr-light';
+             else if (attr.includes('oscuridad')) attrClass = 'attr-dark';
+             else if (attr.includes('fuego')) attrClass = 'attr-fire';
+             else if (attr.includes('agua')) attrClass = 'attr-water';
+             else if (attr.includes('viento')) attrClass = 'attr-wind';
+             else if (attr.includes('tierra')) attrClass = 'attr-earth';
+             else if (attr.includes('divin')) attrClass = 'attr-divine';
+
              detallesEspecificos.innerHTML += `
                 <div class="pokemon-stats-grid">
                     <div class="stat-pill">
@@ -292,7 +303,7 @@ function renderizarDetalleCarta(carta) {
                     <div class="stat-pill">
                         <span class="pill-label">ATRIBUTO</span>
                         <div class="pill-content">
-                            <span class="pill-icon rhombus"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
+                            <span class="pill-icon rhombus ${attrClass}"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
                             <span class="pill-text">${carta.atributo || 'N/A'}</span>
                         </div>
                     </div>
@@ -314,6 +325,16 @@ function renderizarDetalleCarta(carta) {
             `;
             break;
         case 'OnePieceCarta':
+            // Detectar el color principal para el brillo dinámico
+            const opColor = (carta.color || '').toLowerCase();
+            let opColorClass = 'op-default';
+            if (opColor.includes('rojo')) opColorClass = 'op-red';
+            else if (opColor.includes('azul')) opColorClass = 'op-blue';
+            else if (opColor.includes('verde')) opColorClass = 'op-green';
+            else if (opColor.includes('morado')) opColorClass = 'op-purple';
+            else if (opColor.includes('amarillo')) opColorClass = 'op-yellow';
+            else if (opColor.includes('negro')) opColorClass = 'op-black';
+
             detallesEspecificos.innerHTML += `
                 <div class="pokemon-stats-grid">
                     <div class="stat-pill">
@@ -333,11 +354,11 @@ function renderizarDetalleCarta(carta) {
                     <div class="stat-pill">
                         <span class="pill-label">COLOR</span>
                         <div class="pill-content">
-                            <span class="pill-icon rhombus"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
+                            <span class="pill-icon rhombus ${opColorClass}"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg></span>
                             <span class="pill-text">${carta.color || 'N/A'}</span>
                         </div>
                     </div>
-                    <div class="stat-pill">
+                    <div class="stat-pill span-3">
                         <span class="pill-label">COUNTER</span>
                         <div class="pill-content">
                             <span class="pill-icon shield"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></span>

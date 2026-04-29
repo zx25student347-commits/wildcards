@@ -1686,6 +1686,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .pill-icon.mana-colorless { color: #cfcfcf; }
 .pill-icon.mana-default { color: #f1c40f; }
 
+/* Colores específicos de Atributos Yu-Gi-Oh! */
+.pill-icon.attr-light { color: #fdfd96; }
+.pill-icon.attr-dark { color: #a040a0; }
+.pill-icon.attr-fire { color: #ff4422; }
+.pill-icon.attr-water { color: #4499ff; }
+.pill-icon.attr-wind { color: #77cc55; }
+.pill-icon.attr-earth { color: #ff8844; }
+.pill-icon.attr-divine { color: #FFD700; }
+.pill-icon.attr-default { color: #cfcfcf; }
+
+/* Colores específicos de One Piece */
+.pill-icon.op-red { color: #e60012; }
+.pill-icon.op-blue { color: #0071bc; }
+.pill-icon.op-green { color: #008d36; }
+.pill-icon.op-purple { color: #602e91; }
+.pill-icon.op-yellow { color: #ffcb05; }
+.pill-icon.op-black { color: #555; }
+.pill-icon.op-default { color: #cfcfcf; }
+
 .pill-icon.heart svg {
     animation: heartbeat-subtle 2s ease-in-out infinite;
 }
@@ -1738,6 +1757,24 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .stat-pill:has(.mana-green):hover { border-color: #9bd3ae; box-shadow: 0 0 15px rgba(155, 211, 174, 0.4); }
 .stat-pill:has(.mana-colorless):hover { border-color: #cfcfcf; box-shadow: 0 0 15px rgba(207, 207, 207, 0.4); }
 .stat-pill:has(.mana-default):hover { border-color: #f1c40f; box-shadow: 0 0 15px rgba(241, 196, 15, 0.4); }
+
+/* Resplandor dinámico para Yu-Gi-Oh! Attributes */
+.stat-pill:has(.attr-light):hover { border-color: #fdfd96; box-shadow: 0 0 15px rgba(253, 253, 150, 0.4); }
+.stat-pill:has(.attr-dark):hover { border-color: #a040a0; box-shadow: 0 0 15px rgba(160, 64, 160, 0.4); }
+.stat-pill:has(.attr-fire):hover { border-color: #ff4422; box-shadow: 0 0 15px rgba(255, 68, 34, 0.4); }
+.stat-pill:has(.attr-water):hover { border-color: #4499ff; box-shadow: 0 0 15px rgba(68, 153, 255, 0.4); }
+.stat-pill:has(.attr-wind):hover { border-color: #77cc55; box-shadow: 0 0 15px rgba(119, 204, 85, 0.4); }
+.stat-pill:has(.attr-earth):hover { border-color: #ff8844; box-shadow: 0 0 15px rgba(255, 136, 68, 0.4); }
+.stat-pill:has(.attr-divine):hover { border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+
+/* Resplandor dinámico para One Piece Colors */
+.stat-pill:has(.op-red):hover { border-color: #e60012; box-shadow: 0 0 15px rgba(230, 0, 18, 0.4); }
+.stat-pill:has(.op-blue):hover { border-color: #0071bc; box-shadow: 0 0 15px rgba(0, 113, 188, 0.4); }
+.stat-pill:has(.op-green):hover { border-color: #008d36; box-shadow: 0 0 15px rgba(0, 141, 54, 0.4); }
+.stat-pill:has(.op-purple):hover { border-color: #602e91; box-shadow: 0 0 15px rgba(96, 46, 145, 0.4); }
+.stat-pill:has(.op-yellow):hover { border-color: #ffcb05; box-shadow: 0 0 15px rgba(255, 203, 5, 0.4); }
+.stat-pill:has(.op-black):hover { border-color: #555; box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+.stat-pill:has(.op-default):hover { border-color: #cfcfcf; box-shadow: 0 0 15px rgba(207, 207, 207, 0.3); }
 
 /* Resplandor para Tipos Elementales */
 .stat-pill:has(.type-fire):hover { border-color: #ff4422; box-shadow: 0 0 15px rgba(255, 68, 34, 0.3); }
