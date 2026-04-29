@@ -50,7 +50,10 @@ public class SecurityConfig {
                                 "/css/**", "/js/**", "/img/**",
                                 "/tienda/**", "/pokemon", "/onepiece", "/magic", "/yugioh", "/accesorios",
                                 "/carta/**", "/accesorio/**","/icons/**",
-                                "/api/productos/sugerencias"
+                                "/api/productos/sugerencias",
+                                "/ayuda",
+                                "/devoluciones",
+                                "/contacto"
                         ).permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/cartas/**", "/api/accesorios/**", "/api/sets").permitAll()
 

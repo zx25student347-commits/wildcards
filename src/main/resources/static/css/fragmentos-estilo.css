@@ -28,6 +28,13 @@ main {
     width: 100%;
 }
 
+/* Asegura que los elementos de formulario no se desborden ni se corten */
+input, textarea, select {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .cabecera-sitio {
     background: var(--primary-1);
     color: var(--white);

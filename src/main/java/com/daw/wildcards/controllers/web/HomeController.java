@@ -60,6 +60,24 @@ public class HomeController {
         return "accesorio-detalle";
     }
 
+    @GetMapping("/ayuda")
+    public String páginaAyuda() {
+        // Retorna el nombre del archivo ayuda.html
+        return "ayuda";
+    }
+
+    @GetMapping("/devoluciones")
+    public String páginaDevoluciones() {
+        // Retorna el nombre del archivo devoluciones.html
+        return "devoluciones";
+    }
+
+    @GetMapping("/contacto")
+    public String páginaContacto() {
+        // Retorna el nombre del archivo contacto.html
+        return "contacto";
+    }
+
     
 
    

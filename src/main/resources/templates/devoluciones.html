@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Políticas de Devolución - Wildcards</title>
+    <link rel="stylesheet" href="/css/fragmentos-estilo.css">
+    <link rel="stylesheet" href="/css/wildcards.css">
+    <link rel="stylesheet" href="/css/detalles-carta.css">
+</head>
+<body>
+    <header th:replace="~{fragmentos/layout :: header}"></header>
+
+    <div class="page">
+        <div class="container" style="max-width: 800px;">
+            <h1 class="page-title">Políticas de Devolución</h1>
+            
+            <div class="purchase-panel" style="margin-top: 30px;">
+                <h3 class="purchase-title">Periodo de Desistimiento</h3>
+                <p style="color: var(--muted); line-height: 1.8; margin-bottom: 20px;">Tienes un plazo de <strong>14 días naturales</strong> desde la recepción de tu pedido para solicitar una devolución, sin necesidad de justificación.</p>
+                
+                <h3 class="purchase-title">Condiciones del Producto</h3>
+                <ul style="color: var(--muted); line-height: 1.8; padding-left: 20px;">
+                    <li>Los sobres o productos sellados no deben haber sido abiertos.</li>
+                    <li>Las cartas sueltas deben devolverse en el mismo protector y estado en el que se enviaron.</li>
+                    <li>Los accesorios deben conservar su embalaje original intacto.</li>
+                </ul>
+
+                <h3 class="purchase-title" style="margin-top: 25px;">Proceso de Reembolso</h3>
+                <p style="color: var(--muted); line-height: 1.8;">Una vez recibamos e inspeccionemos el artículo, el reembolso se procesará automáticamente en el mismo método de pago utilizado en un plazo de 3 a 5 días laborables.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragmentos/layout :: footer}"></footer>
+</body>
+</html>

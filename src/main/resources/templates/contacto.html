@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto Directo - Wildcards</title>
+    <link rel="stylesheet" href="/css/fragmentos-estilo.css">
+    <link rel="stylesheet" href="/css/wildcards.css">
+    <link rel="stylesheet" href="/css/detalles-carta.css">
+</head>
+<body>
+    <header th:replace="~{fragmentos/layout :: header}"></header>
+
+    <div class="page">
+        <div class="container" style="max-width: 600px;">
+            <h1 class="page-title">Contacto Directo</h1>
+            <p class="page-sub">¿Tienes alguna duda específica? Nuestro equipo de expertos te responderá en menos de 24h.</p>
+            
+            <div class="purchase-panel" style="margin-top: 30px;">
+                <form class="formulario-login" action="#" style="background: transparent; border: none; padding: 10px 20px; animation: none; backdrop-filter: none; box-shadow: none;">
+                    <div class="grupo-input">
+                        <label>Nombre Completo</label>
+                        <input type="text" placeholder="Tu nombre..." required>
+                    </div>
+                    
+                    <div class="grupo-input" style="margin-top: 15px;">
+                        <label>Correo Electrónico</label>
+                        <input type="email" placeholder="email@ejemplo.com" required>
+                    </div>
+
+                    <div class="grupo-input" style="margin-top: 15px;">
+                        <label>Mensaje</label>
+                        <textarea style="width: 100%; background: var(--primary-1); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: var(--white); padding: 12px; font-family: inherit; min-height: 120px; resize: vertical; display: block;" placeholder="¿En qué podemos ayudarte?"></textarea>
+                    </div>
+
+                    <div class="acciones-login" style="margin-top: 25px;">
+                        <button type="submit" class="btn-add" style="width: 100%;">Enviar Mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragmentos/layout :: footer}"></footer>
+</body>
+</html>

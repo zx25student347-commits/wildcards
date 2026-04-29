@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Ayuda - Wildcards</title>
+    <link rel="stylesheet" href="/css/fragmentos-estilo.css">
+    <link rel="stylesheet" href="/css/wildcards.css">
+    <link rel="stylesheet" href="/css/detalles-carta.css">
+</head>
+<body>
+    <header th:replace="~{fragmentos/layout :: header}"></header>
+
+    <div class="page">
+        <div class="container" style="max-width: 1000px;">
+            <h1 class="page-title">Centro de Ayuda</h1>
+            <p class="page-sub">Encuentra respuestas a las preguntas más frecuentes sobre tus coleccionables.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 30px;">
+                <div class="purchase-panel">
+                    <h3 class="purchase-title">📦 Envíos</h3>
+                    <p style="color: var(--muted); line-height: 1.6;">Realizamos envíos certificados a toda España y Europa. Los tiempos de entrega suelen ser de 24-48h laborables una vez procesado el pedido.</p>
+                </div>
+
+                <div class="purchase-panel">
+                    <h3 class="purchase-title">🪙 Pagos</h3>
+                    <p style="color: var(--muted); line-height: 1.6;">Aceptamos tarjetas de crédito/débito mediante nuestra pasarela segura Stripe. Todos tus datos están encriptados y protegidos.</p>
+                </div>
+
+                <div class="purchase-panel">
+                    <h3 class="purchase-title">🛡️ Autenticidad</h3>
+                    <p style="color: var(--muted); line-height: 1.6;">Todas nuestras cartas son 100% originales. Trabajamos con distribuidores oficiales de Pokémon, Magic, Yu-Gi-Oh! y One Piece.</p>
+                </div>
+
+                <div class="purchase-panel">
+                    <h3 class="purchase-title">✨ Estado de Cartas</h3>
+                    <p style="color: var(--muted); line-height: 1.6;">Utilizamos estándares internacionales de graduación: Mint (M), Near Mint (NM), Excellent (EX) y Good (GD).</p>
+                </div>
+            </div>
+
+            <div class="faq-section" style="margin-top: 60px; margin-bottom: 40px;">
+                <h2 class="page-title" style="text-align: center; margin-bottom: 30px;">Preguntas Frecuentes</h2>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary>¿Cuánto tardan en llegar los pedidos?</summary>
+                        <p>Los pedidos dentro de la península suelen tardar entre 24 y 48 horas laborables. Para envíos internacionales, el plazo es de 5 a 10 días.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo se envían las cartas individuales?</summary>
+                        <p>Todas las cartas individuales se envían protegidas con funda (sleeve) y cargador rígido (toploader) dentro de un sobre de burbujas para garantizar que lleguen en perfecto estado.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Puedo cancelar un pedido de preventa?</summary>
+                        <p>Las preventas pueden cancelarse hasta 7 días antes del lanzamiento oficial del producto. Después de ese plazo, el pedido entra en fase de preparación logística.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Realizáis compras de colecciones?</summary>
+                        <p>Sí, evaluamos colecciones de Pokémon y Magic. Puedes contactar con nosotros a través del formulario de "Contacto Directo" adjuntando fotos de tus cartas más valiosas.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragmentos/layout :: footer}"></footer>
+</body>
+</html>

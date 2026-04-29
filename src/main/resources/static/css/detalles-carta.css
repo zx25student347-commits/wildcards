@@ -141,15 +141,20 @@ body {
     padding: 24px !important;
     border-radius: 16px !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    /* Sombra exterior + Resplandor interior blanco sutil */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                inset 0 0 20px rgba(255, 255, 255, 0.03);
     position: relative;
-    overflow: hidden;
+    overflow: hidden !important;
     transition: all 0.3s ease;
 }
 
 .purchase-panel:hover {
     border-color: rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    /* Resplandor dinámico en hover (Morado y Verde) */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 0, 255, 0.1),
+                inset 0 0 15px rgba(50, 205, 50, 0.05);
     transform: translateY(-2px);
 }
 
@@ -279,7 +284,9 @@ body {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* Añadimos luz propia también al expositor de la carta */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                inset 0 0 25px rgba(255, 255, 255, 0.05);
     padding: 10px; /* Espacio para que se vea el efecto cristal alrededor de la imagen */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: grab;
@@ -371,38 +378,6 @@ body {
 .modal-sub {
     color: var(--muted);
     margin: 0 0 12px
-}
-
-.info-box {
-    background: linear-gradient(180deg, #111316, #0d1012);
-    padding: 12px;
-    border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    max-width: 520px
-}
-
-.info-box dl {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 6px 12px;
-    margin: 6px 0 10px;
-    color: var(--muted)
-}
-
-.info-box dt {
-    font-weight: 700;
-    color: #dfe7ee
-}
-
-.info-box dd {
-    margin: 0;
-    color: var(--muted)
-}
-
-.info-box .desc {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 14px
 }
 
 .modal-right .info-chart {
@@ -558,4 +533,87 @@ body {
 
 .lightbox-close:hover {
     color: var(--accent);
+}
+
+/* --- ACORDEÓN FAQ --- */
+/* Animación para el borde neón */
+@keyframes move-border {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: -200% 0%;
+    }
+}
+
+/* Aseguramos que el contenedor de FAQ tenga un z-index para que el borde animado no se solape con otros elementos */
+.faq-section { position: relative; z-index: 1; }
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: linear-gradient(165deg, var(--panel), #111);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease; /* Transición para el fondo y la sombra */
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    z-index: 0; /* Por defecto, para que el abierto se ponga encima */
+}
+
+.faq-item[open] {
+    border: 1px solid transparent;
+    background-image: linear-gradient(165deg, var(--panel), #111), 
+                      linear-gradient(90deg, #ff00ff, #32cd32, #ff00ff);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 200% 100%;
+    animation: move-border 4s linear infinite;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Asegura que el elemento abierto esté por encima de los demás */
+}
+
+.faq-item summary {
+    padding: 18px 24px;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.faq-item[open] summary {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.8),
+                 0 0 15px rgba(255, 0, 255, 0.4);
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: #32cd32;
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+    color: #ff00ff;
+}
+
+.faq-item p {
+    padding: 0 24px 20px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
 }

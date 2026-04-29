@@ -154,7 +154,7 @@ function renderizarDetalleCarta(carta) {
     document.getElementById('carta-descripcion').textContent = carta.descripcion || 'No hay descripción disponible.';
 
     const detallesEspecificos = document.getElementById('detalles-especificos');
-    detallesEspecificos.innerHTML = '<h3>Detalles del Juego</h3>';
+    detallesEspecificos.innerHTML = '<h3 class="purchase-title">Detalles del Juego</h3>';
 
     // Usamos el @type para identificar el tipo de carta
     switch (carta['@type']) {
