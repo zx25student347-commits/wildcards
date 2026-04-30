@@ -337,7 +337,7 @@
                             // Asumimos que el objeto set tiene 'id' y 'nombre'
                             const option = document.createElement('option');
                             option.value = set.id || set.setId; 
-                            option.textContent = `${set.nombre} (${set.codigo || 'N/A'})`;
+                            option.textContent = `${set.nombre}`;
                             selectSetBorrar.appendChild(option);
                         });
                     } else {
