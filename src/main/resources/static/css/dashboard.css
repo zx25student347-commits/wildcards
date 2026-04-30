@@ -585,6 +585,20 @@ body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;color:var(--white)
     padding-left: 11px;
 }
 
+/* Botón personalizado Volver al Home en el Sidebar */
+.sidebar nav ul li.btn-sidebar-home {
+    background-color: #555;
+    color: var(--white);
+    margin-top: 30px; /* Espaciado para separarlo de las opciones de gestión */
+    border-left: none; /* Quitamos el borde neón lateral */
+}
+
+.sidebar nav ul li.btn-sidebar-home:hover {
+    background-color: #666; /* Gris ligeramente más claro */
+    transform: translateY(-2px); /* Misma animación que btn-add */
+    border-left: none;
+}
+
 .main-content {
     flex: 1;
     padding: 30px;

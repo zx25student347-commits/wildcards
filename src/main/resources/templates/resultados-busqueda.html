@@ -48,13 +48,13 @@
                         <h4>Categoría</h4>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="cat-carta" name="categorias" value="carta" 
-                                   th:checked="${#lists.isEmpty(currentCategorias) or #lists.contains(currentCategorias, 'carta')}">
+                                   th:checked="${currentCategorias == null or #lists.contains(currentCategorias, 'carta')}">
                             <label for="cat-carta">Cartas</label>
                             <span class="filtro-contador" th:if="${categoriaCounts.containsKey('carta')}" th:text="${categoriaCounts.get('carta')}"></span>
                         </div>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="cat-accesorio" name="categorias" value="accesorio"
-                                   th:checked="${#lists.isEmpty(currentCategorias) or #lists.contains(currentCategorias, 'accesorio')}">
+                                   th:checked="${currentCategorias == null or #lists.contains(currentCategorias, 'accesorio')}">
                             <label for="cat-accesorio">Accesorios</label>
                             <span class="filtro-contador" th:if="${categoriaCounts.containsKey('accesorio')}" th:text="${categoriaCounts.get('accesorio')}"></span>
                         </div>
@@ -65,25 +65,25 @@
                         <h4>Juego</h4>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="juego-pokemon" name="juegos" value="Pokémon TCG"
-                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'Pokémon TCG')}">
+                                   th:checked="${currentJuegos == null or #lists.contains(currentJuegos, 'Pokémon TCG')}">
                             <label for="juego-pokemon">Pokémon TCG</label>
                             <span class="filtro-contador" th:if="${juegoCounts.containsKey('Pokémon TCG')}" th:text="${juegoCounts.get('Pokémon TCG')}"></span>
                         </div>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="juego-magic" name="juegos" value="Magic: The Gathering"
-                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'Magic: The Gathering')}">
+                                   th:checked="${currentJuegos == null or #lists.contains(currentJuegos, 'Magic: The Gathering')}">
                             <label for="juego-magic">Magic: The Gathering</label>
                             <span class="filtro-contador" th:if="${juegoCounts.containsKey('Magic: The Gathering')}" th:text="${juegoCounts.get('Magic: The Gathering')}"></span>
                         </div>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="juego-yugioh" name="juegos" value="Yu-Gi-Oh!"
-                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'Yu-Gi-Oh!')}">
+                                   th:checked="${currentJuegos == null or #lists.contains(currentJuegos, 'Yu-Gi-Oh!')}">
                             <label for="juego-yugioh">Yu-Gi-Oh!</label>
                             <span class="filtro-contador" th:if="${juegoCounts.containsKey('Yu-Gi-Oh!')}" th:text="${juegoCounts.get('Yu-Gi-Oh!')}"></span>
                         </div>
                         <div class="opcion-filtro">
                             <input type="checkbox" id="juego-onepiece" name="juegos" value="One Piece Card Game"
-                                   th:checked="${#lists.isEmpty(currentJuegos) or #lists.contains(currentJuegos, 'One Piece Card Game')}">
+                                   th:checked="${currentJuegos == null or #lists.contains(currentJuegos, 'One Piece Card Game')}">
                             <label for="juego-onepiece">One Piece</label>
                             <span class="filtro-contador" th:if="${juegoCounts.containsKey('One Piece Card Game')}" th:text="${juegoCounts.get('One Piece Card Game')}"></span>
                         </div>

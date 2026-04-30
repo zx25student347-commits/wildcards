@@ -113,8 +113,8 @@ public class TiendaController {
         model.addAttribute("maxPrecioPosible", Math.ceil(maxPrecioPosible));
         model.addAttribute("currentMinPrecio", minPrecio);
         model.addAttribute("currentMaxPrecio", maxPrecio);
-        model.addAttribute("currentCategorias", categorias != null ? categorias : List.of());
-        model.addAttribute("currentJuegos", juegos != null ? juegos : List.of());
+        model.addAttribute("currentCategorias", categorias);
+        model.addAttribute("currentJuegos", juegos);
         model.addAttribute("currentSort", sort);
         model.addAttribute("categoriaCounts", categoriaCounts);
         model.addAttribute("juegoCounts", juegoCounts);

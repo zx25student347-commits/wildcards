@@ -1855,3 +1855,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/* --- Estilo para el estado de búsqueda sin resultados --- */
+.no-resultados {
+    background: rgba(28, 28, 28, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
+    padding: 60px 30px !important;
+}
+
+.no-resultados h3 {
+    color: var(--white);
+    margin-bottom: 12px;
+}

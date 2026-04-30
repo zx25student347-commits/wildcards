@@ -72,6 +72,7 @@ input, textarea, select {
     font-size: 28px;
     letter-spacing: 1px;
     order: 1;
+    flex-shrink: 0;
     background: linear-gradient(to right, #ff00ff, #32cd32);
     -webkit-background-clip: text;
     color: transparent;
@@ -82,11 +83,6 @@ input, textarea, select {
 .logo:hover {
     transform: scale(1.05);
     animation: neon-glow 1.5s ease-in-out infinite alternate;
-}
-
-.nav-principal {
-    order: 2;
-    margin-left: auto;
 }
 
 .nav-principal {
@@ -256,7 +252,8 @@ input, textarea, select {
     display: flex;
     align-items: center;
     gap: 12px;
-    order: 4
+    order: 4;
+    flex-shrink: 0;
 }
 
 .icono {

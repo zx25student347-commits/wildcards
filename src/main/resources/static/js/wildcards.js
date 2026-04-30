@@ -469,6 +469,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        let toastValidationCooldown = false; // Evita el spam de mensajes de aviso
+
         // Listener principal delegado al body para los cambios en los filtros
         document.body.addEventListener('input', (event) => {
             const currentForm = document.getElementById('form-filtros');
@@ -500,7 +502,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 debouncedSubmit(); // Envío con retardo
             } else if (target.type === 'checkbox') {
-                submitForm(); // Envío inmediato para checkboxes
+                // --- Validación: Al menos uno marcado por grupo (Categoría o Juego) ---
+                const groupName = target.name;
+                const checkedInGroup = currentForm.querySelectorAll(`input[name="${groupName}"]:checked`);
+
+                if (checkedInGroup.length === 0) {
+                    // Si se intentó desmarcar el último de la lista, lo volvemos a marcar
+                    target.checked = true;
+                    
+                    if (window.mostrarToast && !toastValidationCooldown) {
+                        const grupoTexto = groupName === 'categorias' ? 'categoría' : 'juego';
+                        window.mostrarToast(`Debes mantener al menos una ${grupoTexto} seleccionada`, null, true);
+                        
+                        // Activamos el bloqueo
+                        toastValidationCooldown = true;
+                        setTimeout(() => {
+                            toastValidationCooldown = false;
+                        }, 3000); // 3 segundos de cooldown
+                    }
+                    return; // Bloqueamos la ejecución del envío AJAX
+                }
+
+                submitForm(); // Si la validación es correcta, actualizamos los resultados
             }
         });
 
