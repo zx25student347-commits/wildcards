@@ -283,11 +283,11 @@ VALUES (212, 'Kewl Tune', 'TUNE-EN02', 'Rare', 'Mágica', 2.00, 'Selecciona 1 mo
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (212, 3, 'LUZ', 'Hada / Cantante Efecto', 900, 1900, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.');
 
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (213, 'Kanan the Swordmistress', 'NONE', 'Ultra Rare', 'Monstruo', 20000.00, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.', '/img/kanan.png', 3, 4010, 1, 'Japonés');
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (213, 'Kanan the Swordmistress', 'NONE', 'Ultra Rare', 'Monstruo', 20000.00, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.', '/img/kanan.png', 3, 4010, 1, 'Japonés');
 
-INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
-VALUES (213, 4, 'TIERRA', 'Guerrero / Normal', 1400, 1400, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.');
+-- INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
+-- VALUES (213, 4, 'TIERRA', 'Guerrero / Normal', 1400, 1400, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (214, 'Anotherverse Dragon', 'YCSW-EN013', 'Ultra Rare', 'Monstruo', 30000.00, 'Este dragón secreto ha conquistado muchas dimensiones, pero solo puede ser visto por el campeón del tiempo.', '/img/AnotherDragon.jpg', 3, 4011, 1, 'Inglés');
@@ -366,11 +366,11 @@ VALUES (305, 'Raphael', 'TMNT-04', 'Rare', 'Criatura Legendaria', 3200.00, 'El g
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (305, '1BRG', 'Legendary Creature - Turtle Ninja', '3', '3', 'Arrollar. Siempre que Raphael reciba daño, pon esa misma cantidad de contadores +1/+1 sobre él. Al comienzo de tu paso final, Raphael puede luchar contra la criatura objetivo que no controles.', 'Negro, Rojo, Verde');
 
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.png', 2, 2001, 4, 'Inglés');
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.png', 2, 2001, 4, 'Inglés');
 
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (306, '1GUW', 'Legendary Creature - Turtle Ninja', '1', '5', 'Alcance. Siempre que lances un hechizo de artefacto, puedes robar una carta. {2}, {T}: Endereza el artefacto objetivo que controles.', 'Verde, Azul, Blanco');
+-- INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+-- VALUES (306, '1GUW', 'Legendary Creature - Turtle Ninja', '1', '5', 'Alcance. Siempre que lances un hechizo de artefacto, puedes robar una carta. {2}, {T}: Endereza el artefacto objetivo que controles.', 'Verde, Azul, Blanco');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (307, 'El Portador de la Noche', 'TMNV-01', 'Mythic Rare', 'Criatura Legendaria', 15.50, 'Una figura imponente que acecha desde las sombras del Clan del Pie. Su sola presencia debilita la voluntad de sus enemigos y fortalece a sus aliados oscuros.', '/img/portador.jpg', 2, 2004, 2, 'Inglés');
@@ -420,17 +420,17 @@ VALUES (314, 'The Ooze', '0177', 'Rare', 'Artefacto Legendario', 8.50, 'El mutá
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (314, '2', 'Legendary Artifact', NULL, NULL, 'Siempre que una criatura que controles con un contador +1/+1 deje el campo de batalla, crea una ficha de Mutágeno por cada contador +1/+1 que tuviera. {T}: Exilia la carta objetivo de un cementerio. Crea una ficha de Mutágeno.', 'Incoloro');
 
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (315, 'Técnica de Karai', '0152', 'Uncommon', 'Conjuro', 4.50, 'La disciplina del Clan del Pie es implacable.', '/img/karai.png', 2, 2001, 55, 'Inglés');
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (315, 'Técnica de Karai', '0152', 'Uncommon', 'Conjuro', 4.50, 'La disciplina del Clan del Pie es implacable.', '/img/karai.png', 2, 2001, 55, 'Inglés');
 
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (315, '1WB', 'Sorcery', NULL, NULL, 'Escabullir {W}{B} (Puedes lanzar este hechizo por {W}{B} si también devuelves un atacante no bloqueado que controles a la mano durante el paso de declaración de bloqueadores). Elige uno o ambos — La criatura objetivo obtiene +3/+3 hasta el final del turno; La criatura objetivo obtiene -3/-3 hasta el final del turno.', 'Blanco, Negro');
+-- INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+-- VALUES (315, '1WB', 'Sorcery', NULL, NULL, 'Escabullir {W}{B} (Puedes lanzar este hechizo por {W}{B} si también devuelves un atacante no bloqueado que controles a la mano durante el paso de declaración de bloqueadores). Elige uno o ambos — La criatura objetivo obtiene +3/+3 hasta el final del turno; La criatura objetivo obtiene -3/-3 hasta el final del turno.', 'Blanco, Negro');
 
-INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (316, 'Tortugas por Siempre', '0027', 'Rare', 'Instantáneo', 12.00, '"Nos vemos por el multiverso, hermanos." —Un Leonardo u otro.', '/img/tortugas-siempre.png', 2, 2001, 37, 'Inglés');
+-- INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
+-- VALUES (316, 'Tortugas por Siempre', '0027', 'Rare', 'Instantáneo', 12.00, '"Nos vemos por el multiverso, hermanos." —Un Leonardo u otro.', '/img/tortugas-siempre.png', 2, 2001, 37, 'Inglés');
 
-INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
-VALUES (316, '3W', 'Instant', NULL, NULL, 'Busca en tu biblioteca y/o fuera del juego exactamente cuatro cartas de criatura legendaria que poseas con nombres diferentes, luego muestra esas cartas. Un oponente elige dos de ellas. Pon las cartas elegidas en tu mano y baraja el resto en tu biblioteca.', 'Blanco');
+-- INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
+-- VALUES (316, '3W', 'Instant', NULL, NULL, 'Busca en tu biblioteca y/o fuera del juego exactamente cuatro cartas de criatura legendaria que poseas con nombres diferentes, luego muestra esas cartas. Un oponente elige dos de ellas. Pon las cartas elegidas en tu mano y baraja el resto en tu biblioteca.', 'Blanco');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
 VALUES (317, 'Bovino Transdimensional', '0134', 'Rare', 'Criatura', 7.00, '"La naturaleza de una cabeza de vaca cíborg gigante y incorpórea que viaja a través del tiempo y el espacio plantea innumerables preguntas. Pero a Cudley no le gusta hablar con la boca llena."', '/img/bovido.jpg', 2, 2001, 6, 'Inglés');
