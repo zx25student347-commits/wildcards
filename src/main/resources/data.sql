@@ -284,7 +284,7 @@ INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defe
 VALUES (212, 3, 'LUZ', 'Hada / Cantante Efecto', 900, 1900, 'Selecciona 1 monstruo Cantante boca arriba que controles; Invoca de Modo Especial, desde tu mano, 1 monstruo que no sea Cantante con un Nivel igual o menor al del monstruo seleccionado. Solo puedes activar 1 "Kewl Tune" por turno.');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (213, 'Kanan the Swordmistress', 'NONE', 'Ultra Rare', 'Monstruo', 20000.00, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.', '/img/kanan.jpg', 3, 4010, 1, 'Japonés');
+VALUES (213, 'Kanan the Swordmistress', 'NONE', 'Ultra Rare', 'Monstruo', 20000.00, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.', '/img/kanan.png', 3, 4010, 1, 'Japonés');
 
 INSERT INTO yugioh_cartas (carta_id, nivel, atributo, tipo_detalle, ataque, defensa, texto_efecto) 
 VALUES (213, 4, 'TIERRA', 'Guerrero / Normal', 1400, 1400, 'Una mujer guerrera armada con espada y escudo, flota como una mariposa y pica como una abeja.');
@@ -367,7 +367,7 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (305, '1BRG', 'Legendary Creature - Turtle Ninja', '3', '3', 'Arrollar. Siempre que Raphael reciba daño, pon esa misma cantidad de contadores +1/+1 sobre él. Al comienzo de tu paso final, Raphael puede luchar contra la criatura objetivo que no controles.', 'Negro, Rojo, Verde');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.jpg', 2, 2001, 4, 'Inglés');
+VALUES (306, 'Donatello', 'TMNT-03', 'Rare', 'Criatura Legendaria', 4300.00, 'El genio del equipo. Capaz de convertir cualquier chatarra en una maravilla tecnológica para ganar ventaja en el campo.', '/img/donatello.png', 2, 2001, 4, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (306, '1GUW', 'Legendary Creature - Turtle Ninja', '1', '5', 'Alcance. Siempre que lances un hechizo de artefacto, puedes robar una carta. {2}, {T}: Endereza el artefacto objetivo que controles.', 'Verde, Azul, Blanco');
@@ -421,13 +421,13 @@ INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abil
 VALUES (314, '2', 'Legendary Artifact', NULL, NULL, 'Siempre que una criatura que controles con un contador +1/+1 deje el campo de batalla, crea una ficha de Mutágeno por cada contador +1/+1 que tuviera. {T}: Exilia la carta objetivo de un cementerio. Crea una ficha de Mutágeno.', 'Incoloro');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (315, 'Técnica de Karai', '0152', 'Uncommon', 'Conjuro', 4.50, 'La disciplina del Clan del Pie es implacable.', '/img/karai.jpg', 2, 2001, 55, 'Inglés');
+VALUES (315, 'Técnica de Karai', '0152', 'Uncommon', 'Conjuro', 4.50, 'La disciplina del Clan del Pie es implacable.', '/img/karai.png', 2, 2001, 55, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (315, '1WB', 'Sorcery', NULL, NULL, 'Escabullir {W}{B} (Puedes lanzar este hechizo por {W}{B} si también devuelves un atacante no bloqueado que controles a la mano durante el paso de declaración de bloqueadores). Elige uno o ambos — La criatura objetivo obtiene +3/+3 hasta el final del turno; La criatura objetivo obtiene -3/-3 hasta el final del turno.', 'Blanco, Negro');
 
 INSERT INTO cartas (carta_id, nombre, numero_carta, rareza, tipo, precio, descripcion, imagen_url, juego_id, set_id, stock, idioma) 
-VALUES (316, 'Tortugas por Siempre', '0027', 'Rare', 'Instantáneo', 12.00, '"Nos vemos por el multiverso, hermanos." —Un Leonardo u otro.', '/img/tortugas-siempre.jpg', 2, 2001, 37, 'Inglés');
+VALUES (316, 'Tortugas por Siempre', '0027', 'Rare', 'Instantáneo', 12.00, '"Nos vemos por el multiverso, hermanos." —Un Leonardo u otro.', '/img/tortugas-siempre.png', 2, 2001, 37, 'Inglés');
 
 INSERT INTO magic_cartas (carta_id, mana_cost, card_type, power, toughness, abilities, colors) 
 VALUES (316, '3W', 'Instant', NULL, NULL, 'Busca en tu biblioteca y/o fuera del juego exactamente cuatro cartas de criatura legendaria que poseas con nombres diferentes, luego muestra esas cartas. Un oponente elige dos de ellas. Pon las cartas elegidas en tu mano y baraja el resto en tu biblioteca.', 'Blanco');
